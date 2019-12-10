@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/fin-blog",
   siteMetadata: {
     title: `Gatsby Starter Blog`,
     author: `Kyle Mathews`,
@@ -50,7 +51,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `GOOGLE ANALYTICSjk`,
       },
     },
     `gatsby-plugin-feed`,
