@@ -1,0 +1,20 @@
+---
+title: Creat a blog with Gatsby.js
+date: "2015-05-01T22:12:03.284Z"
+description: "Create a blog with Gatsby.js in a few easy steps using React, Javascript, Github Pages and Github Actions"
+---
+
+
+
+## Github Actions
+
+- use this one to automaticlaly publis
+https://github.com/enriikke/gatsby-gh-pages-action
+
+TODO talk about hwo to set it up
+
+- Setup a github personal access token
+
+
+https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line
+- use it in your workflow https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets#creating-encrypted-secrets (names are important)
