@@ -11,6 +11,8 @@ description: "Create a blog with Gatsby.js in a few easy steps using React, Java
 - use this one to automaticlaly publis (talk about inspecting the code and good practices when using other peoples code)
 https://github.com/enriikke/gatsby-gh-pages-action
 
+Mention the fact that the CNAME file is super important for per-repo github pages and that the configuration in settings gets overwritten when deploying via this action (for some reason)
+
 TODO talk about hwo to set it up
 
 - Setup a github personal access token
