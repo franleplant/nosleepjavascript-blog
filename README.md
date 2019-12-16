@@ -1,3 +1,9 @@
+Useful links
+- https://www.alexa.com/siteinfo/nehalist.io
+- https://franleplant.github.io/fin-blog/new-beginnings/
+
+
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
