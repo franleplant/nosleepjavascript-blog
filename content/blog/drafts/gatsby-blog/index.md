@@ -8,7 +8,7 @@ description: "Create a blog with Gatsby.js in a few easy steps using React, Java
 
 ## Github Actions
 
-- use this one to automaticlaly publis
+- use this one to automaticlaly publis (talk about inspecting the code and good practices when using other peoples code)
 https://github.com/enriikke/gatsby-gh-pages-action
 
 TODO talk about hwo to set it up

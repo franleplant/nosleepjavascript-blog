@@ -1,12 +1,12 @@
 module.exports = {
-  pathPrefix: "/fin-blog",
+  pathPrefix: "/nosleepjavascript-blog",
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    title: `NoSleep Javascript programming blog`,
+    author: `Ignacio Amigo & franleplant`,
+    description: ``,
+    siteUrl: `https://nosleepjavascript.com`,
     social: {
-      twitter: `kylemathews`,
+      twitter: ``,
     },
   },
   plugins: [

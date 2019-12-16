@@ -5,8 +5,6 @@ description: This is a custom description for SEO and Open Graph purposes, rathe
 ---
 
 
-THIS IS A NEW CHANGE MOFO
-
 
 # Hello world
 
