@@ -18,10 +18,8 @@ const Bio = (props) => {
     >
       
       <p>
-        Written by <strong>{props.author.id}</strong>: {props.author.bio}
-        <a href={`https://twitter.com/${props.author.twitter}`}>
-          You should follow him on Twitter
-        </a>
+        Written by <strong><a href={`https://twitter.com/${props.author.twitter}`}>{props.author.id}</a></strong>: {props.author.bio}
+        
       </p>
     </div>
   )

@@ -1,6 +1,7 @@
+#TODO(nacho): add profile pic field?
 - id: nacho
-  bio: Founder @ GatsbyJS. Likes tech, reading/writing, founding things. Blogs at bricolage.io.
-  twitter: "@kylemathews"
+  bio: Software Engineer.
+  twitter: "@ignacioamigo"
 - id: franleplant
-  bio: Founder tambien :).
+  bio: Software Engineer.
   twitter: "@franleplant"
