@@ -4,11 +4,15 @@ TODO
 - [ ] head, meta, title, etc
 - [ ] cleanup page (css, styles and content, headers, etc)
 - [x] FRAN automatic deploys when pushing to develop (CD)
-- [ ] FRAN: github actions and blog
+- [x] FRAN: github actions and blog
 - [ ] keywords list
 - [ ] a escribir vieja!
 - [ ] License for the content
-- [ ] Create per-author pages/ids
+- [x] Create per-author pages/ids
 - [ ] Check seo positioning (google us and see how difficult is to find us)
+- [ ] Create a bio page
+- [ ] Create an index page with actual content for better SEO
+
+
 
 

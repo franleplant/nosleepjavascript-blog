@@ -43,6 +43,7 @@
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
+    "gatsby-transformer-yaml": "2.2.20",
     "gh-pages": "^2.1.1",
     "prettier": "^1.19.1"
   },
