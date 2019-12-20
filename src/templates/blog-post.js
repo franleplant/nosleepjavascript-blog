@@ -10,6 +10,7 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
+    const author = this.props.data.markdownRemark.frontmatter.author
     const { previous, next } = this.props.pageContext
 
     return (
@@ -45,7 +46,7 @@ class BlogPostTemplate extends React.Component {
             }}
           />
           <footer>
-            <Bio />
+            <Bio author={author}/>
           </footer>
         </article>
 
@@ -93,10 +94,18 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      fields {
+        slug
+      }  
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        author {
+          id
+          bio
+          twitter
+        }
       }
     }
   }

@@ -13,6 +13,14 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        path: `${__dirname}/src/data`,
+        name: `data`,
+      },
+    },
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         path: `${__dirname}/content/blog`,
         name: `blog`,
       },
@@ -76,4 +84,7 @@ module.exports = {
       },
     },
   ],
+  mapping:{
+      'MarkdownRemark.frontmatter.author': `AuthorYaml`  
+  }
 }
