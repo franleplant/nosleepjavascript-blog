@@ -12,6 +12,8 @@ TODO
 - [ ] Check seo positioning (google us and see how difficult is to find us)
 - [ ] Create a bio page
 - [ ] Create an index page with actual content for better SEO
+- [ ] Add more author data, maybe a photo or an avatar, better mini bio, etc (copy medium one)
+
 
 
 
