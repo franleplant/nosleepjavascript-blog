@@ -32,7 +32,7 @@ export default class About extends React.Component {
         </p>
 
         <p>
-          We have been working in the industry for more than 6 years, we have
+          We have been working in the industry for more than 6 years, and have
           experience with a range of programming languages, programming
           techniques and philosophies. We are passionate about reflecting on these
           and more subjects and hopefully, in the process, we can help others
