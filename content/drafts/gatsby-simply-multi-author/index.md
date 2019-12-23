@@ -1,6 +1,4 @@
-
 //TODO mention that this is the more official or more ergonomic way of doing so https://www.gatsbyjs.org/docs/gatsby-config/#mapping-node-types
-
 
 this could be anice way of showing that sometimes you can do things the quick and dirty way if tou understand
 the underlying techs
@@ -14,37 +12,16 @@ the underlying techs
     console.log(author)
 
     // gatsby config
+
 module.exports = {
-  pathPrefix: "/nosleepjavascript-blog",
-  siteMetadata: {
-    title: `NoSleep Javascript programming blog`,
-    authors: [
-      {id: "nacho", secret: "he likes maite"},
-      {id: "franleplant", secret: "he likes burguers"},
-    ],
+pathPrefix: "/nosleepjavascript-blog",
+siteMetadata: {
+title: `NoSleep Javascript programming blog`,
+authors: [
+{id: "nacho", secret: "he likes maite"},
+{id: "franleplant", secret: "he likes burguers"},
+],
 
     // blog post template
-export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        authors {
-          id
-          secret
-        }
-      }
-    }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        description
-        author
-      }
-    }
-  }
-`
+
+export const pageQuery = graphql`query BlogPostBySlug($slug: String!) { site { siteMetadata { title authors { id secret } } } markdownRemark(fields: { slug: { eq: $slug } }) { id excerpt(pruneLength: 160) html frontmatter { title date(formatString: "MMMM DD, YYYY") description author } } }`
