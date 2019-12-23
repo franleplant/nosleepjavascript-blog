@@ -13,7 +13,6 @@ class BlogPostTemplate extends React.Component {
     const author = this.props.data.markdownRemark.frontmatter.author
     const { previous, next } = this.props.pageContext
 
-
     console.log(author)
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -38,7 +37,7 @@ class BlogPostTemplate extends React.Component {
                 marginBottom: rhythm(1),
               }}
             >
-              {post.frontmatter.date}
+              {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
             </p>
           </header>
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -48,7 +47,7 @@ class BlogPostTemplate extends React.Component {
             }}
           />
           <footer>
-            <Bio author={author}/>
+            <Bio author={author} />
           </footer>
         </article>
 
@@ -98,7 +97,10 @@ export const pageQuery = graphql`
       html
       fields {
         slug
-      }  
+        readingTime {
+          text
+        }
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
@@ -113,7 +115,7 @@ export const pageQuery = graphql`
                 ...GatsbyImageSharpFluid
               }
             }
-          }   
+          }
         }
       }
     }

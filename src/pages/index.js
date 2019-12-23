@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
+import SharedBio from "../components/sharedBio"
 
 class BlogIndex extends React.Component {
   render() {
@@ -14,7 +15,18 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
-        {/*<Bio />*/}
+
+        <p
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Link to="about">About us</Link>
+        </p>
+
+        <SharedBio authors={data.allAuthorYaml.nodes} />
+
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
@@ -29,7 +41,7 @@ class BlogIndex extends React.Component {
                     {title}
                   </Link>
                 </h3>
-                <small>{node.frontmatter.date}</small>
+                <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>
               </header>
               <section>
                 <p
@@ -61,6 +73,9 @@ export const pageQuery = graphql`
           excerpt
           fields {
             slug
+            readingTime {
+              text
+            }
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
@@ -68,6 +83,13 @@ export const pageQuery = graphql`
             description
           }
         }
+      }
+    }
+    allAuthorYaml {
+      nodes {
+        bio
+        id
+        twitter
       }
     }
   }

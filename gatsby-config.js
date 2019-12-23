@@ -51,6 +51,7 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          `gatsby-remark-reading-time`,
         ],
       },
     },
@@ -84,7 +85,7 @@ module.exports = {
       },
     },
   ],
-  mapping:{
-      'MarkdownRemark.frontmatter.author': `AuthorYaml`  
-  }
+  mapping: {
+    "MarkdownRemark.frontmatter.author": `AuthorYaml`,
+  },
 }

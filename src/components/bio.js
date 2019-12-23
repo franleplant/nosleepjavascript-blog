@@ -9,18 +9,20 @@ import React from "react"
 import { rhythm } from "../utils/typography"
 import Image from "gatsby-image"
 
-const Bio = (props) => {
+export default function Bio(props) {
+  const { author = {}, prefixText = "Written by" } = props
 
   return (
     <div
       style={{
         display: `flex`,
+        alignItems: "center",
         marginBottom: rhythm(2.5),
       }}
     >
       <Image
-        fluid={props.author.profilepicture.childImageSharp.fluid}
-        alt={props.author.id}
+        fluid={author.profilepicture.childImageSharp.fluid}
+        alt={author.id}
         style={{
           marginRight: rhythm(1 / 2),
           marginBottom: 0,
@@ -31,11 +33,13 @@ const Bio = (props) => {
           borderRadius: `50%`,
         }}
       />
-      <p>
-        Written by <strong><a href={`https://twitter.com/${props.author.twitter}`}>{props.author.id}</a></strong>: {props.author.bio}
+      <p style={{ margin: 0 }}>
+        {`${prefixText} `}
+        <strong>
+          <a href={`https://twitter.com/${author.twitter}`}>{author.id}</a>
+        </strong>
+        : {author.bio}
       </p>
     </div>
   )
 }
-
-export default Bio

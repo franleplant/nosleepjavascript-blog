@@ -5,8 +5,6 @@ author: franleplant
 description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
 ---
 
-
-
 # Hello world
 
 ```rust
@@ -16,4 +14,3 @@ function hello(b = "some string") {
   return false
 }
 ```
-

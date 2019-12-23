@@ -1,4 +1,5 @@
 TODO
+
 - [x] https
 - [x] check that dns config keeps working after 24 hours
 - [ ] head, meta, title, etc
@@ -13,8 +14,3 @@ TODO
 - [ ] Create a bio page
 - [ ] Create an index page with actual content for better SEO
 - [ ] Add more author data, maybe a photo or an avatar, better mini bio, etc (copy medium one)
-
-
-
-
-

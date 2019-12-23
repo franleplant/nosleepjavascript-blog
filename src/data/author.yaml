@@ -1,9 +1,8 @@
-#TODO(nacho): add profile pic field?
 - id: nacho
   bio: Software Engineer.
   profilepicture: ../../content/assets/nacho-profile.png
   twitter: "@ignacioamigo"
 - id: franleplant
   profilepicture: ../../content/assets/franleplant-profile.png
-  bio: Software Engineer.
+  bio: Software developer with a degree in Engineering, Woodworker, all things Javascript, Rust and Software Architecture.
   twitter: "@franleplant"
