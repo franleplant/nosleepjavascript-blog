@@ -10,10 +10,9 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
-    const author = this.props.data.markdownRemark.frontmatter.author
+    const { author, tags = []} = this.props.data.markdownRemark.frontmatter
     const { previous, next } = this.props.pageContext
 
-    console.log(author)
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
@@ -38,6 +37,20 @@ class BlogPostTemplate extends React.Component {
               }}
             >
               {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
+              {/*https://www.gatsbyjs.org/tutorial/part-two/#using-component-scoped-css*/}
+              <div style={{
+                marginTop: '10px',
+                marginLeft: '-5px',
+              }}>
+              {tags.map(tag => (
+                <span style={{
+                  border: '1px solid #ccc',
+                  borderRadius: '10px',
+                  margin: '5px',
+                  padding: '10px 5px',
+                }}>{`#${tag}`}</span>
+              ))}
+              </div>
             </p>
           </header>
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -105,6 +118,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
         author {
           id
           bio

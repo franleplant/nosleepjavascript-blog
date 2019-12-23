@@ -8,6 +8,10 @@ description:
   GraphQL, Javascript, GitHub Pages and GitHub Actions"
 todo:
   - in the future it would be nice to add a section on to how to deploy to azure
+tags:
+  - gatsbyjs
+  - javascript
+  - react
 ---
 
 ## Introduction
