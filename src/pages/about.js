@@ -1,22 +1,31 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import {graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Bio from "../components/bio"
+import { rhythm } from "../utils/typography"
 
 export default class About extends React.Component {
   render() {
-    const { allAuthorYaml } = this.props.data
+    const { allAuthorYaml, site } = this.props.data
     const authors = allAuthorYaml.nodes
 
     return (
-      <Layout location={this.props.location} title={"About us"}>
+      <Layout location={this.props.location} title={site.siteMetadata.title}>
         <SEO title="About us" />
-        <p>
-          <Link to="/">back</Link>
-        </p>
-
+        <article>
+          <header>
+            <h1
+              style={{
+                marginTop: rhythm(1),
+                marginBottom: rhythm(1),
+              }}
+            >
+              About us
+            </h1>
+          </header>
+          <section>
         <p>
           We are two Software Developers with degrees in Engineering that love
           to talk about programming, tech culture and other random stuff.
@@ -33,6 +42,16 @@ export default class About extends React.Component {
         {authors.map(author => (
           <Bio author={author} key={author.id} prefixText="" />
         ))}
+          </section>
+
+          <hr
+            style={{
+              marginBottom: rhythm(1),
+            }}
+          />
+          <footer>
+          </footer>
+        </article>
       </Layout>
     )
   }
@@ -40,6 +59,11 @@ export default class About extends React.Component {
 
 export const pageQuery = graphql`
   query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allAuthorYaml {
       nodes {
         bio
