@@ -3,7 +3,7 @@ module.exports = {
   siteMetadata: {
     title: `NoSleep Javascript Blog`,
     author: `Ignacio Amigo & franleplant`,
-    description: ``,
+    description: `Blog created by engineers who love to talk about tech culture and various topics related to programming and development.`,
     siteUrl: `https://nosleepjavascript.com`,
     social: {
       twitter: ``,
