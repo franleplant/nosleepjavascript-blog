@@ -34,7 +34,7 @@ export default class About extends React.Component {
         <p>
           We have been working in the industry for more than 6 years, we have
           experience with a range of programming languages, programming
-          techniques, filosophies and we are pationate about reflecting on these
+          techniques and philosophies. We are passionate about reflecting on these
           and more subjects and hopefully, in the process, we can help others
           improve and move their careers forward.
         </p>

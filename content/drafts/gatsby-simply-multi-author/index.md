@@ -14,6 +14,7 @@ the underlying techs
     // gatsby config
 
 module.exports = {
+<<<<<<< HEAD
 pathPrefix: "/nosleepjavascript-blog",
 siteMetadata: {
 title: `NoSleep Javascript programming blog`,
@@ -21,6 +22,15 @@ authors: [
 {id: "nacho", secret: "he likes maite"},
 {id: "franleplant", secret: "he likes burguers"},
 ],
+=======
+  pathPrefix: "/nosleepjavascript-blog",
+  siteMetadata: {
+    title: `NoSleep Javascript`,
+    authors: [
+      {id: "nacho", secret: "he likes maite"},
+      {id: "franleplant", secret: "he likes burguers"},
+    ],
+>>>>>>> 52bdf51... styling, ponele
 
     // blog post template
 

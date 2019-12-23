@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: "/nosleepjavascript-blog",
   siteMetadata: {
-    title: `NoSleep Javascript programming blog`,
+    title: `NoSleep Javascript Blog`,
     author: `Ignacio Amigo & franleplant`,
     description: ``,
     siteUrl: `https://nosleepjavascript.com`,
