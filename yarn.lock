@@ -4552,11 +4552,11 @@ gatsby-graphiql-explorer@^0.2.29:
   dependencies:
     "@babel/runtime" "^7.7.4"
 
-gatsby-image@^2.2.34:
-  version "2.2.34"
-  resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-2.2.34.tgz#bfefb56d731806ec63d5bd59e00ff01f552b02e0"
+gatsby-image@^2.2.37:
+  version "2.2.37"
+  resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-2.2.37.tgz#dc7e6b15860e1d505925d0a08cd390f7d32efec0"
   dependencies:
-    "@babel/runtime" "^7.7.4"
+    "@babel/runtime" "^7.7.6"
     object-fit-images "^3.2.4"
     prop-types "^15.7.2"
 
@@ -10648,6 +10648,13 @@ typography-breakpoint-constants@^0.16.19:
 typography-normalize@^0.16.19:
   version "0.16.19"
   resolved "https://registry.yarnpkg.com/typography-normalize/-/typography-normalize-0.16.19.tgz#58e0cf12466870c5b27006daa051fe7307780660"
+
+typography-theme-fairy-gates@^0.16.19:
+  version "0.16.19"
+  resolved "https://registry.yarnpkg.com/typography-theme-fairy-gates/-/typography-theme-fairy-gates-0.16.19.tgz#db07be642d7fbed7ebbb5b81a078cbe89def5806"
+  dependencies:
+    gray-percentage "^2.0.0"
+    typography-breakpoint-constants "^0.16.19"
 
 typography-theme-wordpress-2016@^0.16.19:
   version "0.16.19"
