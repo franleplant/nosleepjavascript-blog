@@ -13,18 +13,17 @@ export default class About extends React.Component {
         <SEO title="About us" />
 
         <p>
-          We are two Software Developers with degrees in Engineering that
-          love to talk about programming, tech culture and other random stuff.
+          We are two Software Developers with degrees in Engineering that love
+          to talk about programming, tech culture and other random stuff.
         </p>
 
         <p>
-          We have been working in the industry for more than 6 years, we
-          have experience with a range of programming languages, programming techniques,
-          filosophies and we are pationate about reflecting on these and more subjects
-          and hopefully, in the process, we can help others improve and move their
-          careers forward.
+          We have been working in the industry for more than 6 years, we have
+          experience with a range of programming languages, programming
+          techniques, filosophies and we are pationate about reflecting on these
+          and more subjects and hopefully, in the process, we can help others
+          improve and move their careers forward.
         </p>
-
       </Layout>
     )
   }

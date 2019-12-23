@@ -9,8 +9,7 @@ import React from "react"
 import { rhythm } from "../utils/typography"
 import Image from "gatsby-image"
 
-const Bio = (props) => {
-
+const Bio = props => {
   return (
     <div
       style={{
@@ -32,7 +31,13 @@ const Bio = (props) => {
         }}
       />
       <p>
-        Written by <strong><a href={`https://twitter.com/${props.author.twitter}`}>{props.author.id}</a></strong>: {props.author.bio}
+        Written by{" "}
+        <strong>
+          <a href={`https://twitter.com/${props.author.twitter}`}>
+            {props.author.id}
+          </a>
+        </strong>
+        : {props.author.bio}
       </p>
     </div>
   )

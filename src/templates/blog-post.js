@@ -13,7 +13,6 @@ class BlogPostTemplate extends React.Component {
     const author = this.props.data.markdownRemark.frontmatter.author
     const { previous, next } = this.props.pageContext
 
-
     console.log(author)
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -116,7 +115,7 @@ export const pageQuery = graphql`
                 ...GatsbyImageSharpFluid
               }
             }
-          }   
+          }
         }
       }
     }
