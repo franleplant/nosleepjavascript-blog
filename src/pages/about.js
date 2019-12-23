@@ -1,5 +1,5 @@
 import React from "react"
-import {graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -26,22 +26,23 @@ export default class About extends React.Component {
             </h1>
           </header>
           <section>
-        <p>
-          We are two Software Developers with degrees in Engineering that love
-          to talk about programming, tech culture and other random stuff.
-        </p>
+            <p>
+              We are two Software Developers with degrees in Engineering that
+              love to talk about programming, tech culture and other random
+              stuff.
+            </p>
 
-        <p>
-          We have been working in the industry for more than 6 years, and have
-          experience with a range of programming languages, programming
-          techniques and philosophies. We are passionate about reflecting on these
-          and more subjects and hopefully, in the process, we can help others
-          improve and move their careers forward.
-        </p>
+            <p>
+              We have been working in the industry for more than 6 years, and
+              have experience with a range of programming languages, programming
+              techniques and philosophies. We are passionate about reflecting on
+              these and more subjects and hopefully, in the process, we can help
+              others improve and move their careers forward.
+            </p>
 
-        {authors.map(author => (
-          <Bio author={author} key={author.id} prefixText="" />
-        ))}
+            {authors.map(author => (
+              <Bio author={author} key={author.id} prefixText="" />
+            ))}
           </section>
 
           <hr
@@ -49,8 +50,7 @@ export default class About extends React.Component {
               marginBottom: rhythm(1),
             }}
           />
-          <footer>
-          </footer>
+          <footer></footer>
         </article>
       </Layout>
     )

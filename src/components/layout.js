@@ -16,7 +16,7 @@ class Layout extends React.Component {
             ...scale(1.4),
             marginBottom: rhythm(1.5),
             marginTop: 0,
-            textAlign:"center"
+            textAlign: "center",
           }}
         >
           <Link
@@ -37,7 +37,7 @@ class Layout extends React.Component {
           style={{
             fontFamily: `Montserrat, sans-serif`,
             marginTop: 0,
-            textAlign:"center"
+            textAlign: "center",
           }}
         >
           <Link

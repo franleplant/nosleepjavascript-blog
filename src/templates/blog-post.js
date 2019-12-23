@@ -10,7 +10,7 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
-    const { author, tags = []} = this.props.data.markdownRemark.frontmatter
+    const { author, tags = [] } = this.props.data.markdownRemark.frontmatter
     const { previous, next } = this.props.pageContext
 
     return (
@@ -38,18 +38,22 @@ class BlogPostTemplate extends React.Component {
             >
               {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
               {/*https://www.gatsbyjs.org/tutorial/part-two/#using-component-scoped-css*/}
-              <div style={{
-                marginTop: '10px',
-                marginLeft: '-5px',
-              }}>
-              {tags.map(tag => (
-                <span style={{
-                  border: '1px solid #ccc',
-                  borderRadius: '10px',
-                  margin: '5px',
-                  padding: '10px 5px',
-                }}>{`#${tag}`}</span>
-              ))}
+              <div
+                style={{
+                  marginTop: "10px",
+                  marginLeft: "-5px",
+                }}
+              >
+                {tags.map(tag => (
+                  <span
+                    style={{
+                      border: "1px solid #ccc",
+                      borderRadius: "10px",
+                      margin: "5px",
+                      padding: "10px 5px",
+                    }}
+                  >{`#${tag}`}</span>
+                ))}
               </div>
             </p>
           </header>

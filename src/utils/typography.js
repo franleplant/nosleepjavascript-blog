@@ -5,8 +5,8 @@ FairyGates.overrideThemeStyles = () => ({
   a: {
     textDecoration: "none",
     borderBottom: "1px solid",
-    color:"#ff00ff",
-    backgroundImage: "none"
+    color: "#ff00ff",
+    backgroundImage: "none",
   },
 
   "h1 a": {
@@ -15,22 +15,20 @@ FairyGates.overrideThemeStyles = () => ({
   },
 
   blockquote: {
-    borderLeft:"0.5rem solid #8000ff"
+    borderLeft: "0.5rem solid #8000ff",
   },
 
   "a:hover": {
     color: "#ff0080",
-  }
-});
-
+  },
+})
 
 //delete FairyGates.googleFonts
 
-FairyGates.baseFontSize = '17px' // was 20px.
-FairyGates.lineHeight = '1.5' 
+FairyGates.baseFontSize = "17px" // was 20px.
+FairyGates.lineHeight = "1.5"
 FairyGates.scaleRatio = 2.3
-const typography =  new Typography(FairyGates)
-
+const typography = new Typography(FairyGates)
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {
