@@ -46,6 +46,7 @@ class BlogPostTemplate extends React.Component {
               >
                 {tags.map(tag => (
                   <span
+                    key={tag}
                     style={{
                       border: "1px solid #ccc",
                       borderRadius: "10px",
