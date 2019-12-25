@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Tags from '../components/Tags'
 import { rhythm, scale } from "../utils/typography"
 import getSetViewCount from "../dal/getSetPageView"
 
@@ -55,25 +56,7 @@ export default function BlogPostTemplate(props) {
             }}
           >
             {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
-            {/*https://www.gatsbyjs.org/tutorial/part-two/#using-component-scoped-css*/}
-            <div
-              style={{
-                marginTop: "10px",
-                marginLeft: "-5px",
-              }}
-            >
-              {tags.map(tag => (
-                <span
-                  key={tag}
-                  style={{
-                    border: "1px solid #ccc",
-                    borderRadius: "10px",
-                    margin: "5px",
-                    padding: "10px 5px",
-                  }}
-                >{`#${tag}`}</span>
-              ))}
-            </div>
+            <Tags tags={tags} />
           </p>
           {pageViewCount && <p>This post was viewed {pageViewCount} times</p>}
         </header>
