@@ -3,7 +3,7 @@ title: Using Azure Functions to create a page view counter
 date: "2019-12-26T22:12:03.284Z"
 author: nacho
 description:
-  "We can extend static sites by creating a simple page view counter that is processed in a serverless manner, and for free. Microsoft Azure provides *Functions* as a flagship service to do this. Let's explore building it on Visual Studio"
+  "We can extend static sites by creating a simple page view counter that is processed in a serverless manner, and for free. Microsoft Azure provides *Functions* as a flagship service to do this. Let's explore building it on Visual Studio."
 tags:
   - azure functions
   - storage
@@ -44,6 +44,16 @@ You can see that this plan includes 1,000,000 function requests per month, which
 
 ## Building the service
 
+### Overview
+
+As a general guide, let's review a brief overview of what we'll accomplish and delve into the details as the post goes on:
+
+1. We need to create an Azure Function.
+1. As Azure Functions are stateless, we need to add a way to persist these counts. For this, we need to create an Storage Account on Azure and use the Table service to keep track of this.
+1. We'll have to program the Azure Function that it responds to requests for page view counts (for a specific URL/post) and tracks this on Storage Tables.
+1. Lastly, we'll have to deploy the solution.
+
+
 ### Using Azure Functions
 
 Azure Functions is a way of executing code in a [serverless](https://azure.microsoft.com/solutions/serverless/) manner. In a way, it lets us only worry about the code that we want to execute instead of how the code is executed:
@@ -58,16 +68,17 @@ Note that you can also create the Azure Function before deploying any actual cod
 
 To start, we open Visual Studio and create a new project. In the Create a new project dialog box, search for functions, choose the Azure Functions template, and select Next. I'm creating the project with the name *PageViewCounter*. 
 
-Here is where we need to define some concepts related to functions:
+At this point, we need to set up our Function implementation. Let's review the settings we need to set and what their concepts mean:
 
 - There's a drop-down that contains the technologies that will host our functions. As mentioned previously, we will use *Azure Functions v2 (.NET Core)*.
-- Functions also provide automatic ways of triggering our code, some of which communicate with other Azure Services (Queues triggers, IoT Triggers, Blob Triggers, etc.). We'll use the [**HTTP trigger**](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook?tabs=csharp) as we want our function to trigger whenever we enter a page.
+- Functions also provide automatic ways of triggering our code, some of which communicate with other Azure Services to call the function when something happens (Queues triggers, IoT Triggers, Blob Triggers, etc.). We'll use the [**HTTP trigger**](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook?tabs=csharp) as we want our function to trigger whenever we enter a page.
 - Authorization level: Anonymous. We don't need fancy ways of doing authentication for this so we'll leave it at that for simplicity.
  
  After creating the project, we are received with boilerplate code that does some simple processing of a request; where if the HTTP request contains a name parameter, the response will be a greeting, and otherwise the request will fail with an error message:
 
 
-```csharp
+**`Function1.cs`**
+```csharp 
     [FunctionName("Function1")]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
@@ -84,7 +95,10 @@ Here is where we need to define some concepts related to functions:
     } 
 ```
 
-From here we can also see that some of the settings that we chose when creating the project defined the attribute of the **Run()** method (which is the main code we want to run).
+Let's unpack some of the things we see here:
+
+- The *[FunctionName("Function1")]* attribute tells the Azure Functions app what the name of our Function is.
+- *[HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req*: This attribute is used to define that this Function is triggered by HTTP and you can have it be triggered by this other things, as we reviewed. We are also telling it through a list of string params that the Function should respond to GETs and POSTs HTTP requests. You could change any of this at any point.
 
 There are some other files in the project that we'll look into later.
 
@@ -100,8 +114,9 @@ Http Functions:
 
 If we enter that URL into a browser (or even make a request to it with *curl*) without a name parameter, it will ask us to pass a parameter name. If we do so (for instance, by entering *http://localhost:7071/api/Function1?name=nacho*), it will say hello pertinently.
 
-We can go ahead and make our first changes to this. We should start by naming the function something more specific. For this we can change the [*FunctionName()*] attribute. I will name it *GetPageViewCount*. We would also like it to respond only to **POST** requests, so I will remove the *GET* parameter in the [*HttpTrigger()*] attribute. Lastly, we can change our code to return 0 as text for now. This is what it will look like:
+We can go ahead and make our first changes to this. We should start by naming the function something more specific. For this we can change the [*FunctionName()*] attribute. I will name it *GetPageViewCount* (and, to accompany the function name, I'll rename the function file to this as well). We would also like it to respond only to **POST** requests, so I will remove the *GET* parameter in the [*HttpTrigger()*] attribute. Lastly, we can change our code to return just "Hello!" as text for now. This is what it will look like:
 
+**`GetPageViewCount.cs`**
 ```csharp
 [FunctionName("GetPageViewCount")]
     public static async Task<IActionResult> Run(
@@ -110,7 +125,7 @@ We can go ahead and make our first changes to this. We should start by naming th
     {
         string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
         dynamic data = JsonConvert.DeserializeObject(requestBody);
-        return (ActionResult)new OkObjectResult("0");
+        return (ActionResult) new OkObjectResult("Hello!");
     } 
 ```
 
@@ -138,6 +153,7 @@ Azure Storage encompasses many services such as Blobs, Tables, Queues, Files, et
 At this point, we want to install the Azure Storage Tables NuGet package (or the equivalent for the language you want). We are actually going to use the [Cosmos DB Tables API](https://docs.microsoft.com/en-us/azure/cosmos-db/tutorial-develop-table-dotnet#install-the-required-nuget-package), since it includes the API for accessing storage tables.
 Let's add the reference to it:
 
+**`GetPageViewCount.cs`**
 ```csharp
 using Microsoft.Azure.Cosmos.Table;
 ```
@@ -161,7 +177,9 @@ The simple way to store entities is to create a class that inherits from `TableE
 
   Since the `PartitionKey` is used for load balancing, it's important that it's not hardcoded. For this, we can use the URL of the page in which we are counting the views. The `RowKey` can be hardcoded, because we are already changing the key through the use of the URL in the `PartitionKey`. Eventually we could have different `RowKey` for different scenarios, but for now it will stay as a hardcoded value. You can read more [here](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model).
 
-  After that, the entity can have whatever fields we want. Since we are storing the values, this is how our class will look:
+  After that, the entity can have whichever fields we want. Since we are storing the values, this is how our class will look:
+
+**`GetPageViewCount.cs`**
 ```csharp
   public class ViewCount : TableEntity
     {
@@ -185,6 +203,7 @@ The simple way to store entities is to create a class that inherits from `TableE
         }
     }
 ```
+
 ### Changing our function to connect to Storage
 
 We now have the entity that we want to store and retrieve, so we need to connect to Storage and do precisely that. Table entities are stored in Tables which are identified with a name, so we can choose it and connect to it through a `CloudTable` object. In general, the logic is as follows:
@@ -265,7 +284,8 @@ We are now ready to deploy the Azure Function. Something that you might want to 
 ```
 The App Settings can be changed in the Azure Portal at runtime.  
 
-Lastly, you can implement this on any page by creating a small script that calls into this function and gets the result:
+Lastly, you can implement this on any page by creating a small script that calls into this function and gets the result. It would look something like this if it were in Javascript:
+
 ```js
 const url = 'https://pageviewcounterblog.azurewebsites.net/api/GetViewCounter/';
 const data = {URL: 'this-blog-post-URL'};
