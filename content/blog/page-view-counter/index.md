@@ -112,7 +112,7 @@ Http Functions:
         Function1: [GET,POST] http://localhost:7071/api/Function1
 ```
 
-If we enter that URL into a browser (or even make a request to it with *curl*) without a name parameter, it will ask us to pass a parameter name. If we do so (for instance, by entering *http://localhost:7071/api/Function1?name=nacho*), it will say hello pertinently.
+If we enter that URL into a browser (or even make a request to it with *cURL* or *Postman*) without a name parameter, it will ask us to pass a parameter name. If we do so (for instance, by entering *http://localhost:7071/api/Function1?name=nacho*), it will say hello pertinently.
 
 We can go ahead and make our first changes to this. We should start by naming the function something more specific. For this we can change the [*FunctionName()*] attribute. I will name it *GetPageViewCount* (and, to accompany the function name, I'll rename the function file to this as well). We would also like it to respond only to **POST** requests, so I will remove the *GET* parameter in the [*HttpTrigger()*] attribute. Lastly, we can change our code to return just "Hello!" as text for now. This is what it will look like:
 
