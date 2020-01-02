@@ -3,7 +3,7 @@ title: Using Azure Functions to create a page view counter
 date: "2019-12-26T22:12:03.284Z"
 author: nacho
 description:
-  "We can extend static sites by creating a simple page view counter that is processed in a serverless manner, and for free. Microsoft Azure provides *Functions* as a flagship service to do this. Let's explore building it on Visual Studio."
+  "We can extend static sites by creating a simple page view counter that is processed in a serverless manner, and for free. Microsoft Azure provides Functions as a flagship service to do this. Let's explore building it on Visual Studio."
 tags:
   - azure functions
   - storage
