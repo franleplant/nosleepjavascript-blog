@@ -2,8 +2,7 @@
 title: Using Azure Functions to create a page view counter
 date: "2019-12-26T22:12:03.284Z"
 author: nacho
-description:
-  "We can extend static sites by creating a simple page view counter that is processed in a serverless manner, and for free. Microsoft Azure provides Functions as a flagship service to do this. Let's explore building it on Visual Studio."
+description: "We can extend static sites by creating a simple page view counter that is processed in a serverless manner, and for free. Microsoft Azure provides Functions as a flagship service to do this. Let's explore building it on Visual Studio."
 tags:
   - azure functions
   - storage
@@ -24,23 +23,23 @@ The scope of this small experiment will be to build a small service that maintai
 
 ## Tech requirements
 
- Azure provides [multiple compute solutions](https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-overview), each with its own use cases. Considering the scope, [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview) sounds like a good offering. Function apps are serverless execution contexts where we can run a piece of code (the Functions themselves) in a stateless way. 
+Azure provides [multiple compute solutions](https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-overview), each with its own use cases. Considering the scope, [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview) sounds like a good offering. Function apps are serverless execution contexts where we can run a piece of code (the Functions themselves) in a stateless way.
 
- Since this compute platform is stateless, it means we'll need to have a separate way of storing how many times each page was visited. Most of the full-fledged DB offerings will probably be overkill for this, so using something like [Azure Storage Tables](https://azure.microsoft.com/en-us/services/storage/tables/) sounds like a good idea. The light, no-schema, and cheap service is good for key-value storage, which is exactly what we need.
+Since this compute platform is stateless, it means we'll need to have a separate way of storing how many times each page was visited. Most of the full-fledged DB offerings will probably be overkill for this, so using something like [Azure Storage Tables](https://azure.microsoft.com/en-us/services/storage/tables/) sounds like a good idea. The light, no-schema, and cheap service is good for key-value storage, which is exactly what we need.
 
 Considering the above, what we will be using is the following:
 
 - An Azure account/subscription (the [free one](https://azure.microsoft.com/en-us/free/) will be more than enough).
-- Azure Storage Account, to use the tables service. 
+- Azure Storage Account, to use the tables service.
 - Azure Functions App, to deploy our function into.
-- An IDE (for this, I will be using .NET Core C# on the free version of  [Visual Studio]((https://azure.microsoft.com/downloads/) ), but there are [several offerings](https://docs.microsoft.com/en-us/azure/azure-functions/supported-languages) that Azure Functions support)
+- An IDE (for this, I will be using .NET Core C# on the free version of [Visual Studio](<(https://azure.microsoft.com/downloads/)>), but there are [several offerings](https://docs.microsoft.com/en-us/azure/azure-functions/supported-languages) that Azure Functions support)
 - The [Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2) for Azure Functions. It comes with Visual Studio if you include the **Azure development** workload when installing it.
 
 ## Capacity
 
-These Azure services all have their own pricing plans, but as mentioned in the above section, we will be fine using the free subscription offering for the experiment. You can see which products are free and in which capacity [here](https://azure.microsoft.com/en-us/free/search#new-products). 
+These Azure services all have their own pricing plans, but as mentioned in the above section, we will be fine using the free subscription offering for the experiment. You can see which products are free and in which capacity [here](https://azure.microsoft.com/en-us/free/search#new-products).
 
-You can see that this plan includes 1,000,000 function requests per month, which is a good amount in terms of capacity. You can upgrade later if needed, but in general, it's a cheap plan and a good way to start. 
+You can see that this plan includes 1,000,000 function requests per month, which is a good amount in terms of capacity. You can upgrade later if needed, but in general, it's a cheap plan and a good way to start.
 
 ## Building the service
 
@@ -53,7 +52,6 @@ As a general guide, let's review a brief overview of what we'll accomplish and d
 1. We'll have to program the Azure Function that it responds to requests for page view counts (for a specific URL/post) and tracks this on Storage Tables.
 1. Lastly, we'll have to deploy the solution.
 
-
 ### Using Azure Functions
 
 Azure Functions is a way of executing code in a [serverless](https://azure.microsoft.com/solutions/serverless/) manner. In a way, it lets us only worry about the code that we want to execute instead of how the code is executed:
@@ -62,23 +60,23 @@ Azure Functions is a way of executing code in a [serverless](https://azure.micro
 
 It's similar to what AWS offers with Lambdas. Thinking about it in terms of abstractions, we can put Functions-as-a-Service a layer above Platform-as-a-service (which, in turn, finds itself above Infrastructure-as-a-Service).
 
-There are some things we need to define before writing code for our own function, but they will be explained as we go along with the creation of the project in Visual Studio. 
+There are some things we need to define before writing code for our own function, but they will be explained as we go along with the creation of the project in Visual Studio.
 
 Note that you can also create the Azure Function before deploying any actual code into it on the Azure portal (or several other ways like PowerShell, Azure CLI, REST API, etc.), but it makes sense to abstract from that considering the fact that we know that the project templates that come with Visual Studio (or the core tools in general) handle everything we need to deploy our code correctly into our own Azure account.
 
-To start, we open Visual Studio and create a new project. In the Create a new project dialog box, search for functions, choose the Azure Functions template, and select Next. I'm creating the project with the name *PageViewCounter*. 
+To start, we open Visual Studio and create a new project. In the Create a new project dialog box, search for functions, choose the Azure Functions template, and select Next. I'm creating the project with the name _PageViewCounter_.
 
 At this point, we need to set up our Function implementation. Let's review the settings we need to set and what their concepts mean:
 
-- There's a drop-down that contains the technologies that will host our functions. As mentioned previously, we will use *Azure Functions v2 (.NET Core)*.
+- There's a drop-down that contains the technologies that will host our functions. As mentioned previously, we will use _Azure Functions v2 (.NET Core)_.
 - Functions also provide automatic ways of triggering our code, some of which communicate with other Azure Services to call the function when something happens (Queues triggers, IoT Triggers, Blob Triggers, etc.). We'll use the [**HTTP trigger**](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook?tabs=csharp) as we want our function to trigger whenever we enter a page.
 - Authorization level: Anonymous. We don't need fancy ways of doing authentication for this so we'll leave it at that for simplicity.
- 
- After creating the project, we are received with boilerplate code that does some simple processing of a request; where if the HTTP request contains a name parameter, the response will be a greeting, and otherwise the request will fail with an error message:
 
+After creating the project, we are received with boilerplate code that does some simple processing of a request; where if the HTTP request contains a name parameter, the response will be a greeting, and otherwise the request will fail with an error message:
 
 **`Function1.cs`**
-```csharp 
+
+```csharp
     [FunctionName("Function1")]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
@@ -92,13 +90,13 @@ At this point, we need to set up our Function implementation. Let's review the s
         return name != null
             ? (ActionResult)new OkObjectResult($"Hello, {name}")
             : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
-    } 
+    }
 ```
 
 Let's unpack some of the things we see here:
 
-- The *[FunctionName("Function1")]* attribute tells the Azure Functions app what the name of our Function is.
-- *[HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req*: This attribute is used to define that this Function is triggered by HTTP and you can have it be triggered by this other things, as we reviewed. We are also telling it through a list of string params that the Function should respond to GETs and POSTs HTTP requests. You could change any of this at any point.
+- The _[FunctionName("Function1")]_ attribute tells the Azure Functions app what the name of our Function is.
+- _[HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req_: This attribute is used to define that this Function is triggered by HTTP and you can have it be triggered by this other things, as we reviewed. We are also telling it through a list of string params that the Function should respond to GETs and POSTs HTTP requests. You could change any of this at any point.
 
 There are some other files in the project that we'll look into later.
 
@@ -112,11 +110,12 @@ Http Functions:
         Function1: [GET,POST] http://localhost:7071/api/Function1
 ```
 
-If we enter that URL into a browser (or even make a request to it with *curl*) without a name parameter, it will ask us to pass a parameter name. If we do so (for instance, by entering *http://localhost:7071/api/Function1?name=nacho*), it will say hello pertinently.
+If we enter that URL into a browser (or even make a request to it with _curl_) without a name parameter, it will ask us to pass a parameter name. If we do so (for instance, by entering _http://localhost:7071/api/Function1?name=nacho_), it will say hello pertinently.
 
-We can go ahead and make our first changes to this. We should start by naming the function something more specific. For this we can change the [*FunctionName()*] attribute. I will name it *GetPageViewCount* (and, to accompany the function name, I'll rename the function file to this as well). We would also like it to respond only to **POST** requests, so I will remove the *GET* parameter in the [*HttpTrigger()*] attribute. Lastly, we can change our code to return just "Hello!" as text for now. This is what it will look like:
+We can go ahead and make our first changes to this. We should start by naming the function something more specific. For this we can change the [*FunctionName()*] attribute. I will name it _GetPageViewCount_ (and, to accompany the function name, I'll rename the function file to this as well). We would also like it to respond only to **POST** requests, so I will remove the _GET_ parameter in the [*HttpTrigger()*] attribute. Lastly, we can change our code to return just "Hello!" as text for now. This is what it will look like:
 
 **`GetPageViewCount.cs`**
+
 ```csharp
 [FunctionName("GetPageViewCount")]
     public static async Task<IActionResult> Run(
@@ -126,7 +125,7 @@ We can go ahead and make our first changes to this. We should start by naming th
         string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
         dynamic data = JsonConvert.DeserializeObject(requestBody);
         return (ActionResult) new OkObjectResult("Hello!");
-    } 
+    }
 ```
 
 If we wanted, we could go ahead and publish our project by doing a right-click on the Project and selecting **Publish**. Here is another thing we need to define about our service: How the pricing will be performed. The easiest way, especially if we are using the free Azure account, is to use a Consumption plan, which will give us **1 million** free requests. There are some disadvantages compared to the other 2 plans (Premium and App Services):
@@ -142,7 +141,7 @@ Lastly, when publishing to a consumption plan, it asks us for the following:
 - Location: The datacenter in which you want your Function to run.
 - Azure Storage: The plan needs to store metadata and for this, they use a storage account. You will need to create one.
 
-Notice that the last field is an Azure Storage Account. This is convenient for us because as we said, we will be using Storage tables and this saves us the creation of one. Let's create the Storage Account and proceed with the publishing. A Storage Account name must be unique because it creates public endpoints through which you can access the service (e.g. *https://your-storage-name.table.core.windows.net*). You are charged by the data egress and ingress, so you can create as many as you want.
+Notice that the last field is an Azure Storage Account. This is convenient for us because as we said, we will be using Storage tables and this saves us the creation of one. Let's create the Storage Account and proceed with the publishing. A Storage Account name must be unique because it creates public endpoints through which you can access the service (e.g. _https://your-storage-name.table.core.windows.net_). You are charged by the data egress and ingress, so you can create as many as you want.
 
 You can also access the [Azure Portal](https://portal.azure.com/), log in and see the resource group with the resources you just created!
 
@@ -154,6 +153,7 @@ At this point, we want to install the Azure Storage Tables NuGet package (or the
 Let's add the reference to it:
 
 **`GetPageViewCount.cs`**
+
 ```csharp
 using Microsoft.Azure.Cosmos.Table;
 ```
@@ -170,29 +170,31 @@ Let us review how tables store entities work.
 
 The simple way to store entities is to create a class that inherits from `TableEntity`. What this means is that the class will need to have two Properties: A `PartitionKey` and a `RowKey` . Both keys, combined, form the **Key** through which we will **uniquely identify our entity**. However, separated they serve a different purpose:
 
--  The `PartitionKey` defines the partition in which the service will store the entity: 
->Tables are partitioned to support load balancing across storage nodes. A table's entities are organized by partition. A partition is a consecutive range of entities possessing the same partition key value. The partition key is a unique identifier for the partition within a given table, specified by the PartitionKey property. 
+- The `PartitionKey` defines the partition in which the service will store the entity:
 
--  The `RowKey` is a unique identifier for an entity within a given partition.
+  > Tables are partitioned to support load balancing across storage nodes. A table's entities are organized by partition. A partition is a consecutive range of entities possessing the same partition key value. The partition key is a unique identifier for the partition within a given table, specified by the PartitionKey property.
 
-  Since the `PartitionKey` is used for load balancing, it's important that it's not hardcoded. For this, we can use the URL of the page in which we are counting the views. The `RowKey` can be hardcoded, because we are already changing the key through the use of the URL in the `PartitionKey`. Eventually we could have different `RowKey` for different scenarios, but for now it will stay as a hardcoded value. You can read more [here](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model).
+- The `RowKey` is a unique identifier for an entity within a given partition.
 
-  After that, the entity can have whichever fields we want. Since we are storing the values, this is how our class will look:
+Since the `PartitionKey` is used for load balancing, it's important that it's not hardcoded. For this, we can use the URL of the page in which we are counting the views. The `RowKey` can be hardcoded, because we are already changing the key through the use of the URL in the `PartitionKey`. Eventually we could have different `RowKey` for different scenarios, but for now it will stay as a hardcoded value. You can read more [here](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model).
+
+After that, the entity can have whichever fields we want. Since we are storing the values, this is how our class will look:
 
 **`GetPageViewCount.cs`**
+
 ```csharp
   public class ViewCount : TableEntity
     {
         public ViewCount(string URL)
         {
             //the partition key for load-balancing and identification
-            this.PartitionKey = URL; 
-            
+            this.PartitionKey = URL;
+
             // hardcoded for identification
-            this.RowKey = "visits"; 
-            
+            this.RowKey = "visits";
+
             // the value we want to store
-            Count = 0; 
+            Count = 0;
         }
 
         public int Count { get; set; }
@@ -210,20 +212,20 @@ We now have the entity that we want to store and retrieve, so we need to connect
 
 1. Connect to the Storage Account through the connection string.
 1. Create a table client through which we do transactions (inserts, updates, etc.).
-1. Get the table through its name. 
+1. Get the table through its name.
 1. Execute transactions on the table.
 
 Here are the first 3 steps in code:
 
 ```csharp
     const string tableName = "viewcountertable";
-    
+
     var storageAccount = CloudStorageAccount.Parse($"{yourStorageAccountConnectionString}");
     var tableClient = storageAccount.CreateCloudTableClient();
     CloudTable table = tableClient.GetTableReference(tableName);
-    
+
     // we can let our code create the table if needed
-    await table.CreateIfNotExistsAsync(); 
+    await table.CreateIfNotExistsAsync();
 ```
 
 We can now do transactions to the table! Let's get the URL parameter from the body first:
@@ -246,22 +248,22 @@ Here's what the code looks like:
 
 ```csharp
     // try to retrieve count for the URL
-     var retrievedResult = table.Execute(TableOperation.Retrieve<ViewCount>(pageViewURL, "visits")); 
-     
-     // wait for the operation and get the result into a ViewCount object 
-     var pageViewCount = (ViewCount) retrievedResult.Result; 
+     var retrievedResult = table.Execute(TableOperation.Retrieve<ViewCount>(pageViewURL, "visits"));
+
+     // wait for the operation and get the result into a ViewCount object
+     var pageViewCount = (ViewCount) retrievedResult.Result;
 
      // if the entity didn't exist, create a new one with count 0
      pageViewCount = pageViewCount ?? new ViewCount(pageViewURL);
 
-     // augment the view count by one 
-     pageViewCount.Count++; 
-     
+     // augment the view count by one
+     pageViewCount.Count++;
+
      // insert or replace the entity with the new count
-     table.Execute(TableOperation.InsertOrReplace(pageViewCount)); 
-     
-     // return the view count 
-     return (ActionResult)new OkObjectResult(pageViewCount.Count.ToString()); 
+     table.Execute(TableOperation.InsertOrReplace(pageViewCount));
+
+     // return the view count
+     return (ActionResult)new OkObjectResult(pageViewCount.Count.ToString());
 ```
 
 Let's also make sure we return an error code if we don't give a "URL" identifier to the function before trying to retrieve an entity:
@@ -272,6 +274,7 @@ Let's also make sure we return an error code if we don't give a "URL" identifier
     return (ActionResult)new StatusCodeResult(503);
   }
 ```
+
 The function is now ready! Let's make sure it works by running it locally and performing POST requests that have a "URL" parameter in the body.
 
 ### Deploying and implementation
@@ -282,31 +285,32 @@ We are now ready to deploy the Azure Function. Something that you might want to 
   // we will have a StorageConnectionString field in the app settings (local.settings.json files) where we store the storage account connection string
   var storageAccountConnectionString = Environment.GetEnvironmentVariable("StorageConnectionString");
 ```
-The App Settings can be changed in the Azure Portal at runtime.  
+
+The App Settings can be changed in the Azure Portal at runtime.
 
 Lastly, you can implement this on any page by creating a small script that calls into this function and gets the result. It would look something like this if it were in Javascript:
 
 ```js
-const url = 'https://pageviewcounterblog.azurewebsites.net/api/GetViewCounter/';
-const data = {URL: 'this-blog-post-URL'};
+const url = "https://pageviewcounterblog.azurewebsites.net/api/GetViewCounter/"
+const data = { URL: "this-blog-post-URL" }
 
 const response = await fetch(url, {
-  method: 'POST', 
-  body: JSON.stringify(data), 
+  method: "POST",
+  body: JSON.stringify(data),
   headers: {
-    'Content-Type': 'application/json'
-  }
+    "Content-Type": "application/json",
+  },
 })
 const body = await response.json()
-console.log('Success:', JSON.stringify(response))
+console.log("Success:", JSON.stringify(response))
 ```
 
 Notice that this way, anyone that has access to the function endpoint can call into it. Securing the function goes beyond the scope of this post, especially because this is called in the frontend (whereas you would likely prefer to call this from the backend to authenticate properly and easily). However, something you can do pretty simply is to [add CORS policies](https://www.c-sharpcorner.com/article/handling-cors-in-azure-function/) to the function in order to have it be a little more restrictive.
 
 ## Closing
 
-Right now you should have a working Azure Function that connects to Azure Storage Table and stores the amount of times that a certain page was visited. And this was all for free (except if you exceed the million requests per month, but you can probably handle paying at that point)! 
+Right now you should have a working Azure Function that connects to Azure Storage Table and stores the amount of times that a certain page was visited. And this was all for free (except if you exceed the million requests per month, but you can probably handle paying at that point)!
 
-This was meant to be a simple experiment that served as a good introduction to some Azure services, and to certain concepts related to computing in general. Plus, it shows a simple way in which you could extend your static sites through serverless computing.  
+This was meant to be a simple experiment that served as a good introduction to some Azure services, and to certain concepts related to computing in general. Plus, it shows a simple way in which you could extend your static sites through serverless computing.
 
 Feel free to review the code here: https://github.com/IgnacioAmigo/PageViewCounterBlog.
