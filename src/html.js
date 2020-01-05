@@ -15,6 +15,7 @@ export default function HTML(props) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
+            // esto quedo re hacky porque hice mil pruebas y quedo todo dado vuelta
             var viewCount;
             function getViewCount() {
               if (typeof viewCount !== "undefined") return viewCount;
