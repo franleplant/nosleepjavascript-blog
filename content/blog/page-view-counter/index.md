@@ -303,6 +303,7 @@ console.log('Success:', JSON.stringify(response))
 
 Notice that this way, anyone that has access to the function endpoint can call into it. Securing the function goes beyond the scope of this post, especially because this is called in the frontend (whereas you would likely prefer to call this from the backend to authenticate properly and easily). However, something you can do pretty simply is to [add CORS policies](https://www.c-sharpcorner.com/article/handling-cors-in-azure-function/) to the function in order to have it be a little more restrictive.
 
+
 ## Closing
 
 Right now you should have a working Azure Function that connects to Azure Storage Table and stores the amount of times that a certain page was visited. And this was all for free (except if you exceed the million requests per month, but you can probably handle paying at that point)! 
@@ -310,3 +311,7 @@ Right now you should have a working Azure Function that connects to Azure Storag
 This was meant to be a simple experiment that served as a good introduction to some Azure services, and to certain concepts related to computing in general. Plus, it shows a simple way in which you could extend your static sites through serverless computing.  
 
 Feel free to review the code here: https://github.com/IgnacioAmigo/PageViewCounterBlog.
+
+Finally, let's see how many views this page has gotten!
+
+**Views:**  <span id="view_counter"></span>
