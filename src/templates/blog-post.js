@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 import getSetViewCount from "../dal/getSetPageView"
 
-const isLocalhost = window.location.href.includes("localhost:8000")
+const isLocalhost = () => window.location.href.includes("localhost:8000")
 
 export default function BlogPostTemplate(props) {
   const siteTitle = props.data.site.siteMetadata.title
@@ -17,29 +17,16 @@ export default function BlogPostTemplate(props) {
   const { previous, next } = props.pageContext
   const { slug } = post.fields
 
-  //TODO remove
-  console.log("This will run on every render, try clicking a subtitle", slug)
-
   const [pageViewCount, setPageViewCount] = useState()
 
-  //TODO remove comments
-  //This the newer way in which we can express side effects
-  //with react, the callback will be called only when the second argument,
-  //[slug] in this case, change
   useEffect(() => {
-    //TODO remove
-    console.log(
-      "this will run only when the slug changes i.e. on a new real page view",
-      slug
-    )
-
     async function fetchData() {
       const pageViewCount = await getSetViewCount(slug)
       setPageViewCount(pageViewCount)
     }
 
     // Do not bump page count if it's localhost
-    if (!isLocalhost) {
+    if (!isLocalhost()) {
       fetchData()
     }
   }, [slug])
