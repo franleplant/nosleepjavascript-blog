@@ -1,6 +1,7 @@
 import React from "react"
+
 //TODO use emotion for css
-export function Tags({ tags }) {
+export default function Tags({ tags }) {
   return (
     <div
       style={{
