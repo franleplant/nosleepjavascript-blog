@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
 
-import logo from "../assets/logo.svg"
+import logo from "../../content/assets/logo.svg"
 
 export default function SecondaryHeader(props) {
   return (

@@ -3,6 +3,10 @@ import typographyTheme from "typography-theme-github"
 import * as theme from "./theme"
 
 typographyTheme.overrideThemeStyles = () => ({
+  h1: {
+    border: 0,
+    margin: 0,
+  },
   a: {
     color: theme.COLOR.SECONDARY,
   },

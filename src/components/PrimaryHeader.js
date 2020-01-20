@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import typography from "../utils/typography"
 
-import logo from "../assets/logo.svg"
+import logo from "../../content/assets/logo.svg"
 
 export default function PrimaryHeader(props) {
   const { title } = props
@@ -11,7 +11,6 @@ export default function PrimaryHeader(props) {
     <h1
       css={css`
         padding: 0 ${typography.rhythm(5)};
-        border: 0;
       `}
     >
       <Link to={`/`}>
