@@ -1,27 +1,23 @@
 import React from "react"
 import { Link } from "gatsby"
-import { rhythm, scale } from "../utils/typography"
+import styled from "@emotion/styled"
+
+import logo from "../assets/logo.svg"
 
 export default function SecondaryHeader(props) {
-  const { title } = props
   return (
-    <h3
-      style={{
-        fontFamily: `Montserrat, sans-serif`,
-        marginTop: 0,
-        textAlign: "center",
-      }}
-    >
-      <Link
-        style={{
-          boxShadow: `none`,
-          textDecoration: `none`,
-          color: `inherit`,
-        }}
-        to={`/`}
-      >
-        {title}
+    <H3>
+      <Link to={`/`}>
+        <img src={logo} alt="NoSleep Javascript" />
       </Link>
-    </h3>
+    </H3>
   )
 }
+
+const H3 = styled.h3`
+  margin: 0;
+  & img {
+    max-width: 25%;
+    margin: 0;
+  }
+`

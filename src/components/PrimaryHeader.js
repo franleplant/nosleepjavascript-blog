@@ -1,27 +1,21 @@
 import React from "react"
 import { Link } from "gatsby"
-import { rhythm, scale } from "../utils/typography"
+import { css } from "@emotion/core"
+import typography from "../utils/typography"
+
+import logo from "../assets/logo.svg"
 
 export default function PrimaryHeader(props) {
   const { title } = props
   return (
     <h1
-      style={{
-        ...scale(1.4),
-        marginBottom: rhythm(1.5),
-        marginTop: 0,
-        textAlign: "center",
-      }}
+      css={css`
+        padding: 0 ${typography.rhythm(5)};
+        border: 0;
+      `}
     >
-      <Link
-        style={{
-          boxShadow: `none`,
-          textDecoration: `none`,
-          color: `inherit`,
-        }}
-        to={`/`}
-      >
-        {title}
+      <Link to={`/`}>
+        <img src={logo} alt={title} />
       </Link>
     </h1>
   )

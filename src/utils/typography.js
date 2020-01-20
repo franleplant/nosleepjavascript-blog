@@ -1,7 +1,6 @@
 import Typography from "typography"
 import typographyTheme from "typography-theme-github"
-import * as theme from './theme'
-
+import * as theme from "./theme"
 
 typographyTheme.overrideThemeStyles = () => ({
   a: {
