@@ -1,6 +1,6 @@
 ---
-title: Package, Publish and Distribute React Components in NPM
-date: "2020-01-18"
+title: How to share React Components between Applications via NPM
+date: "2020-01-22"
 author: franleplant
 description:
   "In this post we explore in detail how to share React Components which are typically made of a

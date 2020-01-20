@@ -2,6 +2,8 @@ Useful links
 
 - https://www.alexa.com/siteinfo/nehalist.io
 - https://franleplant.github.io/fin-blog/new-beginnings/
+- logo color `#fdd617`
+- nice contrasting color `#cb48b7`
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
