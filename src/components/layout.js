@@ -2,57 +2,15 @@ import React from "react"
 import { Link } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
+import PrimaryHeader from './PrimaryHeader'
+import SecondaryHeader from './SecondaryHeader'
 
 class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
-    let header
+    const isRoot = location.pathname === rootPath
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.4),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
-            textAlign: "center",
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-            textAlign: "center",
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
-    }
     return (
       <div
         style={{
@@ -62,7 +20,7 @@ class Layout extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(2 / 4)}`,
         }}
       >
-        <header>{header}</header>
+        <header>{isRoot ? <PrimaryHeader title={title}/> : <SecondaryHeader  title={title}/>}</header>
         <main>{children}</main>
         <footer>© {new Date().getFullYear()}, nosleepjavascript.com</footer>
       </div>
