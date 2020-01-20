@@ -99,6 +99,8 @@ Images can be inlined by Webpack's [url-loader][11] in the form of [Data URL][10
 SVG can be inlined by turning an `.svg` file into a [React][1] Component (An SVG file is just a regular HTML tree)
 or by using Webpack's [inline-svg-loader][101]
 
+For a deeper exploration of how to deal with `svg` in React checkout this [post][22]
+
 The main advantage of inlining is that after you bundle all your code base you end up with
 a single Javascript file that contains all the dependencies it needs to run, even CSS and Images.
 
@@ -165,7 +167,7 @@ A typical output might look like this:
 This is what you as an Author would publish to [NPM][102].
 
 `bundle.css` will use the image by doing `url(./images/dog.jpg)`, so
-both files need to be served in the following URLs
+both files need to be served on the following URLs
 
 - `yourSite.com/public/bundle.css`
 - `yourSite.com/public/images/dog.jpg`
@@ -173,10 +175,11 @@ both files need to be served in the following URLs
 `public` can be any path with a trivial length, the important part is
 that they are both served from [the same path][106]
 
-Aside from properly document how the files inside your package
+Aside from properly documenting how the files inside your package
 relate to each other there is not much else you can do.
 
-You can also use this strategy by allowing access to your module via a CDN,
+You can also use this strategy by allowing access to your module via a CDN
+(_Content Delivery Network_ use to load Javascript, CSS, etc from specialized servers, checkout [UNPKG][23]),
 by which _Component Consumers_ can simply reference the module.
 
 #### As Component Consumers
@@ -209,18 +212,18 @@ for example if two libraries need to serve `images/dog.jpg`.
 
 _Component Authors_ might make the module available via a CDN and that might
 remove the need to fiddle around with CSS and Images but you will need to
-access the library via a Browser Global like the good old days.
+access the library via a [Browser Global][24] like the good old days.
 
 ### Inline
 
 #### As Component Authors
 
-The bundler setup is about the same as with **Not-inline**.
-You wont be able to use [create-react-library][105] but you can probably
-find other tools that allow you to customize them to Inline everything.
+The Webpack configuration is about the same as with **Not-inline** and
+is actually not that hard and a working example
+will be provided at the end of this post. 
 
-The Webpack configuration is actually not that hard and a working example
-will be provided at the end of this post.
+You won't be able to use [create-react-library][105] but you can probably
+find other tools that allow you to customize them to Inline everything.
 
 The key Webpack configuration is the inclusion of [url-loader][11] to
 inline images and files right into the final Javascript bundle.
@@ -234,15 +237,15 @@ hooks for _Component Consumers_ to easily change it at Run-Time.
 For larger Component Libraries you will have a greater experience with writing
 and maintaining CSS. You will avoid completely some CSS exclusive problems such as:
 
-- Global Scope and rule collisions
-- Specificity (inline-styles have maximum specificity, **CSS-in-JS** libraries simulate this)
-- Style composition, I believe that regular Javascript object composition is better than CSS cascading global composition model, plus you can create a custom system that fits your team and your business logic, remember, it's regular Javascript. You can easily publish your Themes as private NPM packages internally to shared them among Applications.
+- Global Scope and rule collisions.
+- Specificity (inline-styles have maximum specificity, **CSS-in-JS** libraries simulate this).
+- Style composition. I believe that regular Javascript object composition is better than CSS cascading global composition model, plus you can create a custom system that fits your team and your business logic (remember, it's regular Javascript). You can easily publish your Themes as private NPM packages internally to shared them among Applications.
 
 While regular inline-styles will go a long way, you will most likely
 need features that inline-styles do not provide and that regular CSS do such
 as pseudo selectors like `:hover` and media queries.
 To solve this problem and provide better Developer Experience overall is that
-**CSS-in-JS** exist.
+**CSS-in-JS** exists.
 
 I recommend going for [Emotion][5] or [Styled-components][6] since they
 are very mature and feature rich, have
@@ -260,7 +263,7 @@ import module from "module"
 
 That is all!
 
-If you want to import the module dynamically (to parallelize and deffer its loading
+If you want to import the module dynamically (to parallelize and defer its loading
 in the client) the experience is very similar:
 
 ```javascript
@@ -270,7 +273,7 @@ const module = await import("module")
 
 If you have Webpack configured correctly to create chunks that can be
 dynamically loaded, this is called `Code Splitting`, then `module`
-will be an independent file lazy loaded, only and when its needed.
+will be an independent file lazy loaded, only when it is needed.
 
 Latest version of Webpack make this configuration almost trivial,
 check out their [docs][110].
@@ -300,12 +303,12 @@ a standard way of distributing code.
 
 In my experience Webpack configurations are something that most developers
 do not know or do not want to touch so
-**having these sort of abstractions inside
+**having these sorts of abstractions inside
 your company will save you a lot of trouble and maintenance,
 which translates to less operation costs**.
 These Webpack abstractions have lots of smart people working on them and
 pouring their past experiences in creating something that will cover
-lots of use cases you probably wont ever think of, so you are getting even
+lots of use cases you probably won't ever think of, so you are getting even
 more things for free than you anticipate.
 
 Additionally, having custom Webpack configurations creates a potential
@@ -350,11 +353,11 @@ styles depend on and as long as the **Component Consumers** support these type o
 ##### Disadvantages
 
 You must either specify or follow a specification of what Webpack loaders,
-loader configuration, CSS configuration, Babel configuration, etc your library
+loader configuration, CSS configuration, Babel configuration, etc. your library
 requires in order for Apps to compile it successfully. You could also construct
-some sort of webpack composition hook but that can get really complicated really
+some sort of Webpack composition hook but that can get really complicated really
 soon without the proper care. An obvious problem with config composition is
-conflicts with a given loader configuration, such as babel, where the App uses
+conflicts with a given loader configuration, such as Babel, where the App uses
 certain configurations and the library uses others. In general I would say that
 the library and the consumer App cannot have too different bundling configurations
 if they want to work properly together, which means of course _tight coupling_.
@@ -363,7 +366,7 @@ You have less encouragement to create a library public API and
 simply let _Component Consumers_ use any of your library files
 directly i.e. `import something from 'A/src/some/deep/nested/file.js'`.
 
-This will make even harder to migrated your library to an **Actively Compiled**
+This will make even harder to migrate your library to an **Actively Compiled**
 strategy down the road because _Component Consumer_ Apps will be tightly coupled
 to your library's internal file structure and providing that same per-file API
 in Webpack is not trivial and has caveats (sharing code and such).
@@ -408,7 +411,7 @@ most abstractions won't and probably should not provide this functionality.
 
 #### As Component Authors
 
-You actually need to write a full web pack configuration
+You actually need to write a full Webpack configuration
 to generate the bundle, but it is really not that bad (more on this later).
 
 Alternatively, if you are OK with Not-Inlining assets then
@@ -439,7 +442,7 @@ For Component Libraries or UI Frameworks **Theming** is a _must_. They need to p
 for Component Consumers to change the default look of the components to fit
 their brand or their business.
 
-Lets inspect different strategies of providing Theming and Customization hooks.
+Let's inspect different strategies of providing Theming and Customization hooks.
 
 ### Regular CSS Class Names
 
@@ -784,6 +787,9 @@ externals: ["react"]
 [19]: https://github.com/emotion-js/emotion/issues/1479
 [20]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 [21]: https://docs.npmjs.com/misc/registry
+[22]: https://medium.com/@rossbulat/working-with-svgs-in-react-d09d1602a219
+[23]: https://unpkg.com/
+[24]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
 [100]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
 [101]: https://github.com/webpack-contrib/svg-inline-loader
 [102]: https://www.npmjs.com/
