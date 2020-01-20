@@ -450,7 +450,7 @@ This approach works great for single or few component libraries but falls
 very short for larger Component Libraries or UI Frameworks.
 
 The basic premise is that Consumers use well defined CSS class names
-to alter the Component looks.
+to alter the Component's looks.
 
 This approach works only at **Run-Time**.
 
@@ -465,7 +465,7 @@ This approach works only at **Run-Time**.
 
 #### As Component Consumer
 
-You use the Component Author provided class names to alter the component looks.
+You use the Component Author provided class names to alter the component's looks.
 
 ### CSS Theme variables
 
@@ -480,7 +480,9 @@ Examples of these are
 - [Bootstrap][9]
 - [Semantic-UI][14]
 
-This approach works only at **Build-Time** and **may require a build system**.
+This approach works only at **Build-Time** and **may require a build system**,
+depending on whether you use CSS variables and target only supported browsers or
+you use SASS, LESS or a transpiled version of CSS variables (i.e. using [this PostCss plugin][25])
 
 #### As Component Authors
 
@@ -490,10 +492,16 @@ This approach works only at **Build-Time** and **may require a build system**.
 
 #### As Component Consumers
 
-- you will need to either
+- You will need to either
   - build an out of band StyleSheet with the Component Author's provided build system ala Bootstrap or Ant Design
   - integrate Component's Author build system into yours and build it in-band with the rest of your app.
 - Run-Time build is not possible and you must work around it.
+
+**Note**
+
+_Out of band_ and _in band_ are terms I got from signal processing theory and in this case I'm using it to
+describe whether you build the StyleSheet in a separate build process and codebase (out of band)
+or you integrate the necessary build configurations into your own build process and codebase (in band)
 
 ### Inline CSS (through CSS-in-JS)
 
@@ -790,6 +798,7 @@ externals: ["react"]
 [22]: https://medium.com/@rossbulat/working-with-svgs-in-react-d09d1602a219
 [23]: https://unpkg.com/
 [24]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
+[25]: https://www.npmjs.com/package/postcss-css-variables
 [100]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
 [101]: https://github.com/webpack-contrib/svg-inline-loader
 [102]: https://www.npmjs.com/
