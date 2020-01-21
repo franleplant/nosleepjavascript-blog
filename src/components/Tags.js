@@ -1,28 +1,48 @@
 import React from "react"
+import styled from "@emotion/styled"
+import color from "color"
+import * as theme from "../utils/theme"
 
-//TODO use emotion for css
 export default function Tags({ tags }) {
   return (
-    <div
-      style={{
-        marginTop: "10px",
-        marginLeft: "-5px",
-        display: "flex",
-        flexWrap: "wrap",
-      }}
-    >
+    <Container>
       {tags.map(tag => (
-        <span
-          key={tag}
-          style={{
-            boxShadow: "2px 2px 5px rgba(0,0,0,0.5)",
-            borderRadius: "10px",
-            margin: "5px",
-            padding: "10px",
-            whiteSpace: "nowrap",
-          }}
-        >{`#${tag}`}</span>
+        <Tag key={tag}>{`#${tag}`}</Tag>
       ))}
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  margin-top: 10px;
+  margin-left: -5px;
+  display: flex;
+  flex-wrap: wrap;
+`
+
+const Tag = styled.span`
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: black;
+  line-height: 1.5;
+  display: inline-block;
+  height: auto;
+  margin-right: 8px;
+  padding: 0 7px;
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+  background: ${color(theme.COLOR.PRIMARY)
+    .alpha(0.05)
+    .string()};
+  border: 1px solid ${theme.COLOR.PRIMARY};
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${color(theme.COLOR.PRIMARY)
+      .alpha(0.5)
+      .string()};
+  }
+`

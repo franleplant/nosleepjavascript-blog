@@ -33,7 +33,6 @@ to-heading: 3
 > details about how and why we reach to the conclusion that that is a valid and desirable solution for the
 > problem at hand
 
-
 There are diverse situation in which we want to create an NPM package that contains
 a [React][1] Component with CSS and images.
 
@@ -79,7 +78,6 @@ Additionally we are going to explore how each of these packaging schemes enable
 different **Theming** schemes and, at the end, recommend one (_Theming_ is a way of modifying the
 styles of a set of components to fit your use case i.e. changing the buttons colors in a
 UI framework such as Bootstrap to fit your company's graphics design spec).
-
 
 Most of this post is also applicable to any piece of Front End Javascript code that is related
 to CSS, images, etc, such as [Angular][3] Components / Directives, [Vue][15] Components, etc.
@@ -143,7 +141,6 @@ loading only what is necessary for the particular portion of the app that the us
 This is actually not a super far fetched solution since dynamic imports
 are becoming [widely available][104] and Webpack has been making good
 progress towards an easier configuration for multiple chunks.
-
 
 ### Not-Inline
 
@@ -220,7 +217,7 @@ access the library via a [Browser Global][24] like the good old days.
 
 The Webpack configuration is about the same as with **Not-inline** and
 is actually not that hard and a working example
-will be provided at the end of this post. 
+will be provided at the end of this post.
 
 You won't be able to use [create-react-library][105] but you can probably
 find other tools that allow you to customize them to Inline everything.
@@ -538,6 +535,7 @@ We are going to be using
 Check the full [working source here][18]
 
 To publish it to NPM:
+
 - make sure you have the `package.json#main` file pointing to the output of your compilation, in this case `dist/index.js`
 - run `npm version patch | minor | major` to bump the version in `package.json` and create git tags
 - run `npm publish`

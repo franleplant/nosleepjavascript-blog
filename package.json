@@ -12,11 +12,15 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "prettier --check \"**/*.{js,jsx,json,md}\""
   },
   "dependencies": {
+    "@emotion/core": "10.0.27",
+    "@emotion/styled": "10.0.27",
+    "color": "3.1.2",
     "gatsby": "^2.18.4",
     "gatsby-image": "^2.2.37",
+    "gatsby-plugin-emotion": "4.1.21",
     "gatsby-plugin-feed": "^2.3.22",
     "gatsby-plugin-google-analytics": "^2.1.29",
     "gatsby-plugin-manifest": "^2.2.30",
@@ -44,13 +48,27 @@
     "typeface-montserrat": "0.0.75",
     "typography": "^0.16.19",
     "typography-theme-fairy-gates": "^0.16.19",
+    "typography-theme-github": "0.16.19",
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
     "gatsby-transformer-yaml": "2.2.20",
     "gh-pages": "^2.1.1",
+    "husky": ">=1",
+    "lint-staged": ">=8",
     "prettier": "^1.19.1"
   },
   "license": "MIT",
-  "main": "n/a"
+  "main": "n/a",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
