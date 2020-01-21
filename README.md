@@ -1,4 +1,4 @@
-![](https://github.com/franleplant/nosleepjavascript-blog/workflows/.github/workflows/deploy.yml/badge.svg)
+![](https://github.com/franleplant/nosleepjavascript-blog/workflows/.github/workflows/gatsby-publish/badge.svg)
 
 
 Useful links
