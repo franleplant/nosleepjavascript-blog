@@ -17,6 +17,8 @@ jobs:
       run: |
         yarn --version
         yarn install --pure-lockfile
+        npx prettier --write README.md
+        git diff
         npm run test
         npm run build
 
