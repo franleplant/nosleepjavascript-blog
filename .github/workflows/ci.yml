@@ -15,10 +15,7 @@ jobs:
         node-version: 12.x
     - name: npm install, build, and test
       run: |
-        yarn --version
         yarn install --pure-lockfile
-        npx prettier --write README.md
-        git diff
         npm run test
         npm run build
 
