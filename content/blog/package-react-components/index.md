@@ -724,6 +724,8 @@ If you have any questions let me know!
 
 ## Appendix 1: How to use Peer Dependencies
 
+> TODO double check how we are handling externals
+
 As a **Component Author** you need to manage **Peer Dependencies** correctly to allow
 **Component Consumers** make the best possible final bundle avoiding duplication of dependencies
 but also some libraries such as `React` and `Emotion` don't work correctly if there are multiple versions
