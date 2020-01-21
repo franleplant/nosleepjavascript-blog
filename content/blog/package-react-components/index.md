@@ -30,8 +30,7 @@ to-heading: 3
 ## Introduction: How to share React Components between Applications?
 
 > Check [TLDR](#tldr-how-to-package-and-publish-front-end-libraries-in-2020) if you don't want all the
-> details about how and why we reach to the conclusion that that is a valid and desirable solution for the
-> problem at hand
+> details and just want the recommended solution.
 
 There are diverse situation in which we want to create an NPM package that contains
 a [React][1] Component with CSS and images.
@@ -131,7 +130,7 @@ be fetched in parallel by the browser to a single larger file that cannot,
 this will become more noticeable in larger code bases such as big Component Libraries
 or Applications.
 
-If you have a big enough library of components you might able to break it
+If you have a big enough library of components you might be able to break it
 into independent chunks that can be dynamically imported by Applications,
 allowing more parallelism.
 [Dynamic imports][20] is a new Javascript feature that lets you express a dynamically loaded
@@ -209,7 +208,9 @@ for example if two libraries need to serve `images/dog.jpg`.
 
 _Component Authors_ might make the module available via a CDN and that might
 remove the need to fiddle around with CSS and Images but you will need to
-access the library via a [Browser Global][24] like the good old days.
+access the library via a [Browser Global][24] like the good old days, and by doing this
+you are removing the possibility of bundling optimizations such as [Tree Shaking][26] that
+will become more and more common in the future.
 
 ### Inline
 
@@ -219,8 +220,7 @@ The Webpack configuration is about the same as with **Not-inline** and
 is actually not that hard and a working example
 will be provided at the end of this post.
 
-You won't be able to use [create-react-library][105] but you can probably
-find other tools that allow you to customize them to Inline everything.
+You also will be able to use [create-react-library][105] since it [inlines by default][27].
 
 The key Webpack configuration is the inclusion of [url-loader][11] to
 inline images and files right into the final Javascript bundle.
@@ -276,162 +276,6 @@ Latest version of Webpack make this configuration almost trivial,
 check out their [docs][110].
 
 This approach also works with the _Classic Way_ of using dependencies via Browser Globals.
-
-## Active vs Passive compilation
-
-> **TLDR: Do not use _Passively compiled_ dependecies ever!**
-
-I have seen situations in which packages are distributed raw,
-without being compiled before being published, this means **Component Authors**
-package and distribute the raw sources like Typescript, ES2054, JSX, CSS Modules, etc.,
-and rely on **Component Consumers**, like Applications, to compile them usually
-by configuring Webpack to also treat `node_modules/my-raw-dependency`
-as part of the Application source.
-
-This is what I call **Passive compilation** because **Component Authors**
-delegate their package compilation to the **Component Consumers**, instead
-of **Active compilation** in which each package is distributed already compiled
-by its **Component Author**.
-
-Today you can go a long way with Webpack abstractions like
-[Create React App][16] and [Create React Library][105], but you need to
-do things in a fairly standard way and **Passive Compilation** is not at all
-a standard way of distributing code.
-
-In my experience Webpack configurations are something that most developers
-do not know or do not want to touch so
-**having these sorts of abstractions inside
-your company will save you a lot of trouble and maintenance,
-which translates to less operation costs**.
-These Webpack abstractions have lots of smart people working on them and
-pouring their past experiences in creating something that will cover
-lots of use cases you probably won't ever think of, so you are getting even
-more things for free than you anticipate.
-
-Additionally, having custom Webpack configurations creates a potential
-opportunity to tightly couple other parts of your system like configurations,
-Services URLs, CDNs, PORT assignment, etc. to your Webpack build and configuration
-which makes it potentially brittle to any tweaks since it might affect some
-tightly coupled relationship in some obscure place. Relying on standard Webpack abstractions
-provides a very clear interface where you can pass configuration values and custom behaviors
-effectively reducing this coupling.
-
-Finally, and with a more of a "business" look, it is much more
-efficient and effective to rely on pre-made solutions for Application bundling and compilation.
-Webpack and the other bundlers are hard to configure exactly right and as a company you will
-need to maintain and bug fix your hand made configurations if you do them yourself.
-It is effectively one more source of bugs you will have to deal with,
-so rely as much as possible on third party open source solutions and for that
-you _must_ avoid **Passive Compilation**.
-
-### Passive Compilation
-
-#### As Component Authors
-
-##### Advantages
-
-It is trivial to setup since you simply distribute your raw files.
-Some sort of an attempt at **Active Compilation** will be required
-if you want to unit test your library, but it could be a subset of the _real_
-configuration that **Actively Compiling** your library for distribution would require.
-
-It removes the need to think about distributing CSS because each **Component Consumer** (Applications)
-will compile raw CSS modules or SASS or LESS into a single final bundle that will
-include your **Passively Compiled** dependency styles.
-
-Same goes for other assets such as fonts and images. Since Applications are treating
-dependencies as sources then all these things will be covered by whatever
-strategy the Application's Webpack configuration uses, like `file-loader`, etc.
-
-Providing a **Theming** API is also pretty simple as long as you have SASS or LESS
-core variables that define your theme and from which the rest of the library's
-styles depend on and as long as the **Component Consumers** support these type of preprocessing.
-
-##### Disadvantages
-
-You must either specify or follow a specification of what Webpack loaders,
-loader configuration, CSS configuration, Babel configuration, etc. your library
-requires in order for Apps to compile it successfully. You could also construct
-some sort of Webpack composition hook but that can get really complicated really
-soon without the proper care. An obvious problem with config composition is
-conflicts with a given loader configuration, such as Babel, where the App uses
-certain configurations and the library uses others. In general I would say that
-the library and the consumer App cannot have too different bundling configurations
-if they want to work properly together, which means of course _tight coupling_.
-
-You have less encouragement to create a library public API and
-simply let _Component Consumers_ use any of your library files
-directly i.e. `import something from 'A/src/some/deep/nested/file.js'`.
-
-This will make even harder to migrate your library to an **Actively Compiled**
-strategy down the road because _Component Consumer_ Apps will be tightly coupled
-to your library's internal file structure and providing that same per-file API
-in Webpack is not trivial and has caveats (sharing code and such).
-
-By far, the **biggest disadvantage** with **Passive compilation** is that it will
-**infect** everything that it touches.
-If you are creating a new package that is **Actively compiled**
-but it uses some of the **Passively compiled** packages then BINGO,
-you need to customize your package build to compile those **passively compiled**
-packages and you end up in a very similar situation than simply making
-your new package **Passively compiled**. Which locks you down into this paradigm
-and all its flaws.
-
-I have been able to partially solve this situation by making those
-**Passively compiled** dependencies be `peerDependencies`, but you still need to
-handle them somehow in a test environment (probably by mocking them entirely,
-[Jest][17] does make this fairly easy)
-and if you have any sort of playground or documentation page where
-you display your component then BINGO again, you need to compile
-**Passively compiled** dependencies to make it work.
-
-If this seems crazy to you I can already tell you that I have
-experienced this in my day to day Job and is super frustrating.
-
-#### As Component Consumers
-
-##### Advantages
-
-It is fairly easy to setup with some tweaks to the inclusion paths in your Webpack config.
-
-**Theming** is easy because you just need to overwrite some SASS or LESS variables and your
-build system will do the rest.
-
-##### Disadvantages
-
-You cannot use Webpack abstractions such as [Create React App][16]
-because you always need to customize the sources you include,
-and since this is a rather rare use case,
-most abstractions won't and probably should not provide this functionality.
-
-### Active Compilation
-
-#### As Component Authors
-
-You actually need to write a full Webpack configuration
-to generate the bundle, but it is really not that bad (more on this later).
-
-Alternatively, if you are OK with Not-Inlining assets then
-you can use already made solutions such as [create-react-library][105] et al.
-
-You will need to make decisions about how to package and distribute your
-code which _is_ exactly the main point of this post.
-
-#### As Component Consumers
-
-You don't need to customize your Webpack config to use the library,
-this results in simpler configuration. You can also use standard
-pre-made solutions such as [create-react-app][16]
-
-**Theming** will depend exclusively on what the _Component Author_
-sets up to be the Theming API. If a Component Author use
-something like **CSS-in-JS** then the experience will be pretty good.
-[Material-UI React][7] uses this API.
-
-If the Component Author provides a build to compile custom Themes
-out of band (outside your Apps build system) then it will be less
-optimal in my opinion.
-[Ant Design][8] and [React Bootstrap][9] use this API.
 
 ## Theming
 
@@ -489,8 +333,8 @@ you use SASS, LESS or a transpiled version of CSS variables (i.e. using [this Po
 
 #### As Component Consumers
 
-- You will need to either
-  - build an out of band StyleSheet with the Component Author's provided build system ala Bootstrap or Ant Design
+- You will need to either:
+  - build an out of band StyleSheet with the Component Author's provided build system ala Bootstrap or Ant Design.
   - integrate Component's Author build system into yours and build it in-band with the rest of your app.
 - Run-Time build is not possible and you must work around it.
 
@@ -498,7 +342,7 @@ you use SASS, LESS or a transpiled version of CSS variables (i.e. using [this Po
 
 _Out of band_ and _in band_ are terms I got from signal processing theory and in this case I'm using it to
 describe whether you build the StyleSheet in a separate build process and codebase (out of band)
-or you integrate the necessary build configurations into your own build process and codebase (in band)
+or you integrate the necessary build configurations into your own build process and codebase (in band).
 
 ### Inline CSS (through CSS-in-JS)
 
@@ -512,8 +356,8 @@ This approach works at **Run-Time** and does not require a build system.
 #### As Component Authors
 
 - Carefully abstract the core theme variables and derive the rest of the styles from it.
-- Use CSS-in-JS libraries such as Emotion or styled-components
-- Use those libraries to provide theming hooks to Component Consumers
+- Use CSS-in-JS libraries such as Emotion or styled-components.
+- Use those libraries to provide theming hooks to Component Consumers.
 
 #### As Component Consumers
 
@@ -525,7 +369,8 @@ This approach works at **Run-Time** and does not require a build system.
 This is my ideal setup for packaging and publishing
 Front End libraries such as React Components in 2020.
 
-We are going to be using
+This approach uses an Inline, Actively Compiled (see Appendix 2), Run-Time Theming model,
+that uses the following technologies:
 
 - React as the main component framework
 - CSS-in-JS via Emotion
@@ -711,6 +556,24 @@ export default function App() {
 - make sure you have a single copy of `@emotion/core` in your final Application bundle to enable Theming. This is done by properly managing `peerDependencies` (more on this later).
 - see it working in action in the linked repo.
 
+### Using create-react-library
+
+We can achieve the same by using [create-react-library][105], the library
+code is the same and we remove the need for manually configuring Webpack, the
+output bundle is slightly different since _create-react-library_
+uses [Rollup][28] instead of Webpack.
+
+Checkout the code [here][29], I am using the vanilla configurations that create-react-library
+provides with one exception:
+
+```diff
+-  url(),
++  url({limit: Infinity}),
+
+```
+
+This forces everything to be inlined no matter what is its size.
+
 ## Closing
 
 Congratulations reading this far!
@@ -774,6 +637,161 @@ In your `webpack.config.js`
 externals: ["react"]
 ```
 
+## Appendix 2: Active vs Passive compilation
+
+> **TLDR: Do not use _Passively compiled_ dependecies ever!**
+
+I have seen situations in which packages are distributed raw,
+without being compiled before being published, this means **Component Authors**
+package and distribute the raw sources like Typescript, ES2054, JSX, CSS Modules, etc.,
+and rely on **Component Consumers**, like Applications, to compile them usually
+by configuring Webpack to also treat `node_modules/my-raw-dependency`
+as part of the Application source.
+
+This is what I call **Passive compilation** because **Component Authors**
+delegate their package compilation to the **Component Consumers**, instead
+of **Active compilation** in which each package is distributed already compiled
+by its **Component Author**.
+
+Today you can go a long way with Webpack abstractions like
+[Create React App][16] and [Create React Library][105], but you need to
+do things in a fairly standard way and **Passive Compilation** is not at all
+a standard way of distributing code.
+
+In my experience Webpack configurations are something that most developers
+do not know or do not want to touch so
+**having these sorts of abstractions inside
+your company will save you a lot of trouble and maintenance,
+which translates to less operation costs**.
+These Webpack abstractions have lots of smart people working on them and
+pouring their past experiences in creating something that will cover
+lots of use cases you probably won't ever think of, so you are getting even
+more things for free than you anticipate.
+
+Additionally, having custom Webpack configurations creates a potential
+opportunity to tightly couple other parts of your system like configurations,
+Services URLs, CDNs, PORT assignment, etc. to your Webpack build and configuration
+which makes it potentially brittle to any tweaks since it might affect some
+tightly coupled relationship in some obscure place. Relying on standard Webpack abstractions
+provides a very clear interface where you can pass configuration values and custom behaviors
+effectively reducing this coupling.
+
+Finally, and with a more of a "business" look, it is much more
+efficient and effective to rely on pre-made solutions for Application bundling and compilation.
+Webpack and the other bundlers are hard to configure exactly right and as a company you will
+need to maintain and bug fix your hand made configurations if you do them yourself.
+It is effectively one more source of bugs you will have to deal with,
+so rely as much as possible on third party open source solutions and for that
+you _must_ avoid **Passive Compilation**.
+
+### Passive Compilation
+
+#### As Component Authors
+
+##### Advantages
+
+It is trivial to setup since you simply distribute your raw files.
+Some sort of an attempt at **Active Compilation** will be required
+if you want to unit test your library, but it could be a subset of the _real_
+configuration that **Actively Compiling** your library for distribution would require.
+
+It removes the need to think about distributing CSS because each **Component Consumer** (Applications)
+will compile raw CSS modules or SASS or LESS into a single final bundle that will
+include your **Passively Compiled** dependency styles.
+
+Same goes for other assets such as fonts and images. Since Applications are treating
+dependencies as sources then all these things will be covered by whatever
+strategy the Application's Webpack configuration uses, like `file-loader`, etc.
+
+Providing a **Theming** API is also pretty simple as long as you have SASS or LESS
+core variables that define your theme and from which the rest of the library's
+styles depend on and as long as the **Component Consumers** support these type of preprocessing.
+
+##### Disadvantages
+
+You must either specify or follow a specification of what Webpack loaders,
+loader configuration, CSS configuration, Babel configuration, etc. your library
+requires in order for Apps to compile it successfully. You could also construct
+some sort of Webpack composition hook but that can get really complicated really
+soon without the proper care. An obvious problem with config composition is
+conflicts with a given loader configuration, such as Babel, where the App uses
+certain configurations and the library uses others. In general I would say that
+the library and the consumer App cannot have too different bundling configurations
+if they want to work properly together, which means of course _tight coupling_.
+
+You have less encouragement to create a library public API and
+simply let _Component Consumers_ use any of your library files
+directly i.e. `import something from 'A/src/some/deep/nested/file.js'`.
+
+This will make even harder to migrate your library to an **Actively Compiled**
+strategy down the road because _Component Consumer_ Apps will be tightly coupled
+to your library's internal file structure and providing that same per-file API
+in Webpack is not trivial and has caveats (sharing code and such).
+
+By far, the **biggest disadvantage** with **Passive compilation** is that it will
+**infect** everything that it touches.
+If you are creating a new package that is **Actively compiled**
+but it uses some of the **Passively compiled** packages then BINGO,
+you need to customize your package build to compile those **passively compiled**
+packages and you end up in a very similar situation than simply making
+your new package **Passively compiled**. Which locks you down into this paradigm
+and all its flaws.
+
+I have been able to partially solve this situation by making those
+**Passively compiled** dependencies be `peerDependencies`, but you still need to
+handle them somehow in a test environment (probably by mocking them entirely,
+[Jest][17] does make this fairly easy)
+and if you have any sort of playground or documentation page where
+you display your component then BINGO again, you need to compile
+**Passively compiled** dependencies to make it work.
+
+If this seems crazy to you I can already tell you that I have
+experienced this in my day to day Job and is super frustrating.
+
+#### As Component Consumers
+
+##### Advantages
+
+It is fairly easy to setup with some tweaks to the inclusion paths in your Webpack config.
+
+**Theming** is easy because you just need to overwrite some SASS or LESS variables and your
+build system will do the rest.
+
+##### Disadvantages
+
+You cannot use Webpack abstractions such as [Create React App][16]
+because you always need to customize the sources you include,
+and since this is a rather rare use case,
+most abstractions won't and probably should not provide this functionality.
+
+### Active Compilation
+
+#### As Component Authors
+
+You actually need to write a full Webpack configuration
+to generate the bundle, but it is really not that bad (more on this later).
+
+Alternatively, you can use already made solutions such as [create-react-library][105] et al.
+
+You will need to make decisions about how to package and distribute your
+code which _is_ exactly the main point of this post.
+
+#### As Component Consumers
+
+You don't need to customize your Webpack config to use the library,
+this results in simpler configuration. You can also use standard
+pre-made solutions such as [create-react-app][16]
+
+**Theming** will depend exclusively on what the _Component Author_
+sets up to be the Theming API. If a Component Author use
+something like **CSS-in-JS** then the experience will be pretty good.
+[Material-UI React][7] uses this API.
+
+If the Component Author provides a build to compile custom Themes
+out of band (outside your Apps build system) then it will be less
+optimal in my opinion.
+[Ant Design][8] and [React Bootstrap][9] use this API.
+
 [1]: https://reactjs.org/
 [2]: https://webpack.js.org/
 [3]: https://angular.io/
@@ -799,6 +817,10 @@ externals: ["react"]
 [23]: https://unpkg.com/
 [24]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
 [25]: https://www.npmjs.com/package/postcss-css-variables
+[26]: https://webpack.js.org/guides/tree-shaking/
+[27]: https://github.com/transitive-bullshit/create-react-library/issues/46
+[28]: https://rollupjs.org/
+[29]: https://github.com/franleplant/inline-react-package-example-crl
 [100]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
 [101]: https://github.com/webpack-contrib/svg-inline-loader
 [102]: https://www.npmjs.com/
