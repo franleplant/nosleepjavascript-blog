@@ -1,3 +1,6 @@
+![](https://github.com/franleplant/nosleepjavascript-blog/workflows/.github/workflows/deploy.yml/badge.svg)
+
+
 Useful links
 
 - https://www.alexa.com/siteinfo/nehalist.io
