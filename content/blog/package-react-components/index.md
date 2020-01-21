@@ -1,6 +1,6 @@
 ---
 title: How to share React Components between Applications via NPM
-date: "2020-01-22"
+date: "2020-01-21"
 author: franleplant
 description:
   "In this post we explore in detail how to share React Components which are typically made of a
