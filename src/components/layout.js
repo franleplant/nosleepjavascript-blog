@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
+import { Global, css } from "@emotion/core"
 
 import { rhythm } from "../utils/typography"
 import PrimaryHeader from "./PrimaryHeader"
@@ -12,6 +13,14 @@ export default function Layout(props) {
 
   return (
     <Container>
+      <Global
+        styles={css`
+          :not(pre) > code[class*="language-"] {
+            // this is to fix overflowing in mobile
+            word-break: break-word;
+          }
+        `}
+      />
       <header>
         {isRoot ? <PrimaryHeader title={title} /> : <SecondaryHeader />}
       </header>
