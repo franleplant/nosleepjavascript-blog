@@ -1,5 +1,6 @@
 import Typography from "typography"
 import typographyTheme from "typography-theme-github"
+import color from "color"
 import * as theme from "./theme"
 
 typographyTheme.overrideThemeStyles = () => ({
@@ -9,6 +10,9 @@ typographyTheme.overrideThemeStyles = () => ({
   },
   a: {
     color: theme.COLOR.SECONDARY,
+  },
+  h2: {
+    borderBottom: `1px solid ${color(theme.COLOR.PRIMARY) .alpha(0.5) .string()}`,
   },
   blockquote: {
     borderLeft: `4px solid ${theme.COLOR.PRIMARY}`,
