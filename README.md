@@ -1,6 +1,5 @@
 ![](https://github.com/franleplant/nosleepjavascript-blog/workflows/gatsby-publish/badge.svg)
 
-
 Useful links
 
 - https://www.alexa.com/siteinfo/nehalist.io
