@@ -23,6 +23,7 @@ const Container = styled.div`
 const Tag = styled.span`
   box-sizing: border-box;
   margin: 0;
+  margin-top: 5px;
   padding: 0;
   color: black;
   line-height: 1.5;
