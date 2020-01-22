@@ -10,7 +10,9 @@ export default function PrimaryHeader(props) {
   return (
     <h1
       css={css`
-        padding: 0 ${typography.rhythm(5)};
+        @media only screen and (min-width: 500px) {
+          padding: 0 ${typography.rhythm(5)};
+        }
       `}
     >
       <Link to={`/`}>
