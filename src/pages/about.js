@@ -69,6 +69,7 @@ export const pageQuery = graphql`
         bio
         id
         twitter
+        github
         profilepicture {
           childImageSharp {
             fluid {

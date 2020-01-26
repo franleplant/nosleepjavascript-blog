@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 import SharedBio from "../components/sharedBio"
+import * as theme from "../utils/theme"
 
 export default function BlogIndex(props) {
   const { data } = props
@@ -28,11 +29,19 @@ export default function BlogIndex(props) {
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
+                <Link to={node.fields.slug}>{title}</Link>
               </h3>
               <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>
+              <small>
+                {` • by `}
+                <span
+                  css={css`
+                    color: ${theme.COLOR.SECONDARY};
+                  `}
+                >
+                  {node.frontmatter.author.id}
+                </span>
+              </small>
             </header>
             <section>
               <p
@@ -72,6 +81,9 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            author {
+              id
+            }
           }
         }
       }

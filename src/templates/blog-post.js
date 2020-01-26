@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
+import { css } from "@emotion/core"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -14,7 +15,7 @@ export default function BlogPostTemplate(props) {
   const siteTitle = props.data.site.siteMetadata.title
   const post = props.data.markdownRemark
   const { frontmatter } = props.data.markdownRemark
-  const { author, tags = [] } = frontmatter
+  const { title, description, author, tags = [] } = frontmatter
   const { previous, next } = props.pageContext
   const { slug } = post.fields
 
@@ -35,38 +36,41 @@ export default function BlogPostTemplate(props) {
   return (
     <Layout location={props.location} title={siteTitle}>
       <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
+        title={title}
+        description={`${description || post.excerpt}\nBy ${author.id}`}
+        author={author}
       />
       <article>
         <header>
           <h1
-            style={{
-              marginTop: rhythm(1),
-              marginBottom: 0,
-            }}
+            css={css`
+              margin-top: ${rhythm(1)};
+              margin-bottom: 0;
+            `}
           >
             {post.frontmatter.title}
           </h1>
-          <p
+          <div
             style={{
               ...scale(-1 / 5),
-              display: `block`,
-              marginBottom: rhythm(1),
             }}
+            css={css`
+              display: block;
+              margin-bottom: ${rhythm(1)};
+            `}
           >
             {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
             <Tags tags={tags} />
-          </p>
+          </div>
           {pageViewCount && <p>This post was viewed {pageViewCount} times</p>}
         </header>
 
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
 
         <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
+          css={css`
+            margin-bottom: ${rhythm(1)};
+          `}
         />
 
         <footer>
@@ -76,13 +80,13 @@ export default function BlogPostTemplate(props) {
 
       <nav>
         <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
+          css={css`
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0;
+          `}
         >
           <li>
             {previous && (
@@ -130,6 +134,7 @@ export const pageQuery = graphql`
           id
           bio
           twitter
+          github
           profilepicture {
             childImageSharp {
               fluid {

@@ -6,20 +6,26 @@
  */
 
 import React from "react"
-import { rhythm } from "../utils/typography"
+import { css } from "@emotion/core"
+import styled from "@emotion/styled"
 import Image from "gatsby-image"
+import { rhythm } from "../utils/typography"
 
 export default function Bio(props) {
   const { author = {}, prefixText = "Written by" } = props
+  console.log("author", author)
+
+  let githubEl
+  if (author.github) {
+    githubEl = (
+      <a href={author.github} target="_blank">
+        Github
+      </a>
+    )
+  }
 
   return (
-    <div
-      style={{
-        display: `flex`,
-        alignItems: "center",
-        marginBottom: rhythm(2.5),
-      }}
-    >
+    <Container>
       <Image
         fluid={author.profilepicture.childImageSharp.fluid}
         alt={author.id}
@@ -33,13 +39,23 @@ export default function Bio(props) {
           borderRadius: `50%`,
         }}
       />
-      <p style={{ margin: 0 }}>
+      <p
+        css={css`
+          margin: 0;
+        `}
+      >
         {`${prefixText} `}
         <strong>
           <a href={`https://twitter.com/${author.twitter}`}>{author.id}</a>
         </strong>
-        : {author.bio}
+        : {author.bio} {githubEl}
       </p>
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: ${rhythm(2.5)};
+`
