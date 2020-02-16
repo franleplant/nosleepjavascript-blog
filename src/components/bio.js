@@ -13,12 +13,11 @@ import { rhythm } from "../utils/typography"
 
 export default function Bio(props) {
   const { author = {}, prefixText = "Written by" } = props
-  console.log("author", author)
 
   let githubEl
   if (author.github) {
     githubEl = (
-      <a href={author.github} target="_blank">
+      <a href={author.github} target="_blank" rel="noopener noreferrer">
         Github
       </a>
     )
