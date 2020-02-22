@@ -4,7 +4,7 @@ date: "2020-03-10"
 author: franleplant
 description: "Docker has become a widely used
   technology and chances are you are going to have to deal with it eventually, at least superficially, in your Front End
-  career. Lets cover the basic concepts and day to day useful commands you will likely use when dealing with Docker."
+  career. Let's cover the basic concepts and day to day useful commands you will likely use when dealing with Docker."
 tags:
   - Docker
   - Dockerfile
@@ -12,7 +12,15 @@ tags:
   - front end developers
   - NodeJs
   - Express
+  - Cloud Computing
+  - Clusters
+  - Kubernetes
+  - AWS
+  - Azure
+  - Google Compute Engine
 ---
+
+Jump to the [commands sections](#essential-commands)
 
 ## What is docker?
 
@@ -31,9 +39,9 @@ then you should feel comfortable enough with Docker.
 
 With Docker you can easily create something very similar to a headless virtual machine.
 You can install system dependencies, configure networks and ports, setup databases,
-fetch your code and start your app with a simple configuration files i.e. _Dockerfile_.
+fetch your code and start your app with a simple configuration file i.e. _Dockerfile_.
 
-Today is very common for [IaaS][5] and [PaaS][6] providers to provide first
+Today it's very common for [IaaS][5] and [PaaS][6] providers to provide first
 class support for Docker containers.
 Examples of these providers are [Google Cloud Compute Engine][7],
 [Microsoft Azure][8] and [Amazon AWS][9] among others.
@@ -132,7 +140,7 @@ After you built your final _image_ you can then instantiate it into an executabl
 this executable is called a _container_ and it is treated
 by your host OS as just another process.
 
-Take a moment to think the big leap of the final statement,
+Take a moment to think about the big leap of the final statement,
 this means that by using Docker you have encapsulated an
 entire Operating System (OS), dependencies, configurations,
 startup commands, etc into a single runnable process in your
@@ -147,6 +155,29 @@ You can have multiple running instances of an image
 slightly different parameters (Environment Variables mostly).
 
 `Images` can inherit from other `images` to compose them in useful and meaningful ways.
+
+## Docker repositories (Docker Hub)
+
+> Docker Hub repositories allow you share container images with your team, customers, or the Docker community at large.
+>
+> [source][16]
+
+Docker Hub is an analogue solution to things such as NPM to distribute NodeJs packages,
+[Cargo][20] to distribute [Rust][19] crates (pieces of code), [Maven][21] to distribute [Java][22] Jars (pieces of code), etc.
+
+Docker hub also has the concept of [registry][17] similar to NPM where you can use
+the default Docker hub registry or your company's own.
+The default [Docker hub registry][18] is where most of the base images, such as NodeJs,
+Nginx, Java, etc live.
+
+In the `Dockerfile` we dissected before, the first line is `FROM node:12` and
+tells docker to use the base image `node:12` (NodeJs version 12) that is stored
+in a Docker hub registry, by default it will use Docker's registry.
+
+The first time you try to build this image you will notice that Docker
+downloads the base image and store it in cache.
+
+We cover the basic commands in the next section.
 
 ## Essential commands
 
@@ -193,6 +224,22 @@ docker image ls
 
 All the build commands output the docker `Image id` which is something you can use when
 instantiating them into `containers`, but using a `tag` is a much more human friendly way.
+
+### Docker hub
+
+Push your most recently built image to docker hub using the tag as identifier.
+Tags can have a complex form to keep track of versions and such.
+Some common patterns are:
+
+- `name-of-my-app:LATEST`: the latest version of your app, will keep changing as new versions come.
+- `name-of-my-app:VERSION`: a given version of your app.
+- `nodejs:10`: the base NodeJs v10 image.
+
+```bash
+docker push $TAG
+```
+
+</br>
 
 ### Running
 
@@ -286,7 +333,7 @@ Check the [docs][4] for a more complete coverage.
 
 ## Closing
 
-These are the basic knowledge I think every Front End developer should have as a minimum,
+This is the basic knowledge I think every Front End developer should have as a minimum,
 given the fact that Docker has such a wide adoption. The commands are commands I use
 on a daily basis in my day job.
 
@@ -311,3 +358,10 @@ on Docker and its parent discipline: DevOps.
 [13]: https://gcc.gnu.org/
 [14]: https://www.docker.com/
 [15]: https://kubernetes.io/
+[16]: https://docs.docker.com/docker-hub/repos/
+[17]: https://docs.docker.com/registry/deploying/
+[18]: https://www.docker.com/products/docker-hub
+[19]: https://www.rust-lang.org/
+[20]: https://doc.rust-lang.org/cargo/
+[21]: https://maven.apache.org/
+[22]: https://en.wikipedia.org/wiki/Java_(software_platform)
