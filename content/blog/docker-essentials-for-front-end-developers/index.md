@@ -45,7 +45,7 @@ Today it's very common for [IaaS][5] and [PaaS][6] providers to provide first
 class support for Docker containers.
 Examples of these providers are [Google Cloud Compute Engine][7],
 [Microsoft Azure][8] and [Amazon AWS][9] among others.
-You can use [Kubernetes][15] to manage a cluster composed of docens
+You can use [Kubernetes][15] to manage a cluster composed of dozens
 of Docker containers in these providers and scale easily
 so long as you can afford it.
 
