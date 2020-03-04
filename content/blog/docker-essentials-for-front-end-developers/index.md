@@ -1,5 +1,5 @@
 ---
-title: Essential Docker for Front End Developers
+title: Essential Docker for Javascript and Front End Developers
 date: "2020-03-10"
 author: franleplant
 description: "Docker has become a widely used
