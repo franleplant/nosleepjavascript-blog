@@ -324,7 +324,9 @@ Inspect a `container` (debug information about volumes, networks, ports, etc abo
 In this case we get the `container`'s IP Address.
 
 ```bash
-docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID
+docker inspect \
+  --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
+  $CONTAINER_ID
 ```
 
 </br>
