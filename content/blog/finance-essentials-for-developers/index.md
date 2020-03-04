@@ -1,6 +1,6 @@
 ---
 title: Essential Investing and Finance for developers
-date: "2020-05-10"
+date: "2020-04-20"
 author: franleplant
 description:
   "Whether you are working on a fin tech startup or you want to start investing or
