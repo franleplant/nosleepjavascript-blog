@@ -3,9 +3,7 @@ const url =
 
 // This function calls Azure to bump the page view count
 // and it returns the updated count number
-// TODO
-// - enable azure cors from localhost:8000 so we can test it locally
-export default async function getSetViewCount(slug) {
+export default async function getSetViewCount(slug: string): Promise<number> {
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -17,7 +15,5 @@ export default async function getSetViewCount(slug) {
   })
 
   // Body is the page view number
-  const body = await response.json()
-  console.log("body", body)
-  return body
+  return await response.json()
 }

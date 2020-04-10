@@ -114,6 +114,23 @@ module.exports = {
       },
     },
     `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        //isTSX: true, // defaults to false
+        //jsxPragma: `jsx`, // defaults to "React"
+        //allExtensions: true, // defaults to false
+      },
+    },
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        codegenConfig: {
+          typesPrefix: "I",
+          avoidOptionals: true,
+        },
+      },
+    },
   ],
   mapping: {
     "MarkdownRemark.frontmatter.author": `AuthorYaml`,

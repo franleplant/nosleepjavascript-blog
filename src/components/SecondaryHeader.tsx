@@ -4,7 +4,7 @@ import styled from "@emotion/styled"
 
 import logo from "../../content/assets/logo.svg"
 
-export default function SecondaryHeader(props) {
+export default function SecondaryHeader() {
   return (
     <H3>
       <Link to={`/`}>

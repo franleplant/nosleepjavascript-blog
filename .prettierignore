@@ -2,3 +2,5 @@
 package.json
 package-lock.json
 public
+graphql-types.ts
+

@@ -5,7 +5,11 @@ import typography from "../utils/typography"
 
 import logo from "../../content/assets/logo.svg"
 
-export default function PrimaryHeader(props) {
+export interface IProps {
+  title: string
+}
+
+export default function PrimaryHeader(props: IProps) {
   const { title } = props
   return (
     <h1
