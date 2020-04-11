@@ -477,7 +477,7 @@ const Container = styled.div`
 
 const Name = styled.span`
   font-weight: bold;
-  color: ${props => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
 `
 
 // Use the image from CSS-in-JS

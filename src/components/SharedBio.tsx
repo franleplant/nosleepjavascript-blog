@@ -1,8 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
+import { IAuthor } from "../types"
 
-export default function SharedBio(props) {
+export interface IProps {
+  authors: Array<IAuthor>
+}
+
+export default function SharedBio(props: IProps) {
   const { authors = [] } = props
 
   return (
@@ -21,7 +26,7 @@ export default function SharedBio(props) {
   )
 }
 
-export function MiniBio({ author }) {
+export function MiniBio({ author }: { author: IAuthor }) {
   return (
     <span>
       <strong>

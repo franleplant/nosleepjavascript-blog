@@ -6,7 +6,13 @@ import { rhythm } from "../utils/typography"
 import PrimaryHeader from "./PrimaryHeader"
 import SecondaryHeader from "./SecondaryHeader"
 
-export default function Layout(props) {
+interface IProps {
+  children: any
+  location: any
+  title: any
+}
+
+export default function Layout(props: IProps) {
   const { location, title, children } = props
   const rootPath = `${__PATH_PREFIX__}/`
   const isRoot = location.pathname === rootPath

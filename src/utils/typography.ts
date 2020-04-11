@@ -12,9 +12,7 @@ typographyTheme.overrideThemeStyles = () => ({
     color: theme.COLOR.SECONDARY,
   },
   h2: {
-    borderBottom: `1px solid ${color(theme.COLOR.PRIMARY)
-      .alpha(0.5)
-      .string()}`,
+    borderBottom: `1px solid ${color(theme.COLOR.PRIMARY).alpha(0.5).string()}`,
   },
   blockquote: {
     borderLeft: `4px solid ${theme.COLOR.PRIMARY}`,

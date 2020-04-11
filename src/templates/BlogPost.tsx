@@ -2,24 +2,34 @@ import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { IBlogPostBySlugQuery } from "../../graphql-types"
+import Bio from "../components/Bio"
+import Layout from "../components/Layout"
+import SEO from "../components/Seo"
 import Tags from "../components/Tags"
 import { rhythm, scale } from "../utils/typography"
 import getSetViewCount from "../dal/getSetPageView"
 
 const isLocalhost = () => window.location.href.includes("localhost:8000")
 
-export default function BlogPostTemplate(props) {
+interface IProps {
+  data: IBlogPostBySlugQuery
+  location: any
+  pageContext: {
+    slug: string
+    previous?: any
+    next?: any
+  }
+}
+
+export default function BlogPostTemplate(props: IProps) {
+  const { previous, next } = props.pageContext
   const siteTitle = props.data.site.siteMetadata.title
   const post = props.data.markdownRemark
-  const { frontmatter } = props.data.markdownRemark
-  const { title, description, author, tags = [] } = frontmatter
-  const { previous, next } = props.pageContext
+  const { title, description, author, tags = [] } = post.frontmatter
   const { slug } = post.fields
 
-  const [pageViewCount, setPageViewCount] = useState()
+  const [pageViewCount, setPageViewCount] = useState<number>()
 
   useEffect(() => {
     async function fetchData() {
@@ -48,7 +58,7 @@ export default function BlogPostTemplate(props) {
               margin-bottom: 0;
             `}
           >
-            {post.frontmatter.title}
+            {post.frontmatter?.title}
           </h1>
           <div
             style={{

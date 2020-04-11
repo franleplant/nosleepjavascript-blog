@@ -6,11 +6,21 @@
  */
 
 import React from "react"
-import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { IAuthor } from "../types"
 
-function SEO({ description, lang, meta, title, author = {} }) {
+export interface IProps {
+  title: string
+  description?: string
+  lang?: string
+  meta?: Array<any>
+  author?: IAuthor
+}
+
+export default function SEO(props: IProps) {
+  const { description = ``, lang = `en`, meta = [], title, author } = props
+
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -61,7 +71,7 @@ function SEO({ description, lang, meta, title, author = {} }) {
         },
         {
           name: `twitter:creator`,
-          content: author.twitter || site.siteMetadata.author,
+          content: author?.twitter || site.siteMetadata.author,
         },
         {
           name: `twitter:title`,
@@ -75,18 +85,3 @@ function SEO({ description, lang, meta, title, author = {} }) {
     />
   )
 }
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-}
-
-export default SEO

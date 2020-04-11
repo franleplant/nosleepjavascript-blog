@@ -3,10 +3,14 @@ import styled from "@emotion/styled"
 import color from "color"
 import * as theme from "../utils/theme"
 
-export default function Tags({ tags }) {
+export interface IProps {
+  tags: Array<string>
+}
+
+export default function Tags({ tags }: IProps) {
   return (
     <Container>
-      {tags.map(tag => (
+      {tags.map((tag) => (
         <Tag key={tag}>{`#${tag}`}</Tag>
       ))}
     </Container>
@@ -34,16 +38,12 @@ const Tag = styled.span`
   font-size: 12px;
   line-height: 20px;
   white-space: nowrap;
-  background: ${color(theme.COLOR.PRIMARY)
-    .alpha(0.05)
-    .string()};
+  background: ${color(theme.COLOR.PRIMARY).alpha(0.05).string()};
   border: 1px solid ${theme.COLOR.PRIMARY};
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background: ${color(theme.COLOR.PRIMARY)
-      .alpha(0.5)
-      .string()};
+    background: ${color(theme.COLOR.PRIMARY).alpha(0.5).string()};
   }
 `

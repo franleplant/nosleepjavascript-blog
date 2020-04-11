@@ -2,13 +2,20 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/Layout"
+import SEO from "../components/Seo"
 import { rhythm } from "../utils/typography"
-import SharedBio from "../components/sharedBio"
+import SharedBio from "../components/SharedBio"
 import * as theme from "../utils/theme"
 
-export default function BlogIndex(props) {
+import { IBlogIndexQuery } from "../../graphql-types"
+
+export interface IProps {
+  data: IBlogIndexQuery
+  location: any
+}
+
+export default function BlogIndex(props: IProps) {
   const { data } = props
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
@@ -20,16 +27,19 @@ export default function BlogIndex(props) {
       <SharedBio authors={data.allAuthorYaml.nodes} />
 
       {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
+        const slug = node.fields.slug
+        const title = node.frontmatter.title || slug
+        const content = node.frontmatter.description || node.excerpt
+
         return (
-          <article key={node.fields.slug}>
+          <article key={slug}>
             <header>
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link to={node.fields.slug}>{title}</Link>
+                <Link to={slug}>{title}</Link>
               </h3>
               <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>
               <small>
@@ -49,7 +59,7 @@ export default function BlogIndex(props) {
                   text-align: justify;
                 `}
                 dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
+                  __html: content,
                 }}
               />
             </section>
@@ -61,7 +71,7 @@ export default function BlogIndex(props) {
 }
 
 export const pageQuery = graphql`
-  query {
+  query BlogIndex {
     site {
       siteMetadata {
         title
@@ -93,6 +103,7 @@ export const pageQuery = graphql`
         bio
         id
         twitter
+        github
       }
     }
   }
