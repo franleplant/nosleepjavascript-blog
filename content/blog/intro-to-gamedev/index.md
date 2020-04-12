@@ -23,7 +23,9 @@ If you are like me and are looking into getting out of Google's ecosystem, chanc
 
 I thought we could take this chance to learn a little bit about web-based game development and create a small clone of the game.
 
-You can play the [finished game here](https://ignacioamigo.github.io/dinogame/bin/index.html) and [review the code here](https://github.com/IgnacioAmigo/dinogame). Keep in mind that the code is much more commented on this article since it's meant to be as explicit and educating as possible.
+You can play the [finished game here](https://ignacioamigo.github.io/dinogame/bin/index.html) and [review the code here](https://github.com/IgnacioAmigo/dinogame). Keep in mind that the code is much more commented on this article since it's meant to be as explicit and educating as possible. Here's what it looks like if you don't feel like clicking the above link:
+
+<iframe  frameborder="0" src="https://ignacioamigo.github.io/dinogame/bin/index.html" width="600" height="175"></iframe>
 
 Let's dive in!
 
