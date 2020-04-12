@@ -11,13 +11,19 @@ tags:
   - rendering
 ---
 
+## Table of Contents
+
+```toc
+to-heading: 3
+```
+
 ## Introduction
 
 If you are like me and are looking into getting out of Google's ecosystem, chances are that you switched (or are thinking on switching) from Chrome to another browser. In doing so, you will be getting rid of one of the cheekiest features in any browser: The [dinosaur game](https://elgoog.im/t-rex/).
 
 I thought we could take this chance to learn a little bit about web-based game development and create a small clone of the game.
 
-You can take a play the [finished game here](https://ignacioamigo.github.io/dinogame/bin/index.html) and [review the code here](https://github.com/IgnacioAmigo/dinogame). Keep in mind that the code is much more commented on this article since it's meant to be as explicit and educating as possible.
+You can play the [finished game here](https://ignacioamigo.github.io/dinogame/bin/index.html) and [review the code here](https://github.com/IgnacioAmigo/dinogame). Keep in mind that the code is much more commented on this article since it's meant to be as explicit and educating as possible.
 
 Let's dive in!
 
@@ -37,11 +43,13 @@ Keeping the scope in mind, let's try to deduce and compress what we need from a 
 - We have to do game-specific tasks such as render images and process input. Luckily the browser gives us good support for both of them through things like WebGL and Javascript's input system respectively.
 - We would also like it to be as responsive as possible since it makes for a better user experience.
 
-Note that we don't really need brazing fast graphic drawing for this since the game will not render thousands of objects at once, so using WebGL is probably overkill. However, it's a good way to get into the topic and so we'll take the chance to do it that way. WebGL is fairly complicated to work with from scratch, so after doing a bit of research I have decided we can use PixiJS to render stuff a pretty simple set of Javascript libraries for a 2D renderer that runs over WebGL (which in turn means we are using hardware acceleration to render stuff). We can also go a step further and try to use it with Typescript, to get that sweet, sweet type-checking.
+Note that we don't really need brazing fast graphic drawing for this since the game will not render thousands of objects at once, so using WebGL is probably overkill. However, it's a good way to get into the topic and so we'll take the chance to do it that way. WebGL is fairly complicated to work with from scratch, so after doing a bit of research I have decided we can use [PixiJS](https://www.pixijs.com/) to render stuff.
+PixiJS is a pretty simple but powerful Javascript engine to render 2D sprites. It runs over WebGL (which in turn means we are using hardware acceleration to render stuff).
+
+I think it would also be a good idea to go a step further and try to use it with Typescript to get that sweet, sweet type-checking.
 
 ## Starting out
 
-In the world of web development, it's common
 We are going to use a starter template, which will solve some of these issues for us. Specifically, the starter is the following: https://github.com/llorenspujol/parcel-pixijs-quickstarter. It includes Parcel, PixiJS and TypeScript. PixiJS started shipping with Type information since version 5, which is the one being included in the starter template. This means we don't have to import extra packages to be able to type-check PixiJS code.
 
 Note that the only real requirement for this is Node and NPM.
@@ -85,12 +93,28 @@ const spriteNames = {
 
 export function GetSprite(name) {
   return new PIXI.AnimatedSprite(
-    spriteNames[name].map(path => PIXI.Texture.from(path))
+    spriteNames[name].map((path) => PIXI.Texture.from(path))
   )
 }
 ```
 
-We are now able to call `GetSprite()` from `app.ts` with one of the four values (specifically, the keys of `spriteNames`). The code essentially gets the files from each of the subdirectories and creates a texture from them. It's mostly an implementation detail and you can forget about it as long as you recall that the loading happens on that file.
+The above code is fundamentally using the [_wildcard import_ feature from Parcel](https://parceljs.org/module_resolution.html) to import an arbitrary number of image paths for each of the `import` statements (specifically, the number of images in each of the directories) which we can easily extract with `Object.values()`. We will end up with objects that look a little bit like this:
+
+```ts
+ghost = {
+  image1: pathToImage1,
+  image2: pathToImage2,
+}
+// so when you Object.values
+Object.values(ghost) = [
+  pathToImage1, pathToImage2, ...
+]
+
+```
+
+We are now able to call `GetSprite()` from `app.ts` with one of the four values (specifically, the keys of `spriteNames`). The code essentially gets the files from each of the subdirectories and creates a texture from them.
+
+This is mostly an implementation detail and you can forget about it as long as you recall that the loading happens on that file and really, all we are doing is loading files in an easy way for PixiJS to be able to render them.
 
 We could do something more strict/expandable here but for now this will work well for us, and is a low amount of code to maintain.
 
@@ -115,7 +139,7 @@ export class GameApp {
 
     // Add user player assets
     console.log("Player to load", playerFrames)
-    Object.keys(playerFrames).forEach(key => {
+    Object.keys(playerFrames).forEach((key) => {
       loader.add(playerFrames[key])
     })
 
@@ -143,7 +167,8 @@ export class GameApp {
       resolution: 3,
     })
 
-    // this scaling mode makes it so that scaled pixels are the same as the nearest neighbor, making it blocky as we want it
+    // this scaling mode makes it so that scaled pixels are the
+    // same as the nearest neighbor, making it blocky as we want it
     PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST
   }
 }
@@ -206,38 +231,38 @@ Regarding methods, for now we'll have one method for setup and one for the world
 
 ```ts
 export class GameApp {
-    static GameOver: boolean = false;
-    static PressedSpace: boolean = false; // whether the player pressed space
-    static Score: number = 0;
+  static GameOver: boolean = false
+  static PressedSpace: boolean = false
+  static Score: number = 0
 
-    constructor(parent: HTMLElement, width: number, height: number) {
-        // code we added in the previous section goes here
+  constructor(parent: HTMLElement, width: number, height: number) {
+    // code we added in the previous section goes here
 
-        // register the event for key presses (PixiJS does not handle input, so we do it through the browser)
-        window.onkeydown = (ev: KeyboardEvent): any => {
-            GameApp.PressedSpace = (ev.key == " ");
-        }
-
-        Game.SetupGame();
-
-        // this is the ticker that runs once per frame, let's call our Update() function
-        this.app.ticker.add((delta) => {
-            Game.Update(delta);
-        });
+    // register the event for key presses
+    window.onkeydown = (ev: KeyboardEvent): any => {
+      GameApp.PressedSpace = ev.key == " "
     }
 
-    static SetupGame()
-    {
-        // initial setup of the game state
-    }
+    Game.SetupGame()
 
-    static Update(delta: number)
-    {
-        // simulate game, update entities and world
+    // this is the ticker that runs once per frame, let's call our Update() function
+    this.app.ticker.add((delta) => {
+      Game.Update(delta)
+    })
+  }
 
-        // frame is ending, so let's set PressedSpace back to false so that it is the default on the next frame
-        GameApp.PressedSpace = false;
-    }
+  static SetupGame() {
+    // initial setup of the game state
+  }
+
+  static Update(delta: number) {
+    // simulate game, update entities and world
+
+    // frame is ending, so let's set PressedSpace back to false
+    // so that it is the default on the next frame
+    GameApp.PressedSpace = false
+  }
+}
 ```
 
 The [`delta`](https://pixijs.download/dev/docs/PIXI.Ticker.html#deltaTime) parameter is passed on to the ticker and is how much time (**in milliseconds**) passed between the previous frame and the current one, so that we can use it to simulate our entities. It will be explained better in the next section so don't worry for now.
@@ -263,7 +288,7 @@ class Player {
 }
 ```
 
-We can now create a `Player` object and immediately see the character on screen animating. If we go a little bit further, we can probably imagine that we need to update the object every frame, so we can go ahead and create an `Update()` method that handles the character jumping (recall that we were saving whether the player had pressed Space). Since we will be updating the player from `GameApp.Update(delta)` it makes sense that the _Update_ method for our character takes this as an argument as well.
+We can now create a `Player` object and immediately see the character on screen animating, at the bottom left. If we go a little bit further, we can probably imagine that we need to update the object every frame, so we can go ahead and create an `Update()` method that handles the character jumping (recall that we were saving whether the player had pressed Space). Since we will be updating the player from `GameApp.Update(delta)` it makes sense that the _Update_ method for our character takes this as an argument as well.
 
 We know we want our character to jump with Spacebar, so we are actually at the point where we can implement this as well. I'll be defining a couple of fields on the `Player` class for this:
 
@@ -272,7 +297,7 @@ We know we want our character to jump with Spacebar, so we are actually at the p
 
 ### Updating the world with `delta`
 
-As mentioned before, the `delta` parameter that we are getting from the ticker is and passing on to our `Update()` method contains, in miliseconds, how much time passed between the previous frame and this one. Why is that value useful to us? Well, if we don't know how much time passed between one frame and the next one, we can't proportionally simulate the world. Usually, if we fix the framerate, we can simulate for a specific amount of frametime (so, if we want our game to run at 60 FPS, we would divide 1000 ms by 60 frames, which gives us 16.6 ms/frame), but in reality we can't rely on that being the real time that passed between two frames (there is a lot of variance introduced by the OS, the browser, the user, etc.).
+As mentioned before, the `delta` parameter that we are getting from the ticker and passing on to our `Update()` method contains, in miliseconds, how much time passed between the previous frame and this one. Why is that value useful to us? Well, if we don't know how much time passed between one frame and the next one, we can't proportionally simulate the world. Usually, if we fix the framerate, we can simulate for a specific amount of frametime (so, if we want our game to run at 60 FPS, we would divide 1000 ms by 60 frames, which gives us 16.6 ms/frame), but in reality we can't rely on that being the real time that passed between two frames (there is a lot of variance introduced by the OS, the browser, the user, etc.).
 
 This way, if we want a value to increase by a rate of `X per second` depending on how much time passed, we need to adjust for how much time passed in the frame. If half a second passed between a frame and the next one, the amount by which we increase would be equal to `0.5 seconds` times `X per second`. This is the pattern that we will use to increment values that are tied to time (for example: user score, player speed, etc.).
 
@@ -280,32 +305,32 @@ Keeping all this in mind, you might already get the sense of what the update cod
 
 ```ts
 public Update(delta: number)
-    {
-        if (this.sprite.y >= GameApp.GroundPosition)
-        {
-            // if downward acceleration brought us to the ground, stop and set airborne to false
-            this.sprite.y = GameApp.GroundPosition;
-            this.verticalSpeed = 0;
-            this.airborne = false;
-        }
+{
+  if (this.sprite.y >= GameApp.GroundPosition) {
+    // if downward acceleration brought us to the ground,
+    // stop and set airborne to false
+    this.sprite.y = GameApp.GroundPosition;
+    this.verticalSpeed = 0;
+    this.airborne = false;
+  }
 
-        if (this.airborne)
-        {
-            // if we are in the air, accelerate downward by increasing the velocity by a constant value
-            this.verticalSpeed += delta* 1/3;
-        }
+  if (this.airborne) {
+    // if we are in the air, accelerate downward
+    // by increasing the velocity by a constant value
+    this.verticalSpeed += delta* 1/3;
+  }
 
-        if (GameApp.PressedSpace && !this.airborne)
-        {
-            // jump!
-            this.airborne = true;
-            this.verticalSpeed = -5;
-        }
+  if (GameApp.PressedSpace && !this.airborne) {
+    // jump!
+    this.airborne = true;
+    this.verticalSpeed = -5;
+  }
 
-        // remember the delta update!
-        // the position will change in accordance to how much time passed and the character's speed
-        this.sprite.y += this.verticalSpeed * delta;
-    }
+  // remember the delta update!
+  // the position will change in accordance to
+  // how much time passed and the character's speed
+  this.sprite.y += this.verticalSpeed * delta;
+}
 ```
 
 So far, we can create a `Player` object on `GameApp.SetupGame()` and have it update on the `GameApp.Update()` method. The character will stand on the bottom left side of the window and jump when we press Spacebar as it animates slowly. You might be wondering when we are going to make the character move: The answer is we don't! We'll move obstacles towards the character.
@@ -318,41 +343,38 @@ Since we are doing scrolling obstacles, we can also make our code so that it inc
 Lastly, let's add a modifier to the speed of the obstacles so that they move a little bit faster as the score increases:
 
 ```ts
-
 export class GameApp {
-    static ScrollSpeed : number = 3;
-    ...
+  static ScrollSpeed : number = 3;
+  ...
 }
 
 class ScrollingObject {
-    sprite: PIXI.Sprite;
-    solid = true;
+  sprite: PIXI.Sprite;
+  solid = true;
 
-    public constructor(spriteName: string, isSolid: boolean) {
-        // todo explain
-        this.sprite =  GetSprite(spriteName);
-        this.sprite.y = GameApp.Width;
-        this.sprite.x = GameApp.GroundPosition;
+  public constructor(spriteName: string, isSolid: boolean) {
+    this.sprite =  GetSprite(spriteName);
+    this.sprite.y = GameApp.Width;
+    this.sprite.x = GameApp.GroundPosition;
+    this.sprite.anchor.set(0, 1);
+    this.solid = isSolid;
+  }
 
-        this.sprite.anchor.set(0, 1);
-        this.solid = isSolid;
-    }
+  public Update(delta:number) {
+    var baseScrollSpeed = (this.solid) ? GameApp.ScrollSpeed : GameApp.ScrollSpeed-1;
 
-    public Update(delta:number) {
-        var baseScrollSpeed = (this.solid) ? GameApp.ScrollSpeed : GameApp.ScrollSpeed-1;
+      // modifier for speed depending on score so that it gets more difficult
+      var scrollSpeed = baseScrollSpeed + Math.min(GameApp.Score/15.0 , 1);
 
-        // modifier for speed depending on score so that it gets more difficult
-        var scrollSpeed = baseScrollSpeed + Math.min(GameApp.Score/15.0 , 1);
-
-        // move to the left, watch out!
-        this.sprite.x -= delta * (scrollSpeed);
+      // move to the left, watch out!
+      this.sprite.x -= delta * (scrollSpeed);
     }
 }
 ```
 
 Right now we can create multiple obstacle objects and have them update on the main game loop. We mentioned before that we wanted to prepare our game for an arbitrary number of objects, how can we achieve this? One way would be to create a list of `WorldObject`s and insert there all the objects that we want.
 
-At this point, however, we actually have 2 types of objects that interact with the world: `Player` and `ScrollingObject`. But it makes sense for us to coalesce all instances in one list of objects to loop over. If we were to go in an [object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming) direction, we could create a class hierarchy that perhaps could make both our classes inherit from a common one that had all the shared functionality and data. Another good approach would be to create an interface that enforced the methods/fields that they both share. However, since we are using TypeScript and it has a [very powerful type system](https://www.typescriptlang.org/docs/handbook/advanced-types.html#union-types), we can try to implement one of the lesser pragmatic options by creating a Union type and an alias for it. Remember, we are trying to go for low friction solutions for our little project.
+At this point, however, we actually have 2 types of objects that interact with the world: `Player` and `ScrollingObject`. But it makes sense for us to coalesce all instances in one list of objects to loop over. If we were to go in an [object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming) direction, we could create a class hierarchy that perhaps could make both our classes inherit from a common one that had all the shared functionality and data. Another good approach would be to create an interface that enforced the methods/fields that they both share. However, since we are using TypeScript and it has a [very powerful type system](https://www.typescriptlang.org/docs/handbook/advanced-types.html#union-types), we can try to implement one of the more frictionless options by creating a Union type and an alias for it. It's easy to combine our smaller primitives this way for now given the way our code looks like. Remember, we are trying to go for low cost solutions for our little project.
 
 So let's go ahead and implement all this on our `GameApp` class.:
 
@@ -365,12 +387,15 @@ export class GameApp {
 
   static PressedSpace: boolean = false
   static Stage: PIXI.Container
-  static ActiveEntities: Array<WorldObjects> = new Array<WorldObjects>()
+  static ActiveEntities: Array<WorldObjects> = []
   static GameOver: boolean = false
   static ScrollSpeed: number = 3
 
-  static GroundPosition: number = 0 // ground position, given by screen height
-  static Width: number = 0 // width of game screen, given by screen width
+  // ground position, given by screen height
+  static GroundPosition: number = 0
+
+  // width of game screen, given by screen width
+  static Width: number = 0
 
   // score of current run
   static Score: number = 0
@@ -393,45 +418,44 @@ But before that, you might have noticed as well that I created a couple more var
 
 To keep the code simple for now, everytime we spawn an obstacle we'll spawn a cloud for aesthetics. There's no real reason why we couldn't add a more random element to these decorations later, but for now this will keep the code easier to study/describe.
 
+A quick note regarding object spawns: As you might have seen in the assets definitions, we have two different kinds of obstacles in addition to the cloud sprite. Once we decide it's time to spawn a new obstacle, we need to choose which one we want to spawn. The pumpkin is a little more difficult to overcome because of the sprite's dimensions, so we can do something like generating a random number that falls between zero and one uniformly, and decide to spawn a pumpkin only if the number is higher than 0.75. This way, we are essentially giving the pumpkin a 25% chance of spawning, and a 75% chance to the grave.
+
 Keeping that in mind, let's see what our current game update looks like:
 
 ```ts
-    static Update(delta: number) {
-
-        // if we haven't lost yet let's update everything, otherwise wait for spacebar press to restart game
-        if (!this.GameOver)
-        {
-            // loop over object list
-            for(var i = 0; i < GameApp.ActiveEntities.length; i++)
-            {
-                // update entity
-                var currentEntity = GameApp.ActiveEntities[i];
-                currentEntity.Update(delta,GameApp.ActiveEntities);
-            }
-
-            // current score update!
-            this.Score += delta * 1 / 6;
-
-            // update the max score if necessary
-            if (this.Score > this.MaxScore) { this.MaxScore = this.Score; }
-
-            if (GameApp.ShouldPlaceWorldObject())
-            {
-                GameApp.AddObject(Math.random() < 0.75 ? "obstacleGrave" : "obstaclePumpkin", true);
-                GameApp.AddObject("cloud", false);
-                this.ScoreNextObstacle += this.GetScoreNextObstacle();
-            }
-        }
-        else
-        {
-            if (GameApp.PressedSpace)
-            {
-                this.SetupGame();
-            }
-        }
-
-        GameApp.PressedSpace = false;
+static Update(delta: number) {
+  // if we haven't lost yet let's update everything,
+  // otherwise wait for spacebar press to restart game
+  if (!GameApp.GameOver) {
+    // loop over object list
+    for (const currentEntity of GameApp.ActiveEntities) {
+      // update entity
+      currentEntity.Update(delta,GameApp.ActiveEntities);
     }
+
+    // current score update!
+    GameApp.Score += delta * 1 / 6;
+
+    // update the max score if necessary
+    if (GameApp.Score > GameApp.MaxScore) { GameApp.MaxScore = GameApp.Score; }
+    if (GameApp.ShouldPlaceWorldObject()) {
+      GameApp.AddObject(Math.random() < 0.75 ?
+        "obstacleGrave" :
+        "obstaclePumpkin",
+        true
+      );
+
+      GameApp.AddObject("cloud", false);
+      this.ScoreNextObstacle += this.GetScoreNextObstacle();
+    }
+  }
+  else {
+    if (GameApp.PressedSpace) {
+     this.SetupGame();
+    }
+  }
+  GameApp.PressedSpace = false;
+}
 ```
 
 There's some code I defined there which has not been written out yet, however it felt like something that could be deferred, since meaning can be extracted out of what you can read above anyway.
@@ -443,10 +467,9 @@ Let's see how we can go ahead and define the implementation of the definitions w
 This one's an easy one. We said we had `ScoreNextObstacle` defined for us to know when it was time to spawn a new obstacle, so let's define the check:
 
 ```ts
-    static ShouldPlaceWorldObject(): boolean
-    {
-        return (this.Score >=  this.ScoreNextObstacle);
-    }
+static ShouldPlaceWorldObject(): boolean {
+  return (this.Score >=  this.ScoreNextObstacle);
+}
 ```
 
 ### GetScoreNextObstacle()
@@ -454,15 +477,16 @@ This one's an easy one. We said we had `ScoreNextObstacle` defined for us to kno
 In the scoping section, we mentioned briefly that we wanted the game to spawn obstacles _from time to time_ (if you played Chrome's dinosaur game, you know they appear randomly). There's a level of uncertainty in that statement that we can resolve by getting random values for the next time for an object to appear:
 
 ```ts
-    static GetScoreNextObstacle(): number
-    {
-        // let's have a minimum distance so objects don't appear next to each other
-        let minimumDistance = 25;
-        // we can define a level of difficulty to make it harder as we go on (limit is 5)
-        let difficulty = Math.min(this.Score / 100, 5);
-        // define the random value based on values above
-        return (Math.random() * 10 - (difficulty * 4)) + minimumDistance;
-    }
+static GetScoreNextObstacle(): number {
+  // let's have a minimum distance so objects don't appear next to each other
+  let minimumDistance = 25;
+
+  // we can define a level of difficulty to make it harder as we go on (limit is 5)
+  let difficulty = Math.min(this.Score / 100, 5);
+
+  // define the random value based on values above
+  return (Math.random() * 10 - (difficulty * 4)) + minimumDistance;
+}
 ```
 
 ### AddObject()
@@ -473,11 +497,11 @@ The other thing we need to keep in mind is that if we want the object to update,
 So the method would look something like this:
 
 ```ts
-    private static AddObject(spriteName: keyof Sprites, height: number, isSolid: boolean) {
-        let obstacle = new ScrollingObject(spriteName, GameApp.Width, height, isSolid);
-        GameApp.ActiveEntities.push(obstacle);
-        GameApp.Stage.addChild(obstacle.sprite);
-    }
+private static AddObject(spriteName: keyof Sprites, height: number, isSolid: boolean) {
+  let obstacle = new ScrollingObject(spriteName, GameApp.Width, height, isSolid);
+  GameApp.ActiveEntities.push(obstacle);
+  GameApp.Stage.addChild(obstacle.sprite);
+}
 ```
 
 ## Collisions
@@ -493,22 +517,20 @@ Our sprites are loaded as 2D textures that fit inside a box which has a specific
 
 Since we know when they are **not** colliding, we can negate that and get the result.
 
-**The above can be a little confusing**, so looking at code might help. Let's define a `CollidesWidth()` method on our `Player` class. Each of the four lines in the return statement is each of the cases stated above:
+**The above can be a little confusing**, so looking at code might help. Let's define a `CollidesWidth()` method on our `Player` class. Each of the four lines in the return statement refers to each of the cases stated above:
 
 ```ts
-    private CollidesWith(otherSprite: PIXI.Sprite)
-    {
-        // player's rectangle
-        var ab = this.sprite.getBounds();
+private CollidesWith(otherSprite: PIXI.Sprite) {
+  // player's rectangle
+  var ab = this.sprite.getBounds();
 
-        // sprite we are checking against
-        var bb = otherSprite.getBounds();
-
-        return  !(ab.x > bb.x + bb.width ||
-                ab.x + ab.width < bb.x ||
-                ab.y + ab.height < bb.y ||
-                ab.y > bb.y + bb.height);
-    }
+  // sprite we are checking against
+  var bb = otherSprite.getBounds();
+  return  !(ab.x > bb.x + bb.width ||
+          ab.x + ab.width < bb.x ||
+          ab.y + ab.height < bb.y ||
+          ab.y > bb.y + bb.height);
+}
 ```
 
 Since we have a way of checking for 1:1 collisions on `Player`, we'll need to modify the `Update()` method to check if it's colliding against any of all the solid `ActiveEntities`.
@@ -516,9 +538,8 @@ Since we have a way of checking for 1:1 collisions on `Player`, we'll need to mo
 Let's add this at the end of the method:
 
 ```ts
-for (var i = 0; i < activeEntities.length; i++) {
-  var entity = activeEntities[i]
-  if (entity.solid && this.CollidesWith(entity.sprite)) {
+for (const currentEntity of GameApp.ActiveEntities) {
+  if (currentEntity.solid && this.collidesWith(currentEntity.sprite)) {
     GameApp.GameOver = true
   }
 }
@@ -530,25 +551,36 @@ We are saving what the max and current score are, but we have not been displayin
 
 ```ts
 export class GameApp {
+  static ScoreText: PIXI.Text = new PIXI.Text("Score: ", {
+    fontSize: 5,
+    fill: "#aaff",
+    align: "center",
+    stroke: "#aaaaaa",
+    strokeThickness: 0
+  });
 
-    static ScoreText: PIXI.Text =  new PIXI.Text('Score: ', {fontSize:5 ,fill: '#aaff', align: 'center', stroke: '#aaaaaa', strokeThickness: 0 });
+  [....]
 
-    [....]
+this.app.ticker.add(delta => {
+  GameApp.Update(delta);
 
-    this.app.ticker.add((delta) => {
-            GameApp.Update(delta);
-
-            // if we didn't lose, display score and max score, otherwise show a "game over" prompt
-            if (!GameApp.GameOver)
-            {
-                GameApp.ScoreText.text = "Score: " + (Math.ceil(GameApp.Score)) + " - Max Score: " + Math.ceil(GameApp.MaxScore) ;
-            }
-            else
-            {
-                GameApp.ScoreText.text = "Game over! You scored " + (Math.ceil(GameApp.Score)) +  ". Max Score: " + Math.ceil(GameApp.MaxScore)  + ". Press spacebar to restart.";
-            }
-        });
-}
+  // if we didn't lose, display score and max score,
+  // otherwise show a "game over" prompt
+  if (!GameApp.GameOver) {
+    GameApp.ScoreText.text =
+      "Score: " +
+      Math.ceil(GameApp.Score) +
+      " - Max Score: " +
+      Math.ceil(GameApp.MaxScore);
+  } else {
+    GameApp.ScoreText.text =
+      "Game over! You scored " +
+      Math.ceil(GameApp.Score) +
+      ". Max Score: " +
+      Math.ceil(GameApp.MaxScore) +
+      ". Press spacebar to restart.";
+  }
+ });
 ```
 
 There are some other finishing touches and optimizations that I added to the code, feel free to review them on the repo (and ask away if you think I can help!).
@@ -557,4 +589,4 @@ There are some other finishing touches and optimizations that I added to the cod
 
 Since it involves many subsystems, there are many, many ways to approach game development in general, and we only just barely scraped the surface of it.
 
-Hopefully this served as a good starting point which you can build upon. TypeScript and PixiJS are both very useful tools that made this very easy, but keep in mind that they are very powerful. There are a number of optimizations and features in terms of code and runtime that could be done and I would suggest exploring to improve your craft: Improve assets loading code by adding compile-time checks (such as for assets names), add different kinds of obstacles, make the character fall faster if the player presses the down arrow ke, recycle/pool objects so that there aren't many allocations, the possibilities are endless!
+Hopefully this served as a good starting point which you can build upon. TypeScript and PixiJS are both very useful tools that made this very easy, but keep in mind that they are very powerful. There are a number of optimizations and features in terms of code and runtime that could be done and I would suggest exploring to improve your craft: Improve assets loading code by adding compile-time checks (such as for assets names), add different kinds of obstacles, make the character fall faster if the player presses the down arrow key, recycle/pool objects so that there aren't many allocations, the possibilities are endless!
