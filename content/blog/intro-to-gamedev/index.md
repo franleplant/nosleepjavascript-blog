@@ -1,8 +1,8 @@
 ---
 title: Intro to game development with Typescript
-date: "2020-04-10T22:12:03.284Z"
+date: "2020-04-13T20:12:03.284Z"
 author: nacho
-description: "Creating a game is easier than ever with all the available tools. This article will hopefully ease you into game development, reviewing both general concepts and specific implementations with the help of robust technologies such as TypeScript and PixiJS!"
+description: "Creating a game is easier than ever with all the tools that we have available. This article will hopefully ease you into game development, reviewing both general concepts and specific implementations with the help of robust technologies such as TypeScript and PixiJS by creating a small clone of a pretty well-known game!"
 tags:
   - gamedev
   - WebGL
