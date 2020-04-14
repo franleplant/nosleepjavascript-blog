@@ -36,6 +36,12 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
+        plugins: [`gatsby-remark-responsive-iframe`],
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
         plugins: [
           {
             resolve: `gatsby-remark-table-of-contents`,
@@ -44,12 +50,6 @@ module.exports = {
               tight: false,
               fromHeading: 2,
               toHeading: 6,
-            },
-          },
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
             },
           },
           {
