@@ -25,8 +25,9 @@ I thought we could take this chance to learn a little bit about web-based game d
 
 You can play the [finished game here](https://ignacioamigo.github.io/dinogame/bin/index.html) and [review the code here](https://github.com/IgnacioAmigo/dinogame). Keep in mind that the code is much more commented on this article since it's meant to be as explicit and educating as possible. Here's what it looks like if you don't feel like clicking the above link:
 
-<iframe  frameborder="0" src="https://ignacioamigo.github.io/dinogame/bin/index.html" width="600" height="175"></iframe>
-
+<div style="overflow: hidden;">
+  <iframe  frameborder="0" src="https://ignacioamigo.github.io/dinogame/bin/index.html" width="900" height="225"></iframe>
+</div>
 Let's dive in!
 
 ## Scope
@@ -35,7 +36,8 @@ It's very easy to overshoot when scoping any piece of software, especially when 
 
 In this case, however, we have a pretty clear idea of what we want our game to look like: It's a simple infinite runner, where a couple of obstacles spawn from time to time and the score is directly based on how much time we can succesfully avoid them.
 
-It will be hard, but let's try to keep the code and program simple and pragmatic. There's value in making the code work more systematically but we are looking into low-friction implementation since we want this to work as an introduction to a couple of ideas and technologies. Furthermore, since we are learning some of these technologies, I'll try to be as explicit as possible while exploring some of their defining features (in general though, I would recommend diving deeper to each of the concepts).
+It will be hard, but let's try to keep the code and program simple and pragmatic. There's value in making the code work more systematically but we are looking into low-friction implementation since we want this to work as an introduction to a couple of ideas and technologies.
+Furthermore, since we are learning some of these technologies, I'll try to be as explicit as possible while exploring some of their defining features (in general though, I would recommend diving deeper in each of the concepts).
 
 ## Tech requirements
 
@@ -46,13 +48,13 @@ Keeping the scope in mind, let's try to deduce and compress what we need from a 
 - We would also like it to be as responsive as possible since it makes for a better user experience.
 
 Note that we don't really need brazing fast graphic drawing for this since the game will not render thousands of objects at once, so using WebGL is probably overkill. However, it's a good way to get into the topic and so we'll take the chance to do it that way. WebGL is fairly complicated to work with from scratch, so after doing a bit of research I have decided we can use [PixiJS](https://www.pixijs.com/) to render stuff.
-PixiJS is a pretty simple but powerful Javascript engine to render 2D sprites. It runs over WebGL (which in turn means we are using hardware acceleration to render stuff).
+PixiJS is a pretty simple but powerful Javascript engine to render 2D sprites. It runs over WebGL (which in turn means we are using hardware acceleration to render stuff). This will all help us get some of the cumbersome stuff out of the way so that we can focus on writing code directly related to the game itself.
 
-I think it would also be a good idea to go a step further and try to use it with Typescript to get that sweet, sweet type-checking.
+I think it would also be a good idea to go a step further and try to use it with Typescript to get some of that sweet, sweet type-checking.
 
 ## Starting out
 
-We are going to use a starter template, which will solve some of these issues for us. Specifically, the starter is the following: https://github.com/llorenspujol/parcel-pixijs-quickstarter. It includes Parcel, PixiJS and TypeScript. PixiJS started shipping with Type information since version 5, which is the one being included in the starter template. This means we don't have to import extra packages to be able to type-check PixiJS code.
+We are going to use a starter template, which will solve some of these issues for us. Specifically, the starter is the following: https://github.com/llorenspujol/parcel-pixijs-quickstarter. It includes [Parcel](https://parceljs.org/), [PixiJS](https://www.pixijs.com/) and [TypeScript](https://www.typescriptlang.org/). We could set it up by hand but since it's not really the point of the post, we'll use the template. PixiJS started shipping with Type information since version 5, which is the one being included in the starter template. This means we don't have to import extra packages to be able to type-check PixiJS code.
 
 Note that the only real requirement for this is Node and NPM.
 
@@ -209,7 +211,7 @@ Before diving into the fun part (the gameplay code!), let's see how we will hand
 When we create the main object (of class [`PIXI.Application`](https://pixijs.download/dev/docs/PIXI.Application.html)), we'll have access to an object called the [`stage`](https://pixijs.download/dev/docs/PIXI.Application.html#stage) (of class [`PIXI.Container`](https://pixijs.download/dev/docs/PIXI.Container.html)), which is where we can tell Pixi what objects we want to have drawn. You can think of it as a list (or more generally, a collection) of objects to display. After loading an image, we can do this with a single line of code:
 
 ```ts
-var sprite = new PIXI.Sprite()
+let sprite = new PIXI.Sprite()
 Stage.addChild(obstacle.sprite)
 ```
 
@@ -363,10 +365,10 @@ class ScrollingObject {
   }
 
   public Update(delta:number) {
-    var baseScrollSpeed = (this.solid) ? GameApp.ScrollSpeed : GameApp.ScrollSpeed-1;
+    let baseScrollSpeed = (this.solid) ? GameApp.ScrollSpeed : GameApp.ScrollSpeed-1;
 
       // modifier for speed depending on score so that it gets more difficult
-      var scrollSpeed = baseScrollSpeed + Math.min(GameApp.Score/15.0 , 1);
+      let scrollSpeed = baseScrollSpeed + Math.min(GameApp.Score/15.0 , 1);
 
       // move to the left, watch out!
       this.sprite.x -= delta * (scrollSpeed);
@@ -524,10 +526,10 @@ Since we know when they are **not** colliding, we can negate that and get the re
 ```ts
 private CollidesWith(otherSprite: PIXI.Sprite) {
   // player's rectangle
-  var ab = this.sprite.getBounds();
+  let ab = this.sprite.getBounds();
 
   // sprite we are checking against
-  var bb = otherSprite.getBounds();
+  let bb = otherSprite.getBounds();
   return  !(ab.x > bb.x + bb.width ||
           ab.x + ab.width < bb.x ||
           ab.y + ab.height < bb.y ||
