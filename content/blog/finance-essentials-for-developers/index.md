@@ -22,7 +22,7 @@ tags:
 
 Whether you are working on a fin tech startup or you want to start investing or
 you simply are curious about the world of investing and finance this post will be for you.
-We will layout a roadmap to learn the basics and beyond that resembles the path I’ve taken myself.
+We will lay out a roadmap to learn the basics and beyond that resembles the path I’ve taken myself.
 
 This roadmap will be structured as a series of books you can read to become
 financially literate and start taking control of your investing decisions.
