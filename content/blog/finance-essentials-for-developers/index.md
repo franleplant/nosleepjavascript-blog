@@ -16,6 +16,7 @@ tags:
   - stocks
   - portfolio
   - wealth
+  - fintech
 ---
 
 ## Intro
@@ -96,9 +97,11 @@ investment techniques and concludes that most of the time the typical retail inv
 better off following a simple technique called: buy and hold of conservative instruments
 such as equities, bonds and [ETFs][3].
 
-It gives a good rundown of important concepts such as [Value Investing][2],
+It gives a good and quick rundown of important concepts such as [Value Investing][2],
 [Fundamental Analysis][4], [Technical Analysis][5],
-ETFs, Equities (stocks), government bonds, corporate bonds, etc.
+ETFs, Equities (stocks), government bonds, corporate bonds,
+[Modern Portfolio Theory][9], [Behavioral economics](https://www.investopedia.com/terms/b/behavioraleconomics.asp)
+etc.
 
 So after reading this books you will have a proper
 holistic knowledge of the investment world and perhaps it will serve you
