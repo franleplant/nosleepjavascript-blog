@@ -216,3 +216,5 @@ All the books linked have affiliate links that help support this blog.
 [9]: https://www.investopedia.com/terms/m/modernportfoliotheory.asp
 [10]: https://www.investopedia.com/terms/d/diversification.asp
 [11]: https://www.youtube.com/playlist?list=PLUl4u3cNGP63B2lDhyKOsImI7FjCf6eDW
+
+ <div id="amzn-assoc-ad-388ed262-d0bf-4cf6-8458-5b5d84d8a3cd"></div><script async src="https://z-na.associates-amazon.com/onetag/v2?MarketPlace=US&instanceId=388ed262-d0bf-4cf6-8458-5b5d84d8a3cd"></script>
