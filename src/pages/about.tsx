@@ -1,9 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
+import styled from "@emotion/styled"
 
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
-import Bio from "../components/Bio"
+import Bio from "../components/About/Bio"
 import { rhythm } from "../utils/typography"
 
 import { IAboutPageQuery } from "../../graphql-types"
@@ -44,11 +45,13 @@ export default function AboutPage(props: IProps) {
             these and more subjects and hopefully, in the process, we can help
             others improve and move their careers forward.
           </p>
-
-          {authors.map((author) => (
-            <Bio author={author} key={author.id} prefixText="" />
-          ))}
         </section>
+
+        <BioContainer>
+          {authors.map((author) => (
+            <Bio author={author} key={author.id} />
+          ))}
+        </BioContainer>
 
         <hr
           style={{
@@ -76,12 +79,17 @@ export const pageQuery = graphql`
         github
         profilepicture {
           childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
+            fixed(width: 200, height: 200) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
       }
     }
   }
+`
+
+const BioContainer = styled.section`
+  margin-top: 50px;
+  display: flex;
 `
