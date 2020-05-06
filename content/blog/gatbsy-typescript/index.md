@@ -23,11 +23,11 @@ would benefit from using Typescript, in no particular order:
 2. new code verification tool added to your pool (in Javascript apps this is mostly made of different kinds of tests and lints)
 3. better development experience: better autocompletion and API discovery
 4. type checker guided hassle free refactoring
-5. improve the mind set of developers so that they think more about data structures and their semantic meaning inside the code (as opposed to just have a bunch of unnamed and uncategorised objects which is something that tends to happen in bigger Javascript apps).
+5. improve the mindset of developers so that they think more about data structures and their semantic meaning inside the code (as opposed to just have a bunch of unnamed and uncategorised objects which is something that tends to happen in bigger Javascript apps).
 
-I plan to talk a lot more about this in a follow up post so that is why I won't focus to much
+I plan to talk a lot more about this in a follow up post so that is why I won't focus too much
 explaining these points, but please note that most of these come from real world experiences
-handling large production code bases in both Javascript and Typescript, and there is an abyss between the too.
+handling large production code bases in both Javascript and Typescript, and there is an abyss between the two.
 
 Additionally, from a business standpoint we can also enumerate derived benefits:
 
@@ -93,6 +93,8 @@ I usually try to use `strictNullChecks: true` for applications because it makes 
 to provide even more guarantees about your code, but in this particular application I recommend
 you avoid it altogether.
 
+> what is `strictNullChecks`? it protects you from referencing nulls or undefined values in code.
+
 At this stage you might want to `allowJs: true` to avoid having to migrate _all_ your codebase
 at once. But you should probably migrate some of the core files just to verify the setup.
 
@@ -121,7 +123,7 @@ declare module "typography-theme-github"
 declare module "*.svg"
 ```
 
-And then you should import this file from your `gatsby-browser.js` which
+And then you should import this file in your `gatsby-browser.js` which
 is the main entry point of the browser application:
 
 ```javascript:title=gatsby-browser.js
@@ -130,7 +132,7 @@ import "./src/declarations.d.ts"
 
 ### Typechecking
 
-As the typescript plugin docs state, by default it wont run typechecks on your code, it
+As the typescript plugin docs state, by default it won't run typechecks on your code, it
 will only strip out any type information and typescript syntax and compile it down to Javascript.
 
 For enabling typechecking you will need to create an NPM script:
@@ -169,7 +171,7 @@ If you see a type error relating these libraries this might be fix for you.
 
 ### gatsby-plugin-typescript
 
-I did not made any special configurations to this plugin.
+I did not make any special configurations to this plugin.
 
 ### gatsby-plugin-graphql-codegen
 
@@ -201,6 +203,11 @@ This is how I recommend you configure it:
   },
 }
 ```
+
+> note about `typesPrefix`. I took this convention mostly
+> out of C# to prefix all my interfaces with `I`. This makes
+> it a little bit easier to distinguish Interfaces between Classes or
+> other types of bindings.
 
 The `avoidOptionals` is important because the codegen tools generate
 most of the types with the following shape:
@@ -239,7 +246,7 @@ But the pages that make the query might generate different variants of this type
 some fields off sometimes others and in particular the `profilepicture` filed which maps to an image
 might be altered in several ways like asking for a sharp image fluid.
 
-In that case this type wont be useful at all.
+In that case this type won't be useful at all.
 Instead what I have done is to manually write a concrete `IAuthor` type
 that I defined which is very similar to this but only has the "domain" attributes I need
 
