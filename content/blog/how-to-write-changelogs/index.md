@@ -4,7 +4,7 @@ date: 2020-05-20
 author: franleplant
 description:
   "Whether you are working on an open source library or an internal private library you
-should master the art of CHANGELOG. This is a fundamental not-code part maintaining
+should master the art of CHANGELOG. This is a fundamental not-code part of maintaining
 libraries and enables consumers to understand what they can expect when moving
 from version to version."
 tags:
@@ -25,7 +25,7 @@ This is a fundamental not-coding part of maintaining
 libraries and enables consumers to understand what they can expect when moving
 from version to version.
 
-This is a great resource to share with your team mates inside your company so
+This is a great resource to share with your teammates inside your company so
 hopefully you can all have a common ground when maintaining internal libraries.
 
 ## TLDR: How to write a CHANGELOG
@@ -72,7 +72,7 @@ All changes that will be added in the next version
 
 - **BREAKING** Component E has been removed
 
-### Depreacted
+### Deprecated
 
 - Component F has been depreacted and will be removed in next major release
 
@@ -85,7 +85,7 @@ All changes that will be added in the next version
 - Security vulnerability in Component H has been fixed (Probably add more details.)
 ```
 
-## Real wolrd scenarios
+## Real world scenarios
 
 - [React](https://github.com/facebook/react/blob/master/CHANGELOG.md)
 - [Moment.js](https://github.com/olivierlacan/metaself/blob/master/bower_components/momentjs/CHANGELOG.md)
@@ -111,7 +111,7 @@ Additional labels for pre-release and build metadata are available as extensions
 ```
 
 The combination of properly implemented Semver and properly
-implemented CHANGELOG is a very powerful solution for maintaing
+implemented CHANGELOG is a very powerful solution for maintaining
 libraries.
 
 ## Closing
