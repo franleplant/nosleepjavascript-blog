@@ -128,6 +128,8 @@ from the Open Source world, which brings me to a bonus conclusion:
 
 You can explore this concept in the following recommended book:
 
+[The Cathedral & the Bazaar](https://amzn.to/2SKqg3v)
+
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=franleplant-20&language=en_US&marketplace=amazon&region=US&placement=B0026OR3LM&asins=B0026OR3LM&linkId=a31f250867360780f8710bb9d8475b67&show_border=true&link_opens_in_new_window=true"></iframe>
 
 <div id="amzn-assoc-ad-388ed262-d0bf-4cf6-8458-5b5d84d8a3cd"></div><script async src="https://z-na.associates-amazon.com/onetag/v2?MarketPlace=US&instanceId=388ed262-d0bf-4cf6-8458-5b5d84d8a3cd"></script>
