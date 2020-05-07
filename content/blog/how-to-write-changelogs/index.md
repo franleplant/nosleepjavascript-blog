@@ -1,6 +1,6 @@
 ---
 title: How to write CHANGELOGs
-date: 2020-05-20
+date: 2020-05-07
 author: franleplant
 description:
   "Whether you are working on an open source library or an internal private library you
@@ -33,12 +33,12 @@ hopefully you can all have a common ground when maintaining internal libraries.
 Keep in mind:
 
 - your primary audience are _humans that consume your library_, think of them when writing the CHANGELOG.
-- it is sorted by last entry first (ascending order)
+- it is sorted by last entry first (descending order)
 - each entry has a date and a version number
 - follow Semver
 - each entry should answer:
   - what was added, changed, deprecated, removed, fixed, etc
-  - is there any breaking changes?
+  - are there any breaking changes?
   - Nice to have: any dependencies updates (dependencies are becoming more and more complicated so documenting any important changes here might give your consumers clues about any unexpected behaviours)
 
 [Keep a CHANGELOG](https://keepachangelog.com/en/0.3.0/) is a great standard you can follow,
