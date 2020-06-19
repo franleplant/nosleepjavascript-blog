@@ -2140,14 +2140,14 @@ export type IMarkdownRemarkFieldsFilterInput = {
 export type IMarkdownRemarkFieldsReadingTime = {
   text: Maybe<Scalars['String']>;
   minutes: Maybe<Scalars['Float']>;
-  time: Maybe<Scalars['Int']>;
+  time: Maybe<Scalars['Float']>;
   words: Maybe<Scalars['Int']>;
 };
 
 export type IMarkdownRemarkFieldsReadingTimeFilterInput = {
   text: Maybe<IStringQueryOperatorInput>;
   minutes: Maybe<IFloatQueryOperatorInput>;
-  time: Maybe<IIntQueryOperatorInput>;
+  time: Maybe<IFloatQueryOperatorInput>;
   words: Maybe<IIntQueryOperatorInput>;
 };
 
