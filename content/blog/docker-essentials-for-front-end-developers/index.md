@@ -281,6 +281,8 @@ Your container `WORKDIR` should be the one you set in your _Dockerfile_.
 docker run -ti -v $PWD:your-container-workdir $IMAGEID_OR_TAG bash
 ```
 
+**Note** if you get an error about `bash` not being found then try using `/bin/bash`
+
 </br>
 
 SSH into an already running container.
