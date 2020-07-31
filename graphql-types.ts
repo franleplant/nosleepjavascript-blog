@@ -359,6 +359,7 @@ export type IAuthorYamlFieldsEnum =
   'profilepicture___childMarkdownRemark___htmlAst' |
   'profilepicture___childMarkdownRemark___excerptAst' |
   'profilepicture___childMarkdownRemark___headings' |
+  'profilepicture___childMarkdownRemark___headings___id' |
   'profilepicture___childMarkdownRemark___headings___value' |
   'profilepicture___childMarkdownRemark___headings___depth' |
   'profilepicture___childMarkdownRemark___timeToRead' |
@@ -1210,6 +1211,7 @@ export type IFileFieldsEnum =
   'childMarkdownRemark___htmlAst' |
   'childMarkdownRemark___excerptAst' |
   'childMarkdownRemark___headings' |
+  'childMarkdownRemark___headings___id' |
   'childMarkdownRemark___headings___value' |
   'childMarkdownRemark___headings___depth' |
   'childMarkdownRemark___timeToRead' |
@@ -1340,7 +1342,9 @@ export type IImageCropFocus =
 export type IImageFit = 
   'COVER' |
   'CONTAIN' |
-  'FILL';
+  'FILL' |
+  'INSIDE' |
+  'OUTSIDE';
 
 export type IImageFormat = 
   'NO_CHANGE' |
@@ -1700,8 +1704,8 @@ export type IImageSharpFluid = {
   sizes: Scalars['String'];
   originalImg: Maybe<Scalars['String']>;
   originalName: Maybe<Scalars['String']>;
-  presentationWidth: Maybe<Scalars['Int']>;
-  presentationHeight: Maybe<Scalars['Int']>;
+  presentationWidth: Scalars['Int'];
+  presentationHeight: Scalars['Int'];
 };
 
 export type IImageSharpFluidFilterInput = {
@@ -1795,8 +1799,8 @@ export type IImageSharpSizes = {
   sizes: Scalars['String'];
   originalImg: Maybe<Scalars['String']>;
   originalName: Maybe<Scalars['String']>;
-  presentationWidth: Maybe<Scalars['Int']>;
-  presentationHeight: Maybe<Scalars['Int']>;
+  presentationWidth: Scalars['Int'];
+  presentationHeight: Scalars['Int'];
 };
 
 export type IImageSharpSizesFilterInput = {
@@ -1868,11 +1872,13 @@ export type IMarkdownExcerptFormats =
   'MARKDOWN';
 
 export type IMarkdownHeading = {
+  id: Maybe<Scalars['String']>;
   value: Maybe<Scalars['String']>;
   depth: Maybe<Scalars['Int']>;
 };
 
 export type IMarkdownHeadingFilterInput = {
+  id: Maybe<IStringQueryOperatorInput>;
   value: Maybe<IStringQueryOperatorInput>;
   depth: Maybe<IIntQueryOperatorInput>;
 };
@@ -2039,6 +2045,7 @@ export type IMarkdownRemarkFieldsEnum =
   'htmlAst' |
   'excerptAst' |
   'headings' |
+  'headings___id' |
   'headings___value' |
   'headings___depth' |
   'timeToRead' |
@@ -2248,6 +2255,7 @@ export type IPageInfo = {
   itemCount: Scalars['Int'];
   pageCount: Scalars['Int'];
   perPage: Maybe<Scalars['Int']>;
+  totalCount: Scalars['Int'];
 };
 
 export type IPotrace = {
@@ -3142,19 +3150,7 @@ export type ISitePageFieldsEnum =
   'pluginCreator___pluginOptions___fromHeading' |
   'pluginCreator___pluginOptions___toHeading' |
   'pluginCreator___pluginOptions___maxWidth' |
-  'pluginCreator___pluginOptions___pathPrefix' |
-  'pluginCreator___pluginOptions___wrapperStyle' |
-  'pluginCreator___pluginOptions___backgroundColor' |
-  'pluginCreator___pluginOptions___linkImagesToOriginal' |
-  'pluginCreator___pluginOptions___showCaptions' |
-  'pluginCreator___pluginOptions___markdownCaptions' |
-  'pluginCreator___pluginOptions___withWebp' |
-  'pluginCreator___pluginOptions___tracedSVG' |
-  'pluginCreator___pluginOptions___loading' |
-  'pluginCreator___pluginOptions___disableBgImageOnAlpha' |
-  'pluginCreator___pluginOptions___disableBgImage' |
   'pluginCreator___pluginOptions___className' |
-  'pluginCreator___pluginOptions___ignoreFileExtensions' |
   'pluginCreator___pluginOptions___active' |
   'pluginCreator___pluginOptions___size' |
   'pluginCreator___pluginOptions___styles___display' |
@@ -3170,6 +3166,11 @@ export type ISitePageFieldsEnum =
   'pluginCreator___pluginOptions___theme_color' |
   'pluginCreator___pluginOptions___display' |
   'pluginCreator___pluginOptions___icon' |
+  'pluginCreator___pluginOptions___cache_busting_mode' |
+  'pluginCreator___pluginOptions___include_favicon' |
+  'pluginCreator___pluginOptions___legacy' |
+  'pluginCreator___pluginOptions___theme_color_in_head' |
+  'pluginCreator___pluginOptions___cacheDigest' |
   'pluginCreator___pluginOptions___pathToConfigModule' |
   'pluginCreator___pluginOptions___codegenConfig___typesPrefix' |
   'pluginCreator___pluginOptions___codegenConfig___avoidOptionals' |
@@ -3370,19 +3371,7 @@ export type ISitePluginFieldsEnum =
   'pluginOptions___plugins___pluginOptions___fromHeading' |
   'pluginOptions___plugins___pluginOptions___toHeading' |
   'pluginOptions___plugins___pluginOptions___maxWidth' |
-  'pluginOptions___plugins___pluginOptions___pathPrefix' |
-  'pluginOptions___plugins___pluginOptions___wrapperStyle' |
-  'pluginOptions___plugins___pluginOptions___backgroundColor' |
-  'pluginOptions___plugins___pluginOptions___linkImagesToOriginal' |
-  'pluginOptions___plugins___pluginOptions___showCaptions' |
-  'pluginOptions___plugins___pluginOptions___markdownCaptions' |
-  'pluginOptions___plugins___pluginOptions___withWebp' |
-  'pluginOptions___plugins___pluginOptions___tracedSVG' |
-  'pluginOptions___plugins___pluginOptions___loading' |
-  'pluginOptions___plugins___pluginOptions___disableBgImageOnAlpha' |
-  'pluginOptions___plugins___pluginOptions___disableBgImage' |
   'pluginOptions___plugins___pluginOptions___className' |
-  'pluginOptions___plugins___pluginOptions___ignoreFileExtensions' |
   'pluginOptions___plugins___pluginOptions___active' |
   'pluginOptions___plugins___pluginOptions___size' |
   'pluginOptions___plugins___nodeAPIs' |
@@ -3396,19 +3385,7 @@ export type ISitePluginFieldsEnum =
   'pluginOptions___fromHeading' |
   'pluginOptions___toHeading' |
   'pluginOptions___maxWidth' |
-  'pluginOptions___pathPrefix' |
-  'pluginOptions___wrapperStyle' |
-  'pluginOptions___backgroundColor' |
-  'pluginOptions___linkImagesToOriginal' |
-  'pluginOptions___showCaptions' |
-  'pluginOptions___markdownCaptions' |
-  'pluginOptions___withWebp' |
-  'pluginOptions___tracedSVG' |
-  'pluginOptions___loading' |
-  'pluginOptions___disableBgImageOnAlpha' |
-  'pluginOptions___disableBgImage' |
   'pluginOptions___className' |
-  'pluginOptions___ignoreFileExtensions' |
   'pluginOptions___active' |
   'pluginOptions___size' |
   'pluginOptions___styles___display' |
@@ -3424,6 +3401,11 @@ export type ISitePluginFieldsEnum =
   'pluginOptions___theme_color' |
   'pluginOptions___display' |
   'pluginOptions___icon' |
+  'pluginOptions___cache_busting_mode' |
+  'pluginOptions___include_favicon' |
+  'pluginOptions___legacy' |
+  'pluginOptions___theme_color_in_head' |
+  'pluginOptions___cacheDigest' |
   'pluginOptions___pathToConfigModule' |
   'pluginOptions___codegenConfig___typesPrefix' |
   'pluginOptions___codegenConfig___avoidOptionals' |
@@ -3548,19 +3530,7 @@ export type ISitePluginPluginOptions = {
   fromHeading: Maybe<Scalars['Int']>;
   toHeading: Maybe<Scalars['Int']>;
   maxWidth: Maybe<Scalars['Int']>;
-  pathPrefix: Maybe<Scalars['String']>;
-  wrapperStyle: Maybe<Scalars['String']>;
-  backgroundColor: Maybe<Scalars['String']>;
-  linkImagesToOriginal: Maybe<Scalars['Boolean']>;
-  showCaptions: Maybe<Scalars['Boolean']>;
-  markdownCaptions: Maybe<Scalars['Boolean']>;
-  withWebp: Maybe<Scalars['Boolean']>;
-  tracedSVG: Maybe<Scalars['Boolean']>;
-  loading: Maybe<Scalars['String']>;
-  disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
-  disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
-  ignoreFileExtensions: Maybe<Array<Maybe<Scalars['String']>>>;
   active: Maybe<Scalars['Boolean']>;
   size: Maybe<Scalars['Int']>;
   styles: Maybe<ISitePluginPluginOptionsStyles>;
@@ -3571,6 +3541,11 @@ export type ISitePluginPluginOptions = {
   theme_color: Maybe<Scalars['String']>;
   display: Maybe<Scalars['String']>;
   icon: Maybe<Scalars['String']>;
+  cache_busting_mode: Maybe<Scalars['String']>;
+  include_favicon: Maybe<Scalars['Boolean']>;
+  legacy: Maybe<Scalars['Boolean']>;
+  theme_color_in_head: Maybe<Scalars['Boolean']>;
+  cacheDigest: Maybe<Scalars['String']>;
   pathToConfigModule: Maybe<Scalars['String']>;
   codegenConfig: Maybe<ISitePluginPluginOptionsCodegenConfig>;
   pathCheck: Maybe<Scalars['Boolean']>;
@@ -3595,19 +3570,7 @@ export type ISitePluginPluginOptionsFilterInput = {
   fromHeading: Maybe<IIntQueryOperatorInput>;
   toHeading: Maybe<IIntQueryOperatorInput>;
   maxWidth: Maybe<IIntQueryOperatorInput>;
-  pathPrefix: Maybe<IStringQueryOperatorInput>;
-  wrapperStyle: Maybe<IStringQueryOperatorInput>;
-  backgroundColor: Maybe<IStringQueryOperatorInput>;
-  linkImagesToOriginal: Maybe<IBooleanQueryOperatorInput>;
-  showCaptions: Maybe<IBooleanQueryOperatorInput>;
-  markdownCaptions: Maybe<IBooleanQueryOperatorInput>;
-  withWebp: Maybe<IBooleanQueryOperatorInput>;
-  tracedSVG: Maybe<IBooleanQueryOperatorInput>;
-  loading: Maybe<IStringQueryOperatorInput>;
-  disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
-  disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
-  ignoreFileExtensions: Maybe<IStringQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
   size: Maybe<IIntQueryOperatorInput>;
   styles: Maybe<ISitePluginPluginOptionsStylesFilterInput>;
@@ -3618,6 +3581,11 @@ export type ISitePluginPluginOptionsFilterInput = {
   theme_color: Maybe<IStringQueryOperatorInput>;
   display: Maybe<IStringQueryOperatorInput>;
   icon: Maybe<IStringQueryOperatorInput>;
+  cache_busting_mode: Maybe<IStringQueryOperatorInput>;
+  include_favicon: Maybe<IBooleanQueryOperatorInput>;
+  legacy: Maybe<IBooleanQueryOperatorInput>;
+  theme_color_in_head: Maybe<IBooleanQueryOperatorInput>;
+  cacheDigest: Maybe<IStringQueryOperatorInput>;
   pathToConfigModule: Maybe<IStringQueryOperatorInput>;
   codegenConfig: Maybe<ISitePluginPluginOptionsCodegenConfigFilterInput>;
   pathCheck: Maybe<IBooleanQueryOperatorInput>;
@@ -3657,19 +3625,7 @@ export type ISitePluginPluginOptionsPluginsPluginOptions = {
   fromHeading: Maybe<Scalars['Int']>;
   toHeading: Maybe<Scalars['Int']>;
   maxWidth: Maybe<Scalars['Int']>;
-  pathPrefix: Maybe<Scalars['String']>;
-  wrapperStyle: Maybe<Scalars['String']>;
-  backgroundColor: Maybe<Scalars['String']>;
-  linkImagesToOriginal: Maybe<Scalars['Boolean']>;
-  showCaptions: Maybe<Scalars['Boolean']>;
-  markdownCaptions: Maybe<Scalars['Boolean']>;
-  withWebp: Maybe<Scalars['Boolean']>;
-  tracedSVG: Maybe<Scalars['Boolean']>;
-  loading: Maybe<Scalars['String']>;
-  disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
-  disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
-  ignoreFileExtensions: Maybe<Array<Maybe<Scalars['String']>>>;
   active: Maybe<Scalars['Boolean']>;
   size: Maybe<Scalars['Int']>;
   styles: Maybe<ISitePluginPluginOptionsPluginsPluginOptionsStyles>;
@@ -3681,19 +3637,7 @@ export type ISitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   fromHeading: Maybe<IIntQueryOperatorInput>;
   toHeading: Maybe<IIntQueryOperatorInput>;
   maxWidth: Maybe<IIntQueryOperatorInput>;
-  pathPrefix: Maybe<IStringQueryOperatorInput>;
-  wrapperStyle: Maybe<IStringQueryOperatorInput>;
-  backgroundColor: Maybe<IStringQueryOperatorInput>;
-  linkImagesToOriginal: Maybe<IBooleanQueryOperatorInput>;
-  showCaptions: Maybe<IBooleanQueryOperatorInput>;
-  markdownCaptions: Maybe<IBooleanQueryOperatorInput>;
-  withWebp: Maybe<IBooleanQueryOperatorInput>;
-  tracedSVG: Maybe<IBooleanQueryOperatorInput>;
-  loading: Maybe<IStringQueryOperatorInput>;
-  disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
-  disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
-  ignoreFileExtensions: Maybe<IStringQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
   size: Maybe<IIntQueryOperatorInput>;
   styles: Maybe<ISitePluginPluginOptionsPluginsPluginOptionsStylesFilterInput>;
@@ -3846,6 +3790,8 @@ export type IGatsbyImageSharpFixed_NoBase64Fragment = Pick<IImageSharpFixed, 'wi
 export type IGatsbyImageSharpFixed_WithWebp_NoBase64Fragment = Pick<IImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
 export type IGatsbyImageSharpFluidFragment = Pick<IImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+export type IGatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: IImageSharpFluid['presentationHeight'], maxWidth: IImageSharpFluid['presentationWidth'] };
 
 export type IGatsbyImageSharpFluid_TracedSvgFragment = Pick<IImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
