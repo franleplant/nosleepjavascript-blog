@@ -1,6 +1,6 @@
 ---
 title: How to create route namespaces with Express
-date: "2020-03-10"
+date: "2020-08-07"
 author: franleplant
 description: "Docker has become a widely used
   technology and chances are you are going to have to deal with it eventually, at least superficially, in your Front End
@@ -17,7 +17,7 @@ tags:
 This is going to be a quick post about solving the
 great old question: _"how to create route namespaces with Express"_.
 
-[Show me the answer](TODO)
+[Show me the answer](#the-answer)
 
 This isn't at all an advanced technique but we have either very old
 posts talking about how to do it the old way; or we have libraries to
