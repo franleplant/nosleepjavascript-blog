@@ -17,7 +17,7 @@ tags:
 This is going to be a quick post about solving the
 great old question: _"how to create route namespaces with Express"_.
 
-[Show me the answer](#the-answer)
+[Show me the answer](#the-complete-example)
 
 This isn't at all an advanced technique but we have either very old
 posts talking about how to do it the old way; or we have libraries to
