@@ -658,6 +658,11 @@ Today you can go a long way with Webpack abstractions like
 do things in a fairly standard way and **Passive Compilation** is not at all
 a standard way of distributing code.
 
+Check what the team behind [Create React App has to say about it](https://github.com/facebook/create-react-app/issues/5103#issuecomment-425459196).
+
+It wouldn't surprise me if other standardized high level build tools take a similar stand for
+reasons we are going to talk about more later.
+
 In my experience Webpack configurations are something that most developers
 do not know or do not want to touch so
 **having these sorts of abstractions inside
