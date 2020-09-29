@@ -137,6 +137,13 @@ module.exports = {
         },
       },
     },
+
+    {
+      resolve: `gatsby-plugin-google-adsense`,
+      options: {
+        publisherId: `ca-pub-2006751746052752`,
+      },
+    },
   ],
   mapping: {
     "MarkdownRemark.frontmatter.author": `AuthorYaml`,
