@@ -72,3 +72,130 @@ Rules of dependencies
 - computed values should be computed outside the useEffect, try to reduce to the minimum the deps you have
 - avoid having complex objects as deps, instead listen to the most likely few attributes you're going to use by local aliasing
 - most of the time you can get away with regular ref comparison that useEffect does on deps, in the remaining fue cases you can use use-deep-compare-effect. Make sure to read the code.
+
+Framework for building hooks
+
+Hooks are a way to interact with the underlying component instance (fiber)
+that follows the react component lifecycle.
+
+They also let declare side effects that will happen at the different stages
+of that lifetime.
+
+With this in mind, answering these questions might help
+you build your custom hook you need
+
+How do you want to interact with the component instacd?
+
+1. If you want to store values across renders then `useRef` (equivalent to `this.something`)
+
+- i.e. you want to store values across renders, such as the previous value of a prop
+
+2. you want to run code i.e. side effects and different stages of the component lifecycle then `useEffect`
+
+- i.e. when component mounts, when component unmounts, when component updates, etc
+- i.e. side effects might be data fetching, in general i/o and also cleanup
+- interacting with anything that is not react/jsx/element based should be considered a side effect
+- run code _after_ the render stage (book keeping, logging, etc)
+
+3. you want to run code after rendering but only if some prop or state changed then `useEffect` + dependencies
+4. if you want to abstract state keeping logic then `useState` or `useReducer`, state are values that when changed will triger a component re render.
+
+- i.e. store compound form fields state
+
+All these can be composed together to make complex stuff.
+
+You can basically ask this question enough times to build any hook,
+with a top-down design approach, first ask what you want to do at the highest
+level, get an answer, build, and ask again about a finer detail until you get the answer.
+
+`useRef` lets you store values in the component instance, how is this different
+from referencing clousure values from your component function definition?
+Well, you first need to understand the difference between a component instance and
+a component definition, which is similar to an instance vs class, and so, useRef
+is equivalent to `this.someValue = 123`.
+
+Example.
+
+How do you want to interact with the component instance?
+
+I want to store the previous value of a prop so that I can compare the previous prop
+with the current prop value. => `useRef`
+
+```typescript
+function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef()
+  ref.current = value
+  return ref.current
+}
+```
+
+Got it, but now I want to update the ref value only
+_after_ rendering so that the current render call
+have access to both previous and current props. => `useEffect`
+
+```typescript
+function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef()
+  useEffect(() => {
+    ref.current = value
+  })
+  return ref.current
+}
+```
+
+Got it, but now I also want to update the ref value _only_ when
+the value is different => `useEffect` + dependencies!
+
+```typescript
+function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef()
+  useEffect(() => {
+    ref.current = value
+  }, [value])
+  return ref.current
+}
+```
+
+How do you want to interact with the component instance?
+
+I want to store the `isMounted` boolean across renders => `useRef`.
+
+```typescript
+function useIsMounted() {
+  const isMountedRef = useRef(false)
+
+  return isMountedRef
+}
+```
+
+Got it, but I want to update that value only _after_ the component first renders (mount) and
+I also want to update that value to false after the component unmounts => `useEffect` !
+
+```typescript
+function useIsMounted() {
+  const isMountedRef = useRef(false)
+
+  useEffect(() => {
+    isMountedRef.current = true
+    return () => {
+      isMountedRef.current = false
+    }
+  }, [])
+
+  return isMountedRef
+}
+```
+
+TODO break down `useEffect` into two categories
+
+- run code when the component first renders / mount and when it unmounts = `useEffect` + dep = []
+- run code after every render => `useEffect`
+- run code when values change => `useEffect` + deps
+
+How do you want to interact with the component instance?
+
+I want to clearTimeout (run code) after the component is unmounted => `useEffect` + dep = []
+
+How do you want to interact with the component instance?
+
+TODO talk about useEffect dependencies, or maybe simple show the good example I already made
