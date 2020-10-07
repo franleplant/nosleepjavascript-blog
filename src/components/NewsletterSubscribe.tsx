@@ -1,9 +1,8 @@
 import React from "react"
 import styled from "@emotion/styled"
+import { COLOR } from "../utils/theme"
 
-export interface IProps {}
-
-export default function NewsletterSubscribe(props: IProps) {
+export default function NewsletterSubscribe() {
   return (
     <Container>
       <h3>Subscribe to our mailing list!</h3>
@@ -16,16 +15,17 @@ export default function NewsletterSubscribe(props: IProps) {
             #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
         </style>
         <div id="mc_embed_signup">
-        <form action="https://nosleepjavascript.us2.list-manage.com/subscribe/post?u=c388336980630bd93629517cb&amp;id=53ee07001f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-            <div id="mc_embed_signup_scroll">
-                
-              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_c388336980630bd93629517cb_53ee07001f" tabindex="-1" value=""></div>
-                  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-                  </div>
-            </form>
+          <form action="https://nosleepjavascript.us2.list-manage.com/subscribe/post?u=c388336980630bd93629517cb&amp;id=53ee07001f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_c388336980630bd93629517cb_53ee07001f" tabindex="-1" value=""></div>
+                <div class="clear">
+                  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                </div>
               </div>
+          </form>
+        </div>
 
         `,
         }}
@@ -35,7 +35,8 @@ export default function NewsletterSubscribe(props: IProps) {
 }
 
 const Container = styled.div`
-  border: 2px solid #ff00ff;
+  text-align: center;
+  border: 2px solid ${COLOR.SECONDARY};
   border-radius: 5px;
   margin-bottom: 18px;
   padding: 5px;
@@ -44,11 +45,15 @@ const Container = styled.div`
     margin: 0;
   }
 
+  input[type="email"]:focus {
+    outline: ${COLOR.SECONDARY} auto 1px;
+  }
+
   input[type="submit"] {
-    background-color: #ff00ff !important;
+    background-color: ${COLOR.SECONDARY} !important;
   }
 
   input[type=submit]: hover {
-    background-color: #ff00ffa1 !important;
+    background-color: ${COLOR.SECONDARY}a1 !important;
   }
 `
