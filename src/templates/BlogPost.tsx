@@ -9,6 +9,7 @@ import SEO from "../components/Seo"
 import Tags from "../components/Tags"
 import { rhythm, scale } from "../utils/typography"
 import getSetViewCount from "../dal/getSetPageView"
+import NewsletterSubscribe from "../components/NewsletterSubscribe"
 
 const isLocalhost = () => window.location.href.includes("localhost:8000")
 
@@ -76,6 +77,7 @@ export default function BlogPostTemplate(props: IProps) {
         </header>
 
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        <NewsletterSubscribe />
 
         <hr
           css={css`

@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 import { Global, css } from "@emotion/core"
+import Helmet from "react-helmet"
 
 import { rhythm } from "../utils/typography"
 import PrimaryHeader from "./PrimaryHeader"
@@ -19,6 +20,15 @@ export default function Layout(props: IProps) {
 
   return (
     <Container>
+      <Helmet>
+        <script
+          // mailchimp
+          id="mcjs"
+        >
+          {`!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/c388336980630bd93629517cb/79c014026202565af1500f561.js");
+          `}
+        </script>
+      </Helmet>
       <Global
         styles={css`
           :not(pre) > code[class*="language-"] {

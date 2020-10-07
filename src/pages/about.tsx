@@ -6,6 +6,7 @@ import Layout from "../components/Layout"
 import SEO from "../components/Seo"
 import Bio from "../components/About/Bio"
 import { rhythm } from "../utils/typography"
+import NewsletterSubscribe from "../components/NewsletterSubscribe"
 
 import { IAboutPageQuery } from "../../graphql-types"
 
@@ -53,6 +54,7 @@ export default function AboutPage(props: IProps) {
           ))}
         </BioContainer>
 
+        <NewsletterSubscribe />
         <hr
           style={{
             marginBottom: rhythm(1),
