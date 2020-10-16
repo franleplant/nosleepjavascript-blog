@@ -15,10 +15,10 @@ tags:
   - Single Sign On
   - microservice
 seoFooter:
-  - Using OpenId Connect to implement Single Sign On across multiple applications
-  - OpenId Connect as an authentication provider in a Micro Service Architecture
+  - Using OpenId Connect to implement Single Sign On across multiple applications.
+  - OpenId Connect as an authentication provider in a Micro Service Architecture.
   - OpenId Connect Identity provider for a Single Sign On experience across multiple apps.
-  - Using JWT as self contained sessions in a microservice architecture
+  - Using JWT as self contained sessions in a microservice architecture.
 ---
 
 ## Table of Contents
@@ -452,7 +452,7 @@ How does it work?
 - the Session cookie is completely idenpent in each app (see the domain note on the repo's README).
 - If you already logged in with app1 then when you try to login with app2 then you won't need to introduce your credentials and the OAuth flow will happen without you (the user) needing to do anything, that is why I say it is almost automatic.
 
-### Bonus: the complete sequence diagram of oidc authentication
+## Bonus: the complete sequence diagram of oidc authentication
 
 Most of the time you will see this sequence diagram simplified, but I wanted
 to show you in full details all the steps and http redirects there are inside this
@@ -461,7 +461,7 @@ it is a nice excercise to have it detailed fully like this:
 
 TODO IMAGE
 
-### Bonus: what are the access, refresh and id tokens?
+## Bonus: what are the access, refresh and id tokens?
 
 Each identity provider might use them differently but these are
 some of the core ideas behind each of them
@@ -470,27 +470,27 @@ some of the core ideas behind each of them
 - refresh token: another opaque value with a longer expiration that it is used to refresh the access token and the id token. Long lived sessions are typically handled by this two step process to give more control to identity providers.
 - id token: this is what OpendId Connect adds, this is a self contained jwt that contains claims (attributes) about the identity of the currently logged in user. This is what makes sense the most to use inside your own system to check the identity of the user. You can cryptographically verify its validity and it will contain minimal information such as the `sub` id (the subject id or the user id), the email, the names, etc.
 
-### Bonus: security
+## Bonus: security
 
 TODO
 
 Disclaimer: I am not a security expert, please seek independent council on this subject.
 
-### Closing
+## Closing
 
 Did you like the content? consider sharing it in your social circle and subscribing
 to receive awesome exclusive content right into your email box.
 
-- [10]: https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc
-- [11]: https://developers.google.com/identity/protocols/oauth2/openid-connect
-- [12]: https://tools.ietf.org/html/rfc6749
-- [13]: https://www.youtube.com/watch?v=996OiexHze0
-- [14]: https://openid.net/connect/faq/
-- [15]: https://openid.net/certification/
-- [16]: https://github.com/panva/node-openid-client
-- [17]: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
-- [18]: https://developers.google.com/identity/protocols/oauth2/openid-connect#discovery
-- [19]: https://github.com/franleplant/sso-with-openid
-- [20]: https://redis.io/
-- [21]: https://www.npmjs.com/package/express-session
-- [22]: http://www.passportjs.org/
+[10]: https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc
+[11]: https://developers.google.com/identity/protocols/oauth2/openid-connect
+[12]: https://tools.ietf.org/html/rfc6749
+[13]: https://www.youtube.com/watch?v=996OiexHze0
+[14]: https://openid.net/connect/faq/
+[15]: https://openid.net/certification/
+[16]: https://github.com/panva/node-openid-client
+[17]: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
+[18]: https://developers.google.com/identity/protocols/oauth2/openid-connect#discovery
+[19]: https://github.com/franleplant/sso-with-openid
+[20]: https://redis.io/
+[21]: https://www.npmjs.com/package/express-session
+[22]: http://www.passportjs.org/

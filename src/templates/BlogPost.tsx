@@ -10,6 +10,7 @@ import Tags from "../components/Tags"
 import { rhythm, scale } from "../utils/typography"
 import getSetViewCount from "../dal/getSetPageView"
 import NewsletterSubscribe from "../components/NewsletterSubscribe"
+import SeoFooter from "../components/SeoFooter"
 
 const isLocalhost = () => window.location.href.includes("localhost:8000")
 
@@ -27,10 +28,17 @@ export default function BlogPostTemplate(props: IProps) {
   const { previous, next } = props.pageContext
   const siteTitle = props.data.site.siteMetadata.title
   const post = props.data.markdownRemark
-  const { title, description, author, tags = [] } = post.frontmatter
+  const {
+    title,
+    description,
+    author,
+    tags = [],
+    seoFooter = "",
+  } = post.frontmatter
   const { slug } = post.fields
 
   const [pageViewCount, setPageViewCount] = useState<number>()
+  console.log(seoFooter)
 
   useEffect(() => {
     async function fetchData() {
@@ -116,6 +124,8 @@ export default function BlogPostTemplate(props: IProps) {
           </li>
         </ul>
       </nav>
+
+      <SeoFooter data={Array.isArray(seoFooter) ? seoFooter : [seoFooter]} />
     </Layout>
   )
 }
@@ -142,6 +152,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         tags
+        seoFooter
         author {
           id
           bio

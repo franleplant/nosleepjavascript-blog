@@ -351,6 +351,7 @@ export type IAuthorYamlFieldsEnum =
   'profilepicture___childMarkdownRemark___frontmatter___description' |
   'profilepicture___childMarkdownRemark___frontmatter___tags' |
   'profilepicture___childMarkdownRemark___frontmatter___todo' |
+  'profilepicture___childMarkdownRemark___frontmatter___seoFooter' |
   'profilepicture___childMarkdownRemark___excerpt' |
   'profilepicture___childMarkdownRemark___rawMarkdownBody' |
   'profilepicture___childMarkdownRemark___fileAbsolutePath' |
@@ -1199,6 +1200,7 @@ export type IFileFieldsEnum =
   'childMarkdownRemark___frontmatter___description' |
   'childMarkdownRemark___frontmatter___tags' |
   'childMarkdownRemark___frontmatter___todo' |
+  'childMarkdownRemark___frontmatter___seoFooter' |
   'childMarkdownRemark___excerpt' |
   'childMarkdownRemark___rawMarkdownBody' |
   'childMarkdownRemark___fileAbsolutePath' |
@@ -2033,6 +2035,7 @@ export type IMarkdownRemarkFieldsEnum =
   'frontmatter___description' |
   'frontmatter___tags' |
   'frontmatter___todo' |
+  'frontmatter___seoFooter' |
   'excerpt' |
   'rawMarkdownBody' |
   'fileAbsolutePath' |
@@ -2184,6 +2187,7 @@ export type IMarkdownRemarkFrontmatter = {
   description: Maybe<Scalars['String']>;
   tags: Maybe<Array<Maybe<Scalars['String']>>>;
   todo: Maybe<Array<Maybe<Scalars['String']>>>;
+  seoFooter: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
@@ -2201,6 +2205,7 @@ export type IMarkdownRemarkFrontmatterFilterInput = {
   description: Maybe<IStringQueryOperatorInput>;
   tags: Maybe<IStringQueryOperatorInput>;
   todo: Maybe<IStringQueryOperatorInput>;
+  seoFooter: Maybe<IStringQueryOperatorInput>;
 };
 
 export type IMarkdownRemarkGroupConnection = {
@@ -2408,15 +2413,15 @@ export type IQuerySitePageArgs = {
   internalComponentName: Maybe<IStringQueryOperatorInput>;
   componentChunkName: Maybe<IStringQueryOperatorInput>;
   matchPath: Maybe<IStringQueryOperatorInput>;
-  id: Maybe<IStringQueryOperatorInput>;
-  parent: Maybe<INodeFilterInput>;
-  children: Maybe<INodeFilterListInput>;
-  internal: Maybe<IInternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<IBooleanQueryOperatorInput>;
   context: Maybe<ISitePageContextFilterInput>;
   pluginCreator: Maybe<ISitePluginFilterInput>;
   pluginCreatorId: Maybe<IStringQueryOperatorInput>;
   componentPath: Maybe<IStringQueryOperatorInput>;
+  id: Maybe<IStringQueryOperatorInput>;
+  parent: Maybe<INodeFilterInput>;
+  children: Maybe<INodeFilterListInput>;
+  internal: Maybe<IInternalFilterInput>;
 };
 
 
@@ -2901,15 +2906,15 @@ export type ISitePage = INode & {
   internalComponentName: Scalars['String'];
   componentChunkName: Scalars['String'];
   matchPath: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  parent: Maybe<INode>;
-  children: Array<INode>;
-  internal: IInternal;
   isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   context: Maybe<ISitePageContext>;
   pluginCreator: Maybe<ISitePlugin>;
   pluginCreatorId: Maybe<Scalars['String']>;
   componentPath: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  parent: Maybe<INode>;
+  children: Array<INode>;
+  internal: IInternal;
 };
 
 export type ISitePageConnection = {
@@ -3009,92 +3014,6 @@ export type ISitePageFieldsEnum =
   'internalComponentName' |
   'componentChunkName' |
   'matchPath' |
-  'id' |
-  'parent___id' |
-  'parent___parent___id' |
-  'parent___parent___parent___id' |
-  'parent___parent___parent___children' |
-  'parent___parent___children' |
-  'parent___parent___children___id' |
-  'parent___parent___children___children' |
-  'parent___parent___internal___content' |
-  'parent___parent___internal___contentDigest' |
-  'parent___parent___internal___description' |
-  'parent___parent___internal___fieldOwners' |
-  'parent___parent___internal___ignoreType' |
-  'parent___parent___internal___mediaType' |
-  'parent___parent___internal___owner' |
-  'parent___parent___internal___type' |
-  'parent___children' |
-  'parent___children___id' |
-  'parent___children___parent___id' |
-  'parent___children___parent___children' |
-  'parent___children___children' |
-  'parent___children___children___id' |
-  'parent___children___children___children' |
-  'parent___children___internal___content' |
-  'parent___children___internal___contentDigest' |
-  'parent___children___internal___description' |
-  'parent___children___internal___fieldOwners' |
-  'parent___children___internal___ignoreType' |
-  'parent___children___internal___mediaType' |
-  'parent___children___internal___owner' |
-  'parent___children___internal___type' |
-  'parent___internal___content' |
-  'parent___internal___contentDigest' |
-  'parent___internal___description' |
-  'parent___internal___fieldOwners' |
-  'parent___internal___ignoreType' |
-  'parent___internal___mediaType' |
-  'parent___internal___owner' |
-  'parent___internal___type' |
-  'children' |
-  'children___id' |
-  'children___parent___id' |
-  'children___parent___parent___id' |
-  'children___parent___parent___children' |
-  'children___parent___children' |
-  'children___parent___children___id' |
-  'children___parent___children___children' |
-  'children___parent___internal___content' |
-  'children___parent___internal___contentDigest' |
-  'children___parent___internal___description' |
-  'children___parent___internal___fieldOwners' |
-  'children___parent___internal___ignoreType' |
-  'children___parent___internal___mediaType' |
-  'children___parent___internal___owner' |
-  'children___parent___internal___type' |
-  'children___children' |
-  'children___children___id' |
-  'children___children___parent___id' |
-  'children___children___parent___children' |
-  'children___children___children' |
-  'children___children___children___id' |
-  'children___children___children___children' |
-  'children___children___internal___content' |
-  'children___children___internal___contentDigest' |
-  'children___children___internal___description' |
-  'children___children___internal___fieldOwners' |
-  'children___children___internal___ignoreType' |
-  'children___children___internal___mediaType' |
-  'children___children___internal___owner' |
-  'children___children___internal___type' |
-  'children___internal___content' |
-  'children___internal___contentDigest' |
-  'children___internal___description' |
-  'children___internal___fieldOwners' |
-  'children___internal___ignoreType' |
-  'children___internal___mediaType' |
-  'children___internal___owner' |
-  'children___internal___type' |
-  'internal___content' |
-  'internal___contentDigest' |
-  'internal___description' |
-  'internal___fieldOwners' |
-  'internal___ignoreType' |
-  'internal___mediaType' |
-  'internal___owner' |
-  'internal___type' |
   'isCreatedByStatefulCreatePages' |
   'context___slug' |
   'context___previous___fields___slug' |
@@ -3204,7 +3123,93 @@ export type ISitePageFieldsEnum =
   'pluginCreator___packageJson___peerDependencies___version' |
   'pluginCreator___packageJson___keywords' |
   'pluginCreatorId' |
-  'componentPath';
+  'componentPath' |
+  'id' |
+  'parent___id' |
+  'parent___parent___id' |
+  'parent___parent___parent___id' |
+  'parent___parent___parent___children' |
+  'parent___parent___children' |
+  'parent___parent___children___id' |
+  'parent___parent___children___children' |
+  'parent___parent___internal___content' |
+  'parent___parent___internal___contentDigest' |
+  'parent___parent___internal___description' |
+  'parent___parent___internal___fieldOwners' |
+  'parent___parent___internal___ignoreType' |
+  'parent___parent___internal___mediaType' |
+  'parent___parent___internal___owner' |
+  'parent___parent___internal___type' |
+  'parent___children' |
+  'parent___children___id' |
+  'parent___children___parent___id' |
+  'parent___children___parent___children' |
+  'parent___children___children' |
+  'parent___children___children___id' |
+  'parent___children___children___children' |
+  'parent___children___internal___content' |
+  'parent___children___internal___contentDigest' |
+  'parent___children___internal___description' |
+  'parent___children___internal___fieldOwners' |
+  'parent___children___internal___ignoreType' |
+  'parent___children___internal___mediaType' |
+  'parent___children___internal___owner' |
+  'parent___children___internal___type' |
+  'parent___internal___content' |
+  'parent___internal___contentDigest' |
+  'parent___internal___description' |
+  'parent___internal___fieldOwners' |
+  'parent___internal___ignoreType' |
+  'parent___internal___mediaType' |
+  'parent___internal___owner' |
+  'parent___internal___type' |
+  'children' |
+  'children___id' |
+  'children___parent___id' |
+  'children___parent___parent___id' |
+  'children___parent___parent___children' |
+  'children___parent___children' |
+  'children___parent___children___id' |
+  'children___parent___children___children' |
+  'children___parent___internal___content' |
+  'children___parent___internal___contentDigest' |
+  'children___parent___internal___description' |
+  'children___parent___internal___fieldOwners' |
+  'children___parent___internal___ignoreType' |
+  'children___parent___internal___mediaType' |
+  'children___parent___internal___owner' |
+  'children___parent___internal___type' |
+  'children___children' |
+  'children___children___id' |
+  'children___children___parent___id' |
+  'children___children___parent___children' |
+  'children___children___children' |
+  'children___children___children___id' |
+  'children___children___children___children' |
+  'children___children___internal___content' |
+  'children___children___internal___contentDigest' |
+  'children___children___internal___description' |
+  'children___children___internal___fieldOwners' |
+  'children___children___internal___ignoreType' |
+  'children___children___internal___mediaType' |
+  'children___children___internal___owner' |
+  'children___children___internal___type' |
+  'children___internal___content' |
+  'children___internal___contentDigest' |
+  'children___internal___description' |
+  'children___internal___fieldOwners' |
+  'children___internal___ignoreType' |
+  'children___internal___mediaType' |
+  'children___internal___owner' |
+  'children___internal___type' |
+  'internal___content' |
+  'internal___contentDigest' |
+  'internal___description' |
+  'internal___fieldOwners' |
+  'internal___ignoreType' |
+  'internal___mediaType' |
+  'internal___owner' |
+  'internal___type';
 
 export type ISitePageFilterInput = {
   path: Maybe<IStringQueryOperatorInput>;
@@ -3212,15 +3217,15 @@ export type ISitePageFilterInput = {
   internalComponentName: Maybe<IStringQueryOperatorInput>;
   componentChunkName: Maybe<IStringQueryOperatorInput>;
   matchPath: Maybe<IStringQueryOperatorInput>;
-  id: Maybe<IStringQueryOperatorInput>;
-  parent: Maybe<INodeFilterInput>;
-  children: Maybe<INodeFilterListInput>;
-  internal: Maybe<IInternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<IBooleanQueryOperatorInput>;
   context: Maybe<ISitePageContextFilterInput>;
   pluginCreator: Maybe<ISitePluginFilterInput>;
   pluginCreatorId: Maybe<IStringQueryOperatorInput>;
   componentPath: Maybe<IStringQueryOperatorInput>;
+  id: Maybe<IStringQueryOperatorInput>;
+  parent: Maybe<INodeFilterInput>;
+  children: Maybe<INodeFilterListInput>;
+  internal: Maybe<IInternalFilterInput>;
 };
 
 export type ISitePageGroupConnection = {
@@ -3781,7 +3786,7 @@ export type IBlogPostBySlugQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<ISit
       Pick<IMarkdownRemarkFields, 'slug'>
       & { readingTime: Maybe<Pick<IMarkdownRemarkFieldsReadingTime, 'text'>> }
     )>, frontmatter: Maybe<(
-      Pick<IMarkdownRemarkFrontmatter, 'title' | 'date' | 'description' | 'tags'>
+      Pick<IMarkdownRemarkFrontmatter, 'title' | 'date' | 'description' | 'tags' | 'seoFooter'>
       & { author: Maybe<(
         Pick<IAuthorYaml, 'id' | 'bio' | 'twitter' | 'github'>
         & { profilepicture: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<IGatsbyImageSharpFluidFragment> }> }> }
