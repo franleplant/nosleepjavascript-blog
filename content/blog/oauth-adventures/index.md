@@ -27,9 +27,6 @@ seoFooter:
 to-heading: 3
 ```
 
-TODO add that each post has a metaFooter like those murky pages that add a bunch of "keywords"
-at the end for better SEO
-
 ## Introduction
 
 Let's build the basic boilerplate for an OpenId Connect based Authentication mechanism
@@ -71,11 +68,11 @@ architecture with multiple "clients" (OAuth lingo for applications that interact
 
 If you want to go down the rabbit hole and learn more check these resources out
 
-- [Okta's OAuth and OpenId in plain english][13]
+- [Okta's OAuth and OpenId in plain English][13]
 - [Okta's Ilustrated Guide to Oauth and OpenId Connect][10]
 - [IEEE OAuth 2.0 RFC][12] (it is dense but has all the details)
 
-Here is a nice ilustration of one of the most common ways of Authenticating with
+Here is a nice illustration of one of the most common ways of Authenticating with
 OAuth 2.0 and OpenId Connect
 
 IMAGE TODO
@@ -91,7 +88,7 @@ a decent high level understanding of what you are doing.
 This applies both to already existing applications and to the practice of designing and creating new
 applications with modern architectures such as microservice oriented one.
 
-I will try to find the sweetspot between comprehensive and high level coverage, let's hope
+I will try to find the sweet spot between comprehensive and high level coverage, let's hope
 that I can achieve that.
 
 ## Show me the code!
@@ -99,7 +96,7 @@ that I can achieve that.
 Let's build a simple application that uses OAuth 2.0 and oidc. The idea is to show
 
 - how to use 3rd party Auth and Identity providers
-- how to integrate those mechanisms with something familar to the web platform: session cookies!
+- how to integrate those mechanisms with something familiar to the web platform: session cookies!
 - how to easily manage sessions in the Request-Response web app cycle (no libs here!)
 - how the session can be structured to be self contained for a stateless session management
 - security implications
@@ -114,7 +111,7 @@ decent Typescript support that makes it very easy to integrate Identity provider
 
 Another really cool thing about OpenId Connect is the concept of [Discovery][17] which
 basically means that although there are a bunch of parameters involved in setting up a proper
-oidc flow like multiple urls, encyrption algorithms, public keys to verify tokens, etc;
+oidc flow like multiple urls, encryption algorithms, public keys to verify tokens, etc;
 you really just need to use one url and, if the client library you are using supports it, the client will
 use this Discovery mechanism to look for a [Discovery Document][18] that contains all the necessary parameters
 and you are good to go!. `openid-client` supports this!.
@@ -150,7 +147,7 @@ app.set("views", __dirname + "/views")
 // higher level object
 app.use(cookieParser())
 
-// initialices the Issuer and the Client
+// initialises the Issuer and the Client
 app.use(auth.initialize)
 // Deals with the user session
 app.use(auth.session)
@@ -184,7 +181,7 @@ First we need to initialize the [openid-client][16]
 Issuer (the one that discovers all the publicly available OpenId configuration) and later the Client
 (the one that we will use to make all the underlying HTTP calls).
 We will abstract this step into a middleware and save the instances into the `req.app` object
-since these things need to be instanciated once per app.
+since these things need to be instantiated once per app.
 
 ```typescript
 export async function initialize(
@@ -224,7 +221,7 @@ In this step we are going to do two basic steps necessary for this type of auth 
 1. Auth entry point: Create a route that redirects to the right oidc provider authentication page and that kicks starts the whole auth flow, in our case we simply called it: `/auth/login` but you can use whatever you like.
 2. Callback: Create a route that the oidc provider will redirect back from the auth page with the auth code that we will later exchange for the proper access, id and refresh tokens. In our case we simply called it `/auth/callback` but again it can be whatever you want it to be.
 
-We also encasulated these routes into a nice middleware that we called `auth.routes`.
+We also encapsulated these routes into a nice middleware that we called `auth.routes`.
 
 ```typescript
 export default function authRoutesMiddleware(): Router {
@@ -283,16 +280,16 @@ the Identity Provider doesn't deal with this and that's something we need to dea
 
 We are going to use a very simple self contained stateless strategy here, we will cover it in more details
 in the next section but at a high level what we are doing is setting a persistent cookie (the session cookie)
-that will travel in all requests from the browser to our local server and that we will use to idenitify
+that will travel in all requests from the browser to our local server and that we will use to identify
 users that already identified themselves.
 
 ### Step 4: Persistent Session
 
 There are several ways of handling sessions but in most cases
 it all boils down to persisting a session across requests and
-identifyng requests with one or cero sessions, meaning, identifying the
-already autenticated and identified users that are making requests to our app or simply
-aknoledging that there is no previously authenticated user.
+identifying requests with one or zero sessions, meaning, identifying the
+already authenticated and identified users that are making requests to our app or simply
+acknowledging that there is no previously authenticated user.
 
 Sessions are most commonly persisted in the form of a long lived cookie in the browsers and
 their content might be a session id that is mapped to the session object in a database
@@ -300,10 +297,10 @@ server side, stateful solution; or the content might be the entire self containe
 which is the stateless solution, this is a simpler approach that will work for us
 and that has its merits in the microservice architecture.
 
-> Why do we care about stateless vs statefull? Have a self contained cookie means that we can
+> Why do we care about stateless vs stateful? Have a self contained cookie means that we can
 > know certain facts about the authenticated users without having to either interact with a database
 > or another service. Stateless is desired as much as possible because it is easy to horizontally scale
-> i.e. adding more instances of the app running in other nodes in our cluster, whereas scaling statefull
+> i.e. adding more instances of the app running in other nodes in our cluster, whereas scaling stateful
 > services is another whole challenge (think about the non-PC master slave relationship between databases,
 > replication, backup, consistency considerations, etc).
 > The typical solution for a stateful session is to store a simple session id in the browser and then associate
@@ -314,7 +311,7 @@ and that has its merits in the microservice architecture.
 We write it at two main steps:
 
 - after login in
-- after refreshing the auth tokens (not necessary in a statefull session schema)
+- after refreshing the auth tokens (not necessary in a stateful session schema)
 
 We also clear it in two main steps:
 
@@ -336,7 +333,7 @@ parse it into an instance of a class so that you can cache some results and prov
 to the rest of the app. In our case we simply reuse the `TokenSet` class with useful methods that
 the [openid-client][16] lib provides.
 
-This is a nice ilustration of the flow you will soon see in code:
+This is a nice illustration of the flow you will soon see in code:
 
 TODO image!
 
@@ -399,7 +396,7 @@ Just to give some ideas:
 
 - check if there is a user logged in (i.e. only allowing to view certain content to authenticated users)
 - display information about the logged in user, such as menu icons etc
-- fetch data associated with a user to a databse or another service
+- fetch data associated with a user to a database or another service
 - check user permissions and create a more complex allow list of routes
 - many many more things.
 
@@ -449,15 +446,15 @@ We have set a nice example in the repo, check instructions to see it in action [
 
 How does it work?
 
-- the Session cookie is completely idenpent in each app (see the domain note on the repo's README).
+- the Session cookie is completely independent in each app (see the domain note on the repo's README).
 - If you already logged in with app1 then when you try to login with app2 then you won't need to introduce your credentials and the OAuth flow will happen without you (the user) needing to do anything, that is why I say it is almost automatic.
 
 ## Bonus: the complete sequence diagram of oidc authentication
 
 Most of the time you will see this sequence diagram simplified, but I wanted
 to show you in full details all the steps and http redirects there are inside this
-transactios, most of the time you won't need to worry about these but I think
-it is a nice excercise to have it detailed fully like this:
+transaction, most of the time you won't need to worry about these but I think
+it is a nice exercise to have it detailed fully like this:
 
 TODO IMAGE
 
@@ -478,7 +475,7 @@ Disclaimer: I am not a security expert, please seek independent council on this 
 
 ## Closing
 
-Did you like the content? consider sharing it in your social circle and subscribing
+Did you like the content? Consider sharing it in your social circle and subscribing
 to receive awesome exclusive content right into your email box.
 
 [10]: https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc
