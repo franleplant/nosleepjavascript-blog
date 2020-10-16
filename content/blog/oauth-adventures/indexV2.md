@@ -3,21 +3,6 @@
 - OpenId Connect Identity provider for a Single Sign On experience across multiple apps.
 - Using JWT as self contained sessions in a microservice architecture
 
-* Introduction
-* talk about the core concepts of OAuth2 / OpenId Connect
-  - nice diagram ilustrations
-* talk about why this content might be useful
-  - if you want to use a third party identity provider for your apps
-  - if you have a microservice architecture and the identity provider implements OpenId
-  - if you have to use a central identity provider in a multy company integrated architecture
-* cover the objectives of the practical excercise
-  - show the complete sequence diagram of all the back and forth there is to stablish the final auth session
-* go over the code, maybe show gifs or images, show the architecture, show how we use familiar concepts from passport and the rest of the world.
-* links to the complementary material.
-
-TODO talk about certified toolking
-TODO talk about security
-
 TODO add that each post has a metaFooter like those murky pages that add a bunch of "keywords"
 at the end for better SEO
 
@@ -43,7 +28,7 @@ The line between OpenId and OAuth is blurry in practice and in learning material
 are sometimes a mix and match of both.
 
 I like to think of OpenId and OAuth as a set of specifications that
-define standard APIs for Authentication and Authorization (respectively actually).
+define standard APIs for Authentication and Authorization, respectively.
 
 > OpenID Connect lets developers authenticate their users across websites and
 > apps without having to own and manage password files. For the app builder,
@@ -58,7 +43,7 @@ Auth0, Microsoft, Okta, among many others. [See certified providers here][15]
 Additionally, OpenId Connect can be used in enterprise settings like shared Auth and Identity provider
 across many apps (think about Microsoft active directory, or Okta's service)
 providing a Single Sign On experience; and also as a way of structuring a microservice
-architecture with multiple "clients" (OAuth lingo for applications that interact with Auth Servers).
+architecture with multiple "clients" (OAuth lingo for applications that interact with the Auth Server).
 
 If you want to go down the rabbit hole and learn more check these resources out
 
@@ -96,7 +81,7 @@ Let's build a simple application that uses OAuth 2.0 and oidc. The idea is to sh
 - security implications
 - how this application can be used to achieve SSO (single sign on experience across multiple apps)
 
-You can check the full code [here][todo].
+You can check the full code [here][19].
 
 ### A note on tooling
 
@@ -105,7 +90,7 @@ decent Typescript support that makes it very easy to integrate Identity provider
 
 Another really cool thing about OpenId Connect is the concept of [Discovery][17] which
 basically means that although there are a bunch of parameters involved in setting up a proper
-OAuth / OpenId connect flow like multiple urls, encyrption algorithms, public keys to verify tokens, etc;
+oidc flow like multiple urls, encyrption algorithms, public keys to verify tokens, etc;
 you really just need to use one url and, if the client library you are using supports it, the client will
 use this Discovery mechanism to look for a [Discovery Document][18] that contains all the necessary parameters
 and you are good to go!. `openid-client` supports this!.
@@ -113,52 +98,335 @@ and you are good to go!. `openid-client` supports this!.
 ### Step 1: What are we building?
 
 We are going to use a top-down approach, so first we are going to cover how the app
-works and the "dev-user" side of things and in later steps we are going to cover
+works at the business logic level and in later steps we are going to cover
 the "lib" side of things where we implement the proper express middleware, session management,
 cookie storage, etc.
 
 The app is really simple, it has two content routes
 
-- `/` or the home where we show the "login" button.
+- `/` or the home where we show the "login" button and it is public.
 - `/private` were we display some information about the currently logged in user. If there is no user logged in we simply display an error.
 
 IMAGES or GIFS TODO
 
-There are three additional routes that have to do with the OAuth flow
+There are at least two additional routes that have to do with the OAuth flow
 that we will cover later.
 
-TODO Maybe show the code in `index.ts` ?
+This is the `index.ts` that makes up the high level app implementation, think of this
+as a mix of the boilerplate plus the two domain / business specific routes.
 
-### Step 2: Log In
+```typescript
+const app = express()
 
-- later we will show the entire auth flow with all the redirects
-- for now we want to set up the login so that it uses a 3rd party Identity provider, in this case: Google.
-- show images or gifs of use logging in
-- show code for
-  - issuer and client creation
-  - /auth/login, /auth/callback and what we are doing
-  - talk about tokens
-- at this point we are logged in and we can see the user identity self contained in the tokenSet we got from Google
-- what happens if we refresh? we are no longer logged in ===> segway to the next step
+app.engine("mustache", mustacheExpress())
+app.set("view engine", "mustache")
+app.set("views", __dirname + "/views")
 
-### Step 3: Persistent Session
+// Necessary for express to parse the cookies into a nice
+// higher level object
+app.use(cookieParser())
 
-- there are several ways of handling sessios but in all cases it all boils down to persisting a session across requests and identifyng requests with one or cero sessions.
-- sessions are most commonly persisted in the form of a long lived cookie in the browser
-- sessions cookie content might be a session id that is mapped to the session object in a database server side (stateful solution)
-- or the content might be the entire session object (stateless), this is a simpler approac that will work for us and that has its merits in the microservice architecture.
-- talk about what we are going to stor ein the cookie and why
-- talk about when we write and when we read
-- talk about when we serialize and when we deserialize
-- talk about refreshing tokens
+// initialices the Issuer and the Client
+app.use(auth.initialize)
+// Deals with the user session
+app.use(auth.session)
+// Adds the OAuth / OpenId necessary routes.
+app.use(auth.routes())
 
-* show persistent session across refreshes
-* show the code
+app.get("/", (req: Request, res: Response) => {
+  res.render("index")
+})
 
-### Step 4: putting it all together
+app.get("/private", auth.requireAuth, (req, res) => {
+  const claims = req.session!.tokenSet.claims()
 
-Show the `auth` dir code and how we package it in a set of nice midldewares
-similar to what passport.js does.
+  res.render("private", {
+    email: claims.email,
+    picture: claims.picture,
+    name: claims.name,
+  })
+})
+
+app.listen(process.env.PORT, () => {
+  console.log(`Express started on port ${process.env.PORT}`)
+})
+```
+
+Next we will cover more details (descending into the details).
+
+### Step 2: Initializing
+
+First we need to initialize the [openid-client][16]
+Issuer (the one that discovers all the publicly available OpenId configuration) and later the Client
+(the one that we will use to make all the underlying HTTP calls).
+We will abstract this step into a middleware and save the instances into the `req.app` object
+since these things need to be instanciated once per app.
+
+```typescript
+export async function initialize(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  if (req.app.authIssuer) {
+    return next()
+  }
+
+  const googleIssuer = await Issuer.discover("https://accounts.google.com")
+  const client = new googleIssuer.Client({
+    client_id: process.env.OAUTH_CLIENT_ID!,
+    client_secret: process.env.OAUTH_CLIENT_SECRET!,
+    redirect_uris: [`${getDomain()}/auth/callback`],
+    response_types: ["code"],
+  })
+
+  req.app.authIssuer = googleIssuer
+  req.app.authClient = client
+
+  next()
+}
+```
+
+Note: `getDomain` is a thin helper that returns exactly this `http://${process.env.HOST}:${process.env.PORT}`.
+
+### Step 3: Log In
+
+We have a nice comprehensive sequence diagram of the all the HTTP redirects and
+interactions that make up the complete OAuth / OpenId Connect authorization\_ ode flow
+below in a [bonus section](TODO)
+
+In this step we are going to do two basic steps necessary for this type of auth flow:
+
+1. Auth entry point: Create a route that redirects to the right oidc provider authentication page and that kicks starts the whole auth flow, in our case we simply called it: `/auth/login` but you can use whatever you like.
+2. Callback: Create a route that the oidc provider will redirect back from the auth page with the auth code that we will later exchange for the proper access, id and refresh tokens. In our case we simply called it `/auth/callback` but again it can be whatever you want it to be.
+
+We also encasulated these routes into a nice middleware that we called `auth.routes`.
+
+```typescript
+export default function authRoutesMiddleware(): Router {
+  const router = Router()
+
+  // Auth entry point.
+  router.get("/auth/login", function (req, res, next) {
+    const authUrl = req.app.authClient!.authorizationUrl({
+      scope: "openid email profile",
+    })
+
+    res.redirect(authUrl)
+  })
+
+  // Callback
+  router.get("/auth/callback", async (req, res, next) => {
+    const client = req.app.authClient
+
+    // extract all the necessary query params like the authorization code.
+    const params = client!.callbackParams(req)
+    // exchange the authorization code for the access, refresh and id token,
+    // this is what makes up the main `Back channel` communication, it is considered
+    // more secure and will include client_id and client_secret.
+    const tokenSet = await client!.callback(
+      `${getDomain()}/auth/callback`,
+      params
+    )
+    // We can fetch the userinfo (basic identity attributes)
+    const user = await client!.userinfo(tokenSet)
+
+    const sessionCookie = serialize({ tokenSet, user })
+    setSessionCookie(req, sessionCookie)
+
+    res.redirect("/")
+  })
+
+  return router
+}
+```
+
+Notes:
+
+- check the [complete code][19] to see how to implement logout and a back-to-original-route mechanism
+
+As you can see the _Auth entry point_ is a very simple sync redirect to the Identity provider's login,
+the library is doing a lot of the work for us but the `authUrl` will contain the `client_id`,
+the callback url `http://host:port/auth/callback` in our case, required `scopes`, etc.
+This is also what we call the "Front channel" and it is considered not entirely secure, that is why
+we are not sending the client secret at this stage, remember that this happens all in the browser via
+HTTP redirects.
+
+The _Callback_ will be redirected from a successful login with the Identity provider and
+will exchange the authorization code for the tokens (check inline comments).
+This is the step where we more commonly we deal with persistent sessions, notice that
+the Identity Provider doesn't deal with this and that's something we need to deal with ourselves.
+
+We are going to use a very simple self contained stateless strategy here, we will cover it in more details
+in the next section but at a high level what we are doing is setting a persistent cookie (the session cookie)
+that will travel in all requests from the browser to our local server and that we will use to idenitify
+users that already identified themselves.
+
+### Step 4: Persistent Session
+
+There are several ways of handling sessions but in most cases
+it all boils down to persisting a session across requests and
+identifyng requests with one or cero sessions, meaning, identifying the
+already autenticated and identified users that are making requests to our app or simply
+aknoledging that there is no previously authenticated user.
+
+Sessions are most commonly persisted in the form of a long lived cookie in the browsers and
+their content might be a session id that is mapped to the session object in a database
+server side, stateful solution; or the content might be the entire self contained session object,
+which is the stateless solution, this is a simpler approach that will work for us
+and that has its merits in the microservice architecture.
+
+> Why do we care about stateless vs statefull? Have a self contained cookie means that we can
+> know certain facts about the authenticated users without having to either interact with a database
+> or another service. Stateless is desired as much as possible because it is easy to horizontally scale
+> i.e. adding more instances of the app running in other nodes in our cluster, whereas scaling statefull
+> services is another whole challenge (think about the non-PC master slave relationship between databases,
+> replication, backup, consistency considerations, etc).
+> The typical solution for a stateful session is to store a simple session id in the browser and then associate
+> that id in a key value database such as [redis][20]
+
+**When do we write the session cookie?**
+
+We write it at two main steps:
+
+- after login in
+- after refreshing the auth tokens (not necessary in a statefull session schema)
+
+We also clear it in two main steps:
+
+- after logout
+- after trying to refresh a token and the refresh token has expired.
+
+**And when do we read the session cookie? and what do we do with it?**
+
+This where the fun begins. We read the session cookie _on every request_,
+and if we find one then we are going to parse it into a session object or instance
+and store it in the `req` object, this fits super fine because the parsed, hydrated session
+object only applies on a particular request, the next request might belong to another user or even
+to a non authenticated user.
+
+Why do we need to parse it? Basically, we will store it as string in the cookie and when
+we read the cookie we are going to parse it back to an object, this is a very simple approach, more
+commonly you will store the session as a base64 encoded json object to save space and later you will
+parse it into an instance of a class so that you can cache some results and provide certain useful methods
+to the rest of the app. In our case we simply reuse the `TokenSet` class with useful methods that
+the [openid-client][16] lib provides.
+
+This is a nice ilustration of the flow you will soon see in code:
+
+TODO image!
+
+Enough talk, let's code:
+
+```typescript
+export async function session(req: Request, res: Response, next: NextFunction) {
+  const sessionCookie = getSessionCookie(req)
+  // If there is no session cookie it means there is no
+  // authenticated user associated with this request,
+  // no further work needed.
+  if (!sessionCookie) {
+    return next()
+  }
+
+  const client = req.app.authClient
+  // Parse the cookie into a TokenSet instance
+  const session = deserialize(sessionCookie)
+
+  // Refresh the tokens if necessary
+  if (session.tokenSet.expired()) {
+    try {
+      const refreshedTokenSet = await client!.refresh(session.tokenSet)
+      session.tokenSet = refreshedTokenSet
+      // set the cookie with the refreshed tokens
+      setSessionCookie(req, serialize(session))
+    } catch (err) {
+      // this can throw when the refresh token has expired, logout completely when that happens
+      clearSessionCookie(req)
+      return next()
+    }
+  }
+
+  // We also verify that the tokens inside the cookie are valid
+  // with public keys mechanisms covered by the JWT spec.
+  // This is unfortunately a private method of the lib, but basically
+  // it grabs the id_token and decodes it as JWT with a public key
+  // that we got as part as the discovery process, if this succeeds it means
+  // that the token inside the cookie is a token that has been crated by our
+  // identity provided and thus it is secure and fine!
+  const validate = req.app.authClient?.validateIdToken as any
+  try {
+    await validate.call(client, session.tokenSet)
+  } catch (err) {
+    console.log("bad token signature found in auth cookie")
+    return next(new Error("Bad Token in Auth Cookie!"))
+  }
+
+  // After all that work the only thing remaining is
+  // to store the valid session object into req.session
+  // for the rest of the app to use.
+  req.session = session
+
+  next()
+}
+```
+
+What might the rest of the app do with `req.session`?
+Just to give some ideas:
+
+- check if there is a user logged in (i.e. only allowing to view certain content to authenticated users)
+- display information about the logged in user, such as menu icons etc
+- fetch data associated with a user to a databse or another service
+- check user permissions and create a more complex allow list of routes
+- many many more things.
+
+The main point of this middleware (which is inspired by prior work such as
+[express-session][21] and [Passport.js][22]) is to abstract all the logic of
+parsing the session cookie, refreshing if necessary and hydrating the `req.session` object
+in a single place, the rest of the app can rely on that being there and that nothing else will
+need to be done there.
+
+We also have a nice example middleware that prevents non authenticated users to access
+certain routes:
+
+```typescript
+export async function requireAuth(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const session = req.session
+  if (!session) {
+    return next(new Error("unauthenticated"))
+  }
+
+  next()
+}
+```
+
+Of course this will only work if the `session` middleware runs first in the middleware chain
+and this runs later, that is why it is important that your session middleware to be run as early as possible,
+at least before your routes definitions.
+
+### Step 5: putting it all together
+
+With a little bit of express experience we can encapsulate all the previous logic
+into nice middlewares and leave the rest of the app to deal with domain / business logic.
+
+We put all the authentication related code in the `auth` directory, and the high level api is
+made up of middlewares. You can use middleware factories for more complex use cases (functions that accept
+options and return middlewares, and yes, the router _is_ a middleware).
+
+### Step 6: Single Sign On
+
+Single Sign On (SSO) means that if you are already authenticated with one app using the same
+OpenId Identity Provider then you will be almost automatically authenticated we other apps.
+
+We have set a nice example in the repo, check instructions to see it in action [here][19].
+
+How does it work?
+
+- the Session cookie is completely idenpent in each app (see the domain note on the repo's README).
+- If you already logged in with app1 then when you try to login with app2 then you won't need to introduce your credentials and the OAuth flow will happen without you (the user) needing to do anything, that is why I say it is almost automatic.
 
 ### Bonus: the complete sequence diagram of oidc authentication
 
@@ -169,6 +437,26 @@ it is a nice excercise to have it detailed fully like this:
 
 TODO IMAGE
 
+### Bonus: what are the access, refresh and id tokens?
+
+Each identity provider might use them differently but these are
+some of the core ideas behind each of them
+
+- access token: an opaque value with a short expiration that the identity server uses to identify a user (think of it as a portable session id)
+- refresh token: another opaque value with a longer expiration that it is used to refresh the access token and the id token. Long lived sessions are typically handled by this two step process to give more control to identity providers.
+- id token: this is what OpendId Connect adds, this is a self contained jwt that contains claims (attributes) about the identity of the currently logged in user. This is what makes sense the most to use inside your own system to check the identity of the user. You can cryptographically verify its validity and it will contain minimal information such as the `sub` id (the subject id or the user id), the email, the names, etc.
+
+### Bonus: security
+
+TODO
+
+Disclaimer: I am not a security expert, please seek independent council on this subject.
+
+### Closing
+
+Did you like the content? consider sharing it in your social circle and subscribing
+to receive awesome exclusive content right into your email box.
+
 - [10]: https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc
 - [11]: https://developers.google.com/identity/protocols/oauth2/openid-connect
 - [12]: https://tools.ietf.org/html/rfc6749
@@ -178,3 +466,7 @@ TODO IMAGE
 - [16]: https://github.com/panva/node-openid-client
 - [17]: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
 - [18]: https://developers.google.com/identity/protocols/oauth2/openid-connect#discovery
+- [19]: https://github.com/franleplant/sso-with-openid
+- [20]: https://redis.io/
+- [21]: https://www.npmjs.com/package/express-session
+- [22]: http://www.passportjs.org/
