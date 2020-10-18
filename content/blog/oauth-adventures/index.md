@@ -229,10 +229,14 @@ export default function authRoutesMiddleware(): Router {
 
   // Auth entry point.
   router.get("/auth/login", function (req, res, next) {
+    // Check the full code to see a concrete implementation of this
+    const state = calcState(extraContent)
     const authUrl = req.app.authClient!.authorizationUrl({
       scope: "openid email profile",
+      state,
     })
 
+    setAuthStateCookie(res, state)
     res.redirect(authUrl)
   })
 
@@ -242,12 +246,17 @@ export default function authRoutesMiddleware(): Router {
 
     // extract all the necessary query params like the authorization code.
     const params = client!.callbackParams(req)
+    // read the state cookie
+    const state = getAuthStateCookie(req)
     // exchange the authorization code for the access, refresh and id token,
     // this is what makes up the main `Back channel` communication, it is considered
     // more secure and will include client_id and client_secret.
     const tokenSet = await client!.callback(
       `${getDomain()}/auth/callback`,
-      params
+      params,
+      // The lib will compare the state that the identity provider passes as params
+      // with the one we stored in the cookies.
+      { state }
     )
     // We can fetch the userinfo (basic identity attributes)
     const user = await client!.userinfo(tokenSet)
@@ -277,6 +286,10 @@ The _Callback_ will be redirected from a successful login with the Identity prov
 will exchange the authorization code for the tokens (check inline comments).
 This is the step where we more commonly we deal with persistent sessions, notice that
 the Identity Provider doesn't deal with this and that's something we need to deal with ourselves.
+
+Check the `state` parameter, this acts as a sort of [XSRF][todo] token that we can use to
+prevent XSRF attacks but also to store _state_ across the OAuth flow. See exercise at the bottom for more info.
+Check the [full code][todo] for a concrete but very simple working implementation.
 
 We are going to use a very simple self contained stateless strategy here, we will cover it in more details
 in the next section but at a high level what we are doing is setting a persistent cookie (the session cookie)
@@ -428,7 +441,11 @@ Of course this will only work if the `session` middleware runs first in the midd
 and this runs later, that is why it is important that your session middleware to be run as early as possible,
 at least before your routes definitions.
 
-### Step 5: putting it all together
+### Step 5: Log Out
+
+TODO
+
+### Step 6: putting it all together
 
 With a little bit of express experience we can encapsulate all the previous logic
 into nice middlewares and leave the rest of the app to deal with domain / business logic.
@@ -437,7 +454,7 @@ We put all the authentication related code in the `auth` directory, and the high
 made up of middlewares. You can use middleware factories for more complex use cases (functions that accept
 options and return middlewares, and yes, the router _is_ a middleware).
 
-### Step 6: Single Sign On
+### Step 7: Single Sign On
 
 Single Sign On (SSO) means that if you are already authenticated with one app using the same
 OpenId Identity Provider then you will be almost automatically authenticated we other apps.
@@ -469,9 +486,20 @@ some of the core ideas behind each of them
 
 ## Bonus: security
 
-TODO
+TODO link to material
 
 Disclaimer: I am not a security expert, please seek independent council on this subject.
+
+## Exercise 1
+
+How would you implement a "back to" functionality?
+
+Let's say that you originally tried to access `/private/route/1` but you weren't authenticated yet
+so we redirected you to `/auth/login`.
+After going through all the auth flow we would like for the app to redirect automatically back
+to `/private/route/1`.
+
+See answer [here][link to particular full code]
 
 ## Closing
 
