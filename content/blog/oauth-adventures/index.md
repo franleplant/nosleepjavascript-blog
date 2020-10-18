@@ -224,51 +224,45 @@ In this step we are going to do two basic steps necessary for this type of auth 
 We also encapsulated these routes into a nice middleware that we called `auth.routes`.
 
 ```typescript
-export default function authRoutesMiddleware(): Router {
-  const router = Router()
-
-  // Auth entry point.
-  router.get("/auth/login", function (req, res, next) {
-    // Check the full code to see a concrete implementation of this
-    const state = calcState(extraContent)
-    const authUrl = req.app.authClient!.authorizationUrl({
-      scope: "openid email profile",
-      state,
-    })
-
-    setAuthStateCookie(res, state)
-    res.redirect(authUrl)
+// Auth entry point.
+router.get("/auth/login", function (req, res, next) {
+  // Check the full code to see a concrete implementation of this
+  const state = calcState(extraContent)
+  const authUrl = req.app.authClient!.authorizationUrl({
+    scope: "openid email profile",
+    state,
   })
 
-  // Callback
-  router.get("/auth/callback", async (req, res, next) => {
-    const client = req.app.authClient
+  setAuthStateCookie(res, state)
+  res.redirect(authUrl)
+})
 
-    // extract all the necessary query params like the authorization code.
-    const params = client!.callbackParams(req)
-    // read the state cookie
-    const state = getAuthStateCookie(req)
-    // exchange the authorization code for the access, refresh and id token,
-    // this is what makes up the main `Back channel` communication, it is considered
-    // more secure and will include client_id and client_secret.
-    const tokenSet = await client!.callback(
-      `${getDomain()}/auth/callback`,
-      params,
-      // The lib will compare the state that the identity provider passes as params
-      // with the one we stored in the cookies.
-      { state }
-    )
-    // We can fetch the userinfo (basic identity attributes)
-    const user = await client!.userinfo(tokenSet)
+// Callback
+router.get("/auth/callback", async (req, res, next) => {
+  const client = req.app.authClient
 
-    const sessionCookie = serialize({ tokenSet, user })
-    setSessionCookie(req, sessionCookie)
+  // extract all the necessary query params like the authorization code.
+  const params = client!.callbackParams(req)
+  // read the state cookie
+  const state = getAuthStateCookie(req)
+  // exchange the authorization code for the access, refresh and id token,
+  // this is what makes up the main `Back channel` communication, it is considered
+  // more secure and will include client_id and client_secret.
+  const tokenSet = await client!.callback(
+    `${getDomain()}/auth/callback`,
+    params,
+    // The lib will compare the state that the identity provider passes as params
+    // with the one we stored in the cookies.
+    { state }
+  )
+  // We can fetch the userinfo (basic identity attributes)
+  const user = await client!.userinfo(tokenSet)
 
-    res.redirect("/")
-  })
+  const sessionCookie = serialize({ tokenSet, user })
+  setSessionCookie(req, sessionCookie)
 
-  return router
-}
+  res.redirect("/")
+})
 ```
 
 Notes:
@@ -287,9 +281,9 @@ will exchange the authorization code for the tokens (check inline comments).
 This is the step where we more commonly we deal with persistent sessions, notice that
 the Identity Provider doesn't deal with this and that's something we need to deal with ourselves.
 
-Check the `state` parameter, this acts as a sort of [XSRF][todo] token that we can use to
+Check the `state` parameter, this acts as a sort of [XSRF a.k.a. CSRF a.k.a. csurf][23] token that we can use to
 prevent XSRF attacks but also to store _state_ across the OAuth flow. See exercise at the bottom for more info.
-Check the [full code][todo] for a concrete but very simple working implementation.
+Check the [full code][19] for a concrete but very simple working implementation.
 
 We are going to use a very simple self contained stateless strategy here, we will cover it in more details
 in the next section but at a high level what we are doing is setting a persistent cookie (the session cookie)
@@ -331,7 +325,7 @@ We also clear it in two main steps:
 - after logout
 - after trying to refresh a token and the refresh token has expired.
 
-**And when do we read the session cookie? and what do we do with it?**
+**And when do we read the session cookie? And what do we do with it?**
 
 This where the fun begins. We read the session cookie _on every request_,
 and if we find one then we are going to parse it into a session object or instance
@@ -443,7 +437,28 @@ at least before your routes definitions.
 
 ### Step 5: Log Out
 
-TODO
+In here you have two options:
+
+- Logging out of just your app
+- Logging out entirely out of the identity provider
+
+We are going to use the first approach:
+
+```typescript
+router.get("/auth/logout", async (req, res, next) => {
+  const client = req.app.authClient
+  const tokenSet = req.session?.tokenSet
+
+  // Make sure the access token we got from the identity provider
+  // gets revoked, this is for security reasons
+  await client!.revoke(tokenSet!.access_token!)
+
+  // Clean up session cookies
+  clearSessionCookie(res)
+
+  res.redirect("/")
+})
+```
 
 ### Step 6: putting it all together
 
@@ -484,12 +499,6 @@ some of the core ideas behind each of them
 - refresh token: another opaque value with a longer expiration that it is used to refresh the access token and the id token. Long lived sessions are typically handled by this two step process to give more control to identity providers.
 - id token: this is what OpendId Connect adds, this is a self contained jwt that contains claims (attributes) about the identity of the currently logged in user. This is what makes sense the most to use inside your own system to check the identity of the user. You can cryptographically verify its validity and it will contain minimal information such as the `sub` id (the subject id or the user id), the email, the names, etc.
 
-## Bonus: security
-
-TODO link to material
-
-Disclaimer: I am not a security expert, please seek independent council on this subject.
-
 ## Exercise 1
 
 How would you implement a "back to" functionality?
@@ -499,7 +508,17 @@ so we redirected you to `/auth/login`.
 After going through all the auth flow we would like for the app to redirect automatically back
 to `/private/route/1`.
 
-See answer [here][link to particular full code]
+<details>
+  <summary>Show me the answer</summary>
+  See answer [here][24]. A couple of notes:
+
+- you basically store a `backTo` param in the state and in the cookie
+- you can store more stuff in the `state`
+- we need it also in the cookie to prevent XSRF.
+- Check the [IETF standard][25] and read more [here][26]
+-
+
+</details>
 
 ## Closing
 
@@ -519,3 +538,7 @@ to receive awesome exclusive content right into your email box.
 [20]: https://redis.io/
 [21]: https://www.npmjs.com/package/express-session
 [22]: http://www.passportjs.org/
+[23]: https://en.wikipedia.org/wiki/Cross-site_request_forgery
+[24]: https://github.com/franleplant/sso-with-openid/blob/master/src/auth/routes.ts#L31-L43
+[25]: https://tools.ietf.org/html/draft-bradley-oauth-jwt-encoded-state-00
+[26]: https://auth0.com/docs/protocols/state-parameters
