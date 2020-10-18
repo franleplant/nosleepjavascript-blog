@@ -291,7 +291,8 @@ The App Settings can be changed in the Azure Portal at runtime.
 Lastly, you can implement this on any page by creating a small script that calls into this function and gets the result. It would look something like this if it were in Javascript:
 
 ```js
-const url = "https://pageviewcounterblog.azurewebsites.net/api/GetViewCounter/"
+const url =
+  "https://pageviewcounterblog.azurewebsites.net/api/GetViewCounter/"
 const data = { URL: "this-blog-post-URL" }
 
 const response = await fetch(url, {

@@ -193,7 +193,9 @@ export async function initialize(
     return next()
   }
 
-  const googleIssuer = await Issuer.discover("https://accounts.google.com")
+  const googleIssuer = await Issuer.discover(
+    "https://accounts.google.com"
+  )
   const client = new googleIssuer.Client({
     client_id: process.env.OAUTH_CLIENT_ID!,
     client_secret: process.env.OAUTH_CLIENT_SECRET!,
@@ -241,17 +243,20 @@ router.get("/auth/login", function (req, res, next) {
 router.get("/auth/callback", async (req, res, next) => {
   const client = req.app.authClient
 
-  // extract all the necessary query params like the authorization code.
+  // extract all the necessary query params
+  // like the authorization code.
   const params = client!.callbackParams(req)
   // read the state cookie
   const state = getAuthStateCookie(req)
-  // exchange the authorization code for the access, refresh and id token,
-  // this is what makes up the main `Back channel` communication, it is considered
+  // exchange the authorization code for the access,
+  // refresh and id token, this is what makes up the
+  // main `Back channel` communication, it is considered
   // more secure and will include client_id and client_secret.
   const tokenSet = await client!.callback(
     `${getDomain()}/auth/callback`,
     params,
-    // The lib will compare the state that the identity provider passes as params
+    // The lib will compare the state that the
+    // identity provider passes as params
     // with the one we stored in the cookies.
     { state }
   )
@@ -347,7 +352,11 @@ TODO image!
 Enough talk, let's code:
 
 ```typescript
-export async function session(req: Request, res: Response, next: NextFunction) {
+export async function session(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   const sessionCookie = getSessionCookie(req)
   // If there is no session cookie it means there is no
   // authenticated user associated with this request,
@@ -363,7 +372,9 @@ export async function session(req: Request, res: Response, next: NextFunction) {
   // Refresh the tokens if necessary
   if (session.tokenSet.expired()) {
     try {
-      const refreshedTokenSet = await client!.refresh(session.tokenSet)
+      const refreshedTokenSet = await client!.refresh(
+        session.tokenSet
+      )
       session.tokenSet = refreshedTokenSet
       // set the cookie with the refreshed tokens
       setSessionCookie(req, serialize(session))
@@ -381,7 +392,8 @@ export async function session(req: Request, res: Response, next: NextFunction) {
   // that we got as part as the discovery process, if this succeeds it means
   // that the token inside the cookie is a token that has been crated by our
   // identity provided and thus it is secure and fine!
-  const validate = req.app.authClient?.validateIdToken as any
+  const validate = req.app.authClient
+    ?.validateIdToken as any
   try {
     await validate.call(client, session.tokenSet)
   } catch (err) {
