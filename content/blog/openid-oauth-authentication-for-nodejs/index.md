@@ -1,5 +1,5 @@
 ---
-title: Authenticating your Node.js app with a OpendId Connect Provider
+title: Authenticating your Node.js app with a OpenId Connect Provider
 date: "2020-10-20"
 author: franleplant
 description: "TODO"
@@ -68,16 +68,17 @@ architecture with multiple "clients" (OAuth lingo for applications that interact
 
 If you want to go down the rabbit hole and learn more check these resources out
 
-- [Okta's OAuth and OpenId in plain English][13]
+- [Nate Barbettini's OAuth and OpenId in plain English][13]
 - [Okta's Ilustrated Guide to Oauth and OpenId Connect][10]
 - [IEEE OAuth 2.0 RFC][12] (it is dense but has all the details)
 
 Here is a nice illustration of one of the most common ways of Authenticating with
 OAuth 2.0 and OpenId Connect
 
-IMAGE TODO
+TODO definite version on the way
+![OAuth OpenId high level flow diagram](./flow1.jpeg)
 
-> Source: heavily inspired by this [video][13]
+> Source: heavily inspired by this [Nate Barbettini's presentation][13]
 
 ## That's fine, but why should I care?
 
@@ -128,7 +129,11 @@ The app is really simple, it has two content routes
 - `/` or the home where we show the "login" button and it is public.
 - `/private` were we display some information about the currently logged in user. If there is no user logged in we simply display an error.
 
-IMAGES or GIFS TODO
+![Initial public screen with login link](./screen1.png)
+
+![Authenticating with the oidc provider](./screen2.png)
+
+![Back to our private route in our app](./screen3.png)
 
 There are at least two additional routes that have to do with the OAuth flow
 that we will cover later.
@@ -215,8 +220,8 @@ Note: `getDomain` is a thin helper that returns exactly this `http://${process.e
 ### Step 3: Log In
 
 We have a nice comprehensive sequence diagram of the all the HTTP redirects and
-interactions that make up the complete OAuth / OpenId Connect authorization\_ ode flow
-below in a [bonus section](TODO)
+interactions that make up the complete OAuth / OpenId Connect authorization code flow
+below in a [bonus section](#bonus-the-complete-sequence-diagram-of-oidc-authentication)
 
 In this step we are going to do two basic steps necessary for this type of auth flow:
 
@@ -347,7 +352,8 @@ the [openid-client][16] lib provides.
 
 This is a nice illustration of the flow you will soon see in code:
 
-TODO image!
+TODO definite version on the way
+![Session Middleware flow diagram](./session_middleware.jpeg)
 
 Enough talk, let's code:
 
@@ -507,9 +513,9 @@ TODO IMAGE
 Each identity provider might use them differently but these are
 some of the core ideas behind each of them
 
-- access token: an opaque value with a short expiration that the identity server uses to identify a user (think of it as a portable session id)
-- refresh token: another opaque value with a longer expiration that it is used to refresh the access token and the id token. Long lived sessions are typically handled by this two step process to give more control to identity providers.
-- id token: this is what OpendId Connect adds, this is a self contained jwt that contains claims (attributes) about the identity of the currently logged in user. This is what makes sense the most to use inside your own system to check the identity of the user. You can cryptographically verify its validity and it will contain minimal information such as the `sub` id (the subject id or the user id), the email, the names, etc.
+- _access token_: an opaque value with a short expiration that the identity server uses to identify a user (think of it as a portable session id)
+- _refresh token_: another opaque value with a longer expiration that it is used to refresh the access token and the id token. Long lived sessions are typically handled by this two step process to give more control to identity providers.
+- _id token_: this is what OpendId Connect adds, this is a self contained jwt that contains claims (attributes) about the identity of the currently logged in user. This is what makes sense the most to use inside your own system to check the identity of the user. You can cryptographically verify its validity and it will contain minimal information such as the `sub` id (the subject id or the user id), the email, the names, etc.
 
 ## Exercise 1
 
@@ -522,13 +528,13 @@ to `/private/route/1`.
 
 <details>
   <summary>Show me the answer</summary>
-  See answer [here][24]. A couple of notes:
+
+See answer [here][24]. A couple of notes:
 
 - you basically store a `backTo` param in the state and in the cookie
 - you can store more stuff in the `state`
 - we need it also in the cookie to prevent XSRF.
 - Check the [IETF standard][25] and read more [here][26]
--
 
 </details>
 
