@@ -129,11 +129,23 @@ The app is really simple, it has two content routes
 - `/` or the home where we show the "login" button and it is public.
 - `/private` were we display some information about the currently logged in user. If there is no user logged in we simply display an error.
 
+Here are some pictures:
+
+<style>
+.screen-img img {
+  border: 3px solid #CCC;
+}
+</style>
+
+<div class="screen-img">
+
 ![Initial public screen with login link](./screen1.png)
 
 ![Authenticating with the oidc provider](./screen2.png)
 
 ![Back to our private route in our app](./screen3.png)
+
+</div>
 
 There are at least two additional routes that have to do with the OAuth flow
 that we will cover later.
