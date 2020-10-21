@@ -75,8 +75,7 @@ If you want to go down the rabbit hole and learn more check these resources out
 Here is a nice illustration of one of the most common ways of Authenticating with
 OAuth 2.0 and OpenId Connect
 
-TODO definite version on the way
-![OAuth OpenId high level flow diagram](./flow1.jpeg)
+![OAuth OpenId high level flow diagram](./flow1.svg)
 
 > Source: heavily inspired by this [Nate Barbettini's presentation][13]
 
@@ -364,8 +363,22 @@ the [openid-client][16] lib provides.
 
 This is a nice illustration of the flow you will soon see in code:
 
-TODO definite version on the way
-![Session Middleware flow diagram](./session_middleware.jpeg)
+<style>
+.flow2 img {
+ max-width: 500px;
+}
+
+.flow2 p {
+text-align: center;
+
+}
+</style>
+
+<div class="flow2">
+
+![Session Middleware flow diagram](./flow2.svg)
+
+</div>
 
 Enough talk, let's code:
 
@@ -397,7 +410,9 @@ export async function session(
       // set the cookie with the refreshed tokens
       setSessionCookie(req, serialize(session))
     } catch (err) {
-      // this can throw when the refresh token has expired, logout completely when that happens
+      // this can throw when the refresh
+      // token has expired,
+      // logout completely when that happens
       clearSessionCookie(req)
       return next()
     }
@@ -518,7 +533,7 @@ to show you in full details all the steps and http redirects there are inside th
 transaction, most of the time you won't need to worry about these but I think
 it is a nice exercise to have it detailed fully like this:
 
-TODO IMAGE
+![OAuth OpenId authorization code flow sequence diagram](./flow3.svg)
 
 ## Bonus: what are the access, refresh and id tokens?
 
