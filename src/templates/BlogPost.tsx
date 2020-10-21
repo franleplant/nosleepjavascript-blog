@@ -38,7 +38,6 @@ export default function BlogPostTemplate(props: IProps) {
   const { slug } = post.fields
 
   const [pageViewCount, setPageViewCount] = useState<number>()
-  console.log(seoFooter)
 
   useEffect(() => {
     async function fetchData() {
