@@ -9,6 +9,7 @@ import SharedBio from "../components/SharedBio"
 import * as theme from "../utils/theme"
 
 import { IBlogIndexQuery } from "../../graphql-types"
+import NewsletterSubscribe from "../components/NewsletterSubscribe"
 
 export interface IProps {
   data: IBlogIndexQuery
@@ -25,6 +26,8 @@ export default function BlogIndex(props: IProps) {
       <SEO title="NoSleep Javascript | All Posts" />
 
       <SharedBio authors={data.allAuthorYaml.nodes} />
+
+      <NewsletterSubscribe />
 
       {posts.map(({ node }) => {
         const slug = node.fields.slug
