@@ -1,8 +1,10 @@
 ---
-title: Authenticating your Node.js app with a OpenId Connect Provider
+title: Authenticating your Node.js app with Google as an OpenId Connect Provider
 date: "2020-10-20"
 author: franleplant
-description: "TODO"
+description:
+  "Let's build the basic boilerplate for OpenId Connect based authencation
+  with Google as Identity provider, persistent session cookies, express middleware in Typescript and Node.js"
 tags:
   - TypeScript
   - Javascript
@@ -16,9 +18,18 @@ tags:
   - microservice
 seoFooter:
   - Using OpenId Connect to implement Single Sign On across multiple applications.
+  - How to implement persistent cookie session with Express.js,  Node.js and Typescript
   - OpenId Connect as an authentication provider in a Micro Service Architecture.
   - OpenId Connect Identity provider for a Single Sign On experience across multiple apps.
   - Using JWT as self contained sessions in a microservice architecture.
+  - how to use an OpenId auth provider in a microservice architecture?
+  - how OpenId connect works?
+  - how to integrate OpenId auth with browser authentications.
+  - from zero to hero OAuth / OpenId.
+  - using openid connect to integrate authn with microfrontend apps.
+  - implementing SSO via openId.
+  - understanding OpenId Connect by building an app.
+  - Implementing SSO with Google OpenId Connect.
 ---
 
 ## Table of Contents
@@ -30,12 +41,12 @@ to-heading: 3
 ## Introduction
 
 Let's build the basic boilerplate for an OpenId Connect based Authentication mechanism
-for our Node.js / Typescript apps that supports SSO (Single Sign On experience) out of the box
+for our Node.js / Typescript app that supports SSO (Single Sign On experience) out of the box
 and that will fit very well with a microservice architecture with no statefulness added.
 
 This sort of setup is great for microservice architectures because
 
-- it provides a clear authentication (and authorization) interfaces based on industries best practices
+- it provides clear authentication (and authorization) interfaces based on industries best practices
 - it works well with self contained auth tokens that can be used for communications across microservices
 - it requires no extra stateful layers (such as session databases)
 - it can be easily expanded to make up a Single Sign on experience across multiple apps and even across companies.
@@ -43,6 +54,7 @@ This sort of setup is great for microservice architectures because
 ## So what is OpenId Connect?
 
 > OpenId Connect (a.k.a oidc) is an _interoperable authentication protocol_ based on the OAuth 2.0 family of specifications.
+>
 > [src][14]
 
 The line between OpenId and OAuth is blurry in practice and in learning material in the web the concepts
@@ -55,6 +67,7 @@ define standard APIs for Authentication and Authorization, respectively.
 > apps without having to own and manage password files. For the app builder,
 > it provides a secure verifiable, answer to the question:
 > “What is the identity of the person currently using the browser or native app that is connected to me?”
+>
 > [src][14]
 
 This has enabled 3rd party Authentication providers and the always present "Log In with X"
@@ -73,7 +86,7 @@ If you want to go down the rabbit hole and learn more check these resources out
 - [IEEE OAuth 2.0 RFC][12] (it is dense but has all the details)
 
 Here is a nice illustration of one of the most common ways of Authenticating with
-OAuth 2.0 and OpenId Connect
+OAuth 2.0 and OpenId Connect: the authorization code flow
 
 ![OAuth OpenId high level flow diagram](./flow1.svg)
 
@@ -89,7 +102,7 @@ This applies both to already existing applications and to the practice of design
 applications with modern architectures such as microservice oriented one.
 
 I will try to find the sweet spot between comprehensive and high level coverage, let's hope
-that I can achieve that.
+I can achieve it.
 
 ## Show me the code!
 
@@ -155,10 +168,6 @@ as a mix of the boilerplate plus the two domain / business specific routes.
 ```typescript
 const app = express()
 
-app.engine("mustache", mustacheExpress())
-app.set("view engine", "mustache")
-app.set("views", __dirname + "/views")
-
 // Necessary for express to parse the cookies into a nice
 // higher level object
 app.use(cookieParser())
@@ -170,13 +179,19 @@ app.use(auth.session)
 // Adds the OAuth / OpenId necessary routes.
 app.use(auth.routes())
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
+  // use the pre configured view engine
+  // to render the index.mustache file
   res.render("index")
 })
 
 app.get("/private", auth.requireAuth, (req, res) => {
+  // This is the main high level hook for the user
+  // session, we will be building this later
   const claims = req.session!.tokenSet.claims()
 
+  // render private.mustache and interpolate
+  // the following data
   res.render("private", {
     email: claims.email,
     picture: claims.picture,
@@ -234,7 +249,7 @@ We have a nice comprehensive sequence diagram of the all the HTTP redirects and
 interactions that make up the complete OAuth / OpenId Connect authorization code flow
 below in a [bonus section](#bonus-the-complete-sequence-diagram-of-oidc-authentication)
 
-In this step we are going to do two basic steps necessary for this type of auth flow:
+In this step we are going to build the two endpoints necessary for this type of auth flow:
 
 1. Auth entry point: Create a route that redirects to the right oidc provider authentication page and that kicks starts the whole auth flow, in our case we simply called it: `/auth/login` but you can use whatever you like.
 2. Callback: Create a route that the oidc provider will redirect back from the auth page with the auth code that we will later exchange for the proper access, id and refresh tokens. In our case we simply called it `/auth/callback` but again it can be whatever you want it to be.
@@ -244,9 +259,12 @@ We also encapsulated these routes into a nice middleware that we called `auth.ro
 ```typescript
 // Auth entry point.
 router.get("/auth/login", function (req, res, next) {
-  // Check the full code to see a concrete implementation of this
+  // Check the full code to see a
+  // concrete implementation of this
   const state = calcState(extraContent)
-  const authUrl = req.app.authClient!.authorizationUrl({
+
+  // calculate the url where we want to redirect to
+  const authUrl = req.app.authClient.authorizationUrl({
     scope: "openid email profile",
     state,
   })
@@ -261,14 +279,14 @@ router.get("/auth/callback", async (req, res, next) => {
 
   // extract all the necessary query params
   // like the authorization code.
-  const params = client!.callbackParams(req)
+  const params = client.callbackParams(req)
   // read the state cookie
   const state = getAuthStateCookie(req)
   // exchange the authorization code for the access,
   // refresh and id token, this is what makes up the
   // main `Back channel` communication, it is considered
   // more secure and will include client_id and client_secret.
-  const tokenSet = await client!.callback(
+  const tokenSet = await client.callback(
     `${getDomain()}/auth/callback`,
     params,
     // The lib will compare the state that the
@@ -277,8 +295,12 @@ router.get("/auth/callback", async (req, res, next) => {
     { state }
   )
   // We can fetch the userinfo (basic identity attributes)
-  const user = await client!.userinfo(tokenSet)
+  const user = await client.userinfo(tokenSet)
 
+  // Set the session cookie,
+  // we could also set req.session but
+  // since we are returning immediately is not
+  // a must
   const sessionCookie = serialize({ tokenSet, user })
   setSessionCookie(req, sessionCookie)
 
@@ -299,7 +321,7 @@ HTTP redirects.
 
 The _Callback_ will be redirected from a successful login with the Identity provider and
 will exchange the authorization code for the tokens (check inline comments).
-This is the step where we more commonly we deal with persistent sessions, notice that
+This is the step where we more commonly deal with persistent sessions, notice that
 the Identity Provider doesn't deal with this and that's something we need to deal with ourselves.
 
 Check the `state` parameter, this acts as a sort of [XSRF a.k.a. CSRF a.k.a. csurf][23] token that we can use to
@@ -321,15 +343,15 @@ acknowledging that there is no previously authenticated user.
 
 Sessions are most commonly persisted in the form of a long lived cookie in the browsers and
 their content might be a session id that is mapped to the session object in a database
-server side, stateful solution; or the content might be the entire self contained session object,
+server side which is the stateful solution; or the content might be the entire self contained session object,
 which is the stateless solution, this is a simpler approach that will work for us
 and that has its merits in the microservice architecture.
 
-> Why do we care about stateless vs stateful? Have a self contained cookie means that we can
+> Why do we care about stateless vs stateful? Having a self contained cookie means that we can
 > know certain facts about the authenticated users without having to either interact with a database
 > or another service. Stateless is desired as much as possible because it is easy to horizontally scale
 > i.e. adding more instances of the app running in other nodes in our cluster, whereas scaling stateful
-> services is another whole challenge (think about the non-PC master slave relationship between databases,
+> services is another whole challenge (think about master slave relationship between databases,
 > replication, backup, consistency considerations, etc).
 > The typical solution for a stateful session is to store a simple session id in the browser and then associate
 > that id in a key value database such as [redis][20]
@@ -403,7 +425,7 @@ export async function session(
   // Refresh the tokens if necessary
   if (session.tokenSet.expired()) {
     try {
-      const refreshedTokenSet = await client!.refresh(
+      const refreshedTokenSet = await client.refresh(
         session.tokenSet
       )
       session.tokenSet = refreshedTokenSet
@@ -424,9 +446,8 @@ export async function session(
   // it grabs the id_token and decodes it as JWT with a public key
   // that we got as part as the discovery process, if this succeeds it means
   // that the token inside the cookie is a token that has been crated by our
-  // identity provided and thus it is secure and fine!
-  const validate = req.app.authClient
-    ?.validateIdToken as any
+  // identity provided and thus it is secure and fine and we can trust it.
+  const validate = client.validateIdToken as any
   try {
     await validate.call(client, session.tokenSet)
   } catch (err) {
@@ -496,7 +517,7 @@ router.get("/auth/logout", async (req, res, next) => {
 
   // Make sure the access token we got from the identity provider
   // gets revoked, this is for security reasons
-  await client!.revoke(tokenSet!.access_token!)
+  await client.revoke(tokenSet!.access_token!)
 
   // Clean up session cookies
   clearSessionCookie(res)
