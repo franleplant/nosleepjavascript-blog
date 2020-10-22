@@ -526,7 +526,7 @@ router.get("/auth/logout", async (req, res, next) => {
 })
 ```
 
-### Step 6: putting it all together
+### Step 6: Putting it all together
 
 With a little bit of express experience we can encapsulate all the previous logic
 into nice middlewares and leave the rest of the app to deal with domain / business logic.
