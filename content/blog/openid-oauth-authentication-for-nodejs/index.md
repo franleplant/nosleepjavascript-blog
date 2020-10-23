@@ -1,6 +1,6 @@
 ---
 title: Authenticating your Node.js app with Google as an OpenId Connect Provider
-date: "2020-10-20"
+date: "2020-10-23"
 author: franleplant
 description:
   "Let's build the basic boilerplate for OpenId Connect based authencation
