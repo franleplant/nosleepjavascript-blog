@@ -131,7 +131,11 @@ Once the assets are out of the way, we can focus our efforts on the game code. R
 ```ts
 export class GameApp {
   private app: PIXI.Application
-  constructor(parent: HTMLElement, width: number, height: number) {
+  constructor(
+    parent: HTMLElement,
+    width: number,
+    height: number
+  ) {
     this.app = new PIXI.Application({
       width,
       height,
@@ -162,7 +166,11 @@ This part is not very fun or interesting to discuss but needs to be done, so fee
 ```ts
 export class GameApp {
   private app: PIXI.Application
-  constructor(parent: HTMLElement, width: number, height: number) {
+  constructor(
+    parent: HTMLElement,
+    width: number,
+    height: number
+  ) {
     this.app = new PIXI.Application({
       width,
       height,
@@ -239,7 +247,11 @@ export class GameApp {
   static PressedSpace: boolean = false
   static Score: number = 0
 
-  constructor(parent: HTMLElement, width: number, height: number) {
+  constructor(
+    parent: HTMLElement,
+    width: number,
+    height: number
+  ) {
     // code we added in the previous section goes here
 
     // register the event for key presses
@@ -543,7 +555,10 @@ Let's add this at the end of the method:
 
 ```ts
 for (const currentEntity of GameApp.ActiveEntities) {
-  if (currentEntity.solid && this.collidesWith(currentEntity.sprite)) {
+  if (
+    currentEntity.solid &&
+    this.collidesWith(currentEntity.sprite)
+  ) {
     GameApp.GameOver = true
   }
 }

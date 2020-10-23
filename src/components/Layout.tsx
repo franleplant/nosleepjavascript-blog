@@ -51,6 +51,11 @@ export default function Layout(props: IProps) {
             border-top-left-radius: 0.3em;
             border-top-right-radius: 0.3em;
           }
+
+          blockquote {
+            margin-top: 50px;
+            padding-bottom: 22px;
+          }
         `}
       />
       <header>

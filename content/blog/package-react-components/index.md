@@ -504,8 +504,8 @@ export default function MyComponent(props) {
     >
       <Container>
         <div>
-          Im MyComponent, hi <Name>{props.name}</Name>, and my color comes from
-          a theme
+          Im MyComponent, hi <Name>{props.name}</Name>, and
+          my color comes from a theme
           <br />
           Here are some pictures of dogs
         </div>
@@ -539,8 +539,8 @@ export default function App() {
     <div>
       <h1>We are using MyComponent</h1>
       <p>
-        It was Actively Compiled and now we can use it from a Create React App
-        Application
+        It was Actively Compiled and now we can use it from
+        a Create React App Application
       </p>
       {/* App defined theme at runtime */}
       <ThemeProvider theme={appTheme}>
