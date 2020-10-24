@@ -94,6 +94,17 @@ export default function BlogPostTemplate(props: IProps) {
 
         <footer>
           <Bio author={author} />
+
+          <div
+            css={css`
+              margin-top: -20px;
+              margin-bottom: 20px;
+            `}
+          >
+            <a href="https://buymeacoff.ee/Kp6R5Zr" target="__blank">
+              Buy me coffee ☕{" "}
+            </a>
+          </div>
         </footer>
       </article>
 
