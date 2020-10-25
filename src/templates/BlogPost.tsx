@@ -11,6 +11,8 @@ import { rhythm, scale } from "../utils/typography"
 import getSetViewCount from "../dal/getSetPageView"
 import NewsletterSubscribe from "../components/NewsletterSubscribe"
 import SeoFooter from "../components/SeoFooter"
+import BuyMeCoffee from "../components/BuyMeCoffee"
+import Patreon from "../components/Patreon"
 
 const isLocalhost = () => window.location.href.includes("localhost:8000")
 
@@ -101,9 +103,12 @@ export default function BlogPostTemplate(props: IProps) {
               margin-bottom: 20px;
             `}
           >
-            <a href="https://buymeacoff.ee/Kp6R5Zr" target="__blank">
-              Buy me coffee ☕{" "}
-            </a>
+            <div>
+              <BuyMeCoffee />
+            </div>
+            <div>
+              <Patreon />
+            </div>
           </div>
         </footer>
       </article>
