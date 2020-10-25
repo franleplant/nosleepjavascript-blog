@@ -23,9 +23,14 @@ export default function BlogIndex(props: IProps) {
 
   return (
     <Layout location={props.location} title={siteTitle}>
-      <SEO title="NoSleep Javascript | All Posts" />
+      <SEO title="NoSleep Javascript a blog by franleplant" />
 
-      <SharedBio authors={data.allAuthorYaml.nodes} />
+      {/* TODO improve this */}
+      <SharedBio
+        authors={data.allAuthorYaml.nodes.filter(
+          (author) => author.id === "franleplant"
+        )}
+      />
 
       <NewsletterSubscribe />
 

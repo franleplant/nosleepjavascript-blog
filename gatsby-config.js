@@ -2,8 +2,8 @@ module.exports = {
   pathPrefix: "/nosleepjavascript-blog",
   siteMetadata: {
     title: `NoSleep Javascript Blog`,
-    author: `nacho & franleplant`,
-    description: `Blog created by engineers who love to talk about tech culture and various topics related to programming and development.`,
+    author: `franleplant`,
+    description: `A blog by franleplant about Software development, education, human relationships and the machine.`,
     siteUrl: `https://nosleepjavascript.com`,
     //TODO remove
     social: {

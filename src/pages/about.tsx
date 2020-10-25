@@ -9,6 +9,8 @@ import { rhythm } from "../utils/typography"
 import NewsletterSubscribe from "../components/NewsletterSubscribe"
 
 import { IAboutPageQuery } from "../../graphql-types"
+import BuyMeCoffee from "../components/BuyMeCoffee"
+import Patreon from "../components/Patreon"
 
 export interface IProps {
   location: any
@@ -17,11 +19,13 @@ export interface IProps {
 
 export default function AboutPage(props: IProps) {
   const { allAuthorYaml, site } = props.data
-  const authors = allAuthorYaml.nodes
+  const authors = allAuthorYaml.nodes.filter(
+    (author) => author.id === "franleplant"
+  )
 
   return (
     <Layout location={props.location} title={site.siteMetadata.title}>
-      <SEO title="About us" />
+      <SEO title="About" />
       <article>
         <header>
           <h1
@@ -30,9 +34,24 @@ export default function AboutPage(props: IProps) {
               marginBottom: rhythm(1),
             }}
           >
-            About us
+            About
           </h1>
         </header>
+
+        <section>
+          I am a passionate software developer with years of experience in the
+          industry who loves creating products and services and helping other
+          developers grow their careers. Become a Patreon to have mentoring
+          sessions with me. Subscribe to receive exclusive content right into
+          your inbox.
+        </section>
+
+        <section>
+          <BuyMeCoffee />
+          <Patreon />
+        </section>
+
+        {/*
         <section>
           <p>
             We are two Software Developers with degrees in Engineering that love
@@ -40,13 +59,14 @@ export default function AboutPage(props: IProps) {
           </p>
 
           <p>
-            We have been working in the industry for more than 6 years, and have
+            We have been working in the industry for more than 7 years, and have
             experience with a range of programming languages, programming
             techniques and philosophies. We are passionate about reflecting on
             these and more subjects and hopefully, in the process, we can help
             others improve and move their careers forward.
           </p>
         </section>
+          */}
 
         <BioContainer>
           {authors.map((author) => (
@@ -92,6 +112,7 @@ export const pageQuery = graphql`
 `
 
 const BioContainer = styled.section`
-  margin-top: 50px;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
 `

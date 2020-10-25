@@ -7,6 +7,7 @@ export interface IProps {
   authors: Array<IAuthor>
 }
 
+// TODO improve
 export default function SharedBio(props: IProps) {
   const { authors = [] } = props
 
@@ -14,13 +15,10 @@ export default function SharedBio(props: IProps) {
     <Container>
       <p>
         A blog by <MiniBio author={authors[0]} />
-        {" and "}
-        <MiniBio author={authors[1]} />
-        {"."}
       </p>
-      <p>We talk about Programming, Tech Culture and random stuff.</p>
+      <p>I talk about Programming, Tech Culture and random stuff.</p>
       <p>
-        <Link to="about">About us</Link>
+        <Link to="about">About</Link>
       </p>
     </Container>
   )
