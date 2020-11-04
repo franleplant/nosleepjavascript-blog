@@ -105,9 +105,9 @@ Jest has an awesome module mocking story:
 - Enables well known practices of unit testing and mocking thoroughly.
 - Enables effective, efficient and terse unit tests of complex pieces of code.
 
-> little implementation details: jest achieves
+> Little implementation detail: Jest achieves
 > this partially by running tests inside an isolated [Nodejs vm](https://nodejs.org/api/vm.html)
-> which gives jest complete control of the test environment).
+> which gives jest complete control of the test environment.
 
 Let's cover some really useful patterns I have been using a lot lately:
 
@@ -117,12 +117,9 @@ Let's cover some really useful patterns I have been using a lot lately:
 import myLib from "my-lib"
 
 // now myLib is a mock
-jest
-  .mock("my-lib")(
-    // configure a mock return value, you
-    myLib as jest.Mock
-  )
-  .mockImplementation(() => "test value")
+jest.mock("my-lib")
+// configure a mock return value, you
+;(myLib as jest.Mock).mockImplementation(() => "test value")
 ```
 
 - es6 modules: member mock
@@ -131,12 +128,12 @@ jest
 import { member } from "my-lib"
 
 // now myLib is a mock
-jest
-  .mock("my-lib")(
-    // configure a mock return value, you
-    member as jest.Mock
-  )
-  .mockImplementation(() => "test value")
+jest.mock("my-lib")
+
+// configure a mock return value, you
+;(member as jest.Mock).mockImplementation(
+  () => "test value"
+)
 ```
 
 There are [libs](https://github.com/jhnns/rewire)
