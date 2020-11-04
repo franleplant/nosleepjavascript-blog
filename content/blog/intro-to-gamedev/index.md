@@ -75,30 +75,30 @@ Let's review the code a little bit. The two TypeScript files that are important 
 `main.ts` is a simple file that imports from `app.ts` and creates a GameApp object by passing an HTML element, a number for screen width, and one for screen height. I want to make a low-res kind of game so I'll drop down the resolution to _300x75_:
 
 ```ts
-import { GameApp } from "./app/app"
-const myGame = new GameApp(document.body, 300, 75)
+import { GameApp } from "./app/app";
+const myGame = new GameApp(document.body, 300, 75);
 ```
 
 Finally, we have `/assets/loader.js`, which is where the creator of the template left some code that loads the game assets. Let's modify it to suit our needs:
 
 ```ts
-import ghost from "./images/ghost/*.png"
-import cloud from "./images/cloud/*.png"
-import obstacle1 from "./images/obstacle1/*.png"
-import obstacle2 from "./images/obstacle2/*.png"
-import * as PIXI from "pixi.js"
+import ghost from "./images/ghost/*.png";
+import cloud from "./images/cloud/*.png";
+import obstacle1 from "./images/obstacle1/*.png";
+import obstacle2 from "./images/obstacle2/*.png";
+import * as PIXI from "pixi.js";
 
 const spriteNames = {
   ghost: Object.values(ghost),
   obstacleGrave: Object.values(obstacle1),
   obstaclePumpkin: Object.values(obstacle2),
   cloud: Object.values(cloud),
-}
+};
 
 export function GetSprite(name) {
   return new PIXI.AnimatedSprite(
     spriteNames[name].map((path) => PIXI.Texture.from(path))
-  )
+  );
 }
 ```
 
@@ -130,7 +130,7 @@ Once the assets are out of the way, we can focus our efforts on the game code. R
 
 ```ts
 export class GameApp {
-  private app: PIXI.Application
+  private app: PIXI.Application;
   constructor(
     parent: HTMLElement,
     width: number,
@@ -140,19 +140,19 @@ export class GameApp {
       width,
       height,
       backgroundColor: 0x000000,
-    })
+    });
 
     // init Pixi loader
-    let loader = new PIXI.Loader()
+    let loader = new PIXI.Loader();
 
     // Add user player assets
-    console.log("Player to load", playerFrames)
+    console.log("Player to load", playerFrames);
     Object.keys(playerFrames).forEach((key) => {
-      loader.add(playerFrames[key])
-    })
+      loader.add(playerFrames[key]);
+    });
 
     // Load assets
-    loader.load(this.onAssetsLoaded.bind(this))
+    loader.load(this.onAssetsLoaded.bind(this));
   }
 }
 ```
@@ -165,7 +165,7 @@ This part is not very fun or interesting to discuss but needs to be done, so fee
 
 ```ts
 export class GameApp {
-  private app: PIXI.Application
+  private app: PIXI.Application;
   constructor(
     parent: HTMLElement,
     width: number,
@@ -177,11 +177,11 @@ export class GameApp {
       backgroundColor: 0xffffff,
       antialias: false,
       resolution: 3,
-    })
+    });
 
     // this scaling mode makes it so that scaled pixels are the
     // same as the nearest neighbor, making it blocky as we want it
-    PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST
+    PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
   }
 }
 ```
@@ -191,13 +191,13 @@ export class GameApp {
 We have completed the setup of the game, so it's time to start writing the game loop. The game loop is, at a high level, the main flow control tool of most modern games. It usually looks something like this in abstract terms (order is really not very relevant):
 
 ```ts
-InitialSetup()
+InitialSetup();
 
 // game loop:
 while (true) {
-  ProcessInputs()
-  UpdateWorld()
-  RenderWorld()
+  ProcessInputs();
+  UpdateWorld();
+  RenderWorld();
 }
 ```
 
@@ -219,8 +219,8 @@ Before diving into the fun part (the gameplay code!), let's see how we will hand
 When we create the main object (of class [`PIXI.Application`](https://pixijs.download/dev/docs/PIXI.Application.html)), we'll have access to an object called the [`stage`](https://pixijs.download/dev/docs/PIXI.Application.html#stage) (of class [`PIXI.Container`](https://pixijs.download/dev/docs/PIXI.Container.html)), which is where we can tell Pixi what objects we want to have drawn. You can think of it as a list (or more generally, a collection) of objects to display. After loading an image, we can do this with a single line of code:
 
 ```ts
-let sprite = new PIXI.Sprite()
-Stage.addChild(obstacle.sprite)
+let sprite = new PIXI.Sprite();
+Stage.addChild(obstacle.sprite);
 ```
 
 You can learn more about it on PixiJS's documentation articles (I'd recommend at least glossing over them since it always helps to be familiarized with official documentation).
@@ -243,9 +243,9 @@ Regarding methods, for now we'll have one method for setup and one for the world
 
 ```ts
 export class GameApp {
-  static GameOver: boolean = false
-  static PressedSpace: boolean = false
-  static Score: number = 0
+  static GameOver: boolean = false;
+  static PressedSpace: boolean = false;
+  static Score: number = 0;
 
   constructor(
     parent: HTMLElement,
@@ -256,15 +256,15 @@ export class GameApp {
 
     // register the event for key presses
     window.onkeydown = (ev: KeyboardEvent): any => {
-      GameApp.PressedSpace = ev.key == " "
-    }
+      GameApp.PressedSpace = ev.key == " ";
+    };
 
-    Game.SetupGame()
+    Game.SetupGame();
 
     // this is the ticker that runs once per frame, let's call our Update() function
     this.app.ticker.add((delta) => {
-      Game.Update(delta)
-    })
+      Game.Update(delta);
+    });
   }
 
   static SetupGame() {
@@ -276,7 +276,7 @@ export class GameApp {
 
     // frame is ending, so let's set PressedSpace back to false
     // so that it is the default on the next frame
-    GameApp.PressedSpace = false
+    GameApp.PressedSpace = false;
   }
 }
 ```
@@ -291,15 +291,15 @@ PixiJS has two classes called [`PIXI.Sprite`](https://pixijs.download/dev/docs/P
 
 ```ts
 class Player {
-  sprite: PIXI.AnimatedSprite
+  sprite: PIXI.AnimatedSprite;
 
   public constructor() {
-    this.sprite = GetSprite("ghost")
-    this.sprite.x = 5
-    this.sprite.y = Game.GroundPosition
-    this.sprite.animationSpeed = 0.05
-    this.sprite.play()
-    Game.Stage.addChild(this.sprite)
+    this.sprite = GetSprite("ghost");
+    this.sprite.x = 5;
+    this.sprite.y = Game.GroundPosition;
+    this.sprite.animationSpeed = 0.05;
+    this.sprite.play();
+    Game.Stage.addChild(this.sprite);
   }
 }
 ```
@@ -396,31 +396,31 @@ So let's go ahead and implement all this on our `GameApp` class.:
 
 ```ts
 // creating an alias for our Union type that we can use
-type WorldObjects = Player | ScrollingObject
+type WorldObjects = Player | ScrollingObject;
 
 export class GameApp {
-  public app: PIXI.Application
+  public app: PIXI.Application;
 
-  static PressedSpace: boolean = false
-  static Stage: PIXI.Container
-  static ActiveEntities: Array<WorldObjects> = []
-  static GameOver: boolean = false
-  static ScrollSpeed: number = 3
+  static PressedSpace: boolean = false;
+  static Stage: PIXI.Container;
+  static ActiveEntities: Array<WorldObjects> = [];
+  static GameOver: boolean = false;
+  static ScrollSpeed: number = 3;
 
   // ground position, given by screen height
-  static GroundPosition: number = 0
+  static GroundPosition: number = 0;
 
   // width of game screen, given by screen width
-  static Width: number = 0
+  static Width: number = 0;
 
   // score of current run
-  static Score: number = 0
+  static Score: number = 0;
 
   // max score achieved in session
-  static MaxScore: number = 0
+  static MaxScore: number = 0;
 
   // next score in which we should place an obstacle
-  static ScoreNextObstacle: number = 0
+  static ScoreNextObstacle: number = 0;
 }
 ```
 
@@ -559,7 +559,7 @@ for (const currentEntity of GameApp.ActiveEntities) {
     currentEntity.solid &&
     this.collidesWith(currentEntity.sprite)
   ) {
-    GameApp.GameOver = true
+    GameApp.GameOver = true;
   }
 }
 ```

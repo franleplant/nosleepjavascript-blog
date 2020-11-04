@@ -1,25 +1,25 @@
-import React from "react"
-import styled from "@emotion/styled"
-import Image from "gatsby-image"
-import { rhythm } from "../../utils/typography"
-import { IGatsbyImageSharpFixedFragment } from "../../../graphql-types"
-import { IAuthor as IAuthorBase } from "../../types"
-import { COLOR } from "../../utils/theme"
+import React from "react";
+import styled from "@emotion/styled";
+import Image from "gatsby-image";
+import { rhythm } from "../../utils/typography";
+import { IGatsbyImageSharpFixedFragment } from "../../../graphql-types";
+import { IAuthor as IAuthorBase } from "../../types";
+import { COLOR } from "../../utils/theme";
 
 interface IAuthor extends IAuthorBase {
   profilepicture: {
     childImageSharp: {
-      fixed: IGatsbyImageSharpFixedFragment
-    }
-  }
+      fixed: IGatsbyImageSharpFixedFragment;
+    };
+  };
 }
 
 interface IProps {
-  author: IAuthor
+  author: IAuthor;
 }
 
 export default function Bio(props: IProps) {
-  const { author } = props
+  const { author } = props;
 
   return (
     <Container>
@@ -41,7 +41,7 @@ export default function Bio(props: IProps) {
       </div>
       <About>{author.bio}</About>
     </Container>
-  )
+  );
 }
 
 function Github({ url }: { url: string }) {
@@ -49,7 +49,7 @@ function Github({ url }: { url: string }) {
     <a href={url} target="_blank" rel="noopener noreferrer">
       github
     </a>
-  )
+  );
 }
 
 function Twitter({ handle }: { handle: string }) {
@@ -61,7 +61,7 @@ function Twitter({ handle }: { handle: string }) {
     >
       twitter
     </a>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -71,13 +71,13 @@ const Container = styled.div`
   margin-bottom: ${rhythm(2.5)};
   width: 400px;
   padding: 50px;
-`
+`;
 
 const Name = styled.div`
   color: ${COLOR.SECONDARY};
   font-weight: bold;
-`
+`;
 
 const About = styled.p`
   text-align: center;
-`
+`;

@@ -1,6 +1,6 @@
-import React from "react"
-import styled from "@emotion/styled"
-import { COLOR } from "../utils/theme"
+import React from "react";
+import styled from "@emotion/styled";
+import { COLOR } from "../utils/theme";
 
 export default function NewsletterSubscribe() {
   return (
@@ -31,7 +31,7 @@ export default function NewsletterSubscribe() {
         }}
       />
     </Container>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -56,4 +56,4 @@ const Container = styled.div`
   input[type=submit]: hover {
     background-color: ${COLOR.SECONDARY}a1 !important;
   }
-`
+`;

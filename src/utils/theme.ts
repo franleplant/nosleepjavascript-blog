@@ -3,4 +3,4 @@ export const COLOR = {
   PRIMARY: `#FDD617`,
   // Pink
   SECONDARY: `#FF00FF`,
-}
+};

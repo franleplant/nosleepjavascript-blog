@@ -350,8 +350,8 @@ export type IAuthorYamlFieldsEnum =
   'profilepicture___childMarkdownRemark___frontmatter___date' |
   'profilepicture___childMarkdownRemark___frontmatter___description' |
   'profilepicture___childMarkdownRemark___frontmatter___tags' |
-  'profilepicture___childMarkdownRemark___frontmatter___todo' |
   'profilepicture___childMarkdownRemark___frontmatter___seoFooter' |
+  'profilepicture___childMarkdownRemark___frontmatter___todo' |
   'profilepicture___childMarkdownRemark___excerpt' |
   'profilepicture___childMarkdownRemark___rawMarkdownBody' |
   'profilepicture___childMarkdownRemark___fileAbsolutePath' |
@@ -1199,8 +1199,8 @@ export type IFileFieldsEnum =
   'childMarkdownRemark___frontmatter___author___github' |
   'childMarkdownRemark___frontmatter___description' |
   'childMarkdownRemark___frontmatter___tags' |
-  'childMarkdownRemark___frontmatter___todo' |
   'childMarkdownRemark___frontmatter___seoFooter' |
+  'childMarkdownRemark___frontmatter___todo' |
   'childMarkdownRemark___excerpt' |
   'childMarkdownRemark___rawMarkdownBody' |
   'childMarkdownRemark___fileAbsolutePath' |
@@ -2034,8 +2034,8 @@ export type IMarkdownRemarkFieldsEnum =
   'frontmatter___author___github' |
   'frontmatter___description' |
   'frontmatter___tags' |
-  'frontmatter___todo' |
   'frontmatter___seoFooter' |
+  'frontmatter___todo' |
   'excerpt' |
   'rawMarkdownBody' |
   'fileAbsolutePath' |
@@ -2186,8 +2186,8 @@ export type IMarkdownRemarkFrontmatter = {
   author: Maybe<IAuthorYaml>;
   description: Maybe<Scalars['String']>;
   tags: Maybe<Array<Maybe<Scalars['String']>>>;
-  todo: Maybe<Array<Maybe<Scalars['String']>>>;
   seoFooter: Maybe<Array<Maybe<Scalars['String']>>>;
+  todo: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
@@ -2204,8 +2204,8 @@ export type IMarkdownRemarkFrontmatterFilterInput = {
   author: Maybe<IAuthorYamlFilterInput>;
   description: Maybe<IStringQueryOperatorInput>;
   tags: Maybe<IStringQueryOperatorInput>;
-  todo: Maybe<IStringQueryOperatorInput>;
   seoFooter: Maybe<IStringQueryOperatorInput>;
+  todo: Maybe<IStringQueryOperatorInput>;
 };
 
 export type IMarkdownRemarkGroupConnection = {
@@ -2440,6 +2440,7 @@ export type IQuerySiteArgs = {
   host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
+  polyfill: Maybe<IBooleanQueryOperatorInput>;
   id: Maybe<IStringQueryOperatorInput>;
   parent: Maybe<INodeFilterInput>;
   children: Maybe<INodeFilterListInput>;
@@ -2573,6 +2574,7 @@ export type ISite = INode & {
   host: Maybe<Scalars['String']>;
   pathPrefix: Maybe<Scalars['String']>;
   mapping: Maybe<ISiteMapping>;
+  polyfill: Maybe<Scalars['Boolean']>;
   id: Scalars['ID'];
   parent: Maybe<INode>;
   children: Array<INode>;
@@ -2779,6 +2781,7 @@ export type ISiteFieldsEnum =
   'host' |
   'pathPrefix' |
   'mapping___MarkdownRemark_frontmatter_author' |
+  'polyfill' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -2873,6 +2876,7 @@ export type ISiteFilterInput = {
   host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
+  polyfill: Maybe<IBooleanQueryOperatorInput>;
   id: Maybe<IStringQueryOperatorInput>;
   parent: Maybe<INodeFilterInput>;
   children: Maybe<INodeFilterListInput>;

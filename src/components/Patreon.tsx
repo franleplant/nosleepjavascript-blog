@@ -1,8 +1,8 @@
-import React from "react"
-import useScript from "../hooks/useScript"
+import React from "react";
+import useScript from "../hooks/useScript";
 
 export default function Patreon() {
-  useScript("https://c6.patreon.com/becomePatronButton.bundle.js")
+  useScript("https://c6.patreon.com/becomePatronButton.bundle.js");
   return (
     <a
       href="https://www.patreon.com/bePatron?u=44509257"
@@ -10,5 +10,5 @@ export default function Patreon() {
     >
       Become a Patron!
     </a>
-  )
+  );
 }

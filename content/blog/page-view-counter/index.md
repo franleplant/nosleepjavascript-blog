@@ -292,8 +292,8 @@ Lastly, you can implement this on any page by creating a small script that calls
 
 ```js
 const url =
-  "https://pageviewcounterblog.azurewebsites.net/api/GetViewCounter/"
-const data = { URL: "this-blog-post-URL" }
+  "https://pageviewcounterblog.azurewebsites.net/api/GetViewCounter/";
+const data = { URL: "this-blog-post-URL" };
 
 const response = await fetch(url, {
   method: "POST",
@@ -301,9 +301,9 @@ const response = await fetch(url, {
   headers: {
     "Content-Type": "application/json",
   },
-})
-const body = await response.json()
-console.log("Success:", JSON.stringify(response))
+});
+const body = await response.json();
+console.log("Success:", JSON.stringify(response));
 ```
 
 Notice that this way, anyone that has access to the function endpoint can call into it. Securing the function goes beyond the scope of this post, especially because this is called in the frontend (whereas you would likely prefer to call this from the backend to authenticate properly and easily). However, something you can do pretty simply is to [add CORS policies](https://www.c-sharpcorner.com/article/handling-cors-in-azure-function/) to the function in order to have it be a little more restrictive.

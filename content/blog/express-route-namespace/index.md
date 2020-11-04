@@ -41,28 +41,28 @@ you will see in the docs:
 
 ```javascript
 function mw1(req, res, next) {
-  next()
+  next();
 }
 function mw2(req, res, next) {
-  next()
+  next();
 }
 
-var r1 = express.Router()
+var r1 = express.Router();
 r1.get("/", function (req, res, next) {
-  next()
-})
+  next();
+});
 
-var r2 = express.Router()
+var r2 = express.Router();
 r2.get("/", function (req, res, next) {
-  next()
-})
+  next();
+});
 
-var subApp = express()
+var subApp = express();
 subApp.get("/", function (req, res, next) {
-  next()
-})
+  next();
+});
 
-app.use(mw1, [mw2, r1, r2], subApp)
+app.use(mw1, [mw2, r1, r2], subApp);
 ```
 
 As you can see, this is rather blunt and inexpressive and it is using
@@ -107,17 +107,17 @@ A common pattern to express this is the following:
 
 ```typescript
 function dogController(): Router {
-  const router = Router()
+  const router = Router();
 
   router.get("/dog", (req, res) => {
-    res.send("get all dogs")
-  })
+    res.send("get all dogs");
+  });
 
   router.get("/dog/:dogId", (req, res) => {
-    res.send(`get dog with id ${req.params.dogId}`)
-  })
+    res.send(`get dog with id ${req.params.dogId}`);
+  });
 
-  return router
+  return router;
 }
 ```
 
@@ -129,7 +129,7 @@ Right now this router isn't _mounted_ anywhere, which means that the express app
 is not serving it, so to serve it you can do the following:
 
 ```typescript
-app.use("/api", dogController())
+app.use("/api", dogController());
 ```
 
 At this point you will have the router mounted and if you
@@ -148,7 +148,7 @@ If you have followed here you will for sure
 know the exact answer and it is the following
 
 ```typescript
-app.use("/api", [dogController(), catController()])
+app.use("/api", [dogController(), catController()]);
 ```
 
 So, the end interface is rather nice, you can add
@@ -181,52 +181,52 @@ $ http://localhost:3000/
 How to create route namespaces in express TLDR:
 
 ```typescript
-import express, { Router } from "express"
+import express, { Router } from "express";
 
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 
 // Fake Rest Controller for Dog resource
 function dogController(): Router {
-  const router = Router()
+  const router = Router();
 
   router.get("/dog", (req, res) => {
-    res.send("get all dogs")
-  })
+    res.send("get all dogs");
+  });
 
   router.get("/dog/:dogId", (req, res) => {
-    res.send(`get dog with id ${req.params.dogId}`)
-  })
+    res.send(`get dog with id ${req.params.dogId}`);
+  });
 
-  return router
+  return router;
 }
 
 // Fake Rest Controller for Cat resource
 function catController(): Router {
-  const router = Router()
+  const router = Router();
 
   router.get("/cat", (req, res) => {
-    res.send("get all cats")
-  })
+    res.send("get all cats");
+  });
 
   router.get("/cat/:catId", (req, res) => {
-    res.send(`get cat with id ${req.params.catId}`)
-  })
+    res.send(`get cat with id ${req.params.catId}`);
+  });
 
-  return router
+  return router;
 }
 
 // Create the api namespace and assign
 // any amount of routers
-app.use("/api", [dogController(), catController()])
+app.use("/api", [dogController(), catController()]);
 
-app.get("/", (req, res) => res.send("Hello World!"))
+app.get("/", (req, res) => res.send("Hello World!"));
 
 app.listen(port, () =>
   console.log(
     `Example app listening at http://localhost:${port}`
   )
-)
+);
 ```
 
 Download the code [here](TODO REPO).

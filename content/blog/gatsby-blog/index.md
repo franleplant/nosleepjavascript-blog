@@ -155,7 +155,7 @@ of your custom domain like `myblog.com/custompath` then adjust accordingly.
 Go to `gatsby-config.js` and set the top level property
 
 ```javascript
-pathPrefix: reponame
+pathPrefix: reponame;
 ```
 
 ### 4 deploy!

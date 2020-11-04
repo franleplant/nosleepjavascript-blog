@@ -1,15 +1,15 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "@emotion/styled"
-import { IAuthor } from "../types"
+import React from "react";
+import { Link } from "gatsby";
+import styled from "@emotion/styled";
+import { IAuthor } from "../types";
 
 export interface IProps {
-  authors: Array<IAuthor>
+  authors: Array<IAuthor>;
 }
 
 // TODO improve
 export default function SharedBio(props: IProps) {
-  const { authors = [] } = props
+  const { authors = [] } = props;
 
   return (
     <Container>
@@ -21,7 +21,7 @@ export default function SharedBio(props: IProps) {
         <Link to="about">About</Link>
       </p>
     </Container>
-  )
+  );
 }
 
 export function MiniBio({ author }: { author: IAuthor }) {
@@ -31,7 +31,7 @@ export function MiniBio({ author }: { author: IAuthor }) {
         <a href={`https://twitter.com/${author.twitter}`}>{author.id}</a>
       </strong>
     </span>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -40,4 +40,4 @@ const Container = styled.div`
   & > p {
     margin: 0;
   }
-`
+`;
