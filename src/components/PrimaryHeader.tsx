@@ -1,16 +1,16 @@
-import React from "react"
-import { Link } from "gatsby"
-import { css } from "@emotion/core"
-import typography from "../utils/typography"
+import React from "react";
+import { Link } from "gatsby";
+import { css } from "@emotion/core";
+import typography from "../utils/typography";
 
-import logo from "../../content/assets/logo.svg"
+import logo from "../../content/assets/logo.svg";
 
 export interface IProps {
-  title: string
+  title: string;
 }
 
 export default function PrimaryHeader(props: IProps) {
-  const { title } = props
+  const { title } = props;
   return (
     <h1
       css={css`
@@ -23,5 +23,5 @@ export default function PrimaryHeader(props: IProps) {
         <img src={logo} alt={title} />
       </Link>
     </h1>
-  )
+  );
 }

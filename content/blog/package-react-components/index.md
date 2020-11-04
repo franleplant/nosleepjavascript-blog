@@ -255,7 +255,7 @@ To use a module with all its styles and assets such as images
 you simply need to write a single line of code:
 
 ```javascript
-import module from "module"
+import module from "module";
 ```
 
 That is all!
@@ -265,7 +265,7 @@ in the client) the experience is very similar:
 
 ```javascript
 // Inside some function or component
-const module = await import("module")
+const module = await import("module");
 ```
 
 If you have Webpack configured correctly to create chunks that can be
@@ -392,7 +392,7 @@ Read more [here][21]
 **Webpack configuration**
 
 ```javascript
-const path = require("path")
+const path = require("path");
 
 // This is where we define the Inline magic.
 // This loader will turn all .svg, .jpg and .png files
@@ -408,7 +408,7 @@ const fileRules = {
       },
     },
   ],
-}
+};
 
 // Pretty standard babel configurations for modern react apps
 const jsRules = {
@@ -420,7 +420,7 @@ const jsRules = {
       presets: ["@babel/preset-env", "@babel/preset-react"],
     },
   },
-}
+};
 
 module.exports = {
   entry: "./src/index.js",
@@ -445,24 +445,24 @@ module.exports = {
   module: {
     rules: [jsRules, fileRules],
   },
-}
+};
 ```
 
 **Example Component with CSS-in-JS, inline assets and Theming**
 
 ```javascript
-import React from "react"
-import styled from "@emotion/styled"
-import { ThemeProvider } from "emotion-theming"
+import React from "react";
+import styled from "@emotion/styled";
+import { ThemeProvider } from "emotion-theming";
 
-import dog1 from "./dog.jpg"
-import dog2 from "./dog2.jpg"
+import dog1 from "./dog.jpg";
+import dog2 from "./dog2.jpg";
 
 const defaultTheme = {
   colors: {
     primary: "blue",
   },
-}
+};
 
 // Use regular CSS features through CSS-in-JS
 // instrumented by Emotion
@@ -473,33 +473,33 @@ const Container = styled.div`
   & > div {
     margin: 10px;
   }
-`
+`;
 
 const Name = styled.span`
   font-weight: bold;
   color: ${(props) => props.theme.colors.primary};
-`
+`;
 
 // Use the image from CSS-in-JS
 const Dog2 = styled.div`
   background: center / contain no-repeat url(${dog2});
   width: 100px;
   height: 100px;
-`
+`;
 
 // Use the image from Javascript code
 const Dog1 = () => (
   <div>
     <img src={dog1} width="100" />
   </div>
-)
+);
 
 export default function MyComponent(props) {
   return (
     <ThemeProvider
       theme={(ancestorTheme = {}) => {
-        console.log("theme", ancestorTheme)
-        return { ...defaultTheme, ...ancestorTheme }
+        console.log("theme", ancestorTheme);
+        return { ...defaultTheme, ...ancestorTheme };
       }}
     >
       <Container>
@@ -514,25 +514,25 @@ export default function MyComponent(props) {
         <Dog2 />
       </Container>
     </ThemeProvider>
-  )
+  );
 }
 ```
 
 **Component Consumer**
 
 ```javascript
-import React from "react"
+import React from "react";
 // In _real_ applications you would use it like this
-import MyComponent from "my-lib"
+import MyComponent from "my-lib";
 
 // Theming API!
-import { ThemeProvider } from "emotion-theming"
+import { ThemeProvider } from "emotion-theming";
 
 const appTheme = {
   colors: {
     primary: "green",
   },
-}
+};
 
 export default function App() {
   return (
@@ -547,7 +547,7 @@ export default function App() {
         <MyComponent name="Luke Skywalker" />
       </ThemeProvider>
     </div>
-  )
+  );
 }
 ```
 
@@ -634,7 +634,7 @@ In your `webpack.config.js`
 ```javascript
 // This tells webpack to not include these dependencies in the final bundle
 // since you expect them to be provided in the Component Consumer's context.
-externals: ["react"]
+externals: ["react"];
 ```
 
 ## Appendix 2: Active vs Passive compilation

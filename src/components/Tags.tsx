@@ -1,10 +1,10 @@
-import React from "react"
-import styled from "@emotion/styled"
-import color from "color"
-import * as theme from "../utils/theme"
+import React from "react";
+import styled from "@emotion/styled";
+import color from "color";
+import * as theme from "../utils/theme";
 
 export interface IProps {
-  tags: Array<string>
+  tags: Array<string>;
 }
 
 export default function Tags({ tags }: IProps) {
@@ -14,7 +14,7 @@ export default function Tags({ tags }: IProps) {
         <Tag key={tag}>{`#${tag}`}</Tag>
       ))}
     </Container>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -22,7 +22,7 @@ const Container = styled.div`
   margin-left: -5px;
   display: flex;
   flex-wrap: wrap;
-`
+`;
 
 const Tag = styled.span`
   box-sizing: border-box;
@@ -46,4 +46,4 @@ const Tag = styled.span`
   &:hover {
     background: ${color(theme.COLOR.PRIMARY).alpha(0.5).string()};
   }
-`
+`;

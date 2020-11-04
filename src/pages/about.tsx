@@ -1,27 +1,27 @@
-import React from "react"
-import { graphql } from "gatsby"
-import styled from "@emotion/styled"
+import React from "react";
+import { graphql } from "gatsby";
+import styled from "@emotion/styled";
 
-import Layout from "../components/Layout"
-import SEO from "../components/Seo"
-import Bio from "../components/About/Bio"
-import { rhythm } from "../utils/typography"
-import NewsletterSubscribe from "../components/NewsletterSubscribe"
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+import Bio from "../components/About/Bio";
+import { rhythm } from "../utils/typography";
+import NewsletterSubscribe from "../components/NewsletterSubscribe";
 
-import { IAboutPageQuery } from "../../graphql-types"
-import BuyMeCoffee from "../components/BuyMeCoffee"
-import Patreon from "../components/Patreon"
+import { IAboutPageQuery } from "../../graphql-types";
+import BuyMeCoffee from "../components/BuyMeCoffee";
+import Patreon from "../components/Patreon";
 
 export interface IProps {
-  location: any
-  data: IAboutPageQuery
+  location: any;
+  data: IAboutPageQuery;
 }
 
 export default function AboutPage(props: IProps) {
-  const { allAuthorYaml, site } = props.data
+  const { allAuthorYaml, site } = props.data;
   const authors = allAuthorYaml.nodes.filter(
     (author) => author.id === "franleplant"
-  )
+  );
 
   return (
     <Layout location={props.location} title={site.siteMetadata.title}>
@@ -83,7 +83,7 @@ export default function AboutPage(props: IProps) {
         <footer></footer>
       </article>
     </Layout>
-  )
+  );
 }
 
 export const pageQuery = graphql`
@@ -109,10 +109,10 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 const BioContainer = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: center;
-`
+`;

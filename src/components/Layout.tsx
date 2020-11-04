@@ -1,22 +1,22 @@
-import React from "react"
-import styled from "@emotion/styled"
-import { Global, css } from "@emotion/core"
-import Helmet from "react-helmet"
+import React from "react";
+import styled from "@emotion/styled";
+import { Global, css } from "@emotion/core";
+import Helmet from "react-helmet";
 
-import { rhythm } from "../utils/typography"
-import PrimaryHeader from "./PrimaryHeader"
-import SecondaryHeader from "./SecondaryHeader"
+import { rhythm } from "../utils/typography";
+import PrimaryHeader from "./PrimaryHeader";
+import SecondaryHeader from "./SecondaryHeader";
 
 interface IProps {
-  children: any
-  location: any
-  title: any
+  children: any;
+  location: any;
+  title: any;
 }
 
 export default function Layout(props: IProps) {
-  const { location, title, children } = props
-  const rootPath = `${__PATH_PREFIX__}/`
-  const isRoot = location.pathname === rootPath
+  const { location, title, children } = props;
+  const rootPath = `${__PATH_PREFIX__}/`;
+  const isRoot = location.pathname === rootPath;
 
   return (
     <Container>
@@ -64,7 +64,7 @@ export default function Layout(props: IProps) {
       <main>{children}</main>
       <footer>© {new Date().getFullYear()}, nosleepjavascript.com</footer>
     </Container>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -72,4 +72,4 @@ const Container = styled.div`
   margin-right: auto;
   max-width: ${rhythm(32)};
   padding: ${rhythm(1)} ${rhythm(3 / 4)};
-`
+`;

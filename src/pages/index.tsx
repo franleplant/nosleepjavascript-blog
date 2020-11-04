@@ -1,25 +1,25 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import { css } from "@emotion/core"
+import React from "react";
+import { Link, graphql } from "gatsby";
+import { css } from "@emotion/core";
 
-import Layout from "../components/Layout"
-import SEO from "../components/Seo"
-import { rhythm } from "../utils/typography"
-import SharedBio from "../components/SharedBio"
-import * as theme from "../utils/theme"
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+import { rhythm } from "../utils/typography";
+import SharedBio from "../components/SharedBio";
+import * as theme from "../utils/theme";
 
-import { IBlogIndexQuery } from "../../graphql-types"
-import NewsletterSubscribe from "../components/NewsletterSubscribe"
+import { IBlogIndexQuery } from "../../graphql-types";
+import NewsletterSubscribe from "../components/NewsletterSubscribe";
 
 export interface IProps {
-  data: IBlogIndexQuery
-  location: any
+  data: IBlogIndexQuery;
+  location: any;
 }
 
 export default function BlogIndex(props: IProps) {
-  const { data } = props
-  const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
+  const { data } = props;
+  const siteTitle = data.site.siteMetadata.title;
+  const posts = data.allMarkdownRemark.edges;
 
   return (
     <Layout location={props.location} title={siteTitle}>
@@ -35,9 +35,9 @@ export default function BlogIndex(props: IProps) {
       <NewsletterSubscribe />
 
       {posts.map(({ node }) => {
-        const slug = node.fields.slug
-        const title = node.frontmatter.title || slug
-        const content = node.frontmatter.description || node.excerpt
+        const slug = node.fields.slug;
+        const title = node.frontmatter.title || slug;
+        const content = node.frontmatter.description || node.excerpt;
 
         return (
           <article key={slug}>
@@ -72,10 +72,10 @@ export default function BlogIndex(props: IProps) {
               />
             </section>
           </article>
-        )
+        );
       })}
     </Layout>
-  )
+  );
 }
 
 export const pageQuery = graphql`
@@ -115,4 +115,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

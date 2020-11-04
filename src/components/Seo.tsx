@@ -5,21 +5,21 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
-import { IAuthor } from "../types"
+import React from "react";
+import Helmet from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
+import { IAuthor } from "../types";
 
 export interface IProps {
-  title: string
-  description?: string
-  lang?: string
-  meta?: Array<any>
-  author?: IAuthor
+  title: string;
+  description?: string;
+  lang?: string;
+  meta?: Array<any>;
+  author?: IAuthor;
 }
 
 export default function SEO(props: IProps) {
-  const { description = ``, lang = `en`, meta = [], title, author } = props
+  const { description = ``, lang = `en`, meta = [], title, author } = props;
 
   const { site } = useStaticQuery(
     graphql`
@@ -33,9 +33,9 @@ export default function SEO(props: IProps) {
         }
       }
     `
-  )
+  );
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site.siteMetadata.description;
 
   return (
     <Helmet
@@ -83,5 +83,5 @@ export default function SEO(props: IProps) {
         },
       ].concat(meta)}
     />
-  )
+  );
 }

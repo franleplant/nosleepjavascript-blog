@@ -72,15 +72,15 @@ For example in this blog we have an authors yaml. The codegen generates this typ
 
 ```typescript
 export type IAuthorYaml = INode & {
-  id: Scalars["ID"]
-  parent: Maybe<INode>
-  children: Array<INode>
-  internal: IInternal
-  bio: Maybe<Scalars["String"]>
-  profilepicture: Maybe<IFile>
-  twitter: Maybe<Scalars["String"]>
-  github: Maybe<Scalars["String"]>
-}
+  id: Scalars["ID"];
+  parent: Maybe<INode>;
+  children: Array<INode>;
+  internal: IInternal;
+  bio: Maybe<Scalars["String"]>;
+  profilepicture: Maybe<IFile>;
+  twitter: Maybe<Scalars["String"]>;
+  github: Maybe<Scalars["String"]>;
+};
 ```
 
 but the pages that make the query might generate different variantes of this type. Sometime shaving
@@ -92,11 +92,11 @@ that I defined which is very similar to this but only has the "domain" attribute
 
 ```typescript
 export interface IAuthor {
-  id: string
-  bio: string
-  twitter: string
-  github: string
-  profilepicture?: any
+  id: string;
+  bio: string;
+  twitter: string;
+  github: string;
+  profilepicture?: any;
 }
 ```
 

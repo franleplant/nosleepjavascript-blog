@@ -166,29 +166,29 @@ This is the `index.ts` that makes up the high level app implementation, think of
 as a mix of the boilerplate plus the two domain / business specific routes.
 
 ```typescript
-const app = express()
+const app = express();
 
 // Necessary for express to parse the cookies into a nice
 // higher level object
-app.use(cookieParser())
+app.use(cookieParser());
 
 // initialises the Issuer and the Client
-app.use(auth.initialize)
+app.use(auth.initialize);
 // Deals with the user session
-app.use(auth.session)
+app.use(auth.session);
 // Adds the OAuth / OpenId necessary routes.
-app.use(auth.routes())
+app.use(auth.routes());
 
 app.get("/", (req, res) => {
   // use the pre configured view engine
   // to render the index.mustache file
-  res.render("index")
-})
+  res.render("index");
+});
 
 app.get("/private", auth.requireAuth, (req, res) => {
   // This is the main high level hook for the user
   // session, we will be building this later
-  const claims = req.session!.tokenSet.claims()
+  const claims = req.session!.tokenSet.claims();
 
   // render private.mustache and interpolate
   // the following data
@@ -196,12 +196,14 @@ app.get("/private", auth.requireAuth, (req, res) => {
     email: claims.email,
     picture: claims.picture,
     name: claims.name,
-  })
-})
+  });
+});
 
 app.listen(process.env.PORT, () => {
-  console.log(`Express started on port ${process.env.PORT}`)
-})
+  console.log(
+    `Express started on port ${process.env.PORT}`
+  );
+});
 ```
 
 Next we will cover more details (descending into the details).
@@ -221,23 +223,23 @@ export async function initialize(
   next: NextFunction
 ) {
   if (req.app.authIssuer) {
-    return next()
+    return next();
   }
 
   const googleIssuer = await Issuer.discover(
     "https://accounts.google.com"
-  )
+  );
   const client = new googleIssuer.Client({
     client_id: process.env.OAUTH_CLIENT_ID!,
     client_secret: process.env.OAUTH_CLIENT_SECRET!,
     redirect_uris: [`${getDomain()}/auth/callback`],
     response_types: ["code"],
-  })
+  });
 
-  req.app.authIssuer = googleIssuer
-  req.app.authClient = client
+  req.app.authIssuer = googleIssuer;
+  req.app.authClient = client;
 
-  next()
+  next();
 }
 ```
 
@@ -261,27 +263,27 @@ We also encapsulated these routes into a nice middleware that we called `auth.ro
 router.get("/auth/login", function (req, res, next) {
   // Check the full code to see a
   // concrete implementation of this
-  const state = calcState(extraContent)
+  const state = calcState(extraContent);
 
   // calculate the url where we want to redirect to
   const authUrl = req.app.authClient.authorizationUrl({
     scope: "openid email profile",
     state,
-  })
+  });
 
-  setAuthStateCookie(res, state)
-  res.redirect(authUrl)
-})
+  setAuthStateCookie(res, state);
+  res.redirect(authUrl);
+});
 
 // Callback
 router.get("/auth/callback", async (req, res, next) => {
-  const client = req.app.authClient
+  const client = req.app.authClient;
 
   // extract all the necessary query params
   // like the authorization code.
-  const params = client.callbackParams(req)
+  const params = client.callbackParams(req);
   // read the state cookie
-  const state = getAuthStateCookie(req)
+  const state = getAuthStateCookie(req);
   // exchange the authorization code for the access,
   // refresh and id token, this is what makes up the
   // main `Back channel` communication, it is considered
@@ -293,19 +295,19 @@ router.get("/auth/callback", async (req, res, next) => {
     // identity provider passes as params
     // with the one we stored in the cookies.
     { state }
-  )
+  );
   // We can fetch the userinfo (basic identity attributes)
-  const user = await client.userinfo(tokenSet)
+  const user = await client.userinfo(tokenSet);
 
   // Set the session cookie,
   // we could also set req.session but
   // since we are returning immediately is not
   // a must
-  const sessionCookie = serialize({ tokenSet, user })
-  setSessionCookie(req, sessionCookie)
+  const sessionCookie = serialize({ tokenSet, user });
+  setSessionCookie(req, sessionCookie);
 
-  res.redirect("/")
-})
+  res.redirect("/");
+});
 ```
 
 Notes:
@@ -410,33 +412,33 @@ export async function session(
   res: Response,
   next: NextFunction
 ) {
-  const sessionCookie = getSessionCookie(req)
+  const sessionCookie = getSessionCookie(req);
   // If there is no session cookie it means there is no
   // authenticated user associated with this request,
   // no further work needed.
   if (!sessionCookie) {
-    return next()
+    return next();
   }
 
-  const client = req.app.authClient
+  const client = req.app.authClient;
   // Parse the cookie into a TokenSet instance
-  const session = deserialize(sessionCookie)
+  const session = deserialize(sessionCookie);
 
   // Refresh the tokens if necessary
   if (session.tokenSet.expired()) {
     try {
       const refreshedTokenSet = await client.refresh(
         session.tokenSet
-      )
-      session.tokenSet = refreshedTokenSet
+      );
+      session.tokenSet = refreshedTokenSet;
       // set the cookie with the refreshed tokens
-      setSessionCookie(req, serialize(session))
+      setSessionCookie(req, serialize(session));
     } catch (err) {
       // this can throw when the refresh
       // token has expired,
       // logout completely when that happens
-      clearSessionCookie(req)
-      return next()
+      clearSessionCookie(req);
+      return next();
     }
   }
 
@@ -447,20 +449,20 @@ export async function session(
   // that we got as part as the discovery process, if this succeeds it means
   // that the token inside the cookie is a token that has been crated by our
   // identity provided and thus it is secure and fine and we can trust it.
-  const validate = client.validateIdToken as any
+  const validate = client.validateIdToken as any;
   try {
-    await validate.call(client, session.tokenSet)
+    await validate.call(client, session.tokenSet);
   } catch (err) {
-    console.log("bad token signature found in auth cookie")
-    return next(new Error("Bad Token in Auth Cookie!"))
+    console.log("bad token signature found in auth cookie");
+    return next(new Error("Bad Token in Auth Cookie!"));
   }
 
   // After all that work the only thing remaining is
   // to store the valid session object into req.session
   // for the rest of the app to use.
-  req.session = session
+  req.session = session;
 
-  next()
+  next();
 }
 ```
 
@@ -488,12 +490,12 @@ export async function requireAuth(
   res: Response,
   next: NextFunction
 ) {
-  const session = req.session
+  const session = req.session;
   if (!session) {
-    return next(new Error("unauthenticated"))
+    return next(new Error("unauthenticated"));
   }
 
-  next()
+  next();
 }
 ```
 
@@ -512,18 +514,18 @@ We are going to use the first approach:
 
 ```typescript
 router.get("/auth/logout", async (req, res, next) => {
-  const client = req.app.authClient
-  const tokenSet = req.session?.tokenSet
+  const client = req.app.authClient;
+  const tokenSet = req.session?.tokenSet;
 
   // Make sure the access token we got from the identity provider
   // gets revoked, this is for security reasons
-  await client.revoke(tokenSet!.access_token!)
+  await client.revoke(tokenSet!.access_token!);
 
   // Clean up session cookies
-  clearSessionCookie(res)
+  clearSessionCookie(res);
 
-  res.redirect("/")
-})
+  res.redirect("/");
+});
 ```
 
 ### Step 6: Putting it all together

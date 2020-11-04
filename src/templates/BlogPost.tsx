@@ -1,57 +1,57 @@
-import React, { useEffect, useState } from "react"
-import { Link, graphql } from "gatsby"
-import { css } from "@emotion/core"
+import React, { useEffect, useState } from "react";
+import { Link, graphql } from "gatsby";
+import { css } from "@emotion/core";
 
-import { IBlogPostBySlugQuery } from "../../graphql-types"
-import Bio from "../components/Bio"
-import Layout from "../components/Layout"
-import SEO from "../components/Seo"
-import Tags from "../components/Tags"
-import { rhythm, scale } from "../utils/typography"
-import getSetViewCount from "../dal/getSetPageView"
-import NewsletterSubscribe from "../components/NewsletterSubscribe"
-import SeoFooter from "../components/SeoFooter"
-import BuyMeCoffee from "../components/BuyMeCoffee"
-import Patreon from "../components/Patreon"
+import { IBlogPostBySlugQuery } from "../../graphql-types";
+import Bio from "../components/Bio";
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+import Tags from "../components/Tags";
+import { rhythm, scale } from "../utils/typography";
+import getSetViewCount from "../dal/getSetPageView";
+import NewsletterSubscribe from "../components/NewsletterSubscribe";
+import SeoFooter from "../components/SeoFooter";
+import BuyMeCoffee from "../components/BuyMeCoffee";
+import Patreon from "../components/Patreon";
 
-const isLocalhost = () => window.location.href.includes("localhost:8000")
+const isLocalhost = () => window.location.href.includes("localhost:8000");
 
 interface IProps {
-  data: IBlogPostBySlugQuery
-  location: any
+  data: IBlogPostBySlugQuery;
+  location: any;
   pageContext: {
-    slug: string
-    previous?: any
-    next?: any
-  }
+    slug: string;
+    previous?: any;
+    next?: any;
+  };
 }
 
 export default function BlogPostTemplate(props: IProps) {
-  const { previous, next } = props.pageContext
-  const siteTitle = props.data.site.siteMetadata.title
-  const post = props.data.markdownRemark
+  const { previous, next } = props.pageContext;
+  const siteTitle = props.data.site.siteMetadata.title;
+  const post = props.data.markdownRemark;
   const {
     title,
     description,
     author,
     tags = [],
     seoFooter = "",
-  } = post.frontmatter
-  const { slug } = post.fields
+  } = post.frontmatter;
+  const { slug } = post.fields;
 
-  const [pageViewCount, setPageViewCount] = useState<number>()
+  const [pageViewCount, setPageViewCount] = useState<number>();
 
   useEffect(() => {
     async function fetchData() {
-      const pageViewCount = await getSetViewCount(slug)
-      setPageViewCount(pageViewCount)
+      const pageViewCount = await getSetViewCount(slug);
+      setPageViewCount(pageViewCount);
     }
 
     // Do not bump page count if it's localhost
     if (!isLocalhost()) {
-      fetchData()
+      fetchData();
     }
-  }, [slug])
+  }, [slug]);
 
   return (
     <Layout location={props.location} title={siteTitle}>
@@ -142,7 +142,7 @@ export default function BlogPostTemplate(props: IProps) {
 
       <SeoFooter data={Array.isArray(seoFooter) ? seoFooter : [seoFooter]} />
     </Layout>
-  )
+  );
 }
 
 export const pageQuery = graphql`
@@ -184,4 +184,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

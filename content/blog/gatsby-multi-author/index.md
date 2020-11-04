@@ -68,7 +68,7 @@ module.exports = {
     // 3. map author to author.yaml
     "MarkdownRemark.frontmatter.author": `AuthorYaml`,
   },
-}
+};
 ```
 
 You will probably need to install the necessary dependencies: `yarn add gatsby-source-filesystem gatsby-transformer-yaml`.
@@ -121,7 +121,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 ```
 
 Inside your post component you will be able to access all author data:
@@ -132,7 +132,7 @@ export default function BlogPostTemplate(props) {
     id,
     bio,
     profilepicture,
-  } = props.data.markdownRemark.frontmatter.author
+  } = props.data.markdownRemark.frontmatter.author;
 
   //...
 }
@@ -168,7 +168,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 ```
 
 Notice how `author.yaml` is mapped to `allAuthorYaml`, that name transformation
@@ -182,7 +182,7 @@ At this point your page component will be provided with an array of authors:
 ```javascript:title=src/pages/about.js
 export default function About(props) {
   // this is an array of authors
-  const authors = props.allAuthorYaml.nodes
+  const authors = props.allAuthorYaml.nodes;
 
   //...
 }
@@ -199,13 +199,13 @@ do it entirely dynamically by simply passing react props.
 
 ```javascript:title=src/pages/Author.js
 export default function Author(props) {
-  const authorId = props.author
-  const authors = props.allAuthorYaml.nodes
+  const authorId = props.author;
+  const authors = props.allAuthorYaml.nodes;
 
   // manually search for the selected author
-  const myAuthor = authors.find((a) => a.id === authorId)
+  const myAuthor = authors.find((a) => a.id === authorId);
 
-  return <p>Author Bio: {myAuthor.bio}</p>
+  return <p>Author Bio: {myAuthor.bio}</p>;
 }
 
 export const query = graphql`
@@ -216,7 +216,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 ```
 
 And you can use it like:
@@ -237,15 +237,15 @@ and some other GraphQL-only APIs but there might be very good use cases for this
 aside from supporting multiple authors:
 
 ```javascript:title=src/components/Author.js
-import authors from "../data/author.yaml"
+import authors from "../data/author.yaml";
 
 export default function Author(props) {
-  const authorId = props.author
+  const authorId = props.author;
 
   // manually search for the selected author
-  const myAuthor = authors.find((a) => a.id === authorId)
+  const myAuthor = authors.find((a) => a.id === authorId);
 
-  return <p>Author Bio: {myAuthor.bio}</p>
+  return <p>Author Bio: {myAuthor.bio}</p>;
 }
 ```
 
