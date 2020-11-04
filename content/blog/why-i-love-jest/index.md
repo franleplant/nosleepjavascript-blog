@@ -29,8 +29,8 @@ more integrated experience, making it very easy to have a production
 ready unit test setup out of the box with very little effort.
 
 Let's cover some of the things I love about Jest,
-if you are interested in my unit testing mindset and philosphy
-and an ilustrative story check it at the [end of this article](#bonus-my-unit-test-mind-set).
+if you are interested in my unit testing mindset and philosophy
+and an illustrative story check it at the [end of this article](#bonus-my-unit-test-mind-set).
 
 ## 1. Less verbose than similar frameworks
 
@@ -118,8 +118,7 @@ import myLib from "my-lib"
 
 // now myLib is a mock
 jest
-  .mock("my-lib")
-  (
+  .mock("my-lib")(
     // configure a mock return value, you
     myLib as jest.Mock
   )
@@ -133,8 +132,7 @@ import { member } from "my-lib"
 
 // now myLib is a mock
 jest
-  .mock("my-lib")
-  (
+  .mock("my-lib")(
     // configure a mock return value, you
     member as jest.Mock
   )
@@ -160,9 +158,9 @@ If your codebase already uses typescript through Babel
 then jest will automatically use that config and you won't
 need to do anything else.
 
-## 7. Jest test runner interface is aweome
+## 7. Jest test runner interface is awesome
 
-Wathch mode, interactive mode, filtering, Jest has you covered.
+Watch mode, interactive mode, filtering, Jest has you covered.
 
 Read more [here](https://jestjs.io/docs/en/cli).
 
@@ -187,15 +185,15 @@ Something similar can be done in the interactive watch mode.
 - do real unit tests, mocking everything else
 - test only the high impact code
 
-In most of the cases I don't see the value of being obsesed
+In most of the cases I don't see the value of being obsessed
 with 100% coverage, because sometimes testing two
 error handling lines inside a unhappy path branch might require
 a whole lot of code.
 
-There are cases where a 100% coverage might be addecuate
+There are cases where a 100% coverage might be adequate
 or needed but in most high level business apps there's really
 no need and the cost of keeping the coverage to 100% is really high.
-In most cases I try to implement a pareto approach, do the
+In most cases I try to implement a Pareto approach, do the
 minimum thing with the highest impact which typically translates
 into 80% code coverage and ignoring glue code files.
 
@@ -205,7 +203,35 @@ and as readable and maintainable as possible.
 
 ### Story time: how not to unit test
 
-TODO tell the unit testing a lamp story
+Some random day I was cursing at my screen and my partner
+asked me why I was so mad and since she's not a technical people
+I came up with this analogy on the fly to explain what was the problem
+and also how I would solve it.
+I believe this illustrates really well my unit test mindset:
+
+Let's say we are building a wall lamp that would typically be used inside your house.
+The guys who tested this lamp (unit testing) did the unthinkable: they
+build a testing house, with foundations, wall framing, ceiling, windows, doors, hardwood floors,
+water pipes, heating system, insulation and a working power grid; they then proceeded
+to install the lamp that they were testing, and finally flipped the right wall switch to see if
+it worked.
+
+How I would have done it differently? I would just reveal the contacts and give them
+power by the simplest possible means (without risking my life), like for example:
+wiring them to a circuit with power!
+
+My partner hugged me and left feeling sorry for me.
+
+The point of this story is to emphasize that we need to have a clear
+mind set when unit testing our code, we need to ensure that we are testing an isolated unit,
+that we are testing it in the simplest way that can provide the verifications we
+looking for, nothing more.
+
+Which brings up my coding mindset: **clarity then simplicity then consistency**
+which I will most likely be talking about in a follow up post.
+
+So remember: do not build a house around the lamp you want to test, simply connect it
+to a cable with power and be done with it.
 
 ## Closing
 
@@ -227,7 +253,7 @@ I encourage you to consider it for your next project, it works well for
 Nodejs and Browser projects, it works well with plain old Javascript or ES6+ or Typescript,
 and it has really nice integrations with [React.js](https://reactjs.org/).
 
-Liked the content? Consider suporting us below.
+Liked the content? Consider supporting us below.
 
 Want to know more? Consider joining our mailing list below.
 
