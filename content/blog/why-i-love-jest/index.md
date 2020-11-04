@@ -39,8 +39,8 @@ and an illustrative story check it at the [end of this article](#bonus-my-unit-t
 
 ```typescript
 test("my function", () => {
-  expect(myFunction(args)).toBe(true)
-})
+  expect(myFunction(args)).toBe(true);
+});
 ```
 
 - You can omit a top level describe when using the BDD interface
@@ -63,12 +63,12 @@ using one or two `test` per unit will be more than enough.
 
 ```typescript
 test("jest mocks", () => {
-  const mockSpyStub = jest.fn()
+  const mockSpyStub = jest.fn();
 
-  mockSpyStub("jest is love")
+  mockSpyStub("jest is love");
 
-  expect(mockSpyStub).toHaveBeenCalledWith("jest is love")
-})
+  expect(mockSpyStub).toHaveBeenCalledWith("jest is love");
+});
 ```
 
 Check the [docs](https://jestjs.io/docs/en/mock-functions)
@@ -114,26 +114,26 @@ Let's cover some really useful patterns I have been using a lot lately:
 - es6 modules: default export mock
 
 ```typescript
-import myLib from "my-lib"
+import myLib from "my-lib";
 
 // now myLib is a mock
-jest.mock("my-lib")
+jest.mock("my-lib");
 // configure a mock return value, you
-;(myLib as jest.Mock).mockImplementation(() => "test value")
+(myLib as jest.Mock).mockImplementation(() => "test value");
 ```
 
 - es6 modules: member mock
 
 ```typescript
-import { member } from "my-lib"
+import { member } from "my-lib";
 
 // now myLib is a mock
-jest.mock("my-lib")
+jest.mock("my-lib");
 
 // configure a mock return value, you
-;(member as jest.Mock).mockImplementation(
+(member as jest.Mock).mockImplementation(
   () => "test value"
-)
+);
 ```
 
 There are [libs](https://github.com/jhnns/rewire)
