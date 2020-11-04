@@ -1,6 +1,6 @@
 ---
 title: Jest = mocha + chai + power-assert + sinon + rewire + istanbul + more
-date: "2020-12-26"
+date: 2020-11-04
 author: franleplant
 description: "Why I love Jest And why you should consider it for your next project."
 tags:
@@ -201,7 +201,7 @@ and as readable and maintainable as possible.
 ### Story time: how not to unit test
 
 Some random day I was cursing at my screen and my partner
-asked me why I was so mad and since she's not a technical people
+asked me why I was so mad and since she's not a technical person
 I came up with this analogy on the fly to explain what was the problem
 and also how I would solve it.
 I believe this illustrates really well my unit test mindset:
@@ -222,13 +222,13 @@ My partner hugged me and left feeling sorry for me.
 The point of this story is to emphasize that we need to have a clear
 mind set when unit testing our code, we need to ensure that we are testing an isolated unit,
 that we are testing it in the simplest way that can provide the verifications we
-looking for, nothing more.
+look for, nothing more.
 
 Which brings up my coding mindset: **clarity then simplicity then consistency**
 which I will most likely be talking about in a follow up post.
 
-So remember: do not build a house around the lamp you want to test, simply connect it
-to a cable with power and be done with it.
+So remember: **do not build a house around the lamp you want to test, simply connect it
+to a cable with power and be done with it.**
 
 ## Closing
 
