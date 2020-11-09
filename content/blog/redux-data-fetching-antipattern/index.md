@@ -1,8 +1,8 @@
 ---
-title: Data Fetching with Redux is anti pattern
+title: Stop using Redux for Data Fetching, use this instead
 date: "2020-11-11"
 author: franleplant
-description: "An introduction to react-query. Modern tools and technique have made data fetching with Redux obsolete and painful, let's cover one alternative."
+description: "Modern tools and technique have superseded using Redux for data fetching, providing a more effective and efficient solution to this problem, reducing the amount of code and decisions we need to make in order to fetch data which is common, day to day, task in modern app development."
 tags:
   - TypeScript
   - Javascript
@@ -12,25 +12,25 @@ tags:
   - redux-toolkit
   - data fetching
   - reactive data flow
-seoFooter:
-  - Redux sucks.
-  - How to implement data fetching in modern react applications?
-  - How to use `react-query`?
-  - Why `react-query`?
 ---
 
-For the longest time it has been an idiom in React applications to
-perform data fetching through Redux, this approach has always
-have problems in its efficiency and effectiveness but we just
-got better ways of handling that. Let us together
-explore what better alternatives the ecosystem has to offer.
+For the longest time it has been an idiom in [React](https://reactjs.org/) applications to
+perform data fetching through [Redux](https://redux.js.org/), this approach has always
+have problems in its efficiency and effectiveness but modern tools and techniques
+have showed us better ways. Let's together
+explore what better alternatives the ecosystem has to offer, but
+first let's quickly cover what's Redux and how it is typically used
+to fetch data.
 
 Redux is a global state management system mostly associated with
 React applications that is great for managing global app state and
 the states transitions in a predictable way but when dealing with
-application data requirements it really fails.
+application data fetching requirements it can become a problem:
 
 ## The typical data fetching in Redux
+
+This is a very simplistic way to data fetch to Redux,
+it is probably not production ready and has problems.
 
 ```typescript:title=post.action.ts
 import {
@@ -81,13 +81,13 @@ export const UPDATE = "posts/UPDATE";
 export const initialState = {
   loading: false,
   error: "",
-  data: {},
+  data: undefined,
 };
 
 export interface IState {
   loading: boolean;
   error: string;
-  data: IPost;
+  data: IPost | undefined;
 }
 
 export default function postReducer(
@@ -127,6 +127,8 @@ import post from "./post.reducer";
 export default combineReducers({ post });
 ```
 
+## Data fetching with Redux is too complicated
+
 Things you might be telling yourself:
 
 - that's the wrong action semantics, structure or naming.
@@ -139,11 +141,13 @@ Things you might be telling yourself:
 - you should use [sagas](https://redux-saga.js.org/) (which is even more verbose and complex BTW).
 - where are the selectors? you are such a newbie!.
 
-This partially concedes my point: data fetching with Redux is too complicated,
+This partially concedes my point: **data fetching with Redux is too complicated**,
 there are too many decisions you and your team need to make, and even worse,
 these decisions are not core architectural decisions, they are decisions that
 happen in the most common of cases: developing a simple component that does data fetching,
 so chances are you are not always going to be there to structure everything "correctly".
+
+## Redux requires too many decisions and boilerplate just to fetch data
 
 Additional problems you need to think and eventually solve:
 
@@ -158,8 +162,8 @@ Additional problems you need to think and eventually solve:
 - when does this fetched data expires? how do I clean it up?
 - what happens when you want to keep multiple posts? how do I structure the state?
 
-All these things and more illustrate the crazy amount of decisions, considerations and
-code a developer needs to make in order to fetch a simple post.
+All these things and more illustrate **the crazy amount of decisions, considerations and
+code a developer needs to make in order to fetch a simple post**.
 
 **NOTE** Using [redux-toolkit](https://redux-toolkit.js.org/api/createAsyncThunk#examples)
 is better but still verbose and you still need to
@@ -170,7 +174,7 @@ Simple and common tasks should have simple solutions.
 
 ## The usage problem
 
-Let's say that most intelligent developer writes
+Let's say that the most intelligent developer writes
 all the data fetching boilerplate, we still have a fundamental
 problem which is: **the decoupling of the triggering of http calls
 (the action) and the reading of the result (the state)**:
@@ -197,9 +201,24 @@ export default connect(
 )(MyComponent);
 ```
 
-> **Decoupling things that are tightly coupled is as bad as tightly coupling things that shouldn't be**.
+What you really are trying to express is something like the following,
+notice how in a single place we have the triggering of the http side effect
+and the reading of the result and the meta data.
+
+```typescript
+const { result, loading, error } = getPost();
+// UI
+```
+
+<div style="font-size: 25px; margin-top: 40px; margin-bottom: 40px;">
+
+**Decoupling things that are naturally tightly coupled is as bad as tightly coupling things that shouldn't be.**
+
+</div>
 
 By using `redux` hooks it can, partially, get better.
+
+## Redux forces both data fetching and mutations to be imperative
 
 This also relates with the concept of **reactive data flow** and **imperative data flow**.
 
@@ -210,13 +229,12 @@ imperative. **Redux forces both data fetching and mutations to be imperative**.
 
 ## The library problem
 
-Any library that relies on Redux has one more hard and potentially complex
-dependency on apps that use them, if you rely on Redux to make your data fetching
-then your library will need at least two interactions: hook into the app's Redux
-(this might require the app to install Redux, or change some conflicting configurations,
-like adding support for thunks or any other redux middleware the lib might depend on);
-and the main interface (i.e. lib.fetchPost), so the composition and distribution
-model is complicated by this fact.
+Any library that relies on Redux makes its integration surface bigger.
+Lib consumers now need setup Redux and set it up the way the library expects it
+to be with the appropriate reducers and middlewares it needs to work.
+
+The alternative that we will explore are much more straight forward to encapsulate
+at the library level.
 
 ## What is data fetching?
 
@@ -232,10 +250,15 @@ of our data fetching layer:
 - medium term response storing, reading _and_ writing or updating.
 - heavy abstraction, simplicity and a really easy to use interface.
 
+These things have been a staple of [GraphQL](https://graphql.org/) clients
+such as [Apollo](https://www.apollographql.com/) for quite some time now.
+
+## Just a cache
+
 When you think about it what you really want is a
 **cache layer** for your http requests that will simply maintain
-a key value store for your data, where the key will identify
-the _resource_ and the value will be the resource plus its metadata:
+a key value store for your data, where the **key will identify
+the _resource_ and the value will be the resource plus its metadata:**
 
 ```typescript
 
@@ -256,7 +279,7 @@ export const cache = {
 ```
 
 And this data structure will have the appropriate functionality on top of
-it to
+it to:
 
 - fetch the data and store it the right key
 - update other cache keys after a successful data fetch (i.e. after fetching multiple posts we update the individual post cache)
@@ -265,32 +288,32 @@ it to
 - stale time: how long I will consider this data _fresh_?
 - automatically managing meta flags.
 
-So you stop thinking about
+## Forget about
 
 - state shape (it is just a key value store of responses)
-- no normalization
+- no normalization (it is just a cache)
 - data fetching meta state like loading, error, etc
 - actions
 - reducers
 - thunks
 - imperative data fetching `onComponentDidMount`
 
-## Is there something that already does this? Spoiler alert: YES!
+## Do this instead!
 
-Enter [react-query](https://react-query.tanstack.com/) et al.
+Enter [react-query](https://react-query.tanstack.com/).
 
-There is one alternative built on top of Redux called [redux-query](https://amplitude.github.io/redux-query/)
-I've used it extensively and although it is an improvement over pure Redux,
-some of the core problems that we covered remained.
+> There is one alternative built on top of Redux called [redux-query](https://amplitude.github.io/redux-query/).
+> I've used it extensively and although it is an improvement over pure Redux,
+> some of the core problems that we covered remained.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">removing redux after switching to react-query like <a href="https://t.co/JyDl8UMCHl">pic.twitter.com/JyDl8UMCHl</a></p>&mdash; @brumm (@funkensturm) <a href="https://twitter.com/funkensturm/status/1321760646803968002?ref_src=twsrc%5Etfw">October 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">removing redux after switching to react-query like <a href="https://t.co/JyDl8UMCHl">pic.twitter.com/JyDl8UMCHl</a></p>&mdash; @brumm (@funkensturm) <a href="https://twitter.com/funkensturm/status/1321760646803968002?ref_src=twsrc%5Etfw">October 29, 2020</a></blockquote>
 
 `react-query` is a really nice new library that builds on the things
 we have previously discussed, solves all the problems, is
-relatively simple and easy to understand (if we you throw away the Redux and appState paradigm)
+relatively simple and easy to understand
 and will reduce the amount of code you need to write
-for data fetching by an absurd amount, all the actions, reducers, connect,
-mapStateToProps, mapDispatchToProps, onComponentDidMount get's replaced by this
+for data fetching by an absurd amount, all the `actions`, `reducers`, `connect`,
+`mapStateToProps`, `mapDispatchToProps`, `onComponentDidMount` get replaced by this
 
 ```typescript
 export function useGetPost(postId): QueryResult<IPost> {
@@ -314,6 +337,8 @@ export default function MyComponent({ postId }) {
 
 This covers what we did in Redux and more, as you can see it requires
 a considerable less amount of code.
+
+**this is production ready!**
 
 `redux-query` deals with a cache of responses instead of the Redux state,
 but can do most of the same things if necessary i.e. updating the state, it just
