@@ -1,6 +1,6 @@
 ---
 title: Stop using Redux for Data Fetching, use this instead
-date: "2020-11-11"
+date: "2020-11-10"
 author: franleplant
 description: "Modern tools and technique have superseded using Redux for data fetching, providing a more effective and efficient solution to this problem, reducing the amount of code and decisions we need to make in order to fetch data which is common, day to day, task in modern app development."
 tags:
@@ -30,7 +30,7 @@ application data fetching requirements it can become a problem:
 ## The typical data fetching in Redux
 
 This is a very simplistic way to data fetch to Redux,
-it is probably not production ready and has problems.
+it is probably not production ready and has unresolved problems.
 
 ```typescript:title=post.action.ts
 import {
@@ -127,59 +127,24 @@ import post from "./post.reducer";
 export default combineReducers({ post });
 ```
 
-## Data fetching with Redux is too complicated
-
-Things you might be telling yourself:
-
-- that's the wrong action semantics, structure or naming.
-- that's the wrong file structure, Official Redux docs once upon a time opposed to the "ducks" approach but now they seem to [be strongly recommending it](https://redux.js.org/style-guide/style-guide#structure-files-as-feature-folders-or-ducks)
-- you shouldn't use switch, you should use objects, or this other library.
-- you should normalize or you shouldn't.
-- the state shape is bad.
-- you should use [immer](https://github.com/immerjs/immer) (which I love BTW) or similar.
-- you should use [redux-toolkit](https://redux-toolkit.js.org).
-- you should use [sagas](https://redux-saga.js.org/) (which is even more verbose and complex BTW).
-- where are the selectors? you are such a newbie!.
-
-This partially concedes my point: **data fetching with Redux is too complicated**,
-there are too many decisions you and your team need to make, and even worse,
-these decisions are not core architectural decisions, they are decisions that
-happen in the most common of cases: developing a simple component that does data fetching,
-so chances are you are not always going to be there to structure everything "correctly".
-
-## Redux requires too many decisions and boilerplate just to fetch data
-
-Additional problems you need to think and eventually solve:
-
-- do we normalize? do we do it by hand or by using libraries? are they compatible with my backend?
-- how do I enforce my team to write all the boilerplate consistently and correctly?
-- what meta data do I need (loading, error, etc)? do I need to keep it manually?
-- what happens if more than one component triggers the same data fetching
-  action? Do I need to dedup http calls manually?
-- do I need to make all my data fetching actions at the root of my app? (in big enough apps this causes a bad decoupling between the data requirements of your components and your components).
-- what about if my app is too big and I want to more granularly define what
-  data fetching requirements a medium level component needs to have?
-- when does this fetched data expires? how do I clean it up?
-- what happens when you want to keep multiple posts? how do I structure the state?
-
-All these things and more illustrate **the crazy amount of decisions, considerations and
-code a developer needs to make in order to fetch a simple post**.
-
-**NOTE** Using [redux-toolkit](https://redux-toolkit.js.org/api/createAsyncThunk#examples)
-is better but still verbose and you still need to
-make a lot of those decisions (and what's happening behind the scenes is
-what we just covered, just sugar coated)
-
-Simple and common tasks should have simple solutions.
-
-## The usage problem
-
-Let's say that the most intelligent developer writes
-all the data fetching boilerplate, we still have a fundamental
-problem which is: **the decoupling of the triggering of http calls
-(the action) and the reading of the result (the state)**:
+And finally you can use it
 
 ```typescript
+
+export class MyComponent() {
+  // fetch data when the component mounts
+  onComponentDidMount() {
+    this.props.getPost(this.props.postId)
+  }
+}
+
+// or
+export function MyComponent({postId, getPost, post, loading, error}) {
+  useEffect(() => {
+    getPost()
+  }, [])
+}
+
 function mapStateToProps(appState: IAppState) {
   // reading the result of the data being fetched,
   // but who asked for it? do I need to do it?
@@ -201,6 +166,44 @@ export default connect(
 )(MyComponent);
 ```
 
+## Data fetching with Redux is too complicated
+
+The current implementation has the following problems
+
+- it is way too verbose (hooks and libraries might make it better)
+- is that the right semantics for my actions?
+- is that the right structure and naming for my actions?
+- is that the right file structure? Official Redux docs once upon a time opposed to the "ducks" approach but now they seem to [be strongly recommending it](https://redux.js.org/style-guide/style-guide#structure-files-as-feature-folders-or-ducks)
+- should I use switch or some other way of casing?
+- should I normalize?
+- is the state shape correct?
+- are my meta flags correct?
+- how would I manage multiple posts being fetched at the same time? (hint: you need to change your state shape and do more stuff)
+- should I use [immer](https://github.com/immerjs/immer) (which I love BTW) or similar?
+- should I use [redux-toolkit](https://redux-toolkit.js.org)?
+- should I use [sagas](https://redux-saga.js.org/)? (which is even more verbose and complex BTW).
+- where are the selectors?
+- how do I make my team code consistently across the multiple action/reducers that we will need to write?
+- what happens if more than one component triggers the same data fetching action? Do I need to dedup http calls manually?
+- do I need to make all my data fetching actions at the root of my app? (in big enough apps this causes a bad decoupling between the data requirements of your components and your components).
+- what about if my app is too big and I want to more granularly define what data fetching requirements a medium level component needs to have?
+- when does this fetched data expires? how do I clean it up?
+
+All these are somewhat open problems that you and your team need to
+fix in the life cycle of your app development. It is really hard
+to structure this 100% correctly.
+
+And finally, these things illustrate **the crazy amount of decisions, considerations and
+code a developer needs to make in order to fetch a simple post**.
+
+> **Simple and common tasks should have simple solutions.**
+
+## The usage problem
+
+Let's say we already figured out how to do all the boilerplate,
+we still have to deal with the usage problem: **the decoupling of the triggering of http calls
+(the action) and the reading of the result (the state)** as seen in above.
+
 What you really are trying to express is something like the following,
 notice how in a single place we have the triggering of the http side effect
 and the reading of the result and the meta data.
@@ -219,8 +222,6 @@ const { result, loading, error } = getPost();
 By using `redux` hooks it can, partially, get better.
 
 ## Redux forces both data fetching and mutations to be imperative
-
-This also relates with the concept of **reactive data flow** and **imperative data flow**.
 
 Data fetching (when you retrieve data) is usually reactive in a React applications,
 meaning that a prop will change, a component will render and an associated side effect
@@ -263,7 +264,7 @@ the _resource_ and the value will be the resource plus its metadata:**
 ```typescript
 
 export const cache = {
-  'posts/123': {
+  'posts/124': {
     data: {/* the post */}
     meta: {loading, error, lastFetched, keepAlive, etc}
   }
@@ -312,8 +313,7 @@ Enter [react-query](https://react-query.tanstack.com/).
 we have previously discussed, solves all the problems, is
 relatively simple and easy to understand
 and will reduce the amount of code you need to write
-for data fetching by an absurd amount, all the `actions`, `reducers`, `connect`,
-`mapStateToProps`, `mapDispatchToProps`, `onComponentDidMount` get replaced by this
+for data fetching by an absurd amount, all the previous code gets replaced by this:
 
 ```typescript
 export function useGetPost(postId): QueryResult<IPost> {
@@ -324,7 +324,7 @@ export function useGetPost(postId): QueryResult<IPost> {
 }
 ```
 
-and its usage
+And its usage
 
 ```typescript
 export default function MyComponent({ postId }) {
