@@ -144,6 +144,7 @@ module.exports = {
         publisherId: `ca-pub-2006751746052752`,
       },
     },
+    `gatsby-plugin-twitter`,
   ],
   mapping: {
     "MarkdownRemark.frontmatter.author": `AuthorYaml`,
