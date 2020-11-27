@@ -2,7 +2,11 @@
 title: "Secrets of a Tech Lead: Programming Principles"
 date: "2020-11-27"
 author: franleplant
-description: "Modern tools and technique have superseded using Redux for data fetching, providing a more effective and efficient solution to this problem, reducing the amount of code and decisions we need to make in order to fetch data which is common, day to day, task in modern app development."
+description: "
+  Let's cover the main programming principles I have developed. They act as a Technical Compass
+  that help me navigate all the decision I have to make constantly; ranging from the high level architectural to the low
+  level naming, function structures, etc.
+"
 tags:
   - Tech Lead
   - Architect
