@@ -14,9 +14,7 @@ typographyTheme.overrideThemeStyles = () => ({
   h2: {
     borderBottom: `1px solid ${color(theme.COLOR.PRIMARY).alpha(0.5).string()}`,
   },
-  blockquote: {
-    borderLeft: `4px solid ${theme.COLOR.PRIMARY}`,
-  },
+  blockquote: {},
 });
 
 const typography = new Typography(typographyTheme);

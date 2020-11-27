@@ -2,6 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Global, css } from "@emotion/core";
 import Helmet from "react-helmet";
+import color from "color";
+import * as theme from "../utils/theme";
 
 import { rhythm } from "../utils/typography";
 import PrimaryHeader from "./PrimaryHeader";
@@ -53,8 +55,13 @@ export default function Layout(props: IProps) {
           }
 
           blockquote {
-            margin-top: 50px;
-            padding-bottom: 22px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border-left: 6px solid ${theme.COLOR.PRIMARY};
+            background: ${color(theme.COLOR.PRIMARY).alpha(0.1).string()};
+            padding-top: 20px;
+            padding-bottom: 20px;
+            color: rgba(0, 0, 0, 0.8);
           }
         `}
       />
