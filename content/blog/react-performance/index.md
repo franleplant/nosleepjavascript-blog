@@ -17,7 +17,7 @@ tags:
   - react dev tools
 ---
 
-## TLDR: the summary
+## TLDR: the gist
 
 - Measure performance! If you don't measure it's the same as doing nothing.
 - You can optimize your React performance by improving **what** (🤔) and **which** (🧙) components render.
@@ -37,7 +37,7 @@ If this got your attention read on:
 
 ```toc
 # This code block gets replaced with the TOC
-to-heading: 4
+to-heading: 5
 ```
 
 ## Introduction
