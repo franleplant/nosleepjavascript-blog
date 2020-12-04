@@ -314,11 +314,33 @@ don't want to perform trivially nested deep comparisons on every render.
 ### Summary
 
 The React profile is really good at telling you why a given component rendered out of
-the three main options. Let's cover each option and potential paths of improvements:
+the three main options. Let's cover each option and potential paths of improvements
 
-- props changed: did they really? are they `fake prop changes`? use `useCallback` and `useMemo`.
-- parent rendered: use `React.memo` to memoize your _pure_ components.
-- hooks changed (state, context): nothing too obvious to do here.
+#### Props changed
+
+How it looks in the React dev tool:
+
+![props changed in react dev tool](./propsChanged.png)
+
+Did they really? Are they `fake prop changes`? Use `useCallback` and `useMemo`.
+
+#### Parent rendered
+
+How it looks in the React dev tool:
+
+![parent rendered in react dev tool](./parentRendered.png)
+
+Use `React.memo` to memoize your _pure_ components.
+
+#### Hooks changed (state, context)
+
+How it looks in the React dev tool:
+
+![hooks changed in react dev tool](./hooksChanged.png)
+
+Nothing too obvious to do here. Try to validate that the hook that
+changed makes sense. Perhaps a bad context provider is faking out
+changes the same way as `fake prop changes` might appear.
 
 ## Closing
 
