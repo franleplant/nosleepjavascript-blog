@@ -1,8 +1,8 @@
 ---
-title: Jest = mocha + chai + power-assert + sinon + rewire + istanbul + more
+title: Jest makes unit testing fun again
 date: 2020-11-04
 author: franleplant
-description: "Why I love Jest And why you should consider it for your next project."
+description: "Why I love Jest and why you should consider it for your next project."
 tags:
   - jest
   - typescript
