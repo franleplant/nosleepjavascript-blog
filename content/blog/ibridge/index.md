@@ -33,9 +33,9 @@ for bidirectional and secure [iframe][17] communication.
 - [npm][10]
 - [repo][11]
 
-## What is `ibridge`
+## What is ibridge
 
-`ibridge` let's you
+ibridge let's you
 
 - retrieve data from the child to the parent.
 - implement complex communication flows between parent and child iframes.
@@ -45,21 +45,21 @@ for bidirectional and secure [iframe][17] communication.
 
 ![ibridge high level flow diagram](./TODO.svg)
 
-- `ibridge` is an abstraction on top of [postMessage][16].
+- ibridge is an abstraction on top of [postMessage][16].
 - Exposes `ibridge.Parent` and `ibridge.Child`, used by the parent and child document respectively.
 - In here we call their instances `iparent` and `ichild` respectively.
 - Both `Parent` and `Child` are **event emitters** implemented via [Emittery][13].
 - Security is handled entirely by native [CSP headers][18].
 - At the initial phase it performs a **handshake** in which the Parent sends a special message to the child and waits for a special response.
 
-### Remote function calls from `Parent` to `Child` (the most common flow)
+### Remote function calls from Parent to Child (the most common flow)
 
-`Child` is able to define a `Model` which is made off all the functions that
-**live in the Child** that can be called remotely by the `Parent`.
+The Child is able to define a `Model` which is made off all the functions that
+**live in the Child** that can be called remotely by the Parent.
 
 `Model` can be a trivially deeply nested object, and each Model function
 can by sync or async, returning a resolved or rejected `Promise` that will be
-automatically sent back to the `Parent` without any surprises. Return
+automatically sent back to the Parent without any surprises. Return
 values and arguments can be anything that can serializable, plus, return
 values can be any `Promise` to a serializable value. Let's see an example:
 
@@ -75,7 +75,7 @@ try {
 }
 ```
 
-Internally this means an event flow like the following
+Internally this means an event flow like the following:
 
 **1)** parent to child
 
@@ -115,7 +115,7 @@ If it feels natural or even dumb then I have succeeded.
 
 ### Free form communication
 
-`ibrigde` also lets you build more complex bidirectional flows via high level events
+ibrigde also lets you build more complex bidirectional flows via high level events
 
 ```typescript
 // Send events to the child
@@ -133,14 +133,14 @@ ichild.on("ping", (msg) => {
 });
 ```
 
-Internally `ibridge` has a single event listener for [postMessage][16] in both
-the `Parent` and the `Child` that will listen to valid `ibridge` messages
+Internally ibridge has a single event listener for [postMessage][16] (the Dispatcher) in both
+the Parent and the Child that will listen to valid ibridge messages
 and dispatch them as [Emittery][13] events. This allows you to use higher level
 event emitters abstractions such as `once`, `off`, `onAny`, etc.
 
-Fun fact, `ibridge` uses also `Emittery` for the handshake mechanism.
+Fun fact, ibridge uses also `Emittery` for the handshake mechanism.
 
-## Why `ibridge` was created
+## Why ibridge was created
 
 I have been designing and implementing an `sdk` to provide
 consumers (other companies and services) to use our platform
@@ -173,16 +173,16 @@ well until it didn't anymore. We tried hacking around it
 but in the end the implementation was far too noisy because of some
 core problems in `postmate`, that's why I decided to fork it.
 
-## Why `postmate` was not enough
+## Why Postmate was not enough
 
-I created [an issue][19] in postmate's repo to see if we can unify efforts eventually.
+I created [an issue][19] in Postmate's repo to see if we can unify efforts eventually.
 
-These are the problems I found with postmate that made me fork it:
+These are the problems I found with Postmate that made me fork it:
 
 ### Wrong semantics for `iparent.get`
 
-Postmate doesn't have a good semantics for `.get`, in fact, if you call a child model
-through postmate's `.get` and that model throws then you won't receive a failing promise in the
+Postmate doesn't have good semantics for `.get`, in fact, if you call a child model
+through Postmate's `.get` and that model throws then you won't receive a failing promise in the
 parent, in fact that's one of the main things we had to hack around internally and other's have opened
 [issues and hacked around too](https://github.com/dollarshaveclub/postmate/issues/94).
 
@@ -190,7 +190,7 @@ One of our main use cases, and when you think about it, it's probably the main u
 users; was and is to remotely call functions that live in the child and get the resolved or rejected values
 with that same semantics in the Parent so we can report back to the parent's consumer.
 
-> `ibridge` gives better semantics to `.get` by making it a deconstructed remote function call that handles
+> **ibridge** gives better semantics to `.get` by making it a deconstructed remote function call that handles
 > return values and errors thrown in ways that feel natural, hiding the underlying mechanisms completely.
 
 ### Wrong semantics and name for `iparent.call`
@@ -209,7 +209,7 @@ Another use case for `.call` can be simply **emitting events** to the child, but
 a good name to reflect that and being strictly related to child model functions not always
 fits the flow users have in mind.
 
-> `ibrige` doesn't have `.call` and instead you simply can `iparent.emitToParent` and we also provide
+> **ibrige** doesn't have `.call` and instead you simply can `iparent.emitToParent` and we also provide
 > the opposite: `ichild.emitToChild` and everything is abstracted by relying on `Emittery` as much as possible.
 
 ### The Model implementation is just too simplistic
@@ -232,7 +232,7 @@ const model = {
 };
 ```
 
-> `ibridge` allows `.get` to accept a lodash's `path` to the model, by relying on [lodash.get][20].
+> **ibridge** allows `.get` to accept a lodash's `path` to the model, by relying on [lodash.get][20].
 
 ```typescript
 iparent.get("blog.posts.getPageViews", ...args);
@@ -269,8 +269,8 @@ function myModel(this: IContext) {
 
 ### Typescript
 
-Additionally `ibridge` uses Typescript, this let us express certain things
-such as that the `Child` is generic for `TModel` and `TContext` and so
+Finally ibridge uses Typescript, this let us express certain things
+such as that the Child is generic for `TModel` and `TContext` and so
 you can have better validations in terms of type safety.
 
 Additionally I am a big fan of Typescript and the guarantees it provides so
@@ -280,10 +280,10 @@ I basically do nothing without Typescript.
 
 Postmate is a great library that was in need for a little bit of love.
 I am open to unifying efforts with the Postmate team so that we can
-have a single version of this library with all the benefits that `ibridge`
+have a single version of this library with all the benefits that **ibridge**
 brings to the table.
 
-I will also try to give `ibridge` more support, if you are interested
+I will also try to give **ibridge** more support, if you are interested
 in helping me maintain it let me know!
 
 <hr/>
