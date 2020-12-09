@@ -2,9 +2,9 @@
 title: How to create route namespaces with Express
 date: "2020-08-07"
 author: franleplant
-description: "Docker has become a widely used
-  technology and chances are you are going to have to deal with it eventually, at least superficially, in your Front End
-  career. Let's cover the basic concepts and day to day useful commands you will likely use when dealing with Docker."
+description:
+  "Let's quickly cover how to create namespaces in Express.js, something
+  that is not so evident in the official docs and is farily common."
 tags:
   - Javascript
   - Typescript
