@@ -51,23 +51,24 @@ export function NavItem(props: INavItemProps) {
 }
 
 const Container = styled.nav(`
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            list-style: none;
-            padding: 0;
-            flex-direction: column;
-@media (min-width: 800px) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  flex-direction: column;
 
-            flex-direction: row;
-}
-          `);
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
+`);
 
 const LinkContainer = styled.div`
   border: 1px solid ${theme.COLOR.SECONDARY};
   border-radius: 2px;
   padding: 8px 16px;
   margin: 2px;
+
   @media (min-width: 800px) {
     width: 49%;
   }
