@@ -46,8 +46,7 @@ export default function AboutPage(props: IProps) {
           <h2>Who is behind NoSleep Javascript</h2>
 
           <p>
-            Hi! My name is <strong>Fran Guijarro</strong>
-            (a.k.a{" "}
+            Hi! My name is <strong>Fran Guijarro</strong> (a.k.a{" "}
             <a href="https://github.com/franleplant" alt="franleplant's github">
               franleplant
             </a>
@@ -55,9 +54,10 @@ export default function AboutPage(props: IProps) {
             for the last decade a wide variety of solutions with different
             technologies such as Javascript, Typescript, Python, Rust et. al. I
             work professionally as a <strong>Senior Software developer</strong>{" "}
-            and a <strong>Tech Lead</strong> focused on Javascript applications,
-            both in the Front End with React and in the backend with Node.js. I
-            am an aspiring wood worker.
+            and a <strong>Tech Lead</strong> and an aspiring{" "}
+            <strong>Software Architect</strong> focused on Javascript
+            applications, both in the Front End with React and in the backend
+            with Node.js. I am an aspiring wood worker.
           </p>
 
           <p>
