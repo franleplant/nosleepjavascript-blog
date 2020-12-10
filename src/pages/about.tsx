@@ -57,9 +57,12 @@ export default function AboutPage(props: IProps) {
             work professionally as a <strong>Senior Software developer</strong>{" "}
             and a <strong>Tech Lead</strong> focused on Javascript applications,
             both in the Front End with React and in the backend with Node.js. I
-            am an aspiring wood worker. I define myself as a respectful
-            contrarian, a tinkerer, a craftsman and as a healthy obsessed with
-            figuring the world out.
+            am an aspiring wood worker.
+          </p>
+
+          <p>
+            I define myself as a respectful contrarian, a tinkerer, a craftsman
+            and as a healthy obsessed with figuring the world out.
           </p>
 
           <p>
