@@ -1,5 +1,5 @@
 ---
-title: "Make iframes Great Again: introducing ibridge"
+title: "Breaking the iframe frontier: ibridge"
 date: 2020-12-11
 author: franleplant
 description:
