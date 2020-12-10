@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, graphql } from "gatsby";
+import React from "react";
+import { graphql } from "gatsby";
 import { css } from "@emotion/core";
 
 import { IBlogPostBySlugQuery } from "../../graphql-types";
@@ -8,7 +8,6 @@ import Layout from "../components/Layout";
 import SEO from "../components/Seo";
 import Tags from "../components/Tags";
 import { rhythm, scale } from "../utils/typography";
-import getSetViewCount from "../dal/getSetPageView";
 import NewsletterSubscribe from "../components/NewsletterSubscribe";
 import SeoFooter from "../components/SeoFooter";
 import BuyMeCoffee from "../components/BuyMeCoffee";
@@ -36,7 +35,6 @@ export default function BlogPostTemplate(props: IProps) {
     tags = [],
     seoFooter = "",
   } = post.frontmatter;
-  const { slug } = post.fields;
 
   return (
     <Layout location={props.location} title={siteTitle}>

@@ -47,7 +47,10 @@ export default function AboutPage(props: IProps) {
 
           <p>
             Hi! My name is <strong>Fran Guijarro</strong> (a.k.a{" "}
-            <a href="https://github.com/franleplant" alt="franleplant's github">
+            <a
+              href="https://github.com/franleplant"
+              aria-label="franleplant's github"
+            >
               franleplant
             </a>
             ), I have a degree in Systems Engineering, I have been programming
