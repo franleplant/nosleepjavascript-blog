@@ -40,91 +40,105 @@ export default function AboutPage(props: IProps) {
           </h1>
         </header>
 
-        <h2>Who is behind NoSleep Javascript</h2>
-
-        <p>
-          Hi! My name is **Fran Guijarro** (a.k.a **franleplant**), I have a
-          degree in Systems Engineering, I have been programming for the last
-          decade a wide variety of solutions with different technologies such as
-          Javascript, Typescript, Python, Rust et. al. I work professionally as
-          a Senior Software developer and a Tech Lead focused on Javascript
-          applications, both in the Front End with React and in the backend with
-          Node.js. I am an aspiring wood worker. I define myself as a respectful
-          contrarian, a tinkerer, a craftsman and as a healthy obsessed with
-          figuring the world out.
-        </p>
-
-        <p>
-          I have a passion for learning, figure stuff (like life) out and for
-          the past couple of years I have developed a passion for teaching and
-          helping others grow professionally in this weird environment that is
-          Software Development.
-        </p>
-
-        <p>
-          I talk about Software Development, tech culture and random stuff, join
-          me in this amazing journey that is life.
-        </p>
-
-        <h2>Vision</h2>
-
-        <p>
-          Help others grow professionally and personally, and achieve their full
-          potential.
-        </p>
-
-        <h2>Mission</h2>
-
-        <p>
-          To provide as much of the content for free as possible. To give back
-          to the open source and software development community. To provide a
-          holistic approach to software development, including both technical
-          and soft skills. To provide mentorship programs for those that need
-          more concrete guidance.
-        </p>
-
-        <h2>Values</h2>
-
-        <p>
-          Be open minded and reflective, be a practicing stoic. Provide as much
-          content and resources for free as possible. Do not trash tools,
-          evaluate them objectively, do not follow the herd, do not sustain
-          cargo cult biases. Include soft skills in our work and in our content,
-          be emotional intelligent. Observe your own emotions and empathise with
-          others’. Keep learning about a wide variety of subjects. Keep in
-          contact with beginners to identify where they struggle and how to help
-          them.
-        </p>
+        <NewsletterSubscribe />
 
         <section>
-          I am a passionate software developer with years of experience in the
-          industry who loves creating products and services and helping other
-          developers grow their careers. Become a Patreon to have mentoring
-          sessions with me. Subscribe to receive exclusive content right into
-          your inbox.
+          <h2>Who is behind NoSleep Javascript</h2>
+
+          <p>
+            Hi! My name is <strong>Fran Guijarro</strong>
+            (a.k.a{" "}
+            <a href="https://github.com/franleplant" alt="franleplant's github">
+              franleplant
+            </a>
+            ), I have a degree in Systems Engineering, I have been programming
+            for the last decade a wide variety of solutions with different
+            technologies such as Javascript, Typescript, Python, Rust et. al. I
+            work professionally as a <strong>Senior Software developer</strong>{" "}
+            and a <strong>Tech Lead</strong> focused on Javascript applications,
+            both in the Front End with React and in the backend with Node.js. I
+            am an aspiring wood worker. I define myself as a respectful
+            contrarian, a tinkerer, a craftsman and as a healthy obsessed with
+            figuring the world out.
+          </p>
+
+          <p>
+            I have a passion for learning, figure stuff (like life) out and for
+            the past couple of years I have developed a passion for teaching and
+            helping others grow professionally in this weird environment that is
+            Software Development.
+          </p>
+
+          <p>
+            I talk about Software Development, tech culture and random stuff,
+            join me in this amazing journey that is life.
+          </p>
         </section>
 
         <section>
+          <h2>Vision</h2>
+
+          <p>
+            Help others grow professionally and personally, and achieve their
+            full potential.
+          </p>
+        </section>
+
+        <section>
+          <h2>Mission</h2>
+
+          <p>
+            <ul>
+              <li>To provide as much of the content for free as possible.</li>
+              <li>
+                To give back to the open source and software development
+                community.
+              </li>
+              <li>
+                To provide a holistic approach to software development,
+                including both technical and soft skills.
+              </li>
+              <li>
+                To provide mentorship programs for those that need more concrete
+                guidance.
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Values</h2>
+
+          <p>
+            <ul>
+              <li>Be open minded and reflective, be a practicing stoic.</li>
+              <li>
+                Provide as much content and resources for free as possible.
+              </li>
+              <li>
+                Do not trash tools, evaluate them objectively, do not follow the
+                herd, do not sustain cargo cult biases.
+              </li>
+              <li>
+                Include soft skills in our work and in our content, be emotional
+                intelligent.
+              </li>
+              <li>Observe your own emotions and empathise with others’.</li>
+              <li>Keep learning about a wide variety of subjects.</li>
+              <li>
+                Keep in contact with beginners to identify where they struggle
+                and how to help them.
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Support my work</h2>
+
           <BuyMeCoffee />
           <Patreon />
         </section>
-
-        {/*
-        <section>
-          <p>
-            We are two Software Developers with degrees in Engineering that love
-            to talk about programming, tech culture and other random stuff.
-          </p>
-
-          <p>
-            We have been working in the industry for more than 7 years, and have
-            experience with a range of programming languages, programming
-            techniques and philosophies. We are passionate about reflecting on
-            these and more subjects and hopefully, in the process, we can help
-            others improve and move their careers forward.
-          </p>
-        </section>
-          */}
 
         <BioContainer>
           {authors.map((author) => (
@@ -132,7 +146,6 @@ export default function AboutPage(props: IProps) {
           ))}
         </BioContainer>
 
-        <NewsletterSubscribe />
         <hr
           style={{
             marginBottom: rhythm(1),
