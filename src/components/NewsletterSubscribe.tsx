@@ -14,13 +14,12 @@ export default function NewsletterSubscribe() {
           method="post"
           id="mc-embedded-subscribe-form"
           name="mc-embedded-subscribe-form"
-          class="validate"
           target="_blank"
-          novalidate
+          noValidate
         >
           <div id="mc_embed_signup_scroll">
             <div className="mc-field-group" style={{ display: "inline-block" }}>
-              <label for="mce-EMAIL" style={{ display: "none" }}>
+              <label htmlFor="mce-EMAIL" style={{ display: "none" }}>
                 email <span style={{ color: "red" }}>*</span>{" "}
               </label>
               <input

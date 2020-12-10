@@ -13,8 +13,7 @@ import NewsletterSubscribe from "../components/NewsletterSubscribe";
 import SeoFooter from "../components/SeoFooter";
 import BuyMeCoffee from "../components/BuyMeCoffee";
 import Patreon from "../components/Patreon";
-
-const isLocalhost = () => window.location.href.includes("localhost:8000");
+import PostNavigator from "../components/PostNavigator";
 
 interface IProps {
   data: IBlogPostBySlugQuery;
@@ -38,20 +37,6 @@ export default function BlogPostTemplate(props: IProps) {
     seoFooter = "",
   } = post.frontmatter;
   const { slug } = post.fields;
-
-  const [pageViewCount, setPageViewCount] = useState<number>();
-
-  useEffect(() => {
-    async function fetchData() {
-      const pageViewCount = await getSetViewCount(slug);
-      setPageViewCount(pageViewCount);
-    }
-
-    // Do not bump page count if it's localhost
-    if (!isLocalhost()) {
-      fetchData();
-    }
-  }, [slug]);
 
   return (
     <Layout location={props.location} title={siteTitle}>
@@ -82,7 +67,6 @@ export default function BlogPostTemplate(props: IProps) {
             {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
             <Tags tags={tags} />
           </div>
-          {pageViewCount && <p>This post was viewed {pageViewCount} times</p>}
         </header>
 
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -113,32 +97,7 @@ export default function BlogPostTemplate(props: IProps) {
         </footer>
       </article>
 
-      <nav>
-        <ul
-          css={css`
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            list-style: none;
-            padding: 0;
-          `}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
+      <PostNavigator previous={previous} next={next} />
 
       <SeoFooter data={Array.isArray(seoFooter) ? seoFooter : [seoFooter]} />
     </Layout>
