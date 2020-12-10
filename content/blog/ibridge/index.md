@@ -33,6 +33,10 @@ for bidirectional and secure [iframe][17] communication.
 - [npm][10]
 - [repo][11]
 
+<div style="text-align: center;">
+<img src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f309.svg" width="200" alt="ibridge logo"/>
+</div>
+
 ## What is ibridge
 
 ibridge let's you
@@ -43,7 +47,7 @@ ibridge let's you
 
 ## How it works
 
-![ibridge high level flow diagram](./TODO.svg)
+![ibridge high level flow diagram](./ibridge.svg)
 
 - ibridge is an abstraction on top of [postMessage][16].
 - Exposes `ibridge.Parent` and `ibridge.Child`, used by the parent and child document respectively.
