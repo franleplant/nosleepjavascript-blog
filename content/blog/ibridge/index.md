@@ -23,7 +23,18 @@ tags:
 - I improved the semantics of `iparent.get`.
 - I made the code simpler.
 - I made both `ibridge.Parent` and `ibrige.Child` be Event Emitters for better composition.
-- It has worked super fine!.
+- It has worked super fine!
+
+<div style="text-align: center; margin-top: 60px;">
+  <img src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f309.svg" width="200" alt="ibridge logo"/>
+
+  <h3 style="text-align: center;">ibridge</h3>
+
+  <p style="text-align: center; margin-top: -15px;">
+    <small>logo by <a href="https://twemoji.twitter.com">twemoji</a></small>
+  </p>
+
+</div>
 
 ## Introduction
 
@@ -32,10 +43,6 @@ for bidirectional and secure [iframe][17] communication.
 
 - [npm][10]
 - [repo][11]
-
-<div style="text-align: center;">
-<img src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f309.svg" width="200" alt="ibridge logo"/>
-</div>
 
 ## What is ibridge
 
