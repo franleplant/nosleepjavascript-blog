@@ -33,7 +33,6 @@ tags:
   <p style="text-align: center; margin-top: -15px;">
     <small>logo by <a href="https://twemoji.twitter.com">twemoji</a></small>
   </p>
-
 </div>
 
 ## Introduction
@@ -165,11 +164,7 @@ This is similar to what other providers already do like Patreon (see link at the
 Twitter embedded tweets (see tweet below), etc.
 This bypasses certain cross domain limitations by using an embedded document.
 
-<blockquote class="twitter-tweet">
-  <p lang="en" dir="ltr">React is slow, what now? <a href="https://t.co/y8cfBxFrEY">https://t.co/y8cfBxFrEY</a></p>
-  &mdash; franleplant (@franleplant)
-  <a href="https://twitter.com/franleplant/status/1334960068392005638?ref_src=twsrc%5Etfw">December 4, 2020</a>
-</blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">React is slow, what now? <a href="https://t.co/y8cfBxFrEY">https://t.co/y8cfBxFrEY</a></p>&mdash; franleplant (@franleplant) <a href="https://twitter.com/franleplant/status/1334960068392005638?ref_src=twsrc%5Etfw">December 4, 2020</a></blockquote>
 
 > **DANGER ALERT** iframes are a delicate topic since there are a lot of security
 > concerns present. Make sure you allow your page to be rendered inside an iframe
