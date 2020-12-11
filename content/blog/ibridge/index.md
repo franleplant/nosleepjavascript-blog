@@ -27,9 +27,7 @@ tags:
 
 <div style="text-align: center; margin-top: 60px;">
   <img src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f309.svg" width="200" alt="ibridge logo"/>
-
   <h3 style="text-align: center;">ibridge</h3>
-
   <p style="text-align: center; margin-top: -15px;">
     <small>logo by <a href="https://twemoji.twitter.com">twemoji</a></small>
   </p>
