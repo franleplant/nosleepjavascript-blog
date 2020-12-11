@@ -57,10 +57,10 @@ export default function AboutPage(props: IProps) {
             for the last decade a wide variety of solutions with different
             technologies such as Javascript, Typescript, Python, Rust et. al. I
             work professionally as a <strong>Senior Software developer</strong>{" "}
-            and a <strong>Tech Lead</strong> and an aspiring{" "}
+            and a <strong>Tech Lead</strong> and I am an aspiring{" "}
             <strong>Software Architect</strong> focused on Javascript
             applications, both in the Front End with React and in the backend
-            with Node.js. I am an aspiring wood worker.
+            with Node.js. I am an amateur wood worker.
           </p>
 
           <p>
