@@ -54,6 +54,32 @@ export default function Layout(props: IProps) {
             border-top-right-radius: 0.3em;
           }
 
+          button,
+          input[type="submit"] {
+            background-color: ${theme.COLOR.SECONDARY} !important;
+            border: 0;
+          }
+
+          button,input[type=submit]: hover {
+            background-color: ${theme.COLOR.SECONDARY} !important;
+          }
+
+          button,
+          input {
+            user-select: none;
+            padding: 4px 10px;
+            border: 1px solid #ccc;
+            outline: 0 !important;
+            border-radius: 4px;
+            box-sizing: boder-box;
+            user-select: none;
+          }
+
+          input:focus {
+            border: 1px solid ${theme.COLOR.SECONDARY} !important;
+            box-shadow: 0px 0px 2px ${theme.COLOR.SECONDARY}DE;
+          }
+
           blockquote {
             margin-top: 40px;
             margin-bottom: 40px;

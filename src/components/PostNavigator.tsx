@@ -1,0 +1,75 @@
+import React from "react";
+import { Link } from "gatsby";
+import styled from "@emotion/styled";
+import * as theme from "../utils/theme";
+
+export interface IPostLink {
+  fields: {
+    slug: string;
+  };
+  frontmatter: {
+    title: string;
+  };
+}
+
+export interface IProps {
+  previous?: IPostLink;
+  next?: IPostLink;
+}
+
+export default function PostNavigator(props: IProps) {
+  const { previous, next } = props;
+  return (
+    <Container>
+      <NavItem to={previous?.fields.slug} rel="prev">
+        ← {previous?.frontmatter.title}
+      </NavItem>
+      <NavItem to={next?.fields.slug} rel="next">
+        {next?.frontmatter.title} →
+      </NavItem>
+    </Container>
+  );
+}
+
+export interface INavItemProps {
+  to?: string;
+  rel: string;
+  children: any;
+}
+
+export function NavItem(props: INavItemProps) {
+  if (!props.to) {
+    return null;
+  }
+  return (
+    <LinkContainer>
+      <Link to={props.to} rel={props.rel}>
+        {props.children}
+      </Link>
+    </LinkContainer>
+  );
+}
+
+const Container = styled.nav(`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  flex-direction: column;
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
+`);
+
+const LinkContainer = styled.div`
+  border: 1px solid ${theme.COLOR.SECONDARY};
+  border-radius: 2px;
+  padding: 8px 16px;
+  margin: 2px;
+
+  @media (min-width: 800px) {
+    width: 49%;
+  }
+`;
