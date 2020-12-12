@@ -18,11 +18,11 @@ tags:
 
 ## TLDR
 
-- I forked [postmate][12] and called it `ibrige`.
+- I forked [postmate][12] and called it `ibridge`.
 - It uses [Typescript][15] and has cool features regarding type safety.
 - I improved the semantics of `iparent.get`.
 - I made the code simpler.
-- I made both `ibridge.Parent` and `ibrige.Child` be Event Emitters for better composition.
+- I made both `ibridge.Parent` and `ibridge.Child` be Event Emitters for better composition.
 - It has worked super fine!
 
 <div style="text-align: center; margin-top: 60px;">
@@ -45,9 +45,9 @@ for bidirectional and secure [iframe][17] communication.
 
 ibridge let's you
 
-- retrieve data from the child to the parent.
-- implement complex communication flows between parent and child iframes.
-- pre stablish a communication flow via a simple **handshake** _protocol_.
+- Retrieve data from the child to the parent.
+- Implement complex communication flows between parent and child iframes.
+- Pre establish a communication flow via a simple **handshake** _protocol_.
 
 ## How it works
 
@@ -213,7 +213,7 @@ Another use case for `.call` can be simply **emitting events** to the child, but
 a good name to reflect that and being strictly related to child model functions not always
 fits the flow users have in mind.
 
-> **ibrige** doesn't have `.call` and instead you simply can `iparent.emitToParent` and we also provide
+> **ibridge** doesn't have `.call` and instead you simply can `iparent.emitToParent` and we also provide
 > the opposite: `ichild.emitToChild` and everything is abstracted by relying on `Emittery` as much as possible.
 
 ### The Model implementation is just too simplistic
