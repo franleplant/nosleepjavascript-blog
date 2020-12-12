@@ -22,7 +22,7 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/interface-name-prefix": [2, "always"],
     "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/camelcase": [
       2,
@@ -34,15 +34,8 @@ module.exports = {
     ],
     // note you must disable the base rule as it can report incorrect errors
     "no-unused-vars": "off",
-    //'@typescript-eslint/no-unused-vars': [
-    //'warn',
-    //{
-    //varsIgnorePattern: '^__',
-    //argsIgnorePattern: '^__',
-    //},
-    //],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "error",
   },
   overrides: [
     {
@@ -52,4 +45,10 @@ module.exports = {
       },
     },
   ],
+
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
 };
