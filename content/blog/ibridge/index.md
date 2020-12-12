@@ -271,6 +271,28 @@ function myModel(this: IContext) {
 }
 ```
 
+### Debugging
+
+Postmate used a simplistic approach based on an `env` variable and a bunch of `if` statements.
+This wasn't ideal since it didn't work always as expected, required bundler configuration, and the handling was way to manual.
+
+> `ibridge` uses [debug][14] for a more structured way of configuring and outputting debug / logs.
+> Check the docs for more information.
+
+Example of enabling verbose output.
+
+```typescript
+// you might need to do this in the child document too
+// check the `storage` dev tools tab.
+
+localStorage.debug = "ibridge:*";
+```
+
+This will output a _lot_ of information that should make it really easy to debug the workings
+of any consumer of the lib and the lib it self.
+
+![example debug output](./logs.png)
+
 ### Typescript
 
 Finally ibridge uses Typescript, this let us express certain things
