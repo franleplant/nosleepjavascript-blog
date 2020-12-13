@@ -112,7 +112,7 @@ Let's say we have a contrived data structure as follows:
 
 ```typescript
 interface IUsersColors {
-  [userId: number]: Array<[hex: string, name: string]>
+  [userId: number]: Array<[hex: string, name: string]>;
 }
 ```
 

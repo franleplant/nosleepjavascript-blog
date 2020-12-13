@@ -93,50 +93,44 @@ export default function AboutPage(props: IProps) {
         <section>
           <h2>Mission</h2>
 
-          <p>
-            <ul>
-              <li>To provide as much of the content for free as possible.</li>
-              <li>
-                To give back to the open source and software development
-                community.
-              </li>
-              <li>
-                To provide a holistic approach to software development,
-                including both technical and soft skills.
-              </li>
-              <li>
-                To provide mentorship programs for those that need more concrete
-                guidance.
-              </li>
-            </ul>
-          </p>
+          <ul>
+            <li>To provide as much of the content for free as possible.</li>
+            <li>
+              To give back to the open source and software development
+              community.
+            </li>
+            <li>
+              To provide a holistic approach to software development, including
+              both technical and soft skills.
+            </li>
+            <li>
+              To provide mentorship programs for those that need more concrete
+              guidance.
+            </li>
+          </ul>
         </section>
 
         <section>
           <h2>Values</h2>
 
-          <p>
-            <ul>
-              <li>Be open minded and reflective, be a practicing stoic.</li>
-              <li>
-                Provide as much content and resources for free as possible.
-              </li>
-              <li>
-                Do not trash tools, evaluate them objectively, do not follow the
-                herd, do not sustain cargo cult biases.
-              </li>
-              <li>
-                Include soft skills in our work and in our content, be emotional
-                intelligent.
-              </li>
-              <li>Observe your own emotions and empathise with others’.</li>
-              <li>Keep learning about a wide variety of subjects.</li>
-              <li>
-                Keep in contact with beginners to identify where they struggle
-                and how to help them.
-              </li>
-            </ul>
-          </p>
+          <ul>
+            <li>Be open minded and reflective, be a practicing stoic.</li>
+            <li>Provide as much content and resources for free as possible.</li>
+            <li>
+              Do not trash tools, evaluate them objectively, do not follow the
+              herd, do not sustain cargo cult biases.
+            </li>
+            <li>
+              Include soft skills in our work and in our content, be emotional
+              intelligent.
+            </li>
+            <li>Observe your own emotions and empathise with others’.</li>
+            <li>Keep learning about a wide variety of subjects.</li>
+            <li>
+              Keep in contact with beginners to identify where they struggle and
+              how to help them.
+            </li>
+          </ul>
         </section>
 
         <section>
