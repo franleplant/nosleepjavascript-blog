@@ -1,20 +1,24 @@
 ---
-title: "Breaking the iframe frontier: ibridge"
-date: 2020-12-11
+title: "Interview with React Query's creator: Tanner Linsley"
+date: 2020-12-18
 author: franleplant
 description:
-  "Introducing ibridge, a tiny, typesafe, promise-based library
-  for bidirectional and secure iframe communication."
+  "It is a pleasure to bring you a interview with Tanner Linsley,
+  React Query creator, open source maintainer, dad, family man,
+  religious man and so much more, let’s get to know him and see what he
+  has to say about programming, open source and so much more."
 tags:
-  - ibridge
-  - typescript
-  - javascript
-  - iframe
-  - postMessage
-  - event emitter
-  - Emittery
-  - jsdom
+  - react
+  - react-query
+  - redux
+  - data-fetching
+  - cache
+  - react hooks
 ---
+
+Welcome to the interview with React-Query's creator Tanner Linsley,
+feel free to jump around the questions through the Table of Contents
+below or grab a cup of coffee and read on.
 
 ## Table of Contents
 
