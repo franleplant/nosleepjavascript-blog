@@ -1,6 +1,6 @@
 ---
-title: NoSleep Javascript year in review and plans for 2021
-date: "2020-12-20"
+title: NoSleep Javascript 2020 in review and plans for 2021
+date: "2021-01-02"
 author: franleplant
 description:
   "Let's talk about the amazing growth we've seen in 2020 and what
