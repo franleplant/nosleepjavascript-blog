@@ -17,7 +17,8 @@ tags:
   - toxic culture
 ---
 
-Do you dislike this statement? I do too, read on:
+> Do you dislike this statement? I do too.
+> Read on.
 
 Isn’t it weird how a lot of developers maintain
 these sort of inside jokes / memes of hating
@@ -45,7 +46,7 @@ I have heard stuff like:
 - Node.js doesn’t have _concurrency_
 - Node.js is slow because it doesn't have threads.
 - Javascript’s _event-loop_ is bad.
-- I don't need [Typescript][12] (static typing) because I already have [eslint][todo] (static analysis).
+- I don't need [Typescript][12] (static typing) because I already have [eslint][11] (static analysis).
 - and so much more.
 
 I have heard these at work, at open source communities
@@ -98,13 +99,12 @@ I do prefer them over untyped because of the capability
 of Statically verifying correctness of my program at least partially,
 because of the autocompletion among other things,
 that is why now a days if I get to chose I only
-write [Typescript][12] and [typed Python][15];
-but are Dynamically typed languages the worst of the
-two every time for every use case?
-Are Dynamically typed languages so sloppy
-that they let you build weird giraffes (not achieve the desired functionality)?
+write [Typescript][12] and [typed Python][15].
 
-The answer is a definitive **no**.
+> - Are Dynamically typed languages the worst of the two every time for every use case?
+> - Are Dynamically typed languages so sloppy that they let you build weird giraffes (not achieve the desired functionality)?
+>
+> The answer is a definitive **no**.
 
 There are some cases where Dynamically Typed languages
 let you express certain highly dynamic patterns
@@ -115,8 +115,6 @@ with simple [duck typing][16] that it is with Statically typed languages
 by using [generics][17], [templates][18] or other mechanisms.
 
 This [article][19] has some good illustrations of this.
-
-TODO anothewr good example is metaprogramming
 
 There is a **multi dimensional space**
 that has axis such as **development speed**, **correctness verification**,
@@ -132,6 +130,9 @@ languages in the past 10 years with things such as
 among others that take a lot of the lessons of the past and
 overall they achieve more than previous languages,
 only because of the iterative effect of technology.
+
+> Rust maximises correctness, memory safety and performance,
+> but that makes it more difficult to understand for newcomers in general.
 
 Take Rust for example, which I really like and that has taught me a lot,
 it is a language that tries to [maximise correctness, memory safety and performance][21]
@@ -225,6 +226,10 @@ that have a higher level api that hides the manual managing of threads.
 
 I would say no, by a long shot, but does that mean
 that it is 100% trash? Also no, by a long shot.
+
+> Javascript's closures and functions
+> as a first class citizens make up
+> very expressive and powerful primitives to build complex abstractions
 
 For example, in my opinion, closures and functions as a first class
 citizens make up very expressive and powerful primitives to build
