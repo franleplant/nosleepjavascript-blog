@@ -135,7 +135,7 @@ app.use("/api", dogController());
 At this point you will have the router mounted and if you
 make the request you will get a response:
 
-```sh
+```bash
 $ curl http://localhost:3000/api/dog
 > get all dogs
 ```
@@ -158,7 +158,7 @@ are middleware if you didn't know)
 
 Let's test it out
 
-```sh
+```bash
 $ curl http://localhost:3000/api/dog
 > get all dogs
 

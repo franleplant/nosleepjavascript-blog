@@ -164,7 +164,7 @@ Read more [here](https://jestjs.io/docs/en/cli).
 This is a really nice trick I use a lot to focus
 only on particular tests at a time: reg exp filtering
 
-```sh
+```bash
 # runs all the tests
 jest
 
