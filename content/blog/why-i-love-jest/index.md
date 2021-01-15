@@ -57,7 +57,7 @@ the better, Jest helps with this.
 In a lot of cases, if you structure your code a certain way,
 using one or two `test` per unit will be more than enough.
 
-## 3. Jest replaces sinon for the most part
+## 2. Jest replaces sinon for the most part
 
 - need to mock / spy / stub pieces of code? use the global `jest.fn()`
 
