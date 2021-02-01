@@ -17,8 +17,8 @@ I wondered about helping the poor to my present years when I dream about fixing
 what seems to be broken while building on top what seems to be right (as my friend
 would say: for some definition of right).
 
-I have stood in awe looking at how companies such as Tesla, Space-X, Impossible Foods,
-Pfizer (and so many scientists), Amazon, Apple, Google, Samsung, the Linux Foundation, et al
+I have stood in awe looking at how companies such as [Tesla][19], [Space-X][21], [Impossible Foods][20],
+[Pfizer][22] (and so many scientists), [Amazon][23], [Apple][24], [Google][25], [Samsung][26], [the Linux Foundation][27], et al
 have changed the world, they have built products that have profoundly impacted or will impact
 our lives, think about phones, think about the internet as we know it, think about having
 the biggest knowledge library in the known history of human kind literally
@@ -26,7 +26,7 @@ at your fingertips and virtually for free. Or maybe think about what Tesla and S
 aiming to build, a new bread of transportation and new home for human kind.
 
 I guess you could take these achievements apart if you focus on the bad parts of our society
-which I don't deny their exist, but I don't think we can deny the net benefits and how
+which I don't deny they exist, but I don't think we can deny the net benefits and how
 humanity will look back 20 or 50 years back at these pioneers will be highly positive.
 
 ## My current stage in life
@@ -76,6 +76,8 @@ eagerness to tackle those problems. At this point I am non stop thinking machine
 I will be doing the [Startup school][15] free program they provide and I would
 probably recommend my potential co-founders to also take it.
 
+I am also reading [Zero to One by Peter Thiel][28] which so far has been a really good book.
+
 ## Closing
 
 It is scary as hell to be in front of this massive uncertainty wall, I still
@@ -96,3 +98,13 @@ If you are interested if having updates about my journey let me know.
 [16]: https://www.ycombinator.com/about/
 [17]: https://www.ycombinator.com/atyc/
 [18]: https://www.ycombinator.com/howtoapply/
+[19]: https://www.tesla.com/
+[20]: https://www.impossiblefoods.com/
+[21]: https://www.spacex.com/
+[22]: https://www.who.int/news-room/feature-stories/detail/who-can-take-the-pfizer-biontech-covid-19--vaccine?gclid=EAIaIQobChMIiemz2vDJ7gIV1NrICh2M3Q0JEAAYASAAEgIwa_D_BwE
+[23]: https://www.amazon.com/
+[24]: https://www.apple.com/
+[25]: https://www.google.com/
+[26]: https://www.samsung.com/
+[27]: https://www.linuxfoundation.org/
+[28]: https://amzn.to/3pzBkPv
