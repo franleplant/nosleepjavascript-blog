@@ -7,7 +7,6 @@ import Bio from "../components/Bio";
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
 import Tags from "../components/Tags";
-import { rhythm, scale } from "../utils/typography";
 import NewsletterSubscribe from "../components/NewsletterSubscribe";
 import SeoFooter from "../components/SeoFooter";
 import BuyMeCoffee from "../components/BuyMeCoffee";
@@ -47,19 +46,14 @@ export default function BlogPostTemplate(props: IProps) {
         <header>
           <h1
             css={css`
-              margin-top: ${rhythm(1)};
               margin-bottom: 0;
             `}
           >
             {post.frontmatter?.title}
           </h1>
           <div
-            style={{
-              ...scale(-1 / 5),
-            }}
             css={css`
               display: block;
-              margin-bottom: ${rhythm(1)};
             `}
           >
             {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
@@ -70,11 +64,7 @@ export default function BlogPostTemplate(props: IProps) {
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <NewsletterSubscribe />
 
-        <hr
-          css={css`
-            margin-bottom: ${rhythm(1)};
-          `}
-        />
+        <hr css={css``} />
 
         <footer>
           <Bio author={author} />

@@ -2469,8 +2469,6 @@ export type IQueryAllDirectoryArgs = {
 export type IQuerySiteArgs = {
   buildTime: Maybe<IDateQueryOperatorInput>;
   siteMetadata: Maybe<ISiteSiteMetadataFilterInput>;
-  port: Maybe<IIntQueryOperatorInput>;
-  host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
   polyfill: Maybe<IBooleanQueryOperatorInput>;
@@ -2495,15 +2493,15 @@ export type IQuerySitePageArgs = {
   internalComponentName: Maybe<IStringQueryOperatorInput>;
   componentChunkName: Maybe<IStringQueryOperatorInput>;
   matchPath: Maybe<IStringQueryOperatorInput>;
+  id: Maybe<IStringQueryOperatorInput>;
+  parent: Maybe<INodeFilterInput>;
+  children: Maybe<INodeFilterListInput>;
+  internal: Maybe<IInternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<IBooleanQueryOperatorInput>;
   context: Maybe<ISitePageContextFilterInput>;
   pluginCreator: Maybe<ISitePluginFilterInput>;
   pluginCreatorId: Maybe<IStringQueryOperatorInput>;
   componentPath: Maybe<IStringQueryOperatorInput>;
-  id: Maybe<IStringQueryOperatorInput>;
-  parent: Maybe<INodeFilterInput>;
-  children: Maybe<INodeFilterListInput>;
-  internal: Maybe<IInternalFilterInput>;
 };
 
 
@@ -2630,8 +2628,6 @@ export type IQueryAllSitePluginArgs = {
 export type ISite = INode & {
   buildTime: Maybe<Scalars['Date']>;
   siteMetadata: Maybe<ISiteSiteMetadata>;
-  port: Maybe<Scalars['Int']>;
-  host: Maybe<Scalars['String']>;
   pathPrefix: Maybe<Scalars['String']>;
   mapping: Maybe<ISiteMapping>;
   polyfill: Maybe<Scalars['Boolean']>;
@@ -2837,8 +2833,6 @@ export type ISiteFieldsEnum =
   'siteMetadata___author' |
   'siteMetadata___siteUrl' |
   'siteMetadata___social___twitter' |
-  'port' |
-  'host' |
   'pathPrefix' |
   'mapping___MarkdownRemark_frontmatter_author' |
   'polyfill' |
@@ -2932,8 +2926,6 @@ export type ISiteFieldsEnum =
 export type ISiteFilterInput = {
   buildTime: Maybe<IDateQueryOperatorInput>;
   siteMetadata: Maybe<ISiteSiteMetadataFilterInput>;
-  port: Maybe<IIntQueryOperatorInput>;
-  host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
   polyfill: Maybe<IBooleanQueryOperatorInput>;
@@ -2966,15 +2958,15 @@ export type ISitePage = INode & {
   internalComponentName: Scalars['String'];
   componentChunkName: Scalars['String'];
   matchPath: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  parent: Maybe<INode>;
+  children: Array<INode>;
+  internal: IInternal;
   isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   context: Maybe<ISitePageContext>;
   pluginCreator: Maybe<ISitePlugin>;
   pluginCreatorId: Maybe<Scalars['String']>;
   componentPath: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  parent: Maybe<INode>;
-  children: Array<INode>;
-  internal: IInternal;
 };
 
 export type ISitePageConnection = {
@@ -3074,6 +3066,92 @@ export type ISitePageFieldsEnum =
   'internalComponentName' |
   'componentChunkName' |
   'matchPath' |
+  'id' |
+  'parent___id' |
+  'parent___parent___id' |
+  'parent___parent___parent___id' |
+  'parent___parent___parent___children' |
+  'parent___parent___children' |
+  'parent___parent___children___id' |
+  'parent___parent___children___children' |
+  'parent___parent___internal___content' |
+  'parent___parent___internal___contentDigest' |
+  'parent___parent___internal___description' |
+  'parent___parent___internal___fieldOwners' |
+  'parent___parent___internal___ignoreType' |
+  'parent___parent___internal___mediaType' |
+  'parent___parent___internal___owner' |
+  'parent___parent___internal___type' |
+  'parent___children' |
+  'parent___children___id' |
+  'parent___children___parent___id' |
+  'parent___children___parent___children' |
+  'parent___children___children' |
+  'parent___children___children___id' |
+  'parent___children___children___children' |
+  'parent___children___internal___content' |
+  'parent___children___internal___contentDigest' |
+  'parent___children___internal___description' |
+  'parent___children___internal___fieldOwners' |
+  'parent___children___internal___ignoreType' |
+  'parent___children___internal___mediaType' |
+  'parent___children___internal___owner' |
+  'parent___children___internal___type' |
+  'parent___internal___content' |
+  'parent___internal___contentDigest' |
+  'parent___internal___description' |
+  'parent___internal___fieldOwners' |
+  'parent___internal___ignoreType' |
+  'parent___internal___mediaType' |
+  'parent___internal___owner' |
+  'parent___internal___type' |
+  'children' |
+  'children___id' |
+  'children___parent___id' |
+  'children___parent___parent___id' |
+  'children___parent___parent___children' |
+  'children___parent___children' |
+  'children___parent___children___id' |
+  'children___parent___children___children' |
+  'children___parent___internal___content' |
+  'children___parent___internal___contentDigest' |
+  'children___parent___internal___description' |
+  'children___parent___internal___fieldOwners' |
+  'children___parent___internal___ignoreType' |
+  'children___parent___internal___mediaType' |
+  'children___parent___internal___owner' |
+  'children___parent___internal___type' |
+  'children___children' |
+  'children___children___id' |
+  'children___children___parent___id' |
+  'children___children___parent___children' |
+  'children___children___children' |
+  'children___children___children___id' |
+  'children___children___children___children' |
+  'children___children___internal___content' |
+  'children___children___internal___contentDigest' |
+  'children___children___internal___description' |
+  'children___children___internal___fieldOwners' |
+  'children___children___internal___ignoreType' |
+  'children___children___internal___mediaType' |
+  'children___children___internal___owner' |
+  'children___children___internal___type' |
+  'children___internal___content' |
+  'children___internal___contentDigest' |
+  'children___internal___description' |
+  'children___internal___fieldOwners' |
+  'children___internal___ignoreType' |
+  'children___internal___mediaType' |
+  'children___internal___owner' |
+  'children___internal___type' |
+  'internal___content' |
+  'internal___contentDigest' |
+  'internal___description' |
+  'internal___fieldOwners' |
+  'internal___ignoreType' |
+  'internal___mediaType' |
+  'internal___owner' |
+  'internal___type' |
   'isCreatedByStatefulCreatePages' |
   'context___slug' |
   'context___previous___fields___slug' |
@@ -3178,7 +3256,6 @@ export type ISitePageFieldsEnum =
   'pluginCreator___pluginOptions___crossOrigin' |
   'pluginCreator___pluginOptions___include_favicon' |
   'pluginCreator___pluginOptions___cacheDigest' |
-  'pluginCreator___pluginOptions___pathToConfigModule' |
   'pluginCreator___pluginOptions___isTSX' |
   'pluginCreator___pluginOptions___jsxPragma' |
   'pluginCreator___pluginOptions___allExtensions' |
@@ -3206,93 +3283,7 @@ export type ISitePageFieldsEnum =
   'pluginCreator___packageJson___peerDependencies___version' |
   'pluginCreator___packageJson___keywords' |
   'pluginCreatorId' |
-  'componentPath' |
-  'id' |
-  'parent___id' |
-  'parent___parent___id' |
-  'parent___parent___parent___id' |
-  'parent___parent___parent___children' |
-  'parent___parent___children' |
-  'parent___parent___children___id' |
-  'parent___parent___children___children' |
-  'parent___parent___internal___content' |
-  'parent___parent___internal___contentDigest' |
-  'parent___parent___internal___description' |
-  'parent___parent___internal___fieldOwners' |
-  'parent___parent___internal___ignoreType' |
-  'parent___parent___internal___mediaType' |
-  'parent___parent___internal___owner' |
-  'parent___parent___internal___type' |
-  'parent___children' |
-  'parent___children___id' |
-  'parent___children___parent___id' |
-  'parent___children___parent___children' |
-  'parent___children___children' |
-  'parent___children___children___id' |
-  'parent___children___children___children' |
-  'parent___children___internal___content' |
-  'parent___children___internal___contentDigest' |
-  'parent___children___internal___description' |
-  'parent___children___internal___fieldOwners' |
-  'parent___children___internal___ignoreType' |
-  'parent___children___internal___mediaType' |
-  'parent___children___internal___owner' |
-  'parent___children___internal___type' |
-  'parent___internal___content' |
-  'parent___internal___contentDigest' |
-  'parent___internal___description' |
-  'parent___internal___fieldOwners' |
-  'parent___internal___ignoreType' |
-  'parent___internal___mediaType' |
-  'parent___internal___owner' |
-  'parent___internal___type' |
-  'children' |
-  'children___id' |
-  'children___parent___id' |
-  'children___parent___parent___id' |
-  'children___parent___parent___children' |
-  'children___parent___children' |
-  'children___parent___children___id' |
-  'children___parent___children___children' |
-  'children___parent___internal___content' |
-  'children___parent___internal___contentDigest' |
-  'children___parent___internal___description' |
-  'children___parent___internal___fieldOwners' |
-  'children___parent___internal___ignoreType' |
-  'children___parent___internal___mediaType' |
-  'children___parent___internal___owner' |
-  'children___parent___internal___type' |
-  'children___children' |
-  'children___children___id' |
-  'children___children___parent___id' |
-  'children___children___parent___children' |
-  'children___children___children' |
-  'children___children___children___id' |
-  'children___children___children___children' |
-  'children___children___internal___content' |
-  'children___children___internal___contentDigest' |
-  'children___children___internal___description' |
-  'children___children___internal___fieldOwners' |
-  'children___children___internal___ignoreType' |
-  'children___children___internal___mediaType' |
-  'children___children___internal___owner' |
-  'children___children___internal___type' |
-  'children___internal___content' |
-  'children___internal___contentDigest' |
-  'children___internal___description' |
-  'children___internal___fieldOwners' |
-  'children___internal___ignoreType' |
-  'children___internal___mediaType' |
-  'children___internal___owner' |
-  'children___internal___type' |
-  'internal___content' |
-  'internal___contentDigest' |
-  'internal___description' |
-  'internal___fieldOwners' |
-  'internal___ignoreType' |
-  'internal___mediaType' |
-  'internal___owner' |
-  'internal___type';
+  'componentPath';
 
 export type ISitePageFilterInput = {
   path: Maybe<IStringQueryOperatorInput>;
@@ -3300,15 +3291,15 @@ export type ISitePageFilterInput = {
   internalComponentName: Maybe<IStringQueryOperatorInput>;
   componentChunkName: Maybe<IStringQueryOperatorInput>;
   matchPath: Maybe<IStringQueryOperatorInput>;
+  id: Maybe<IStringQueryOperatorInput>;
+  parent: Maybe<INodeFilterInput>;
+  children: Maybe<INodeFilterListInput>;
+  internal: Maybe<IInternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<IBooleanQueryOperatorInput>;
   context: Maybe<ISitePageContextFilterInput>;
   pluginCreator: Maybe<ISitePluginFilterInput>;
   pluginCreatorId: Maybe<IStringQueryOperatorInput>;
   componentPath: Maybe<IStringQueryOperatorInput>;
-  id: Maybe<IStringQueryOperatorInput>;
-  parent: Maybe<INodeFilterInput>;
-  children: Maybe<INodeFilterListInput>;
-  internal: Maybe<IInternalFilterInput>;
 };
 
 export type ISitePageGroupConnection = {
@@ -3534,7 +3525,6 @@ export type ISitePluginFieldsEnum =
   'pluginOptions___crossOrigin' |
   'pluginOptions___include_favicon' |
   'pluginOptions___cacheDigest' |
-  'pluginOptions___pathToConfigModule' |
   'pluginOptions___isTSX' |
   'pluginOptions___jsxPragma' |
   'pluginOptions___allExtensions' |
@@ -3698,7 +3688,6 @@ export type ISitePluginPluginOptions = {
   crossOrigin: Maybe<Scalars['String']>;
   include_favicon: Maybe<Scalars['Boolean']>;
   cacheDigest: Maybe<Scalars['String']>;
-  pathToConfigModule: Maybe<Scalars['String']>;
   isTSX: Maybe<Scalars['Boolean']>;
   jsxPragma: Maybe<Scalars['String']>;
   allExtensions: Maybe<Scalars['Boolean']>;
@@ -3762,7 +3751,6 @@ export type ISitePluginPluginOptionsFilterInput = {
   crossOrigin: Maybe<IStringQueryOperatorInput>;
   include_favicon: Maybe<IBooleanQueryOperatorInput>;
   cacheDigest: Maybe<IStringQueryOperatorInput>;
-  pathToConfigModule: Maybe<IStringQueryOperatorInput>;
   isTSX: Maybe<IBooleanQueryOperatorInput>;
   jsxPragma: Maybe<IStringQueryOperatorInput>;
   allExtensions: Maybe<IBooleanQueryOperatorInput>;

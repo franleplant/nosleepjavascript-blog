@@ -5,7 +5,6 @@ import styled from "@emotion/styled";
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
 import Bio from "../components/About/Bio";
-import { rhythm } from "../utils/typography";
 import NewsletterSubscribe from "../components/NewsletterSubscribe";
 
 import { IAboutPageQuery } from "../../graphql-types";
@@ -28,12 +27,7 @@ export default function AboutPage(props: IProps) {
       <SEO title="About" />
       <article>
         <header>
-          <h1
-            style={{
-              marginTop: rhythm(1),
-              marginBottom: rhythm(1),
-            }}
-          >
+          <h1>
             NoSleep Javascript
             <br />
             <small>Don’t let programming keep you awake at night</small>
@@ -146,11 +140,7 @@ export default function AboutPage(props: IProps) {
           ))}
         </BioContainer>
 
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
+        <hr />
         <footer></footer>
       </article>
     </Layout>

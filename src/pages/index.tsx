@@ -4,7 +4,6 @@ import { css } from "@emotion/core";
 
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
-import { rhythm } from "../utils/typography";
 import SharedBio from "../components/SharedBio";
 import * as theme from "../utils/theme";
 
@@ -42,11 +41,7 @@ export default function BlogIndex(props: IProps) {
         return (
           <article key={slug}>
             <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
+              <h3>
                 <Link to={slug}>{title}</Link>
               </h3>
               <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>

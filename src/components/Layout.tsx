@@ -5,7 +5,6 @@ import Helmet from "react-helmet";
 import color from "color";
 import * as theme from "../utils/theme";
 
-import { rhythm } from "../utils/typography";
 import PrimaryHeader from "./PrimaryHeader";
 import SecondaryHeader from "./SecondaryHeader";
 
@@ -103,6 +102,4 @@ export default function Layout(props: IProps) {
 const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
-  max-width: ${rhythm(32)};
-  padding: ${rhythm(1)} ${rhythm(3 / 4)};
 `;

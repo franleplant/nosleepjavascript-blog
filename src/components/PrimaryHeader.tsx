@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
 import { css } from "@emotion/core";
-import typography from "../utils/typography";
 
 import logo from "../../content/assets/logo.svg";
 
@@ -15,7 +14,6 @@ export default function PrimaryHeader(props: IProps) {
     <h1
       css={css`
         @media only screen and (min-width: 500px) {
-          padding: 0 ${typography.rhythm(5)};
         }
       `}
     >

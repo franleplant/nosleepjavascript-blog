@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Image from "gatsby-image";
-import { rhythm } from "../../utils/typography";
 import { IGatsbyImageSharpFixedFragment } from "../../../graphql-types";
 import { IAuthor as IAuthorBase } from "../../types";
 import { COLOR } from "../../utils/theme";
@@ -28,7 +27,6 @@ export default function Bio(props: IProps) {
           fixed={author.profilepicture.childImageSharp.fixed}
           alt={author.id}
           style={{
-            marginRight: rhythm(1 / 2),
             marginBottom: 0,
             borderRadius: "50%",
             width: "200px",
@@ -68,7 +66,6 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: ${rhythm(2.5)};
   width: 400px;
   padding: 50px;
 `;
