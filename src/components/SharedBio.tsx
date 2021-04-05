@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 import styled from "@emotion/styled";
 import { IAuthor } from "../types";
 
@@ -17,9 +16,6 @@ export default function SharedBio(props: IProps) {
         A blog by <MiniBio author={authors[0]} />
       </p>
       <p>I talk about Programming, Tech Culture and random stuff.</p>
-      <p>
-        <Link to="about">About</Link>
-      </p>
     </Container>
   );
 }

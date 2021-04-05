@@ -39,7 +39,7 @@ export default function BlogIndex(props: IProps) {
         const content = node.frontmatter.description || node.excerpt;
 
         return (
-          <article key={slug}>
+          <article key={slug} className="shadow-md">
             <header>
               <h3>
                 <Link to={slug}>{title}</Link>

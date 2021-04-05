@@ -7,6 +7,7 @@ import * as theme from "../utils/theme";
 
 import PrimaryHeader from "./PrimaryHeader";
 import SecondaryHeader from "./SecondaryHeader";
+import NavMenu from "./NavMenu";
 
 interface IProps {
   children: any;
@@ -52,6 +53,7 @@ export default function Layout(props: IProps) {
             border-top-left-radius: 0.3em;
             border-top-right-radius: 0.3em;
           }
+          /*
 
           button,
           input[type="submit"] {
@@ -88,12 +90,16 @@ export default function Layout(props: IProps) {
             padding-bottom: 20px;
             color: rgba(0, 0, 0, 0.8);
           }
+          */
         `}
       />
-      <header>
-        {isRoot ? <PrimaryHeader title={title} /> : <SecondaryHeader />}
-      </header>
-      <main>{children}</main>
+      <NavMenu />
+      <div className="container mx-auto md:max-w-5xl p-2">
+        <header>
+          {isRoot ? <PrimaryHeader title={title} /> : <SecondaryHeader />}
+        </header>
+        <main>{children}</main>
+      </div>
       <footer>© {new Date().getFullYear()}, nosleepjavascript.com</footer>
     </Container>
   );

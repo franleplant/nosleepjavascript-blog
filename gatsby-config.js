@@ -139,6 +139,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-twitter`,
+    "gatsby-plugin-postcss",
   ],
   mapping: {
     "MarkdownRemark.frontmatter.author": `AuthorYaml`,
