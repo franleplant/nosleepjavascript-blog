@@ -4,7 +4,7 @@ import { COLOR } from "../utils/theme";
 
 export default function NewsletterSubscribe() {
   return (
-    <Container>
+    <Container className="">
       <h3>Subscribe to our mailing list!</h3>
       <h4>Get exclusive content, offers and become a friend!</h4>
 
