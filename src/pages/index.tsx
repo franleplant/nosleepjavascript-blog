@@ -22,53 +22,57 @@ export default function BlogIndex(props: IProps) {
 
   return (
     <Layout location={props.location} title={siteTitle}>
-      <SEO title="NoSleep Javascript a blog by franleplant" />
+      <div className="space-y-1">
+        <SEO title="NoSleep Javascript a blog by franleplant" />
 
-      {/* TODO improve this */}
-      <SharedBio
-        authors={data.allAuthorYaml.nodes.filter(
-          (author) => author.id === "franleplant"
-        )}
-      />
+        {/* TODO improve this 
+      TODO move this to PrimaryHeader
+        */}
+        <SharedBio
+          authors={data.allAuthorYaml.nodes.filter(
+            (author) => author.id === "franleplant"
+          )}
+        />
 
-      <NewsletterSubscribe />
+        <NewsletterSubscribe />
 
-      {posts.map(({ node }) => {
-        const slug = node.fields.slug;
-        const title = node.frontmatter.title || slug;
-        const content = node.frontmatter.description || node.excerpt;
+        {posts.map(({ node }) => {
+          const slug = node.fields.slug;
+          const title = node.frontmatter.title || slug;
+          const content = node.frontmatter.description || node.excerpt;
 
-        return (
-          <article key={slug} className="shadow-md">
-            <header>
-              <h3>
-                <Link to={slug}>{title}</Link>
-              </h3>
-              <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>
-              <small>
-                {` • by `}
-                <span
+          return (
+            <article key={slug} className="shadow-md">
+              <header>
+                <h3>
+                  <Link to={slug}>{title}</Link>
+                </h3>
+                <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>
+                <small>
+                  {` • by `}
+                  <span
+                    css={css`
+                      color: ${theme.COLOR.SECONDARY};
+                    `}
+                  >
+                    {node.frontmatter.author.id}
+                  </span>
+                </small>
+              </header>
+              <section>
+                <p
                   css={css`
-                    color: ${theme.COLOR.SECONDARY};
+                    text-align: justify;
                   `}
-                >
-                  {node.frontmatter.author.id}
-                </span>
-              </small>
-            </header>
-            <section>
-              <p
-                css={css`
-                  text-align: justify;
-                `}
-                dangerouslySetInnerHTML={{
-                  __html: content,
-                }}
-              />
-            </section>
-          </article>
-        );
-      })}
+                  dangerouslySetInnerHTML={{
+                    __html: content,
+                  }}
+                />
+              </section>
+            </article>
+          );
+        })}
+      </div>
     </Layout>
   );
 }

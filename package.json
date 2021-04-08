@@ -25,6 +25,7 @@
     "@types/color": "^3.0.1",
     "@types/react-dom": "^16.9.8",
     "autoprefixer": "^10.2.5",
+    "classnames": "^2.3.1",
     "color": "3.1.2",
     "gatsby": "^2.18.4",
     "gatsby-image": "^2.2.37",

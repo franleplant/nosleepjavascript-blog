@@ -1,12 +1,17 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { COLOR } from "../utils/theme";
+import Input from "./Input";
+import Button from "./Button";
 
 export default function NewsletterSubscribe() {
   return (
-    <Container className="">
-      <h3>Subscribe to our mailing list!</h3>
-      <h4>Get exclusive content, offers and become a friend!</h4>
+    <div className="rounded border-2 border-pink-400 p-3 space-y-1 bg-pink-50">
+      <h2 className="font-semibold text-center">
+        Subscribe to our mailing list!
+      </h2>
+      <p className="text-center">
+        Get exclusive content, offers and become a friend!
+      </p>
 
       <div id="mc_embed_signup">
         <form
@@ -17,12 +22,15 @@ export default function NewsletterSubscribe() {
           target="_blank"
           noValidate
         >
-          <div id="mc_embed_signup_scroll">
-            <div className="mc-field-group" style={{ display: "inline-block" }}>
+          <div
+            id="mc_embed_signup_scroll"
+            className="flex flex-row justify-center gap-2"
+          >
+            <div className="mc-field-group">
               <label htmlFor="mce-EMAIL" style={{ display: "none" }}>
                 email <span style={{ color: "red" }}>*</span>{" "}
               </label>
-              <input
+              <Input
                 type="email"
                 name="EMAIL"
                 className="required email"
@@ -52,36 +60,15 @@ export default function NewsletterSubscribe() {
                 tabIndex={-1}
               />
             </div>
-            <input
-              type="submit"
-              value="Subscribe"
-              name="subscribe"
-              id="mc-embedded-subscribe"
-            />
+
+            <div className="">
+              <Button type="submit" id="mc-embedded-subscribe">
+                Subscribe
+              </Button>
+            </div>
           </div>
         </form>
       </div>
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div`
-  text-align: center;
-  border: 2px solid ${COLOR.SECONDARY};
-  border-radius: 5px;
-  margin-bottom: 18px;
-  padding: 5px;
-
-  form {
-    margin: 0;
-  }
-
-  form > div {
-    display: flex;
-    justify-content: center;
-  }
-
-  form > div > * {
-    margin: 0px 4px;
-  }
-`;

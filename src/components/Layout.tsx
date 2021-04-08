@@ -28,7 +28,7 @@ export default function Layout(props: IProps) {
       <GlobalStyles />
 
       <NavMenu />
-      <div className="p-3">
+      <div className="p-3 space-y-1">
         <header>
           {isRoot ? <PrimaryHeader title={title} /> : <SecondaryHeader />}
         </header>
@@ -37,8 +37,8 @@ export default function Layout(props: IProps) {
           <main className="col-span-6 md:col-span-4">{children}</main>
           <section className="xl:col-span-2">right</section>
         </div>
+        <footer>© {new Date().getFullYear()}, nosleepjavascript.com</footer>
       </div>
-      <footer>© {new Date().getFullYear()}, nosleepjavascript.com</footer>
     </div>
   );
 }
