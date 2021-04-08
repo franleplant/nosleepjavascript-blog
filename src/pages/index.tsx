@@ -22,7 +22,7 @@ export default function BlogIndex(props: IProps) {
 
   return (
     <Layout location={props.location} title={siteTitle}>
-      <div className="space-y-1">
+      <div className="space-y-2">
         <SEO title="NoSleep Javascript a blog by franleplant" />
 
         {/* TODO improve this 
@@ -36,42 +36,44 @@ export default function BlogIndex(props: IProps) {
 
         <NewsletterSubscribe />
 
-        {posts.map(({ node }) => {
-          const slug = node.fields.slug;
-          const title = node.frontmatter.title || slug;
-          const content = node.frontmatter.description || node.excerpt;
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          {posts.map(({ node }) => {
+            const slug = node.fields.slug;
+            const title = node.frontmatter.title || slug;
+            const content = node.frontmatter.description || node.excerpt;
 
-          return (
-            <article key={slug} className="shadow-md">
-              <header>
-                <h3>
-                  <Link to={slug}>{title}</Link>
-                </h3>
-                <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>
-                <small>
-                  {` • by `}
-                  <span
+            return (
+              <article key={slug} className="shadow-md p-3">
+                <header>
+                  <h3>
+                    <Link to={slug}>{title}</Link>
+                  </h3>
+                  <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>
+                  <small>
+                    {` • by `}
+                    <span
+                      css={css`
+                        color: ${theme.COLOR.SECONDARY};
+                      `}
+                    >
+                      {node.frontmatter.author.id}
+                    </span>
+                  </small>
+                </header>
+                <section>
+                  <p
                     css={css`
-                      color: ${theme.COLOR.SECONDARY};
+                      text-align: justify;
                     `}
-                  >
-                    {node.frontmatter.author.id}
-                  </span>
-                </small>
-              </header>
-              <section>
-                <p
-                  css={css`
-                    text-align: justify;
-                  `}
-                  dangerouslySetInnerHTML={{
-                    __html: content,
-                  }}
-                />
-              </section>
-            </article>
-          );
-        })}
+                    dangerouslySetInnerHTML={{
+                      __html: content,
+                    }}
+                  />
+                </section>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </Layout>
   );

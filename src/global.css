@@ -15,5 +15,9 @@
     @apply text-xl;
     @apply font-sans;
   }
+
+  a {
+    @apply text-pink-400
+  }
 }
 
