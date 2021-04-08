@@ -21,39 +21,65 @@ export default function Layout(props: IProps) {
   const isRoot = location.pathname === rootPath;
 
   return (
-    <Container>
+    <div>
       <Helmet>
-        <script
-          // mailchimp
-          id="mcjs"
-        >
-          {`!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/c388336980630bd93629517cb/79c014026202565af1500f561.js");
-          `}
-        </script>
+        <MailchimpScript />
       </Helmet>
-      <Global
-        styles={css`
-          :not(pre) > code[class*="language-"] {
-            // this is to fix overflowing in mobile
-            word-break: break-word;
-          }
+      <GlobalStyles />
 
-          .code-block-title {
-            margin-bottom: -0.6rem;
-            padding: 0.5em 1em;
-            font-family: Consolas, "Andale Mono WT", "Andale Mono",
-              "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono",
-              "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L",
-              Monaco, "Courier New", Courier, monospace;
+      <NavMenu />
+      <div className="p-3">
+        <header>
+          {isRoot ? <PrimaryHeader title={title} /> : <SecondaryHeader />}
+        </header>
+        <div className="grid grid-cols-6 xl:grid-cols-8 gap-4">
+          <section className="xl:col-span-2">left</section>
+          <main className="col-span-6 md:col-span-4">{children}</main>
+          <section className="xl:col-span-2">right</section>
+        </div>
+      </div>
+      <footer>© {new Date().getFullYear()}, nosleepjavascript.com</footer>
+    </div>
+  );
+}
 
-            background-color: black;
-            color: white;
-            z-index: 0;
+export function MailchimpScript() {
+  return (
+    <script
+      // mailchimp
+      id="mcjs"
+    >
+      {`!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/c388336980630bd93629517cb/79c014026202565af1500f561.js");
+          `}
+    </script>
+  );
+}
 
-            border-top-left-radius: 0.3em;
-            border-top-right-radius: 0.3em;
-          }
-          /*
+export function GlobalStyles() {
+  return (
+    <Global
+      styles={css`
+        :not(pre) > code[class*="language-"] {
+          // this is to fix overflowing in mobile
+          word-break: break-word;
+        }
+
+        .code-block-title {
+          margin-bottom: -0.6rem;
+          padding: 0.5em 1em;
+          font-family: Consolas, "Andale Mono WT", "Andale Mono",
+            "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono",
+            "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L",
+            Monaco, "Courier New", Courier, monospace;
+
+          background-color: black;
+          color: white;
+          z-index: 0;
+
+          border-top-left-radius: 0.3em;
+          border-top-right-radius: 0.3em;
+        }
+        /*
 
           button,
           input[type="submit"] {
@@ -91,21 +117,7 @@ export default function Layout(props: IProps) {
             color: rgba(0, 0, 0, 0.8);
           }
           */
-        `}
-      />
-      <NavMenu />
-      <div className="container mx-auto md:max-w-5xl p-2">
-        <header>
-          {isRoot ? <PrimaryHeader title={title} /> : <SecondaryHeader />}
-        </header>
-        <main>{children}</main>
-      </div>
-      <footer>© {new Date().getFullYear()}, nosleepjavascript.com</footer>
-    </Container>
+      `}
+    />
   );
 }
-
-const Container = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-`;

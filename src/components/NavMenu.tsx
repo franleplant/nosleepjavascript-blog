@@ -11,7 +11,7 @@ export default function NavMenu() {
           <img
             src={logo}
             alt={"NoSleepJavascript Blog"}
-            className="transform transition delay-300 duration-300 ease-in-out hover:scale-125"
+            className="transform transition duration-300 ease-in-out hover:scale-125"
           />
         </Link>
       </div>
