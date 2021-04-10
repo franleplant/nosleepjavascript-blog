@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 
 export interface IProps {
   slug: string;
@@ -13,8 +13,15 @@ export interface IProps {
 export default function PostCard(props: IProps): JSX.Element {
   const { slug, title, content, authorId, date, readingTime } = props;
 
+  function onClick(e: React.MouseEvent<HTMLElement, MouseEvent>): void {
+    navigate(slug);
+  }
+
   return (
-    <article className="shadow-md p-3 rounded space-y-3 border-black-100 border">
+    <article
+      onClick={onClick}
+      className="bg-white shadow-md p-3 rounded-md space-y-3 border-black-100 border cursor-pointer transition duration-500 ease-in-out transform hover:scale-105 hover:z-50"
+    >
       <div>
         <h3>
           <Link to={slug}>{title}</Link>

@@ -45,30 +45,25 @@ export default function BlogPostTemplate(props: IProps) {
 
       <div className="lg:max-w-2xl m-auto my-5">
         <article className="space-y-5">
+          <Tags tags={tags} />
           <header className="pb-3">
             <h1> {post.frontmatter?.title} </h1>
             <div className="py-3 text-gray-700">
               {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
             </div>
-            <Tags tags={tags} />
+            <Bio author={author} />
           </header>
 
           <section
             className="space-y-5"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+
+          <section className="flex items-center gap-2">
+            <BuyMeCoffee />
+            <Patreon />
+          </section>
           <NewsletterSubscribe />
-
-          <hr css={css``} />
-
-          <footer className="space-y-6">
-            <Bio author={author} />
-
-            <div className="flex items-center gap-2">
-              <BuyMeCoffee />
-              <Patreon />
-            </div>
-          </footer>
         </article>
 
         <div className="py-4">
