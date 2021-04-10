@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "@emotion/styled";
 import { Global, css } from "@emotion/core";
 import Helmet from "react-helmet";
 import color from "color";
@@ -8,6 +7,7 @@ import * as theme from "../utils/theme";
 import PrimaryHeader from "./PrimaryHeader";
 import SecondaryHeader from "./SecondaryHeader";
 import NavMenu from "./NavMenu";
+import Footer from "./Footer";
 
 interface IProps {
   children: any;
@@ -16,7 +16,7 @@ interface IProps {
 }
 
 export default function Layout(props: IProps) {
-  const { location, title, children } = props;
+  const { location, children } = props;
   const rootPath = `${__PATH_PREFIX__}/`;
   const isRoot = location.pathname === rootPath;
 
@@ -28,16 +28,14 @@ export default function Layout(props: IProps) {
       <GlobalStyles />
 
       <NavMenu />
-      <div className="p-3 space-y-1">
-        <header>
-          {isRoot ? <PrimaryHeader title={title} /> : <SecondaryHeader />}
-        </header>
-        <div className="grid grid-cols-6 xl:grid-cols-8 gap-4">
-          <section className="xl:col-span-2">left</section>
-          <main className="col-span-6 md:col-span-4">{children}</main>
-          <section className="xl:col-span-2">right</section>
+      <div className="space-y-3">
+        <header>{isRoot ? <PrimaryHeader /> : <SecondaryHeader />}</header>
+        <div className="p-3 grid grid-cols-6 xl:grid-cols-8 gap-4">
+          <section className="xl:col-span-1">left</section>
+          <main className="col-span-6 md:col-span-6">{children}</main>
+          <section className="xl:col-span-1">right</section>
         </div>
-        <footer>© {new Date().getFullYear()}, nosleepjavascript.com</footer>
+        <Footer />
       </div>
     </div>
   );

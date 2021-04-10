@@ -22,6 +22,7 @@
   a {
     @apply text-pink-600;
     @apply hover:underline;
+    @apply font-bold;
   }
 }
 

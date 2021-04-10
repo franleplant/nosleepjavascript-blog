@@ -3942,6 +3942,13 @@ export type IUnnamed_1_QueryVariables = {};
 
 export type IUnnamed_1_Query = { site: Maybe<{ siteMetadata: Maybe<Pick<ISiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
+export type IAllAuthorsQueryQueryVariables = {};
+
+
+export type IAllAuthorsQueryQuery = { allAuthorYaml: { nodes: Array<Pick<IAuthorYaml, 'bio' | 'id' | 'twitter' | 'github'>> } };
+
+export type IAuthorFragmentFragment = Pick<IAuthorYaml, 'bio' | 'id' | 'twitter' | 'github'>;
+
 export type INotFoundPageQueryVariables = {};
 
 

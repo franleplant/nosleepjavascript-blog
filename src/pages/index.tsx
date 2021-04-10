@@ -1,11 +1,8 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
-import { css } from "@emotion/core";
+import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
-import SharedBio from "../components/SharedBio";
-import * as theme from "../utils/theme";
 
 import { IBlogIndexQuery } from "../../graphql-types";
 import NewsletterSubscribe from "../components/NewsletterSubscribe";
@@ -23,21 +20,11 @@ export default function BlogIndex(props: IProps) {
 
   return (
     <Layout location={props.location} title={siteTitle}>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <SEO title="NoSleep Javascript a blog by franleplant" />
 
-        {/* TODO improve this 
-      TODO move this to PrimaryHeader
-        */}
-        <SharedBio
-          authors={data.allAuthorYaml.nodes.filter(
-            (author) => author.id === "franleplant"
-          )}
-        />
-
-        <NewsletterSubscribe />
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          <NewsletterSubscribe />
           {posts.map(({ node }) => {
             const slug = node.fields.slug;
             const title = node.frontmatter.title || slug;
