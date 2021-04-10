@@ -6,18 +6,22 @@
   h1 {
     @apply text-3xl;
     @apply font-sans;
+    @apply font-bold;
   }
   h2 {
     @apply text-2xl;
     @apply font-sans;
+    @apply font-bold;
   }
   h3 {
     @apply text-xl;
     @apply font-sans;
+    @apply font-bold;
   }
 
   a {
-    @apply text-pink-400
+    @apply text-pink-600;
+    @apply hover:underline;
   }
 }
 

@@ -5,7 +5,7 @@ import Button from "./Button";
 
 export default function NewsletterSubscribe() {
   return (
-    <div className="rounded border-2 border-pink-400 p-3 space-y-1 bg-pink-50">
+    <div className="rounded p-3 space-y-1 bg-yellow-600">
       <h2 className="font-semibold text-center">
         Subscribe to our mailing list!
       </h2>

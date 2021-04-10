@@ -9,6 +9,7 @@ import * as theme from "../utils/theme";
 
 import { IBlogIndexQuery } from "../../graphql-types";
 import NewsletterSubscribe from "../components/NewsletterSubscribe";
+import PostCard from "../components/PostCard";
 
 export interface IProps {
   data: IBlogIndexQuery;
@@ -43,34 +44,15 @@ export default function BlogIndex(props: IProps) {
             const content = node.frontmatter.description || node.excerpt;
 
             return (
-              <article key={slug} className="shadow-md p-3">
-                <header>
-                  <h3>
-                    <Link to={slug}>{title}</Link>
-                  </h3>
-                  <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>
-                  <small>
-                    {` • by `}
-                    <span
-                      css={css`
-                        color: ${theme.COLOR.SECONDARY};
-                      `}
-                    >
-                      {node.frontmatter.author.id}
-                    </span>
-                  </small>
-                </header>
-                <section>
-                  <p
-                    css={css`
-                      text-align: justify;
-                    `}
-                    dangerouslySetInnerHTML={{
-                      __html: content,
-                    }}
-                  />
-                </section>
-              </article>
+              <PostCard
+                key={slug}
+                slug={slug}
+                title={title}
+                content={content}
+                date={node.frontmatter.date}
+                readingTime={node.fields.readingTime.text}
+                authorId={node.frontmatter.author.id}
+              />
             );
           })}
         </div>
