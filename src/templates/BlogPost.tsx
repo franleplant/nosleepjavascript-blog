@@ -47,7 +47,7 @@ export default function BlogPostTemplate(props: IProps) {
         <article className="space-y-5">
           <header className="pb-3">
             <h1> {post.frontmatter?.title} </h1>
-            <div className="py-3">
+            <div className="py-3 text-gray-700">
               {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
             </div>
             <Tags tags={tags} />
@@ -61,26 +61,19 @@ export default function BlogPostTemplate(props: IProps) {
 
           <hr css={css``} />
 
-          <footer>
+          <footer className="space-y-6">
             <Bio author={author} />
 
-            <div
-              css={css`
-                margin-top: -20px;
-                margin-bottom: 20px;
-              `}
-            >
-              <div>
-                <BuyMeCoffee />
-              </div>
-              <div>
-                <Patreon />
-              </div>
+            <div className="flex items-center gap-2">
+              <BuyMeCoffee />
+              <Patreon />
             </div>
           </footer>
         </article>
 
-        <PostNavigator previous={previous} next={next} />
+        <div className="py-4">
+          <PostNavigator previous={previous} next={next} />
+        </div>
 
         <SeoFooter data={Array.isArray(seoFooter) ? seoFooter : [seoFooter]} />
       </div>

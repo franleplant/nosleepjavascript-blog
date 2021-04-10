@@ -5,7 +5,7 @@ import logo from "../../content/assets/logo.svg";
 
 export default function NavMenu() {
   return (
-    <div className="sticky top-0 py-1 flex w-full bg-white z-50 px-2 xl:px-20 shadow items-center">
+    <div className="top-0 py-1 flex w-full bg-white z-50 px-2 xl:px-20 shadow items-center">
       <div className="w-32">
         <Link to={`/`}>
           <img

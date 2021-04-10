@@ -22,6 +22,28 @@
     @apply pb-2;
   }
 
+  h4 {
+    @apply text-lg;
+    @apply font-sans;
+    @apply font-bold;
+    @apply pb-2;
+  }
+
+  h5 {
+    @apply text-base;
+    @apply font-sans;
+    @apply font-bold;
+    @apply pb-2;
+  }
+
+  h6 {
+    @apply text-base;
+    @apply font-sans;
+    @apply font-bold;
+    @apply italic;
+    @apply pb-2;
+  }
+
   a {
     @apply text-pink-600;
     @apply hover:underline;
@@ -30,8 +52,8 @@
 
   blockquote {
     @apply rounded p-6 pl-8 italic;
-    @apply bg-gradient-to-r from-yellow-600 via-yellow-600 to-pink-700;
-    /*@apply bg-gradient-to-r from-yellow-600;*/
+    /*@apply bg-gradient-to-r from-yellow-600 via-yellow-600 to-pink-700;*/
+    @apply bg-gradient-to-r from-yellow-600 via-yellow-600;
   }
 
   ul {

@@ -28,35 +28,23 @@ export default function Bio(props: IProps) {
   );
 
   return (
-    <Container>
+    <div className="flex items-center">
       <Image
         fluid={author.profilepicture.childImageSharp.fluid}
         alt={author.id}
         style={{
-          marginBottom: 0,
-          minWidth: 50,
+          minWidth: 75,
           borderRadius: `100%`,
         }}
         imgStyle={{
           borderRadius: `50%`,
         }}
       />
-      <p
-        css={css`
-          margin: 0;
-        `}
-      >
+      <p>
         {`${prefixText} `}
-        <strong>
-          <a href={`https://twitter.com/${author.twitter}`}>{author.id}</a>
-        </strong>
-        : {author.bio} {githubEl}
+        <a href={`https://twitter.com/${author.twitter}`}>{author.id}</a>:{" "}
+        {author.bio} {githubEl}
       </p>
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-`;
