@@ -7,22 +7,45 @@
     @apply text-3xl;
     @apply font-sans;
     @apply font-bold;
+    @apply pb-2;
   }
   h2 {
     @apply text-2xl;
     @apply font-sans;
     @apply font-bold;
+    @apply pb-2;
   }
   h3 {
     @apply text-xl;
     @apply font-sans;
     @apply font-bold;
+    @apply pb-2;
   }
 
   a {
     @apply text-pink-600;
     @apply hover:underline;
     @apply font-bold;
+  }
+
+  blockquote {
+    @apply rounded p-6 pl-8 italic;
+    @apply bg-gradient-to-r from-yellow-600 via-yellow-600 to-pink-700;
+    /*@apply bg-gradient-to-r from-yellow-600;*/
+  }
+
+  ul {
+    @apply list-disc;
+    @apply pl-8;
+  }
+
+  ol {
+    @apply list-decimal;
+    @apply pl-8;
+  }
+
+  li {
+    @apply py-1;
   }
 }
 

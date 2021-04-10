@@ -42,52 +42,48 @@ export default function BlogPostTemplate(props: IProps) {
         description={`${description || post.excerpt}\nBy ${author.id}`}
         author={author}
       />
-      <article>
-        <header>
-          <h1
-            css={css`
-              margin-bottom: 0;
-            `}
-          >
-            {post.frontmatter?.title}
-          </h1>
-          <div
-            css={css`
-              display: block;
-            `}
-          >
-            {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
+
+      <div className="lg:max-w-2xl m-auto my-5">
+        <article className="space-y-5">
+          <header className="pb-3">
+            <h1> {post.frontmatter?.title} </h1>
+            <div className="py-3">
+              {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
+            </div>
             <Tags tags={tags} />
-          </div>
-        </header>
+          </header>
 
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <NewsletterSubscribe />
+          <section
+            className="space-y-5"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+          <NewsletterSubscribe />
 
-        <hr css={css``} />
+          <hr css={css``} />
 
-        <footer>
-          <Bio author={author} />
+          <footer>
+            <Bio author={author} />
 
-          <div
-            css={css`
-              margin-top: -20px;
-              margin-bottom: 20px;
-            `}
-          >
-            <div>
-              <BuyMeCoffee />
+            <div
+              css={css`
+                margin-top: -20px;
+                margin-bottom: 20px;
+              `}
+            >
+              <div>
+                <BuyMeCoffee />
+              </div>
+              <div>
+                <Patreon />
+              </div>
             </div>
-            <div>
-              <Patreon />
-            </div>
-          </div>
-        </footer>
-      </article>
+          </footer>
+        </article>
 
-      <PostNavigator previous={previous} next={next} />
+        <PostNavigator previous={previous} next={next} />
 
-      <SeoFooter data={Array.isArray(seoFooter) ? seoFooter : [seoFooter]} />
+        <SeoFooter data={Array.isArray(seoFooter) ? seoFooter : [seoFooter]} />
+      </div>
     </Layout>
   );
 }

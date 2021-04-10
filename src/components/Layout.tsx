@@ -29,11 +29,11 @@ export default function Layout(props: IProps) {
 
       <NavMenu />
       <div className="space-y-3">
-        <header>{isRoot ? <PrimaryHeader /> : <SecondaryHeader />}</header>
+        {isRoot ? <PrimaryHeader /> : null}
         <div className="p-3 grid grid-cols-6 xl:grid-cols-8 gap-4">
-          <section className="xl:col-span-1">left</section>
+          <section className="xl:col-span-1"></section>
           <main className="col-span-6 md:col-span-6">{children}</main>
-          <section className="xl:col-span-1">right</section>
+          <section className="xl:col-span-1"></section>
         </div>
         <Footer />
       </div>
