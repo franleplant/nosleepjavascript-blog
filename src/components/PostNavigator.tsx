@@ -20,7 +20,7 @@ export interface IProps {
 export default function PostNavigator(props: IProps) {
   const { previous, next } = props;
   return (
-    <Container>
+    <Container className="gap-2">
       <NavItem to={previous?.fields.slug} rel="prev">
         ← {previous?.frontmatter.title}
       </NavItem>
@@ -42,7 +42,7 @@ export function NavItem(props: INavItemProps) {
     return null;
   }
   return (
-    <LinkContainer>
+    <LinkContainer className="rounded-md border-pink-600 border p-5">
       <Link to={props.to} rel={props.rel}>
         {props.children}
       </Link>
@@ -64,11 +64,6 @@ const Container = styled.nav(`
 `);
 
 const LinkContainer = styled.div`
-  border: 1px solid ${theme.COLOR.SECONDARY};
-  border-radius: 2px;
-  padding: 8px 16px;
-  margin: 2px;
-
   @media (min-width: 800px) {
     width: 49%;
   }
