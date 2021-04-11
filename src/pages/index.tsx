@@ -29,6 +29,7 @@ export default function BlogIndex(props: IProps) {
             const slug = node.fields.slug;
             const title = node.frontmatter.title || slug;
             const content = node.frontmatter.description || node.excerpt;
+            const tags = node.frontmatter.tags;
 
             return (
               <PostCard
@@ -39,6 +40,7 @@ export default function BlogIndex(props: IProps) {
                 date={node.frontmatter.date}
                 readingTime={node.fields.readingTime.text}
                 authorId={node.frontmatter.author.id}
+                tags={tags}
               />
             );
           })}
@@ -69,6 +71,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            tags
             author {
               id
             }

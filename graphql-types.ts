@@ -3971,7 +3971,7 @@ export type IBlogIndexQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<ISiteSite
           Pick<IMarkdownRemarkFields, 'slug'>
           & { readingTime: Maybe<Pick<IMarkdownRemarkFieldsReadingTime, 'text'>> }
         )>, frontmatter: Maybe<(
-          Pick<IMarkdownRemarkFrontmatter, 'date' | 'title' | 'description'>
+          Pick<IMarkdownRemarkFrontmatter, 'date' | 'title' | 'description' | 'tags'>
           & { author: Maybe<Pick<IAuthorYaml, 'id'>> }
         )> }
       ) }> }, allAuthorYaml: { nodes: Array<Pick<IAuthorYaml, 'bio' | 'id' | 'twitter' | 'github'>> } };

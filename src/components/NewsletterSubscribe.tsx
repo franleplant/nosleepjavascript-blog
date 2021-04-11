@@ -4,13 +4,13 @@ import Button from "./Button";
 
 export default function NewsletterSubscribe() {
   return (
-    <div className="rounded-md p-3 space-y-1 bg-yellow-600">
+    <div className="rounded-md p-3 bg-yellow-600 flex flex-col gap-1">
       <h2 className="text-center text-black">Subscribe to our mailing list!</h2>
       <p className="text-center text-black">
         Get exclusive content, offers and become a friend!
       </p>
 
-      <div id="mc_embed_signup">
+      <div id="mc_embed_signup" className="mt-auto">
         <form
           action="https://nosleepjavascript.us2.list-manage.com/subscribe/post?u=c388336980630bd93629517cb&amp;id=53ee07001f"
           method="post"

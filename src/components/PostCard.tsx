@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, navigate } from "gatsby";
+import Tags from "./Tags";
 
+// TODO better define this structure
 export interface IProps {
   slug: string;
   title: string;
@@ -8,10 +10,11 @@ export interface IProps {
   authorId: string;
   date: string;
   readingTime: string;
+  tags: Array<string>;
 }
 
 export default function PostCard(props: IProps): JSX.Element {
-  const { slug, title, content, authorId, date, readingTime } = props;
+  const { slug, title, content, authorId, date, readingTime, tags } = props;
 
   function onClick(_e: React.MouseEvent<HTMLElement, MouseEvent>): void {
     navigate(slug);
@@ -27,9 +30,11 @@ export default function PostCard(props: IProps): JSX.Element {
         dark:border-transparent
         dark:bg-opacity-5
         dark:bg-white
+        flex flex-col
+        gap-3
     `}
     >
-      <div>
+      <div className="">
         <h3>
           <Link to={slug}>{title}</Link>
         </h3>
@@ -46,6 +51,7 @@ export default function PostCard(props: IProps): JSX.Element {
       <section>
         <p dangerouslySetInnerHTML={{ __html: content }} />
       </section>
+      <Tags tags={tags} className="mt-auto" />
     </article>
   );
 }
