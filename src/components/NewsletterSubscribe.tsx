@@ -5,10 +5,8 @@ import Button from "./Button";
 export default function NewsletterSubscribe() {
   return (
     <div className="rounded-md p-3 space-y-1 bg-yellow-600">
-      <h2 className="font-semibold text-center">
-        Subscribe to our mailing list!
-      </h2>
-      <p className="text-center">
+      <h2 className="text-center text-black">Subscribe to our mailing list!</h2>
+      <p className="text-center text-black">
         Get exclusive content, offers and become a friend!
       </p>
 

@@ -20,7 +20,7 @@ export default function BlogIndex(props: IProps) {
 
   return (
     <Layout location={props.location} title={siteTitle}>
-      <div className="space-y-3">
+      <div className="space-y-3 p-3">
         <SEO title="NoSleep Javascript a blog by franleplant" />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">

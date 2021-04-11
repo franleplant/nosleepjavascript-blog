@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { css } from "@emotion/core";
 
 import { IBlogPostBySlugQuery } from "../../graphql-types";
 import Bio from "../components/Bio";
@@ -43,19 +42,19 @@ export default function BlogPostTemplate(props: IProps) {
         author={author}
       />
 
-      <div className="lg:max-w-2xl m-auto my-5">
+      <div className="lg:max-w-4xl m-auto my-5 p-6 dark:bg-white dark:bg-opacity-5 rounded-md">
         <article className="space-y-5">
           <Tags tags={tags} />
           <header className="pb-3">
             <h1> {post.frontmatter?.title} </h1>
-            <div className="py-3 text-gray-700">
+            <div className="py-3 text-gray-700 dark:text-gray-50">
               {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
             </div>
             <Bio author={author} />
           </header>
 
           <section
-            className="space-y-5"
+            className="space-y-5 nsj-post-content"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
 

@@ -1,5 +1,7 @@
 //const PINK = "#eb37d0"
-const PINK = "#eb3782";
+//const PINK = "#e91954" Nice bright for backgrounds, bad for fonts
+//const PINK = "#eb3782"; // the original
+const PINK = "#f11272";
 const PINK_BG = "#ed3785";
 const YELLOW = "#ffd703";
 
@@ -9,6 +11,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        gray: { 800: "#20232a", 900: "#090909" },
         pink: {
           50: `${PINK}0a`,
           100: `${PINK}3d`,
@@ -26,6 +29,8 @@ module.exports = {
   variants: {
     extend: {
       zIndex: ["hover"],
+      borderWidth: ["dark"],
+      borderRadius: ["dark"],
     },
   },
   plugins: [],

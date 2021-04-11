@@ -3,23 +3,39 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply dark:bg-gray-800;
+  }
+
+  .nsj-post-content img {
+    /* This helps with outdated svgs */
+    @apply dark:bg-white;
+  }
+
+  p,span,small,li {
+    @apply dark:text-white;
+  }
+
   h1 {
     @apply text-3xl;
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
+    @apply dark:text-white;
   }
   h2 {
     @apply text-2xl;
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
+    @apply dark:text-white;
   }
   h3 {
     @apply text-xl;
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
+    @apply dark:text-white;
   }
 
   h4 {
@@ -27,6 +43,7 @@
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
+    @apply dark:text-white;
   }
 
   h5 {
@@ -34,6 +51,7 @@
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
+    @apply dark:text-white;
   }
 
   h6 {
@@ -42,18 +60,26 @@
     @apply font-bold;
     @apply italic;
     @apply pb-2;
+    @apply dark:text-white;
   }
 
   a {
     @apply text-pink-600;
     @apply hover:underline;
     @apply font-bold;
+    @apply dark:text-yellow-600;
   }
 
   blockquote {
-    @apply rounded p-6 pl-8 italic;
+    @apply rounded-md p-6 pl-8 italic;
     /*@apply bg-gradient-to-r from-yellow-600 via-yellow-600 to-pink-700;*/
     @apply bg-gradient-to-r from-yellow-600 via-yellow-600;
+    @apply dark:border-2 dark:border-pink-700 dark:bg-transparent;
+    @apply dark:from-transparent dark:to-transparent;
+  }
+
+  blockquote * {
+    @apply text-lg;
   }
 
   ul {

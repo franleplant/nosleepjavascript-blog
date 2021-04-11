@@ -28,12 +28,13 @@ export default function Bio(props: IProps) {
   );
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-2">
       <Image
         fluid={author.profilepicture.childImageSharp.fluid}
         alt={author.id}
         style={{
           minWidth: 75,
+          height: 75,
           borderRadius: `100%`,
         }}
         imgStyle={{

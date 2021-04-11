@@ -17,7 +17,7 @@ export default function PrimaryHeader(props: IProps) {
         </Link>
       </h1>
 
-      <div>
+      <div className="text-lg">
         <p className="text-center">
           A blog by{" "}
           <a href={`https://twitter.com/${franleplant.twitter}`}>
