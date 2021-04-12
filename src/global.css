@@ -95,5 +95,9 @@
   li {
     @apply py-1;
   }
+
+  .gatsby-highlight {
+    @apply -m-3;
+  }
 }
 

@@ -5,7 +5,6 @@ import color from "color";
 import * as theme from "../utils/theme";
 
 import PrimaryHeader from "./PrimaryHeader";
-import SecondaryHeader from "./SecondaryHeader";
 import NavMenu from "./NavMenu";
 import Footer from "./Footer";
 
@@ -27,16 +26,20 @@ export default function Layout(props: IProps) {
       </Helmet>
       <GlobalStyles />
 
-      <NavMenu />
+      {/*isRoot ? <PrimaryHeader /> : null*/}
       <div className="space-y-3">
-        {isRoot ? <PrimaryHeader /> : null}
-        <div className="grid grid-cols-6 xl:grid-cols-8 gap-4">
-          <section className="xl:col-span-1"></section>
-          <main className="col-span-6 md:col-span-6">{children}</main>
-          <section className="xl:col-span-1"></section>
+        <div className="grid grid-cols-6 lg:grid-cols-8 gap-4">
+          <section className="col-span-6 lg:col-span-3 xl:col-span-2">
+            <NavMenu />
+          </section>
+          <main className="col-span-6 lg:col-span-5 2xl:col-span-5">
+            {children}
+          </main>
         </div>
-        <Footer />
       </div>
+      {/*
+        <Footer />
+        */}
     </div>
   );
 }

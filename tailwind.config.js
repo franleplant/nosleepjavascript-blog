@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gray: { 800: "#20232a", 900: "#090909" },
+        gray: { 800: "#060009", 900: "#090909" },
         pink: {
           50: `${PINK}0a`,
           100: `${PINK}3d`,

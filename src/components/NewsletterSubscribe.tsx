@@ -2,13 +2,19 @@ import React from "react";
 import Input from "./Input";
 import Button from "./Button";
 
-export default function NewsletterSubscribe() {
+export interface IProps {
+  className?: string;
+}
+
+export default function NewsletterSubscribe(props: IProps): JSX.Element {
   return (
-    <div className="rounded-md p-3 bg-yellow-600 flex flex-col gap-1">
-      <h2 className="text-center text-black">Subscribe to our mailing list!</h2>
+    <div className={`rounded-md p-3 flex flex-col gap-2 ${props.className}`}>
+      <h3 className="text-center p-0">Subscribe to our mailing list!</h3>
+      {/*
       <p className="text-center text-black">
         Get exclusive content, offers and become a friend!
       </p>
+        */}
 
       <div id="mc_embed_signup" className="mt-auto">
         <form
@@ -59,7 +65,7 @@ export default function NewsletterSubscribe() {
             </div>
 
             <div className="">
-              <Button type="submit" id="mc-embedded-subscribe">
+              <Button type="submit" id="mc-embedded-subscribe" className="">
                 Subscribe
               </Button>
             </div>

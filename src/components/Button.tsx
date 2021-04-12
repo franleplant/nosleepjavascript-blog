@@ -1,4 +1,5 @@
 import React from "react";
+import { oneline } from "../utils/strTag";
 
 export interface IProps extends React.ButtonHTMLAttributes<unknown> {
   className?: string;
@@ -7,7 +8,7 @@ export interface IProps extends React.ButtonHTMLAttributes<unknown> {
 export default function Button({ className, ...props }: IProps): JSX.Element {
   return (
     <button
-      className={`
+      className={oneline`
     appearance-none
     border-0
     border-transparent

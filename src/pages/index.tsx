@@ -5,7 +5,6 @@ import Layout from "../components/Layout";
 import SEO from "../components/Seo";
 
 import { IBlogIndexQuery } from "../../graphql-types";
-import NewsletterSubscribe from "../components/NewsletterSubscribe";
 import PostCard from "../components/PostCard";
 
 export interface IProps {
@@ -20,11 +19,10 @@ export default function BlogIndex(props: IProps) {
 
   return (
     <Layout location={props.location} title={siteTitle}>
-      <div className="space-y-3 p-3">
+      <div className="space-y-3 p-3 lg:p-20">
         <SEO title="NoSleep Javascript a blog by franleplant" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-          <NewsletterSubscribe />
+        <div className="flex gap-6 flex-wrap justify-center max-w-screen-xl ">
           {posts.map(({ node }) => {
             const slug = node.fields.slug;
             const title = node.frontmatter.title || slug;
@@ -41,6 +39,7 @@ export default function BlogIndex(props: IProps) {
                 readingTime={node.fields.readingTime.text}
                 authorId={node.frontmatter.author.id}
                 tags={tags}
+                className="w-96"
               />
             );
           })}
