@@ -5,6 +5,5 @@ export function oneline(strings: TemplateStringsArray, ...rest: Array<any>) {
     const dynChunk = rest[index] || "";
     concat += str + dynChunk;
   });
-  //console.log(strings, rest, concat)
-  return concat.replaceAll("\n", "").split(" ").filter(Boolean).join(" ");
+  return concat.replace(/\n/g, "").split(" ").filter(Boolean).join(" ");
 }

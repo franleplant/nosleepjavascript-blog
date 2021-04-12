@@ -1,10 +1,15 @@
 import React from "react";
 import { Link } from "gatsby";
 import PrimaryHeader from "./PrimaryHeader";
+import SecondaryHeader from "./SecondaryHeader";
 import NewsletterSubscribe from "./NewsletterSubscribe";
 import { oneline } from "../utils/strTag";
 
-export default function NavMenu(): JSX.Element {
+export interface IProps {
+  isHome: boolean;
+}
+
+export default function NavMenu(props: IProps): JSX.Element {
   return (
     <div
       className={oneline`
@@ -22,8 +27,13 @@ export default function NavMenu(): JSX.Element {
       `}
     >
       <div className="flex flex-col gap-2 md:gap-4 md:p-2 md:py-5 sticky top-4 w-full md:max-w-xs lg:h-screen ">
-        <PrimaryHeader />
-        <NewsletterSubscribe className="shadow border-pink-700 border-0 hidden md:block" />
+        {props.isHome ? <PrimaryHeader /> : <SecondaryHeader />}
+        <NewsletterSubscribe
+          className={oneline`
+          shadow border-pink-700 border-0 md:block
+          ${props.isHome ? "" : "hidden"}
+        `}
+        />
         <div
           className={oneline`
           hidden

@@ -12,7 +12,7 @@ export default function PrimaryHeader(props: IProps) {
 
   return (
     <header>
-      <h1 className="max-w-md mx-auto h-16 md:h-40 w-56 md:w-full">
+      <h1 className="max-w-md mx-auto h-28 md:h-40 w-56 md:w-full">
         <Link to={`/`}>
           {/*
           <img src={logo} alt={"NoSleepJavascript Blog"} />
@@ -21,7 +21,7 @@ export default function PrimaryHeader(props: IProps) {
         </Link>
       </h1>
 
-      <div className="text-lg hidden md:block">
+      <div className="text-lg md:block">
         <p className="text-center">
           A blog by{" "}
           <a className="" href={`https://twitter.com/${franleplant.twitter}`}>
