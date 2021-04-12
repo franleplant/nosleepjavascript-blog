@@ -36,7 +36,7 @@ export default function NavMenu(props: IProps): JSX.Element {
         />
         <div
           className={oneline`
-          hidden
+          ${props.isHome ? "flex" : "hidden"}
           md:flex
           flex-row items-center justify-center
           md:flex-col md:items-end
@@ -46,13 +46,13 @@ export default function NavMenu(props: IProps): JSX.Element {
         >
           <Link
             to="about"
-            className="leading-10 block p-3 text-white text-md hover:text-pink-600 text-right"
+            className="leading-10 p-3 text-white text-md hover:text-pink-600 md:text-right"
           >
             About
           </Link>
           <a
             href="about"
-            className="leading-10 block p-3 text-white text-md hover:text-pink-600 text-right"
+            className="leading-10 p-3 text-white text-md hover:text-pink-600 md:text-right"
           >
             Contact
           </a>
