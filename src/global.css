@@ -99,5 +99,14 @@
   .gatsby-highlight {
     @apply -m-3;
   }
+
+  /* Markdown title permalinks */
+ .header-anchor {
+   @apply invisible;
+ }
+
+  h2:hover > a.header-anchor {
+    @apply visible transition-all delay-75;
+  }
 }
 

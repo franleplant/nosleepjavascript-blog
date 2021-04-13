@@ -13,10 +13,10 @@ export default function PrimaryHeader(props: IProps) {
   return (
     <header>
       <h1 className="max-w-md mx-auto h-16 md:h-40 w-56 md:w-full">
-        <Link to={`/`}>
-          {/*
+        <Link to={`/`} className="dark:hidden">
           <img src={logo} alt={"NoSleepJavascript Blog"} />
-          */}
+        </Link>
+        <Link to={`/`} className="hidden dark:block">
           <img src={logoInverted} alt={"NoSleepJavascript Blog"} />
         </Link>
       </h1>

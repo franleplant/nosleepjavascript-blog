@@ -3235,6 +3235,8 @@ export type ISitePageFieldsEnum =
   'pluginCreator___pluginOptions___disableBgImageOnAlpha' |
   'pluginCreator___pluginOptions___disableBgImage' |
   'pluginCreator___pluginOptions___className' |
+  'pluginCreator___pluginOptions___offsetY' |
+  'pluginCreator___pluginOptions___icon' |
   'pluginCreator___pluginOptions___active' |
   'pluginCreator___pluginOptions___size' |
   'pluginCreator___pluginOptions___styles___display' |
@@ -3257,7 +3259,6 @@ export type ISitePageFieldsEnum =
   'pluginCreator___pluginOptions___background_color' |
   'pluginCreator___pluginOptions___theme_color' |
   'pluginCreator___pluginOptions___display' |
-  'pluginCreator___pluginOptions___icon' |
   'pluginCreator___pluginOptions___legacy' |
   'pluginCreator___pluginOptions___theme_color_in_head' |
   'pluginCreator___pluginOptions___cache_busting_mode' |
@@ -3479,6 +3480,8 @@ export type ISitePluginFieldsEnum =
   'pluginOptions___plugins___pluginOptions___disableBgImageOnAlpha' |
   'pluginOptions___plugins___pluginOptions___disableBgImage' |
   'pluginOptions___plugins___pluginOptions___className' |
+  'pluginOptions___plugins___pluginOptions___offsetY' |
+  'pluginOptions___plugins___pluginOptions___icon' |
   'pluginOptions___plugins___pluginOptions___active' |
   'pluginOptions___plugins___pluginOptions___size' |
   'pluginOptions___plugins___nodeAPIs' |
@@ -3504,6 +3507,8 @@ export type ISitePluginFieldsEnum =
   'pluginOptions___disableBgImageOnAlpha' |
   'pluginOptions___disableBgImage' |
   'pluginOptions___className' |
+  'pluginOptions___offsetY' |
+  'pluginOptions___icon' |
   'pluginOptions___active' |
   'pluginOptions___size' |
   'pluginOptions___styles___display' |
@@ -3526,7 +3531,6 @@ export type ISitePluginFieldsEnum =
   'pluginOptions___background_color' |
   'pluginOptions___theme_color' |
   'pluginOptions___display' |
-  'pluginOptions___icon' |
   'pluginOptions___legacy' |
   'pluginOptions___theme_color_in_head' |
   'pluginOptions___cache_busting_mode' |
@@ -3672,6 +3676,8 @@ export type ISitePluginPluginOptions = {
   disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
+  offsetY: Maybe<Scalars['String']>;
+  icon: Maybe<Scalars['String']>;
   active: Maybe<Scalars['Boolean']>;
   size: Maybe<Scalars['Int']>;
   styles: Maybe<ISitePluginPluginOptionsStyles>;
@@ -3689,7 +3695,6 @@ export type ISitePluginPluginOptions = {
   background_color: Maybe<Scalars['String']>;
   theme_color: Maybe<Scalars['String']>;
   display: Maybe<Scalars['String']>;
-  icon: Maybe<Scalars['String']>;
   legacy: Maybe<Scalars['Boolean']>;
   theme_color_in_head: Maybe<Scalars['Boolean']>;
   cache_busting_mode: Maybe<Scalars['String']>;
@@ -3735,6 +3740,8 @@ export type ISitePluginPluginOptionsFilterInput = {
   disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
   disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
+  offsetY: Maybe<IStringQueryOperatorInput>;
+  icon: Maybe<IStringQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
   size: Maybe<IIntQueryOperatorInput>;
   styles: Maybe<ISitePluginPluginOptionsStylesFilterInput>;
@@ -3752,7 +3759,6 @@ export type ISitePluginPluginOptionsFilterInput = {
   background_color: Maybe<IStringQueryOperatorInput>;
   theme_color: Maybe<IStringQueryOperatorInput>;
   display: Maybe<IStringQueryOperatorInput>;
-  icon: Maybe<IStringQueryOperatorInput>;
   legacy: Maybe<IBooleanQueryOperatorInput>;
   theme_color_in_head: Maybe<IBooleanQueryOperatorInput>;
   cache_busting_mode: Maybe<IStringQueryOperatorInput>;
@@ -3813,6 +3819,8 @@ export type ISitePluginPluginOptionsPluginsPluginOptions = {
   disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
+  offsetY: Maybe<Scalars['String']>;
+  icon: Maybe<Scalars['String']>;
   active: Maybe<Scalars['Boolean']>;
   size: Maybe<Scalars['Int']>;
   styles: Maybe<ISitePluginPluginOptionsPluginsPluginOptionsStyles>;
@@ -3836,6 +3844,8 @@ export type ISitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
   disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
+  offsetY: Maybe<IStringQueryOperatorInput>;
+  icon: Maybe<IStringQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
   size: Maybe<IIntQueryOperatorInput>;
   styles: Maybe<ISitePluginPluginOptionsPluginsPluginOptionsStylesFilterInput>;

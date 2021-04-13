@@ -68,7 +68,14 @@ module.exports = {
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
           `gatsby-remark-reading-time`,
-          `gatsby-remark-autolink-headers`,
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              offsetY: `100`,
+              icon: `#`,
+              className: `header-anchor`,
+            },
+          },
 
           {
             resolve: "gatsby-remark-emojis",

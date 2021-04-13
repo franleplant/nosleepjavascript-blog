@@ -31,6 +31,7 @@ module.exports = {
       zIndex: ["hover"],
       borderWidth: ["dark"],
       borderRadius: ["dark"],
+      display: ["responsive", "dark"],
     },
   },
   plugins: [],
