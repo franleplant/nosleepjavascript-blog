@@ -4,8 +4,11 @@ import { useFranleplant } from "../dal/authors";
 
 import logo from "../../content/assets/logo.svg";
 import logoInverted from "../../content/assets/logo_inverted.svg";
+import { oneline } from "../utils/strTag";
 
-export interface IProps {}
+export interface IProps {
+  isHome: boolean;
+}
 
 export default function PrimaryHeader(props: IProps) {
   const franleplant = useFranleplant();
@@ -21,7 +24,12 @@ export default function PrimaryHeader(props: IProps) {
         </Link>
       </h1>
 
-      <div className="text-lg md:block">
+      <div
+        className={oneline`
+${props.isHome ? "" : "hidden md:block"}
+        text-lg 
+      `}
+      >
         <p className="text-center">
           A blog by{" "}
           <a className="" href={`https://twitter.com/${franleplant.twitter}`}>

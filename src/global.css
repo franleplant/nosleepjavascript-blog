@@ -12,7 +12,7 @@
     @apply dark:bg-white;
   }
 
-  p,span,small,li {
+  p,span,small,li,summary {
     @apply dark:text-white;
   }
 

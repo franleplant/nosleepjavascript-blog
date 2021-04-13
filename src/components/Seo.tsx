@@ -1,14 +1,8 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import { IAuthor } from "../types";
+import { isDark } from "./DarkModeSelect";
 
 export interface IProps {
   title: string;
@@ -82,6 +76,33 @@ export default function SEO(props: IProps) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <MailchimpScript />
+      <DarkModeScript />
+    </Helmet>
+  );
+}
+
+export function MailchimpScript() {
+  return (
+    <script id="mcjs">
+      {`!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/c388336980630bd93629517cb/79c014026202565af1500f561.js");
+          `}
+    </script>
+  );
+}
+
+export function DarkModeScript() {
+  return (
+    <script id="dark-mode-script">
+      {`
+        // best to add inline in head to avoid FOUC
+        if (${isDark.toString()}()) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      `}
+    </script>
   );
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "gatsby";
 import PrimaryHeader from "./PrimaryHeader";
-import SecondaryHeader from "./SecondaryHeader";
 import NewsletterSubscribe from "./NewsletterSubscribe";
+import DarkModeSelect from "./DarkModeSelect";
 import { oneline } from "../utils/strTag";
 
 export interface IProps {
@@ -27,11 +27,12 @@ export default function NavMenu(props: IProps): JSX.Element {
       `}
     >
       <div className="flex flex-col gap-2 lg:gap-4 lg:py-6 lg:pt-16 lg:px-3 sticky top-0 w-full md:max-w-xs lg:h-screen ">
-        {props.isHome ? <PrimaryHeader /> : <SecondaryHeader />}
+        <PrimaryHeader isHome={props.isHome} />
         <NewsletterSubscribe
           className={oneline`
           shadow border-pink-700 border-0 md:block
           ${props.isHome ? "" : "hidden"}
+          lg:block
         `}
         />
         <div
@@ -56,6 +57,8 @@ export default function NavMenu(props: IProps): JSX.Element {
           >
             Contact
           </a>
+
+          <DarkModeSelect className="lg:m-3" />
         </div>
 
         <footer className="p-3 text-center lg:text-right dark:text-white mt-auto hidden md:block">

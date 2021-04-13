@@ -7,7 +7,7 @@ const YELLOW = "#ffd703";
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: "media",
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
