@@ -96,7 +96,7 @@
     @apply py-1;
   }
 
-  .gatsby-highlight {
+  .gatsby-highlight, .gatsby-code-title {
     @apply -m-3;
   }
 
