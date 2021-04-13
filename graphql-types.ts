@@ -185,6 +185,148 @@ export type IAuthorYamlFieldsEnum =
   'profilepicture___blksize' |
   'profilepicture___blocks' |
   'profilepicture___publicURL' |
+  'profilepicture___childrenMarkdownRemark' |
+  'profilepicture___childrenMarkdownRemark___id' |
+  'profilepicture___childrenMarkdownRemark___frontmatter___title' |
+  'profilepicture___childrenMarkdownRemark___frontmatter___date' |
+  'profilepicture___childrenMarkdownRemark___frontmatter___description' |
+  'profilepicture___childrenMarkdownRemark___frontmatter___tags' |
+  'profilepicture___childrenMarkdownRemark___frontmatter___seoFooter' |
+  'profilepicture___childrenMarkdownRemark___frontmatter___todo' |
+  'profilepicture___childrenMarkdownRemark___excerpt' |
+  'profilepicture___childrenMarkdownRemark___rawMarkdownBody' |
+  'profilepicture___childrenMarkdownRemark___fileAbsolutePath' |
+  'profilepicture___childrenMarkdownRemark___fields___slug' |
+  'profilepicture___childrenMarkdownRemark___html' |
+  'profilepicture___childrenMarkdownRemark___htmlAst' |
+  'profilepicture___childrenMarkdownRemark___excerptAst' |
+  'profilepicture___childrenMarkdownRemark___headings' |
+  'profilepicture___childrenMarkdownRemark___headings___id' |
+  'profilepicture___childrenMarkdownRemark___headings___value' |
+  'profilepicture___childrenMarkdownRemark___headings___depth' |
+  'profilepicture___childrenMarkdownRemark___timeToRead' |
+  'profilepicture___childrenMarkdownRemark___tableOfContents' |
+  'profilepicture___childrenMarkdownRemark___wordCount___paragraphs' |
+  'profilepicture___childrenMarkdownRemark___wordCount___sentences' |
+  'profilepicture___childrenMarkdownRemark___wordCount___words' |
+  'profilepicture___childrenMarkdownRemark___parent___id' |
+  'profilepicture___childrenMarkdownRemark___parent___children' |
+  'profilepicture___childrenMarkdownRemark___children' |
+  'profilepicture___childrenMarkdownRemark___children___id' |
+  'profilepicture___childrenMarkdownRemark___children___children' |
+  'profilepicture___childrenMarkdownRemark___internal___content' |
+  'profilepicture___childrenMarkdownRemark___internal___contentDigest' |
+  'profilepicture___childrenMarkdownRemark___internal___description' |
+  'profilepicture___childrenMarkdownRemark___internal___fieldOwners' |
+  'profilepicture___childrenMarkdownRemark___internal___ignoreType' |
+  'profilepicture___childrenMarkdownRemark___internal___mediaType' |
+  'profilepicture___childrenMarkdownRemark___internal___owner' |
+  'profilepicture___childrenMarkdownRemark___internal___type' |
+  'profilepicture___childMarkdownRemark___id' |
+  'profilepicture___childMarkdownRemark___frontmatter___title' |
+  'profilepicture___childMarkdownRemark___frontmatter___date' |
+  'profilepicture___childMarkdownRemark___frontmatter___description' |
+  'profilepicture___childMarkdownRemark___frontmatter___tags' |
+  'profilepicture___childMarkdownRemark___frontmatter___seoFooter' |
+  'profilepicture___childMarkdownRemark___frontmatter___todo' |
+  'profilepicture___childMarkdownRemark___excerpt' |
+  'profilepicture___childMarkdownRemark___rawMarkdownBody' |
+  'profilepicture___childMarkdownRemark___fileAbsolutePath' |
+  'profilepicture___childMarkdownRemark___fields___slug' |
+  'profilepicture___childMarkdownRemark___html' |
+  'profilepicture___childMarkdownRemark___htmlAst' |
+  'profilepicture___childMarkdownRemark___excerptAst' |
+  'profilepicture___childMarkdownRemark___headings' |
+  'profilepicture___childMarkdownRemark___headings___id' |
+  'profilepicture___childMarkdownRemark___headings___value' |
+  'profilepicture___childMarkdownRemark___headings___depth' |
+  'profilepicture___childMarkdownRemark___timeToRead' |
+  'profilepicture___childMarkdownRemark___tableOfContents' |
+  'profilepicture___childMarkdownRemark___wordCount___paragraphs' |
+  'profilepicture___childMarkdownRemark___wordCount___sentences' |
+  'profilepicture___childMarkdownRemark___wordCount___words' |
+  'profilepicture___childMarkdownRemark___parent___id' |
+  'profilepicture___childMarkdownRemark___parent___children' |
+  'profilepicture___childMarkdownRemark___children' |
+  'profilepicture___childMarkdownRemark___children___id' |
+  'profilepicture___childMarkdownRemark___children___children' |
+  'profilepicture___childMarkdownRemark___internal___content' |
+  'profilepicture___childMarkdownRemark___internal___contentDigest' |
+  'profilepicture___childMarkdownRemark___internal___description' |
+  'profilepicture___childMarkdownRemark___internal___fieldOwners' |
+  'profilepicture___childMarkdownRemark___internal___ignoreType' |
+  'profilepicture___childMarkdownRemark___internal___mediaType' |
+  'profilepicture___childMarkdownRemark___internal___owner' |
+  'profilepicture___childMarkdownRemark___internal___type' |
+  'profilepicture___childrenImageSharp' |
+  'profilepicture___childrenImageSharp___fixed___base64' |
+  'profilepicture___childrenImageSharp___fixed___tracedSVG' |
+  'profilepicture___childrenImageSharp___fixed___aspectRatio' |
+  'profilepicture___childrenImageSharp___fixed___width' |
+  'profilepicture___childrenImageSharp___fixed___height' |
+  'profilepicture___childrenImageSharp___fixed___src' |
+  'profilepicture___childrenImageSharp___fixed___srcSet' |
+  'profilepicture___childrenImageSharp___fixed___srcWebp' |
+  'profilepicture___childrenImageSharp___fixed___srcSetWebp' |
+  'profilepicture___childrenImageSharp___fixed___originalName' |
+  'profilepicture___childrenImageSharp___resolutions___base64' |
+  'profilepicture___childrenImageSharp___resolutions___tracedSVG' |
+  'profilepicture___childrenImageSharp___resolutions___aspectRatio' |
+  'profilepicture___childrenImageSharp___resolutions___width' |
+  'profilepicture___childrenImageSharp___resolutions___height' |
+  'profilepicture___childrenImageSharp___resolutions___src' |
+  'profilepicture___childrenImageSharp___resolutions___srcSet' |
+  'profilepicture___childrenImageSharp___resolutions___srcWebp' |
+  'profilepicture___childrenImageSharp___resolutions___srcSetWebp' |
+  'profilepicture___childrenImageSharp___resolutions___originalName' |
+  'profilepicture___childrenImageSharp___fluid___base64' |
+  'profilepicture___childrenImageSharp___fluid___tracedSVG' |
+  'profilepicture___childrenImageSharp___fluid___aspectRatio' |
+  'profilepicture___childrenImageSharp___fluid___src' |
+  'profilepicture___childrenImageSharp___fluid___srcSet' |
+  'profilepicture___childrenImageSharp___fluid___srcWebp' |
+  'profilepicture___childrenImageSharp___fluid___srcSetWebp' |
+  'profilepicture___childrenImageSharp___fluid___sizes' |
+  'profilepicture___childrenImageSharp___fluid___originalImg' |
+  'profilepicture___childrenImageSharp___fluid___originalName' |
+  'profilepicture___childrenImageSharp___fluid___presentationWidth' |
+  'profilepicture___childrenImageSharp___fluid___presentationHeight' |
+  'profilepicture___childrenImageSharp___sizes___base64' |
+  'profilepicture___childrenImageSharp___sizes___tracedSVG' |
+  'profilepicture___childrenImageSharp___sizes___aspectRatio' |
+  'profilepicture___childrenImageSharp___sizes___src' |
+  'profilepicture___childrenImageSharp___sizes___srcSet' |
+  'profilepicture___childrenImageSharp___sizes___srcWebp' |
+  'profilepicture___childrenImageSharp___sizes___srcSetWebp' |
+  'profilepicture___childrenImageSharp___sizes___sizes' |
+  'profilepicture___childrenImageSharp___sizes___originalImg' |
+  'profilepicture___childrenImageSharp___sizes___originalName' |
+  'profilepicture___childrenImageSharp___sizes___presentationWidth' |
+  'profilepicture___childrenImageSharp___sizes___presentationHeight' |
+  'profilepicture___childrenImageSharp___gatsbyImageData' |
+  'profilepicture___childrenImageSharp___original___width' |
+  'profilepicture___childrenImageSharp___original___height' |
+  'profilepicture___childrenImageSharp___original___src' |
+  'profilepicture___childrenImageSharp___resize___src' |
+  'profilepicture___childrenImageSharp___resize___tracedSVG' |
+  'profilepicture___childrenImageSharp___resize___width' |
+  'profilepicture___childrenImageSharp___resize___height' |
+  'profilepicture___childrenImageSharp___resize___aspectRatio' |
+  'profilepicture___childrenImageSharp___resize___originalName' |
+  'profilepicture___childrenImageSharp___id' |
+  'profilepicture___childrenImageSharp___parent___id' |
+  'profilepicture___childrenImageSharp___parent___children' |
+  'profilepicture___childrenImageSharp___children' |
+  'profilepicture___childrenImageSharp___children___id' |
+  'profilepicture___childrenImageSharp___children___children' |
+  'profilepicture___childrenImageSharp___internal___content' |
+  'profilepicture___childrenImageSharp___internal___contentDigest' |
+  'profilepicture___childrenImageSharp___internal___description' |
+  'profilepicture___childrenImageSharp___internal___fieldOwners' |
+  'profilepicture___childrenImageSharp___internal___ignoreType' |
+  'profilepicture___childrenImageSharp___internal___mediaType' |
+  'profilepicture___childrenImageSharp___internal___owner' |
+  'profilepicture___childrenImageSharp___internal___type' |
   'profilepicture___childImageSharp___fixed___base64' |
   'profilepicture___childImageSharp___fixed___tracedSVG' |
   'profilepicture___childImageSharp___fixed___aspectRatio' |
@@ -253,44 +395,6 @@ export type IAuthorYamlFieldsEnum =
   'profilepicture___childImageSharp___internal___mediaType' |
   'profilepicture___childImageSharp___internal___owner' |
   'profilepicture___childImageSharp___internal___type' |
-  'profilepicture___id' |
-  'profilepicture___parent___id' |
-  'profilepicture___parent___parent___id' |
-  'profilepicture___parent___parent___children' |
-  'profilepicture___parent___children' |
-  'profilepicture___parent___children___id' |
-  'profilepicture___parent___children___children' |
-  'profilepicture___parent___internal___content' |
-  'profilepicture___parent___internal___contentDigest' |
-  'profilepicture___parent___internal___description' |
-  'profilepicture___parent___internal___fieldOwners' |
-  'profilepicture___parent___internal___ignoreType' |
-  'profilepicture___parent___internal___mediaType' |
-  'profilepicture___parent___internal___owner' |
-  'profilepicture___parent___internal___type' |
-  'profilepicture___children' |
-  'profilepicture___children___id' |
-  'profilepicture___children___parent___id' |
-  'profilepicture___children___parent___children' |
-  'profilepicture___children___children' |
-  'profilepicture___children___children___id' |
-  'profilepicture___children___children___children' |
-  'profilepicture___children___internal___content' |
-  'profilepicture___children___internal___contentDigest' |
-  'profilepicture___children___internal___description' |
-  'profilepicture___children___internal___fieldOwners' |
-  'profilepicture___children___internal___ignoreType' |
-  'profilepicture___children___internal___mediaType' |
-  'profilepicture___children___internal___owner' |
-  'profilepicture___children___internal___type' |
-  'profilepicture___internal___content' |
-  'profilepicture___internal___contentDigest' |
-  'profilepicture___internal___description' |
-  'profilepicture___internal___fieldOwners' |
-  'profilepicture___internal___ignoreType' |
-  'profilepicture___internal___mediaType' |
-  'profilepicture___internal___owner' |
-  'profilepicture___internal___type' |
   'profilepicture___childrenAuthorYaml' |
   'profilepicture___childrenAuthorYaml___id' |
   'profilepicture___childrenAuthorYaml___parent___id' |
@@ -341,47 +445,107 @@ export type IAuthorYamlFieldsEnum =
   'profilepicture___childrenAuthorYaml___profilepicture___blksize' |
   'profilepicture___childrenAuthorYaml___profilepicture___blocks' |
   'profilepicture___childrenAuthorYaml___profilepicture___publicURL' |
+  'profilepicture___childrenAuthorYaml___profilepicture___childrenMarkdownRemark' |
+  'profilepicture___childrenAuthorYaml___profilepicture___childrenImageSharp' |
+  'profilepicture___childrenAuthorYaml___profilepicture___childrenAuthorYaml' |
   'profilepicture___childrenAuthorYaml___profilepicture___id' |
   'profilepicture___childrenAuthorYaml___profilepicture___children' |
-  'profilepicture___childrenAuthorYaml___profilepicture___childrenAuthorYaml' |
   'profilepicture___childrenAuthorYaml___twitter' |
   'profilepicture___childrenAuthorYaml___github' |
-  'profilepicture___childMarkdownRemark___id' |
-  'profilepicture___childMarkdownRemark___frontmatter___title' |
-  'profilepicture___childMarkdownRemark___frontmatter___date' |
-  'profilepicture___childMarkdownRemark___frontmatter___description' |
-  'profilepicture___childMarkdownRemark___frontmatter___tags' |
-  'profilepicture___childMarkdownRemark___frontmatter___seoFooter' |
-  'profilepicture___childMarkdownRemark___frontmatter___todo' |
-  'profilepicture___childMarkdownRemark___excerpt' |
-  'profilepicture___childMarkdownRemark___rawMarkdownBody' |
-  'profilepicture___childMarkdownRemark___fileAbsolutePath' |
-  'profilepicture___childMarkdownRemark___fields___slug' |
-  'profilepicture___childMarkdownRemark___html' |
-  'profilepicture___childMarkdownRemark___htmlAst' |
-  'profilepicture___childMarkdownRemark___excerptAst' |
-  'profilepicture___childMarkdownRemark___headings' |
-  'profilepicture___childMarkdownRemark___headings___id' |
-  'profilepicture___childMarkdownRemark___headings___value' |
-  'profilepicture___childMarkdownRemark___headings___depth' |
-  'profilepicture___childMarkdownRemark___timeToRead' |
-  'profilepicture___childMarkdownRemark___tableOfContents' |
-  'profilepicture___childMarkdownRemark___wordCount___paragraphs' |
-  'profilepicture___childMarkdownRemark___wordCount___sentences' |
-  'profilepicture___childMarkdownRemark___wordCount___words' |
-  'profilepicture___childMarkdownRemark___parent___id' |
-  'profilepicture___childMarkdownRemark___parent___children' |
-  'profilepicture___childMarkdownRemark___children' |
-  'profilepicture___childMarkdownRemark___children___id' |
-  'profilepicture___childMarkdownRemark___children___children' |
-  'profilepicture___childMarkdownRemark___internal___content' |
-  'profilepicture___childMarkdownRemark___internal___contentDigest' |
-  'profilepicture___childMarkdownRemark___internal___description' |
-  'profilepicture___childMarkdownRemark___internal___fieldOwners' |
-  'profilepicture___childMarkdownRemark___internal___ignoreType' |
-  'profilepicture___childMarkdownRemark___internal___mediaType' |
-  'profilepicture___childMarkdownRemark___internal___owner' |
-  'profilepicture___childMarkdownRemark___internal___type' |
+  'profilepicture___childAuthorYaml___id' |
+  'profilepicture___childAuthorYaml___parent___id' |
+  'profilepicture___childAuthorYaml___parent___children' |
+  'profilepicture___childAuthorYaml___children' |
+  'profilepicture___childAuthorYaml___children___id' |
+  'profilepicture___childAuthorYaml___children___children' |
+  'profilepicture___childAuthorYaml___internal___content' |
+  'profilepicture___childAuthorYaml___internal___contentDigest' |
+  'profilepicture___childAuthorYaml___internal___description' |
+  'profilepicture___childAuthorYaml___internal___fieldOwners' |
+  'profilepicture___childAuthorYaml___internal___ignoreType' |
+  'profilepicture___childAuthorYaml___internal___mediaType' |
+  'profilepicture___childAuthorYaml___internal___owner' |
+  'profilepicture___childAuthorYaml___internal___type' |
+  'profilepicture___childAuthorYaml___bio' |
+  'profilepicture___childAuthorYaml___profilepicture___sourceInstanceName' |
+  'profilepicture___childAuthorYaml___profilepicture___absolutePath' |
+  'profilepicture___childAuthorYaml___profilepicture___relativePath' |
+  'profilepicture___childAuthorYaml___profilepicture___extension' |
+  'profilepicture___childAuthorYaml___profilepicture___size' |
+  'profilepicture___childAuthorYaml___profilepicture___prettySize' |
+  'profilepicture___childAuthorYaml___profilepicture___modifiedTime' |
+  'profilepicture___childAuthorYaml___profilepicture___accessTime' |
+  'profilepicture___childAuthorYaml___profilepicture___changeTime' |
+  'profilepicture___childAuthorYaml___profilepicture___birthTime' |
+  'profilepicture___childAuthorYaml___profilepicture___root' |
+  'profilepicture___childAuthorYaml___profilepicture___dir' |
+  'profilepicture___childAuthorYaml___profilepicture___base' |
+  'profilepicture___childAuthorYaml___profilepicture___ext' |
+  'profilepicture___childAuthorYaml___profilepicture___name' |
+  'profilepicture___childAuthorYaml___profilepicture___relativeDirectory' |
+  'profilepicture___childAuthorYaml___profilepicture___dev' |
+  'profilepicture___childAuthorYaml___profilepicture___mode' |
+  'profilepicture___childAuthorYaml___profilepicture___nlink' |
+  'profilepicture___childAuthorYaml___profilepicture___uid' |
+  'profilepicture___childAuthorYaml___profilepicture___gid' |
+  'profilepicture___childAuthorYaml___profilepicture___rdev' |
+  'profilepicture___childAuthorYaml___profilepicture___ino' |
+  'profilepicture___childAuthorYaml___profilepicture___atimeMs' |
+  'profilepicture___childAuthorYaml___profilepicture___mtimeMs' |
+  'profilepicture___childAuthorYaml___profilepicture___ctimeMs' |
+  'profilepicture___childAuthorYaml___profilepicture___atime' |
+  'profilepicture___childAuthorYaml___profilepicture___mtime' |
+  'profilepicture___childAuthorYaml___profilepicture___ctime' |
+  'profilepicture___childAuthorYaml___profilepicture___birthtime' |
+  'profilepicture___childAuthorYaml___profilepicture___birthtimeMs' |
+  'profilepicture___childAuthorYaml___profilepicture___blksize' |
+  'profilepicture___childAuthorYaml___profilepicture___blocks' |
+  'profilepicture___childAuthorYaml___profilepicture___publicURL' |
+  'profilepicture___childAuthorYaml___profilepicture___childrenMarkdownRemark' |
+  'profilepicture___childAuthorYaml___profilepicture___childrenImageSharp' |
+  'profilepicture___childAuthorYaml___profilepicture___childrenAuthorYaml' |
+  'profilepicture___childAuthorYaml___profilepicture___id' |
+  'profilepicture___childAuthorYaml___profilepicture___children' |
+  'profilepicture___childAuthorYaml___twitter' |
+  'profilepicture___childAuthorYaml___github' |
+  'profilepicture___id' |
+  'profilepicture___parent___id' |
+  'profilepicture___parent___parent___id' |
+  'profilepicture___parent___parent___children' |
+  'profilepicture___parent___children' |
+  'profilepicture___parent___children___id' |
+  'profilepicture___parent___children___children' |
+  'profilepicture___parent___internal___content' |
+  'profilepicture___parent___internal___contentDigest' |
+  'profilepicture___parent___internal___description' |
+  'profilepicture___parent___internal___fieldOwners' |
+  'profilepicture___parent___internal___ignoreType' |
+  'profilepicture___parent___internal___mediaType' |
+  'profilepicture___parent___internal___owner' |
+  'profilepicture___parent___internal___type' |
+  'profilepicture___children' |
+  'profilepicture___children___id' |
+  'profilepicture___children___parent___id' |
+  'profilepicture___children___parent___children' |
+  'profilepicture___children___children' |
+  'profilepicture___children___children___id' |
+  'profilepicture___children___children___children' |
+  'profilepicture___children___internal___content' |
+  'profilepicture___children___internal___contentDigest' |
+  'profilepicture___children___internal___description' |
+  'profilepicture___children___internal___fieldOwners' |
+  'profilepicture___children___internal___ignoreType' |
+  'profilepicture___children___internal___mediaType' |
+  'profilepicture___children___internal___owner' |
+  'profilepicture___children___internal___type' |
+  'profilepicture___internal___content' |
+  'profilepicture___internal___contentDigest' |
+  'profilepicture___internal___description' |
+  'profilepicture___internal___fieldOwners' |
+  'profilepicture___internal___ignoreType' |
+  'profilepicture___internal___mediaType' |
+  'profilepicture___internal___owner' |
+  'profilepicture___internal___type' |
   'twitter' |
   'github';
 
@@ -412,6 +576,12 @@ export type IAuthorYamlGroupConnection = {
 export type IAuthorYamlSortInput = {
   fields: Maybe<Array<Maybe<IAuthorYamlFieldsEnum>>>;
   order: Maybe<Array<Maybe<ISortOrderEnum>>>;
+};
+
+export type IAvifOptions = {
+  quality: Maybe<Scalars['Int']>;
+  lossless: Maybe<Scalars['Boolean']>;
+  speed: Maybe<Scalars['Int']>;
 };
 
 export type IBlurredOptions = {
@@ -787,13 +957,22 @@ export type IFile = INode & {
   blocks: Maybe<Scalars['Int']>;
   /** Copy file to static directory and return public url to it */
   publicURL: Maybe<Scalars['String']>;
+  /** Returns all children nodes filtered by type MarkdownRemark */
+  childrenMarkdownRemark: Maybe<Array<Maybe<IMarkdownRemark>>>;
+  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
+  childMarkdownRemark: Maybe<IMarkdownRemark>;
+  /** Returns all children nodes filtered by type ImageSharp */
+  childrenImageSharp: Maybe<Array<Maybe<IImageSharp>>>;
+  /** Returns the first child node of type ImageSharp or null if there are no children of given type on this node */
   childImageSharp: Maybe<IImageSharp>;
+  /** Returns all children nodes filtered by type AuthorYaml */
+  childrenAuthorYaml: Maybe<Array<Maybe<IAuthorYaml>>>;
+  /** Returns the first child node of type AuthorYaml or null if there are no children of given type on this node */
+  childAuthorYaml: Maybe<IAuthorYaml>;
   id: Scalars['ID'];
   parent: Maybe<INode>;
   children: Array<INode>;
   internal: IInternal;
-  childrenAuthorYaml: Maybe<Array<Maybe<IAuthorYaml>>>;
-  childMarkdownRemark: Maybe<IMarkdownRemark>;
 };
 
 
@@ -914,6 +1093,238 @@ export type IFileFieldsEnum =
   'blksize' |
   'blocks' |
   'publicURL' |
+  'childrenMarkdownRemark' |
+  'childrenMarkdownRemark___id' |
+  'childrenMarkdownRemark___frontmatter___title' |
+  'childrenMarkdownRemark___frontmatter___date' |
+  'childrenMarkdownRemark___frontmatter___author___id' |
+  'childrenMarkdownRemark___frontmatter___author___children' |
+  'childrenMarkdownRemark___frontmatter___author___bio' |
+  'childrenMarkdownRemark___frontmatter___author___twitter' |
+  'childrenMarkdownRemark___frontmatter___author___github' |
+  'childrenMarkdownRemark___frontmatter___description' |
+  'childrenMarkdownRemark___frontmatter___tags' |
+  'childrenMarkdownRemark___frontmatter___seoFooter' |
+  'childrenMarkdownRemark___frontmatter___todo' |
+  'childrenMarkdownRemark___excerpt' |
+  'childrenMarkdownRemark___rawMarkdownBody' |
+  'childrenMarkdownRemark___fileAbsolutePath' |
+  'childrenMarkdownRemark___fields___readingTime___text' |
+  'childrenMarkdownRemark___fields___readingTime___minutes' |
+  'childrenMarkdownRemark___fields___readingTime___time' |
+  'childrenMarkdownRemark___fields___readingTime___words' |
+  'childrenMarkdownRemark___fields___slug' |
+  'childrenMarkdownRemark___html' |
+  'childrenMarkdownRemark___htmlAst' |
+  'childrenMarkdownRemark___excerptAst' |
+  'childrenMarkdownRemark___headings' |
+  'childrenMarkdownRemark___headings___id' |
+  'childrenMarkdownRemark___headings___value' |
+  'childrenMarkdownRemark___headings___depth' |
+  'childrenMarkdownRemark___timeToRead' |
+  'childrenMarkdownRemark___tableOfContents' |
+  'childrenMarkdownRemark___wordCount___paragraphs' |
+  'childrenMarkdownRemark___wordCount___sentences' |
+  'childrenMarkdownRemark___wordCount___words' |
+  'childrenMarkdownRemark___parent___id' |
+  'childrenMarkdownRemark___parent___parent___id' |
+  'childrenMarkdownRemark___parent___parent___children' |
+  'childrenMarkdownRemark___parent___children' |
+  'childrenMarkdownRemark___parent___children___id' |
+  'childrenMarkdownRemark___parent___children___children' |
+  'childrenMarkdownRemark___parent___internal___content' |
+  'childrenMarkdownRemark___parent___internal___contentDigest' |
+  'childrenMarkdownRemark___parent___internal___description' |
+  'childrenMarkdownRemark___parent___internal___fieldOwners' |
+  'childrenMarkdownRemark___parent___internal___ignoreType' |
+  'childrenMarkdownRemark___parent___internal___mediaType' |
+  'childrenMarkdownRemark___parent___internal___owner' |
+  'childrenMarkdownRemark___parent___internal___type' |
+  'childrenMarkdownRemark___children' |
+  'childrenMarkdownRemark___children___id' |
+  'childrenMarkdownRemark___children___parent___id' |
+  'childrenMarkdownRemark___children___parent___children' |
+  'childrenMarkdownRemark___children___children' |
+  'childrenMarkdownRemark___children___children___id' |
+  'childrenMarkdownRemark___children___children___children' |
+  'childrenMarkdownRemark___children___internal___content' |
+  'childrenMarkdownRemark___children___internal___contentDigest' |
+  'childrenMarkdownRemark___children___internal___description' |
+  'childrenMarkdownRemark___children___internal___fieldOwners' |
+  'childrenMarkdownRemark___children___internal___ignoreType' |
+  'childrenMarkdownRemark___children___internal___mediaType' |
+  'childrenMarkdownRemark___children___internal___owner' |
+  'childrenMarkdownRemark___children___internal___type' |
+  'childrenMarkdownRemark___internal___content' |
+  'childrenMarkdownRemark___internal___contentDigest' |
+  'childrenMarkdownRemark___internal___description' |
+  'childrenMarkdownRemark___internal___fieldOwners' |
+  'childrenMarkdownRemark___internal___ignoreType' |
+  'childrenMarkdownRemark___internal___mediaType' |
+  'childrenMarkdownRemark___internal___owner' |
+  'childrenMarkdownRemark___internal___type' |
+  'childMarkdownRemark___id' |
+  'childMarkdownRemark___frontmatter___title' |
+  'childMarkdownRemark___frontmatter___date' |
+  'childMarkdownRemark___frontmatter___author___id' |
+  'childMarkdownRemark___frontmatter___author___children' |
+  'childMarkdownRemark___frontmatter___author___bio' |
+  'childMarkdownRemark___frontmatter___author___twitter' |
+  'childMarkdownRemark___frontmatter___author___github' |
+  'childMarkdownRemark___frontmatter___description' |
+  'childMarkdownRemark___frontmatter___tags' |
+  'childMarkdownRemark___frontmatter___seoFooter' |
+  'childMarkdownRemark___frontmatter___todo' |
+  'childMarkdownRemark___excerpt' |
+  'childMarkdownRemark___rawMarkdownBody' |
+  'childMarkdownRemark___fileAbsolutePath' |
+  'childMarkdownRemark___fields___readingTime___text' |
+  'childMarkdownRemark___fields___readingTime___minutes' |
+  'childMarkdownRemark___fields___readingTime___time' |
+  'childMarkdownRemark___fields___readingTime___words' |
+  'childMarkdownRemark___fields___slug' |
+  'childMarkdownRemark___html' |
+  'childMarkdownRemark___htmlAst' |
+  'childMarkdownRemark___excerptAst' |
+  'childMarkdownRemark___headings' |
+  'childMarkdownRemark___headings___id' |
+  'childMarkdownRemark___headings___value' |
+  'childMarkdownRemark___headings___depth' |
+  'childMarkdownRemark___timeToRead' |
+  'childMarkdownRemark___tableOfContents' |
+  'childMarkdownRemark___wordCount___paragraphs' |
+  'childMarkdownRemark___wordCount___sentences' |
+  'childMarkdownRemark___wordCount___words' |
+  'childMarkdownRemark___parent___id' |
+  'childMarkdownRemark___parent___parent___id' |
+  'childMarkdownRemark___parent___parent___children' |
+  'childMarkdownRemark___parent___children' |
+  'childMarkdownRemark___parent___children___id' |
+  'childMarkdownRemark___parent___children___children' |
+  'childMarkdownRemark___parent___internal___content' |
+  'childMarkdownRemark___parent___internal___contentDigest' |
+  'childMarkdownRemark___parent___internal___description' |
+  'childMarkdownRemark___parent___internal___fieldOwners' |
+  'childMarkdownRemark___parent___internal___ignoreType' |
+  'childMarkdownRemark___parent___internal___mediaType' |
+  'childMarkdownRemark___parent___internal___owner' |
+  'childMarkdownRemark___parent___internal___type' |
+  'childMarkdownRemark___children' |
+  'childMarkdownRemark___children___id' |
+  'childMarkdownRemark___children___parent___id' |
+  'childMarkdownRemark___children___parent___children' |
+  'childMarkdownRemark___children___children' |
+  'childMarkdownRemark___children___children___id' |
+  'childMarkdownRemark___children___children___children' |
+  'childMarkdownRemark___children___internal___content' |
+  'childMarkdownRemark___children___internal___contentDigest' |
+  'childMarkdownRemark___children___internal___description' |
+  'childMarkdownRemark___children___internal___fieldOwners' |
+  'childMarkdownRemark___children___internal___ignoreType' |
+  'childMarkdownRemark___children___internal___mediaType' |
+  'childMarkdownRemark___children___internal___owner' |
+  'childMarkdownRemark___children___internal___type' |
+  'childMarkdownRemark___internal___content' |
+  'childMarkdownRemark___internal___contentDigest' |
+  'childMarkdownRemark___internal___description' |
+  'childMarkdownRemark___internal___fieldOwners' |
+  'childMarkdownRemark___internal___ignoreType' |
+  'childMarkdownRemark___internal___mediaType' |
+  'childMarkdownRemark___internal___owner' |
+  'childMarkdownRemark___internal___type' |
+  'childrenImageSharp' |
+  'childrenImageSharp___fixed___base64' |
+  'childrenImageSharp___fixed___tracedSVG' |
+  'childrenImageSharp___fixed___aspectRatio' |
+  'childrenImageSharp___fixed___width' |
+  'childrenImageSharp___fixed___height' |
+  'childrenImageSharp___fixed___src' |
+  'childrenImageSharp___fixed___srcSet' |
+  'childrenImageSharp___fixed___srcWebp' |
+  'childrenImageSharp___fixed___srcSetWebp' |
+  'childrenImageSharp___fixed___originalName' |
+  'childrenImageSharp___resolutions___base64' |
+  'childrenImageSharp___resolutions___tracedSVG' |
+  'childrenImageSharp___resolutions___aspectRatio' |
+  'childrenImageSharp___resolutions___width' |
+  'childrenImageSharp___resolutions___height' |
+  'childrenImageSharp___resolutions___src' |
+  'childrenImageSharp___resolutions___srcSet' |
+  'childrenImageSharp___resolutions___srcWebp' |
+  'childrenImageSharp___resolutions___srcSetWebp' |
+  'childrenImageSharp___resolutions___originalName' |
+  'childrenImageSharp___fluid___base64' |
+  'childrenImageSharp___fluid___tracedSVG' |
+  'childrenImageSharp___fluid___aspectRatio' |
+  'childrenImageSharp___fluid___src' |
+  'childrenImageSharp___fluid___srcSet' |
+  'childrenImageSharp___fluid___srcWebp' |
+  'childrenImageSharp___fluid___srcSetWebp' |
+  'childrenImageSharp___fluid___sizes' |
+  'childrenImageSharp___fluid___originalImg' |
+  'childrenImageSharp___fluid___originalName' |
+  'childrenImageSharp___fluid___presentationWidth' |
+  'childrenImageSharp___fluid___presentationHeight' |
+  'childrenImageSharp___sizes___base64' |
+  'childrenImageSharp___sizes___tracedSVG' |
+  'childrenImageSharp___sizes___aspectRatio' |
+  'childrenImageSharp___sizes___src' |
+  'childrenImageSharp___sizes___srcSet' |
+  'childrenImageSharp___sizes___srcWebp' |
+  'childrenImageSharp___sizes___srcSetWebp' |
+  'childrenImageSharp___sizes___sizes' |
+  'childrenImageSharp___sizes___originalImg' |
+  'childrenImageSharp___sizes___originalName' |
+  'childrenImageSharp___sizes___presentationWidth' |
+  'childrenImageSharp___sizes___presentationHeight' |
+  'childrenImageSharp___gatsbyImageData' |
+  'childrenImageSharp___original___width' |
+  'childrenImageSharp___original___height' |
+  'childrenImageSharp___original___src' |
+  'childrenImageSharp___resize___src' |
+  'childrenImageSharp___resize___tracedSVG' |
+  'childrenImageSharp___resize___width' |
+  'childrenImageSharp___resize___height' |
+  'childrenImageSharp___resize___aspectRatio' |
+  'childrenImageSharp___resize___originalName' |
+  'childrenImageSharp___id' |
+  'childrenImageSharp___parent___id' |
+  'childrenImageSharp___parent___parent___id' |
+  'childrenImageSharp___parent___parent___children' |
+  'childrenImageSharp___parent___children' |
+  'childrenImageSharp___parent___children___id' |
+  'childrenImageSharp___parent___children___children' |
+  'childrenImageSharp___parent___internal___content' |
+  'childrenImageSharp___parent___internal___contentDigest' |
+  'childrenImageSharp___parent___internal___description' |
+  'childrenImageSharp___parent___internal___fieldOwners' |
+  'childrenImageSharp___parent___internal___ignoreType' |
+  'childrenImageSharp___parent___internal___mediaType' |
+  'childrenImageSharp___parent___internal___owner' |
+  'childrenImageSharp___parent___internal___type' |
+  'childrenImageSharp___children' |
+  'childrenImageSharp___children___id' |
+  'childrenImageSharp___children___parent___id' |
+  'childrenImageSharp___children___parent___children' |
+  'childrenImageSharp___children___children' |
+  'childrenImageSharp___children___children___id' |
+  'childrenImageSharp___children___children___children' |
+  'childrenImageSharp___children___internal___content' |
+  'childrenImageSharp___children___internal___contentDigest' |
+  'childrenImageSharp___children___internal___description' |
+  'childrenImageSharp___children___internal___fieldOwners' |
+  'childrenImageSharp___children___internal___ignoreType' |
+  'childrenImageSharp___children___internal___mediaType' |
+  'childrenImageSharp___children___internal___owner' |
+  'childrenImageSharp___children___internal___type' |
+  'childrenImageSharp___internal___content' |
+  'childrenImageSharp___internal___contentDigest' |
+  'childrenImageSharp___internal___description' |
+  'childrenImageSharp___internal___fieldOwners' |
+  'childrenImageSharp___internal___ignoreType' |
+  'childrenImageSharp___internal___mediaType' |
+  'childrenImageSharp___internal___owner' |
+  'childrenImageSharp___internal___type' |
   'childImageSharp___fixed___base64' |
   'childImageSharp___fixed___tracedSVG' |
   'childImageSharp___fixed___aspectRatio' |
@@ -1006,6 +1417,267 @@ export type IFileFieldsEnum =
   'childImageSharp___internal___mediaType' |
   'childImageSharp___internal___owner' |
   'childImageSharp___internal___type' |
+  'childrenAuthorYaml' |
+  'childrenAuthorYaml___id' |
+  'childrenAuthorYaml___parent___id' |
+  'childrenAuthorYaml___parent___parent___id' |
+  'childrenAuthorYaml___parent___parent___children' |
+  'childrenAuthorYaml___parent___children' |
+  'childrenAuthorYaml___parent___children___id' |
+  'childrenAuthorYaml___parent___children___children' |
+  'childrenAuthorYaml___parent___internal___content' |
+  'childrenAuthorYaml___parent___internal___contentDigest' |
+  'childrenAuthorYaml___parent___internal___description' |
+  'childrenAuthorYaml___parent___internal___fieldOwners' |
+  'childrenAuthorYaml___parent___internal___ignoreType' |
+  'childrenAuthorYaml___parent___internal___mediaType' |
+  'childrenAuthorYaml___parent___internal___owner' |
+  'childrenAuthorYaml___parent___internal___type' |
+  'childrenAuthorYaml___children' |
+  'childrenAuthorYaml___children___id' |
+  'childrenAuthorYaml___children___parent___id' |
+  'childrenAuthorYaml___children___parent___children' |
+  'childrenAuthorYaml___children___children' |
+  'childrenAuthorYaml___children___children___id' |
+  'childrenAuthorYaml___children___children___children' |
+  'childrenAuthorYaml___children___internal___content' |
+  'childrenAuthorYaml___children___internal___contentDigest' |
+  'childrenAuthorYaml___children___internal___description' |
+  'childrenAuthorYaml___children___internal___fieldOwners' |
+  'childrenAuthorYaml___children___internal___ignoreType' |
+  'childrenAuthorYaml___children___internal___mediaType' |
+  'childrenAuthorYaml___children___internal___owner' |
+  'childrenAuthorYaml___children___internal___type' |
+  'childrenAuthorYaml___internal___content' |
+  'childrenAuthorYaml___internal___contentDigest' |
+  'childrenAuthorYaml___internal___description' |
+  'childrenAuthorYaml___internal___fieldOwners' |
+  'childrenAuthorYaml___internal___ignoreType' |
+  'childrenAuthorYaml___internal___mediaType' |
+  'childrenAuthorYaml___internal___owner' |
+  'childrenAuthorYaml___internal___type' |
+  'childrenAuthorYaml___bio' |
+  'childrenAuthorYaml___profilepicture___sourceInstanceName' |
+  'childrenAuthorYaml___profilepicture___absolutePath' |
+  'childrenAuthorYaml___profilepicture___relativePath' |
+  'childrenAuthorYaml___profilepicture___extension' |
+  'childrenAuthorYaml___profilepicture___size' |
+  'childrenAuthorYaml___profilepicture___prettySize' |
+  'childrenAuthorYaml___profilepicture___modifiedTime' |
+  'childrenAuthorYaml___profilepicture___accessTime' |
+  'childrenAuthorYaml___profilepicture___changeTime' |
+  'childrenAuthorYaml___profilepicture___birthTime' |
+  'childrenAuthorYaml___profilepicture___root' |
+  'childrenAuthorYaml___profilepicture___dir' |
+  'childrenAuthorYaml___profilepicture___base' |
+  'childrenAuthorYaml___profilepicture___ext' |
+  'childrenAuthorYaml___profilepicture___name' |
+  'childrenAuthorYaml___profilepicture___relativeDirectory' |
+  'childrenAuthorYaml___profilepicture___dev' |
+  'childrenAuthorYaml___profilepicture___mode' |
+  'childrenAuthorYaml___profilepicture___nlink' |
+  'childrenAuthorYaml___profilepicture___uid' |
+  'childrenAuthorYaml___profilepicture___gid' |
+  'childrenAuthorYaml___profilepicture___rdev' |
+  'childrenAuthorYaml___profilepicture___ino' |
+  'childrenAuthorYaml___profilepicture___atimeMs' |
+  'childrenAuthorYaml___profilepicture___mtimeMs' |
+  'childrenAuthorYaml___profilepicture___ctimeMs' |
+  'childrenAuthorYaml___profilepicture___atime' |
+  'childrenAuthorYaml___profilepicture___mtime' |
+  'childrenAuthorYaml___profilepicture___ctime' |
+  'childrenAuthorYaml___profilepicture___birthtime' |
+  'childrenAuthorYaml___profilepicture___birthtimeMs' |
+  'childrenAuthorYaml___profilepicture___blksize' |
+  'childrenAuthorYaml___profilepicture___blocks' |
+  'childrenAuthorYaml___profilepicture___publicURL' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___id' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___excerpt' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___rawMarkdownBody' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___fileAbsolutePath' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___html' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___htmlAst' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___excerptAst' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___headings' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___timeToRead' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___tableOfContents' |
+  'childrenAuthorYaml___profilepicture___childrenMarkdownRemark___children' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___id' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___excerpt' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___rawMarkdownBody' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___fileAbsolutePath' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___html' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___htmlAst' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___excerptAst' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___headings' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___timeToRead' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___tableOfContents' |
+  'childrenAuthorYaml___profilepicture___childMarkdownRemark___children' |
+  'childrenAuthorYaml___profilepicture___childrenImageSharp' |
+  'childrenAuthorYaml___profilepicture___childrenImageSharp___gatsbyImageData' |
+  'childrenAuthorYaml___profilepicture___childrenImageSharp___id' |
+  'childrenAuthorYaml___profilepicture___childrenImageSharp___children' |
+  'childrenAuthorYaml___profilepicture___childImageSharp___gatsbyImageData' |
+  'childrenAuthorYaml___profilepicture___childImageSharp___id' |
+  'childrenAuthorYaml___profilepicture___childImageSharp___children' |
+  'childrenAuthorYaml___profilepicture___childrenAuthorYaml' |
+  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___id' |
+  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___children' |
+  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___bio' |
+  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___twitter' |
+  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___github' |
+  'childrenAuthorYaml___profilepicture___childAuthorYaml___id' |
+  'childrenAuthorYaml___profilepicture___childAuthorYaml___children' |
+  'childrenAuthorYaml___profilepicture___childAuthorYaml___bio' |
+  'childrenAuthorYaml___profilepicture___childAuthorYaml___twitter' |
+  'childrenAuthorYaml___profilepicture___childAuthorYaml___github' |
+  'childrenAuthorYaml___profilepicture___id' |
+  'childrenAuthorYaml___profilepicture___parent___id' |
+  'childrenAuthorYaml___profilepicture___parent___children' |
+  'childrenAuthorYaml___profilepicture___children' |
+  'childrenAuthorYaml___profilepicture___children___id' |
+  'childrenAuthorYaml___profilepicture___children___children' |
+  'childrenAuthorYaml___profilepicture___internal___content' |
+  'childrenAuthorYaml___profilepicture___internal___contentDigest' |
+  'childrenAuthorYaml___profilepicture___internal___description' |
+  'childrenAuthorYaml___profilepicture___internal___fieldOwners' |
+  'childrenAuthorYaml___profilepicture___internal___ignoreType' |
+  'childrenAuthorYaml___profilepicture___internal___mediaType' |
+  'childrenAuthorYaml___profilepicture___internal___owner' |
+  'childrenAuthorYaml___profilepicture___internal___type' |
+  'childrenAuthorYaml___twitter' |
+  'childrenAuthorYaml___github' |
+  'childAuthorYaml___id' |
+  'childAuthorYaml___parent___id' |
+  'childAuthorYaml___parent___parent___id' |
+  'childAuthorYaml___parent___parent___children' |
+  'childAuthorYaml___parent___children' |
+  'childAuthorYaml___parent___children___id' |
+  'childAuthorYaml___parent___children___children' |
+  'childAuthorYaml___parent___internal___content' |
+  'childAuthorYaml___parent___internal___contentDigest' |
+  'childAuthorYaml___parent___internal___description' |
+  'childAuthorYaml___parent___internal___fieldOwners' |
+  'childAuthorYaml___parent___internal___ignoreType' |
+  'childAuthorYaml___parent___internal___mediaType' |
+  'childAuthorYaml___parent___internal___owner' |
+  'childAuthorYaml___parent___internal___type' |
+  'childAuthorYaml___children' |
+  'childAuthorYaml___children___id' |
+  'childAuthorYaml___children___parent___id' |
+  'childAuthorYaml___children___parent___children' |
+  'childAuthorYaml___children___children' |
+  'childAuthorYaml___children___children___id' |
+  'childAuthorYaml___children___children___children' |
+  'childAuthorYaml___children___internal___content' |
+  'childAuthorYaml___children___internal___contentDigest' |
+  'childAuthorYaml___children___internal___description' |
+  'childAuthorYaml___children___internal___fieldOwners' |
+  'childAuthorYaml___children___internal___ignoreType' |
+  'childAuthorYaml___children___internal___mediaType' |
+  'childAuthorYaml___children___internal___owner' |
+  'childAuthorYaml___children___internal___type' |
+  'childAuthorYaml___internal___content' |
+  'childAuthorYaml___internal___contentDigest' |
+  'childAuthorYaml___internal___description' |
+  'childAuthorYaml___internal___fieldOwners' |
+  'childAuthorYaml___internal___ignoreType' |
+  'childAuthorYaml___internal___mediaType' |
+  'childAuthorYaml___internal___owner' |
+  'childAuthorYaml___internal___type' |
+  'childAuthorYaml___bio' |
+  'childAuthorYaml___profilepicture___sourceInstanceName' |
+  'childAuthorYaml___profilepicture___absolutePath' |
+  'childAuthorYaml___profilepicture___relativePath' |
+  'childAuthorYaml___profilepicture___extension' |
+  'childAuthorYaml___profilepicture___size' |
+  'childAuthorYaml___profilepicture___prettySize' |
+  'childAuthorYaml___profilepicture___modifiedTime' |
+  'childAuthorYaml___profilepicture___accessTime' |
+  'childAuthorYaml___profilepicture___changeTime' |
+  'childAuthorYaml___profilepicture___birthTime' |
+  'childAuthorYaml___profilepicture___root' |
+  'childAuthorYaml___profilepicture___dir' |
+  'childAuthorYaml___profilepicture___base' |
+  'childAuthorYaml___profilepicture___ext' |
+  'childAuthorYaml___profilepicture___name' |
+  'childAuthorYaml___profilepicture___relativeDirectory' |
+  'childAuthorYaml___profilepicture___dev' |
+  'childAuthorYaml___profilepicture___mode' |
+  'childAuthorYaml___profilepicture___nlink' |
+  'childAuthorYaml___profilepicture___uid' |
+  'childAuthorYaml___profilepicture___gid' |
+  'childAuthorYaml___profilepicture___rdev' |
+  'childAuthorYaml___profilepicture___ino' |
+  'childAuthorYaml___profilepicture___atimeMs' |
+  'childAuthorYaml___profilepicture___mtimeMs' |
+  'childAuthorYaml___profilepicture___ctimeMs' |
+  'childAuthorYaml___profilepicture___atime' |
+  'childAuthorYaml___profilepicture___mtime' |
+  'childAuthorYaml___profilepicture___ctime' |
+  'childAuthorYaml___profilepicture___birthtime' |
+  'childAuthorYaml___profilepicture___birthtimeMs' |
+  'childAuthorYaml___profilepicture___blksize' |
+  'childAuthorYaml___profilepicture___blocks' |
+  'childAuthorYaml___profilepicture___publicURL' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___id' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___excerpt' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___rawMarkdownBody' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___fileAbsolutePath' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___html' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___htmlAst' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___excerptAst' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___headings' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___timeToRead' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___tableOfContents' |
+  'childAuthorYaml___profilepicture___childrenMarkdownRemark___children' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___id' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___excerpt' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___rawMarkdownBody' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___fileAbsolutePath' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___html' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___htmlAst' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___excerptAst' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___headings' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___timeToRead' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___tableOfContents' |
+  'childAuthorYaml___profilepicture___childMarkdownRemark___children' |
+  'childAuthorYaml___profilepicture___childrenImageSharp' |
+  'childAuthorYaml___profilepicture___childrenImageSharp___gatsbyImageData' |
+  'childAuthorYaml___profilepicture___childrenImageSharp___id' |
+  'childAuthorYaml___profilepicture___childrenImageSharp___children' |
+  'childAuthorYaml___profilepicture___childImageSharp___gatsbyImageData' |
+  'childAuthorYaml___profilepicture___childImageSharp___id' |
+  'childAuthorYaml___profilepicture___childImageSharp___children' |
+  'childAuthorYaml___profilepicture___childrenAuthorYaml' |
+  'childAuthorYaml___profilepicture___childrenAuthorYaml___id' |
+  'childAuthorYaml___profilepicture___childrenAuthorYaml___children' |
+  'childAuthorYaml___profilepicture___childrenAuthorYaml___bio' |
+  'childAuthorYaml___profilepicture___childrenAuthorYaml___twitter' |
+  'childAuthorYaml___profilepicture___childrenAuthorYaml___github' |
+  'childAuthorYaml___profilepicture___childAuthorYaml___id' |
+  'childAuthorYaml___profilepicture___childAuthorYaml___children' |
+  'childAuthorYaml___profilepicture___childAuthorYaml___bio' |
+  'childAuthorYaml___profilepicture___childAuthorYaml___twitter' |
+  'childAuthorYaml___profilepicture___childAuthorYaml___github' |
+  'childAuthorYaml___profilepicture___id' |
+  'childAuthorYaml___profilepicture___parent___id' |
+  'childAuthorYaml___profilepicture___parent___children' |
+  'childAuthorYaml___profilepicture___children' |
+  'childAuthorYaml___profilepicture___children___id' |
+  'childAuthorYaml___profilepicture___children___children' |
+  'childAuthorYaml___profilepicture___internal___content' |
+  'childAuthorYaml___profilepicture___internal___contentDigest' |
+  'childAuthorYaml___profilepicture___internal___description' |
+  'childAuthorYaml___profilepicture___internal___fieldOwners' |
+  'childAuthorYaml___profilepicture___internal___ignoreType' |
+  'childAuthorYaml___profilepicture___internal___mediaType' |
+  'childAuthorYaml___profilepicture___internal___owner' |
+  'childAuthorYaml___profilepicture___internal___type' |
+  'childAuthorYaml___twitter' |
+  'childAuthorYaml___github' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -1091,186 +1763,7 @@ export type IFileFieldsEnum =
   'internal___ignoreType' |
   'internal___mediaType' |
   'internal___owner' |
-  'internal___type' |
-  'childrenAuthorYaml' |
-  'childrenAuthorYaml___id' |
-  'childrenAuthorYaml___parent___id' |
-  'childrenAuthorYaml___parent___parent___id' |
-  'childrenAuthorYaml___parent___parent___children' |
-  'childrenAuthorYaml___parent___children' |
-  'childrenAuthorYaml___parent___children___id' |
-  'childrenAuthorYaml___parent___children___children' |
-  'childrenAuthorYaml___parent___internal___content' |
-  'childrenAuthorYaml___parent___internal___contentDigest' |
-  'childrenAuthorYaml___parent___internal___description' |
-  'childrenAuthorYaml___parent___internal___fieldOwners' |
-  'childrenAuthorYaml___parent___internal___ignoreType' |
-  'childrenAuthorYaml___parent___internal___mediaType' |
-  'childrenAuthorYaml___parent___internal___owner' |
-  'childrenAuthorYaml___parent___internal___type' |
-  'childrenAuthorYaml___children' |
-  'childrenAuthorYaml___children___id' |
-  'childrenAuthorYaml___children___parent___id' |
-  'childrenAuthorYaml___children___parent___children' |
-  'childrenAuthorYaml___children___children' |
-  'childrenAuthorYaml___children___children___id' |
-  'childrenAuthorYaml___children___children___children' |
-  'childrenAuthorYaml___children___internal___content' |
-  'childrenAuthorYaml___children___internal___contentDigest' |
-  'childrenAuthorYaml___children___internal___description' |
-  'childrenAuthorYaml___children___internal___fieldOwners' |
-  'childrenAuthorYaml___children___internal___ignoreType' |
-  'childrenAuthorYaml___children___internal___mediaType' |
-  'childrenAuthorYaml___children___internal___owner' |
-  'childrenAuthorYaml___children___internal___type' |
-  'childrenAuthorYaml___internal___content' |
-  'childrenAuthorYaml___internal___contentDigest' |
-  'childrenAuthorYaml___internal___description' |
-  'childrenAuthorYaml___internal___fieldOwners' |
-  'childrenAuthorYaml___internal___ignoreType' |
-  'childrenAuthorYaml___internal___mediaType' |
-  'childrenAuthorYaml___internal___owner' |
-  'childrenAuthorYaml___internal___type' |
-  'childrenAuthorYaml___bio' |
-  'childrenAuthorYaml___profilepicture___sourceInstanceName' |
-  'childrenAuthorYaml___profilepicture___absolutePath' |
-  'childrenAuthorYaml___profilepicture___relativePath' |
-  'childrenAuthorYaml___profilepicture___extension' |
-  'childrenAuthorYaml___profilepicture___size' |
-  'childrenAuthorYaml___profilepicture___prettySize' |
-  'childrenAuthorYaml___profilepicture___modifiedTime' |
-  'childrenAuthorYaml___profilepicture___accessTime' |
-  'childrenAuthorYaml___profilepicture___changeTime' |
-  'childrenAuthorYaml___profilepicture___birthTime' |
-  'childrenAuthorYaml___profilepicture___root' |
-  'childrenAuthorYaml___profilepicture___dir' |
-  'childrenAuthorYaml___profilepicture___base' |
-  'childrenAuthorYaml___profilepicture___ext' |
-  'childrenAuthorYaml___profilepicture___name' |
-  'childrenAuthorYaml___profilepicture___relativeDirectory' |
-  'childrenAuthorYaml___profilepicture___dev' |
-  'childrenAuthorYaml___profilepicture___mode' |
-  'childrenAuthorYaml___profilepicture___nlink' |
-  'childrenAuthorYaml___profilepicture___uid' |
-  'childrenAuthorYaml___profilepicture___gid' |
-  'childrenAuthorYaml___profilepicture___rdev' |
-  'childrenAuthorYaml___profilepicture___ino' |
-  'childrenAuthorYaml___profilepicture___atimeMs' |
-  'childrenAuthorYaml___profilepicture___mtimeMs' |
-  'childrenAuthorYaml___profilepicture___ctimeMs' |
-  'childrenAuthorYaml___profilepicture___atime' |
-  'childrenAuthorYaml___profilepicture___mtime' |
-  'childrenAuthorYaml___profilepicture___ctime' |
-  'childrenAuthorYaml___profilepicture___birthtime' |
-  'childrenAuthorYaml___profilepicture___birthtimeMs' |
-  'childrenAuthorYaml___profilepicture___blksize' |
-  'childrenAuthorYaml___profilepicture___blocks' |
-  'childrenAuthorYaml___profilepicture___publicURL' |
-  'childrenAuthorYaml___profilepicture___childImageSharp___gatsbyImageData' |
-  'childrenAuthorYaml___profilepicture___childImageSharp___id' |
-  'childrenAuthorYaml___profilepicture___childImageSharp___children' |
-  'childrenAuthorYaml___profilepicture___id' |
-  'childrenAuthorYaml___profilepicture___parent___id' |
-  'childrenAuthorYaml___profilepicture___parent___children' |
-  'childrenAuthorYaml___profilepicture___children' |
-  'childrenAuthorYaml___profilepicture___children___id' |
-  'childrenAuthorYaml___profilepicture___children___children' |
-  'childrenAuthorYaml___profilepicture___internal___content' |
-  'childrenAuthorYaml___profilepicture___internal___contentDigest' |
-  'childrenAuthorYaml___profilepicture___internal___description' |
-  'childrenAuthorYaml___profilepicture___internal___fieldOwners' |
-  'childrenAuthorYaml___profilepicture___internal___ignoreType' |
-  'childrenAuthorYaml___profilepicture___internal___mediaType' |
-  'childrenAuthorYaml___profilepicture___internal___owner' |
-  'childrenAuthorYaml___profilepicture___internal___type' |
-  'childrenAuthorYaml___profilepicture___childrenAuthorYaml' |
-  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___id' |
-  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___children' |
-  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___bio' |
-  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___twitter' |
-  'childrenAuthorYaml___profilepicture___childrenAuthorYaml___github' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___id' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___excerpt' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___rawMarkdownBody' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___fileAbsolutePath' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___html' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___htmlAst' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___excerptAst' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___headings' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___timeToRead' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___tableOfContents' |
-  'childrenAuthorYaml___profilepicture___childMarkdownRemark___children' |
-  'childrenAuthorYaml___twitter' |
-  'childrenAuthorYaml___github' |
-  'childMarkdownRemark___id' |
-  'childMarkdownRemark___frontmatter___title' |
-  'childMarkdownRemark___frontmatter___date' |
-  'childMarkdownRemark___frontmatter___author___id' |
-  'childMarkdownRemark___frontmatter___author___children' |
-  'childMarkdownRemark___frontmatter___author___bio' |
-  'childMarkdownRemark___frontmatter___author___twitter' |
-  'childMarkdownRemark___frontmatter___author___github' |
-  'childMarkdownRemark___frontmatter___description' |
-  'childMarkdownRemark___frontmatter___tags' |
-  'childMarkdownRemark___frontmatter___seoFooter' |
-  'childMarkdownRemark___frontmatter___todo' |
-  'childMarkdownRemark___excerpt' |
-  'childMarkdownRemark___rawMarkdownBody' |
-  'childMarkdownRemark___fileAbsolutePath' |
-  'childMarkdownRemark___fields___readingTime___text' |
-  'childMarkdownRemark___fields___readingTime___minutes' |
-  'childMarkdownRemark___fields___readingTime___time' |
-  'childMarkdownRemark___fields___readingTime___words' |
-  'childMarkdownRemark___fields___slug' |
-  'childMarkdownRemark___html' |
-  'childMarkdownRemark___htmlAst' |
-  'childMarkdownRemark___excerptAst' |
-  'childMarkdownRemark___headings' |
-  'childMarkdownRemark___headings___id' |
-  'childMarkdownRemark___headings___value' |
-  'childMarkdownRemark___headings___depth' |
-  'childMarkdownRemark___timeToRead' |
-  'childMarkdownRemark___tableOfContents' |
-  'childMarkdownRemark___wordCount___paragraphs' |
-  'childMarkdownRemark___wordCount___sentences' |
-  'childMarkdownRemark___wordCount___words' |
-  'childMarkdownRemark___parent___id' |
-  'childMarkdownRemark___parent___parent___id' |
-  'childMarkdownRemark___parent___parent___children' |
-  'childMarkdownRemark___parent___children' |
-  'childMarkdownRemark___parent___children___id' |
-  'childMarkdownRemark___parent___children___children' |
-  'childMarkdownRemark___parent___internal___content' |
-  'childMarkdownRemark___parent___internal___contentDigest' |
-  'childMarkdownRemark___parent___internal___description' |
-  'childMarkdownRemark___parent___internal___fieldOwners' |
-  'childMarkdownRemark___parent___internal___ignoreType' |
-  'childMarkdownRemark___parent___internal___mediaType' |
-  'childMarkdownRemark___parent___internal___owner' |
-  'childMarkdownRemark___parent___internal___type' |
-  'childMarkdownRemark___children' |
-  'childMarkdownRemark___children___id' |
-  'childMarkdownRemark___children___parent___id' |
-  'childMarkdownRemark___children___parent___children' |
-  'childMarkdownRemark___children___children' |
-  'childMarkdownRemark___children___children___id' |
-  'childMarkdownRemark___children___children___children' |
-  'childMarkdownRemark___children___internal___content' |
-  'childMarkdownRemark___children___internal___contentDigest' |
-  'childMarkdownRemark___children___internal___description' |
-  'childMarkdownRemark___children___internal___fieldOwners' |
-  'childMarkdownRemark___children___internal___ignoreType' |
-  'childMarkdownRemark___children___internal___mediaType' |
-  'childMarkdownRemark___children___internal___owner' |
-  'childMarkdownRemark___children___internal___type' |
-  'childMarkdownRemark___internal___content' |
-  'childMarkdownRemark___internal___contentDigest' |
-  'childMarkdownRemark___internal___description' |
-  'childMarkdownRemark___internal___fieldOwners' |
-  'childMarkdownRemark___internal___ignoreType' |
-  'childMarkdownRemark___internal___mediaType' |
-  'childMarkdownRemark___internal___owner' |
-  'childMarkdownRemark___internal___type';
+  'internal___type';
 
 export type IFileFilterInput = {
   sourceInstanceName: Maybe<IStringQueryOperatorInput>;
@@ -1307,13 +1800,16 @@ export type IFileFilterInput = {
   blksize: Maybe<IIntQueryOperatorInput>;
   blocks: Maybe<IIntQueryOperatorInput>;
   publicURL: Maybe<IStringQueryOperatorInput>;
+  childrenMarkdownRemark: Maybe<IMarkdownRemarkFilterListInput>;
+  childMarkdownRemark: Maybe<IMarkdownRemarkFilterInput>;
+  childrenImageSharp: Maybe<IImageSharpFilterListInput>;
   childImageSharp: Maybe<IImageSharpFilterInput>;
+  childrenAuthorYaml: Maybe<IAuthorYamlFilterListInput>;
+  childAuthorYaml: Maybe<IAuthorYamlFilterInput>;
   id: Maybe<IStringQueryOperatorInput>;
   parent: Maybe<INodeFilterInput>;
   children: Maybe<INodeFilterListInput>;
   internal: Maybe<IInternalFilterInput>;
-  childrenAuthorYaml: Maybe<IAuthorYamlFilterListInput>;
-  childMarkdownRemark: Maybe<IMarkdownRemarkFilterInput>;
 };
 
 export type IFileGroupConnection = {
@@ -1366,11 +1862,12 @@ export type IImageFormat =
   'AUTO' |
   'JPG' |
   'PNG' |
-  'WEBP';
+  'WEBP' |
+  'AVIF';
 
 export type IImageLayout = 
   'FIXED' |
-  'FLUID' |
+  'FULL_WIDTH' |
   'CONSTRAINED';
 
 export type IImagePlaceholder = 
@@ -1494,22 +1991,23 @@ export type IImageSharpSizesArgs = {
 
 export type IImageSharpGatsbyImageDataArgs = {
   layout?: Maybe<IImageLayout>;
-  maxWidth: Maybe<Scalars['Int']>;
-  maxHeight: Maybe<Scalars['Int']>;
   width: Maybe<Scalars['Int']>;
   height: Maybe<Scalars['Int']>;
-  placeholder?: Maybe<IImagePlaceholder>;
+  aspectRatio: Maybe<Scalars['Float']>;
+  placeholder: Maybe<IImagePlaceholder>;
   blurredOptions: Maybe<IBlurredOptions>;
   tracedSVGOptions: Maybe<IPotrace>;
-  formats?: Maybe<Array<Maybe<IImageFormat>>>;
+  formats: Maybe<Array<Maybe<IImageFormat>>>;
   outputPixelDensities: Maybe<Array<Maybe<Scalars['Float']>>>;
-  sizes?: Maybe<Scalars['String']>;
+  breakpoints: Maybe<Array<Maybe<Scalars['Int']>>>;
+  sizes: Maybe<Scalars['String']>;
   quality: Maybe<Scalars['Int']>;
   jpgOptions: Maybe<IJpgOptions>;
   pngOptions: Maybe<IPngOptions>;
   webpOptions: Maybe<IWebPOptions>;
+  avifOptions: Maybe<IAvifOptions>;
   transformOptions: Maybe<ITransformOptions>;
-  background?: Maybe<Scalars['String']>;
+  backgroundColor: Maybe<Scalars['String']>;
 };
 
 
@@ -1716,6 +2214,10 @@ export type IImageSharpFilterInput = {
   parent: Maybe<INodeFilterInput>;
   children: Maybe<INodeFilterListInput>;
   internal: Maybe<IInternalFilterInput>;
+};
+
+export type IImageSharpFilterListInput = {
+  elemMatch: Maybe<IImageSharpFilterInput>;
 };
 
 export type IImageSharpFixed = {
@@ -2081,9 +2583,11 @@ export type IMarkdownRemarkFieldsEnum =
   'frontmatter___author___profilepicture___blksize' |
   'frontmatter___author___profilepicture___blocks' |
   'frontmatter___author___profilepicture___publicURL' |
+  'frontmatter___author___profilepicture___childrenMarkdownRemark' |
+  'frontmatter___author___profilepicture___childrenImageSharp' |
+  'frontmatter___author___profilepicture___childrenAuthorYaml' |
   'frontmatter___author___profilepicture___id' |
   'frontmatter___author___profilepicture___children' |
-  'frontmatter___author___profilepicture___childrenAuthorYaml' |
   'frontmatter___author___twitter' |
   'frontmatter___author___github' |
   'frontmatter___description' |
@@ -2232,6 +2736,10 @@ export type IMarkdownRemarkFilterInput = {
   parent: Maybe<INodeFilterInput>;
   children: Maybe<INodeFilterListInput>;
   internal: Maybe<IInternalFilterInput>;
+};
+
+export type IMarkdownRemarkFilterListInput = {
+  elemMatch: Maybe<IMarkdownRemarkFilterInput>;
 };
 
 export type IMarkdownRemarkFrontmatter = {
@@ -2399,13 +2907,16 @@ export type IQueryFileArgs = {
   blksize: Maybe<IIntQueryOperatorInput>;
   blocks: Maybe<IIntQueryOperatorInput>;
   publicURL: Maybe<IStringQueryOperatorInput>;
+  childrenMarkdownRemark: Maybe<IMarkdownRemarkFilterListInput>;
+  childMarkdownRemark: Maybe<IMarkdownRemarkFilterInput>;
+  childrenImageSharp: Maybe<IImageSharpFilterListInput>;
   childImageSharp: Maybe<IImageSharpFilterInput>;
+  childrenAuthorYaml: Maybe<IAuthorYamlFilterListInput>;
+  childAuthorYaml: Maybe<IAuthorYamlFilterInput>;
   id: Maybe<IStringQueryOperatorInput>;
   parent: Maybe<INodeFilterInput>;
   children: Maybe<INodeFilterListInput>;
   internal: Maybe<IInternalFilterInput>;
-  childrenAuthorYaml: Maybe<IAuthorYamlFilterListInput>;
-  childMarkdownRemark: Maybe<IMarkdownRemarkFilterInput>;
 };
 
 
