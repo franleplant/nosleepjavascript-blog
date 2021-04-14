@@ -8,7 +8,7 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public -b master",
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\" \"./*.{js,ts,json,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\" \"./*.{js,ts,json,md}\"",
     "typecheck": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "start": "npm run develop",

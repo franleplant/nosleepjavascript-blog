@@ -2980,8 +2980,6 @@ export type IQueryAllDirectoryArgs = {
 export type IQuerySiteArgs = {
   buildTime: Maybe<IDateQueryOperatorInput>;
   siteMetadata: Maybe<ISiteSiteMetadataFilterInput>;
-  port: Maybe<IIntQueryOperatorInput>;
-  host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
   polyfill: Maybe<IBooleanQueryOperatorInput>;
@@ -3141,8 +3139,6 @@ export type IQueryAllSitePluginArgs = {
 export type ISite = INode & {
   buildTime: Maybe<Scalars['Date']>;
   siteMetadata: Maybe<ISiteSiteMetadata>;
-  port: Maybe<Scalars['Int']>;
-  host: Maybe<Scalars['String']>;
   pathPrefix: Maybe<Scalars['String']>;
   mapping: Maybe<ISiteMapping>;
   polyfill: Maybe<Scalars['Boolean']>;
@@ -3348,8 +3344,6 @@ export type ISiteFieldsEnum =
   'siteMetadata___author' |
   'siteMetadata___siteUrl' |
   'siteMetadata___social___twitter' |
-  'port' |
-  'host' |
   'pathPrefix' |
   'mapping___MarkdownRemark_frontmatter_author' |
   'polyfill' |
@@ -3443,8 +3437,6 @@ export type ISiteFieldsEnum =
 export type ISiteFilterInput = {
   buildTime: Maybe<IDateQueryOperatorInput>;
   siteMetadata: Maybe<ISiteSiteMetadataFilterInput>;
-  port: Maybe<IIntQueryOperatorInput>;
-  host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
   polyfill: Maybe<IBooleanQueryOperatorInput>;

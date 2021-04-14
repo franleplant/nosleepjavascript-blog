@@ -19,7 +19,7 @@ export interface IProps {
 export default function PostNavigator(props: IProps) {
   const { previous, next } = props;
   return (
-    <Container className="gap-2">
+    <Container className="-m-1">
       <NavItem to={previous?.fields.slug} rel="prev">
         ← {previous?.frontmatter.title}
       </NavItem>
@@ -41,7 +41,7 @@ export function NavItem(props: INavItemProps) {
     return null;
   }
   return (
-    <LinkContainer className="rounded-md border-pink-600 border p-5">
+    <LinkContainer className="rounded-md border-pink-600 border p-5 m-1">
       <Link to={props.to} rel={props.rel}>
         {props.children}
       </Link>

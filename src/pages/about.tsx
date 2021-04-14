@@ -118,9 +118,11 @@ export default function AboutPage(props: IProps) {
 
         <h2>Support my work</h2>
 
-        <section className="flex items-center gap-2">
-          <BuyMeCoffee />
-          <Patreon />
+        <section className="flex items-center -m-1">
+          <BuyMeCoffee className="m-1" />
+          <div className="m-1">
+            <Patreon />
+          </div>
         </section>
       </PaperContainer>
     </Layout>

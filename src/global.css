@@ -72,9 +72,8 @@
 
   blockquote {
     @apply rounded-md p-6 pl-8 italic;
-    /*@apply bg-gradient-to-r from-yellow-600 via-yellow-600 to-pink-700;*/
     @apply bg-gradient-to-r from-yellow-600 via-yellow-600;
-    @apply dark:border-2 dark:border-pink-700 dark:bg-transparent;
+    @apply dark:border-r-0 dark:border-l-8 dark:border-pink-700 dark:bg-gray-800;
     @apply dark:from-transparent dark:to-transparent;
   }
 
@@ -118,7 +117,12 @@
    @apply invisible;
  }
 
-  h2:hover > a.header-anchor {
+  h1:hover > a.header-anchor,
+  h2:hover > a.header-anchor,
+  h3:hover > a.header-anchor,
+  h4:hover > a.header-anchor,
+  h5:hover > a.header-anchor,
+  h6:hover > a.header-anchor {
     @apply visible transition-all delay-75;
   }
 

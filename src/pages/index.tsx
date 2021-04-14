@@ -19,7 +19,7 @@ export default function BlogIndex(props: IProps) {
       <div className="space-y-3 p-3 lg:p-20">
         <SEO title="NoSleep Javascript a blog by franleplant" />
 
-        <div className="flex gap-6 flex-wrap justify-center max-w-screen-xl ">
+        <div className="flex flex-wrap justify-center max-w-screen-xl -m-3">
           {posts.map(({ node }) => {
             const slug = node.fields.slug;
             const title = node.frontmatter.title || slug;
@@ -36,7 +36,7 @@ export default function BlogIndex(props: IProps) {
                 readingTime={node.fields.readingTime.text}
                 authorId={node.frontmatter.author.id}
                 tags={tags}
-                className="w-96"
+                className="w-96 m-3"
               />
             );
           })}

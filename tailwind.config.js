@@ -6,6 +6,7 @@ const PINK_BG = "#ed3785";
 const YELLOW = "#ffd703";
 
 module.exports = {
+  mode: "jit",
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class",
   theme: {

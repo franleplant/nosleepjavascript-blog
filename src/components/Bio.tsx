@@ -26,7 +26,7 @@ export default function Bio(props: IProps) {
   );
 
   return (
-    <div className="flex items-center gap-2 max-w-lg">
+    <div className="flex items-center max-w-lg">
       <Image
         fluid={author.profilepicture.childImageSharp.fluid}
         alt={author.id}
@@ -39,7 +39,7 @@ export default function Bio(props: IProps) {
           borderRadius: `50%`,
         }}
       />
-      <p>
+      <p className="ml-2">
         {`${prefixText} `}
         <a href={`https://twitter.com/${author.twitter}`}>{author.id}</a>:{" "}
         {author.bio} {githubEl}

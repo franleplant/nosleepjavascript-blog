@@ -8,7 +8,9 @@ export interface IProps {
 
 export default function NewsletterSubscribe(props: IProps): JSX.Element {
   return (
-    <div className={`rounded-md p-3 flex flex-col gap-2 ${props.className}`}>
+    <div
+      className={`rounded-md p-3 flex flex-col space-y-1 ${props.className}`}
+    >
       <h3 className="text-center p-0">Subscribe to our mailing list!</h3>
       {/*
       <p className="text-center text-black">
@@ -27,16 +29,16 @@ export default function NewsletterSubscribe(props: IProps): JSX.Element {
         >
           <div
             id="mc_embed_signup_scroll"
-            className="flex flex-row justify-center gap-2"
+            className="flex flex-row justify-center -m-1"
           >
-            <div className="mc-field-group">
+            <div className="mc-field-group m-1 min-w-0">
               <label htmlFor="mce-EMAIL" style={{ display: "none" }}>
                 email <span style={{ color: "red" }}>*</span>{" "}
               </label>
               <Input
                 type="email"
                 name="EMAIL"
-                className="required email"
+                className="required email w-full"
                 id="mce-EMAIL"
                 placeholder="email address"
               />
@@ -64,7 +66,7 @@ export default function NewsletterSubscribe(props: IProps): JSX.Element {
               />
             </div>
 
-            <div className="">
+            <div className="m-1">
               <Button type="submit" id="mc-embedded-subscribe" className="">
                 Subscribe
               </Button>

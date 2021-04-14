@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, navigate } from "gatsby";
 import Tags from "./Tags";
+import { oneline } from "../utils/strTag";
 
 // TODO better define this structure
 export interface IProps {
@@ -24,14 +25,14 @@ export default function PostCard(props: IProps): JSX.Element {
   return (
     <article
       onClick={onClick}
-      className={`
+      className={oneline`
         bg-white shadow-md p-3 rounded-md
         border-black-100 border cursor-pointer
         dark:border-transparent
         dark:bg-opacity-5
         dark:bg-white
         flex flex-col
-        gap-3
+        space-y-3
 
         ${props.className}
     `}
@@ -53,7 +54,7 @@ export default function PostCard(props: IProps): JSX.Element {
       <section>
         <p dangerouslySetInnerHTML={{ __html: content }} />
       </section>
-      <Tags tags={tags} className="mt-auto" />
+      <Tags tags={tags} className="!mt-auto pt-3" />
     </article>
   );
 }

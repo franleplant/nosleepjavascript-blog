@@ -7,7 +7,7 @@ export interface IProps {
 
 export default function Tags({ tags, className }: IProps) {
   return (
-    <div className={`flex flex-wrap gap-1 ${className}`}>
+    <div className={`flex flex-wrap -m-0.5 ${className}`}>
       {tags.map((tag) => (
         <Tag key={tag}>{`#${tag}`}</Tag>
       ))}
@@ -21,7 +21,7 @@ export interface ITagProps {
 
 export function Tag(props: ITagProps): JSX.Element {
   return (
-    <span className="bg-yellow-600 dark:bg-pink-700 rounded px-2 text-xs cursor-pointer text-black dark:text-black">
+    <span className="m-0.5 bg-yellow-600 dark:bg-pink-700 rounded px-2 text-xs cursor-pointer text-black dark:text-black">
       {props.children}
     </span>
   );
