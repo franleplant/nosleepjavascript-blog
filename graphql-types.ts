@@ -191,8 +191,8 @@ export type IAuthorYamlFieldsEnum =
   'profilepicture___childrenMarkdownRemark___frontmatter___date' |
   'profilepicture___childrenMarkdownRemark___frontmatter___description' |
   'profilepicture___childrenMarkdownRemark___frontmatter___tags' |
-  'profilepicture___childrenMarkdownRemark___frontmatter___todo' |
   'profilepicture___childrenMarkdownRemark___frontmatter___seoFooter' |
+  'profilepicture___childrenMarkdownRemark___frontmatter___todo' |
   'profilepicture___childrenMarkdownRemark___excerpt' |
   'profilepicture___childrenMarkdownRemark___rawMarkdownBody' |
   'profilepicture___childrenMarkdownRemark___fileAbsolutePath' |
@@ -227,8 +227,8 @@ export type IAuthorYamlFieldsEnum =
   'profilepicture___childMarkdownRemark___frontmatter___date' |
   'profilepicture___childMarkdownRemark___frontmatter___description' |
   'profilepicture___childMarkdownRemark___frontmatter___tags' |
-  'profilepicture___childMarkdownRemark___frontmatter___todo' |
   'profilepicture___childMarkdownRemark___frontmatter___seoFooter' |
+  'profilepicture___childMarkdownRemark___frontmatter___todo' |
   'profilepicture___childMarkdownRemark___excerpt' |
   'profilepicture___childMarkdownRemark___rawMarkdownBody' |
   'profilepicture___childMarkdownRemark___fileAbsolutePath' |
@@ -1104,8 +1104,8 @@ export type IFileFieldsEnum =
   'childrenMarkdownRemark___frontmatter___author___github' |
   'childrenMarkdownRemark___frontmatter___description' |
   'childrenMarkdownRemark___frontmatter___tags' |
-  'childrenMarkdownRemark___frontmatter___todo' |
   'childrenMarkdownRemark___frontmatter___seoFooter' |
+  'childrenMarkdownRemark___frontmatter___todo' |
   'childrenMarkdownRemark___excerpt' |
   'childrenMarkdownRemark___rawMarkdownBody' |
   'childrenMarkdownRemark___fileAbsolutePath' |
@@ -1173,8 +1173,8 @@ export type IFileFieldsEnum =
   'childMarkdownRemark___frontmatter___author___github' |
   'childMarkdownRemark___frontmatter___description' |
   'childMarkdownRemark___frontmatter___tags' |
-  'childMarkdownRemark___frontmatter___todo' |
   'childMarkdownRemark___frontmatter___seoFooter' |
+  'childMarkdownRemark___frontmatter___todo' |
   'childMarkdownRemark___excerpt' |
   'childMarkdownRemark___rawMarkdownBody' |
   'childMarkdownRemark___fileAbsolutePath' |
@@ -2592,8 +2592,8 @@ export type IMarkdownRemarkFieldsEnum =
   'frontmatter___author___github' |
   'frontmatter___description' |
   'frontmatter___tags' |
-  'frontmatter___todo' |
   'frontmatter___seoFooter' |
+  'frontmatter___todo' |
   'excerpt' |
   'rawMarkdownBody' |
   'fileAbsolutePath' |
@@ -2748,8 +2748,8 @@ export type IMarkdownRemarkFrontmatter = {
   author: Maybe<IAuthorYaml>;
   description: Maybe<Scalars['String']>;
   tags: Maybe<Array<Maybe<Scalars['String']>>>;
-  todo: Maybe<Array<Maybe<Scalars['String']>>>;
   seoFooter: Maybe<Array<Maybe<Scalars['String']>>>;
+  todo: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
@@ -2766,8 +2766,8 @@ export type IMarkdownRemarkFrontmatterFilterInput = {
   author: Maybe<IAuthorYamlFilterInput>;
   description: Maybe<IStringQueryOperatorInput>;
   tags: Maybe<IStringQueryOperatorInput>;
-  todo: Maybe<IStringQueryOperatorInput>;
   seoFooter: Maybe<IStringQueryOperatorInput>;
+  todo: Maybe<IStringQueryOperatorInput>;
 };
 
 export type IMarkdownRemarkGroupConnection = {
@@ -2980,6 +2980,8 @@ export type IQueryAllDirectoryArgs = {
 export type IQuerySiteArgs = {
   buildTime: Maybe<IDateQueryOperatorInput>;
   siteMetadata: Maybe<ISiteSiteMetadataFilterInput>;
+  port: Maybe<IIntQueryOperatorInput>;
+  host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
   polyfill: Maybe<IBooleanQueryOperatorInput>;
@@ -3139,6 +3141,8 @@ export type IQueryAllSitePluginArgs = {
 export type ISite = INode & {
   buildTime: Maybe<Scalars['Date']>;
   siteMetadata: Maybe<ISiteSiteMetadata>;
+  port: Maybe<Scalars['Int']>;
+  host: Maybe<Scalars['String']>;
   pathPrefix: Maybe<Scalars['String']>;
   mapping: Maybe<ISiteMapping>;
   polyfill: Maybe<Scalars['Boolean']>;
@@ -3344,6 +3348,8 @@ export type ISiteFieldsEnum =
   'siteMetadata___author' |
   'siteMetadata___siteUrl' |
   'siteMetadata___social___twitter' |
+  'port' |
+  'host' |
   'pathPrefix' |
   'mapping___MarkdownRemark_frontmatter_author' |
   'polyfill' |
@@ -3437,6 +3443,8 @@ export type ISiteFieldsEnum =
 export type ISiteFilterInput = {
   buildTime: Maybe<IDateQueryOperatorInput>;
   siteMetadata: Maybe<ISiteSiteMetadataFilterInput>;
+  port: Maybe<IIntQueryOperatorInput>;
+  host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
   polyfill: Maybe<IBooleanQueryOperatorInput>;
@@ -4457,10 +4465,10 @@ export type IAllAuthorsQueryQuery = { allAuthorYaml: { nodes: Array<Pick<IAuthor
 
 export type IAuthorFragmentFragment = Pick<IAuthorYaml, 'bio' | 'id' | 'twitter' | 'github'>;
 
-export type ISiteMetadaQueryQueryVariables = {};
+export type ISiteMetadataQueryQueryVariables = {};
 
 
-export type ISiteMetadaQueryQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<ISiteSiteMetadata, 'title' | 'description' | 'author' | 'siteUrl'>> }> };
+export type ISiteMetadataQueryQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<ISiteSiteMetadata, 'title' | 'description' | 'author' | 'siteUrl'>> }> };
 
 export type INotFoundPageQueryVariables = {};
 
