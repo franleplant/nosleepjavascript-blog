@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
 import styled from "@emotion/styled";
-import * as theme from "../utils/theme";
 
 export interface IPostLink {
   fields: {

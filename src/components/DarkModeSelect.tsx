@@ -45,6 +45,11 @@ export default function DarkModeSelect(props: IProps): JSX.Element {
 // It is dark if it is explicitly set as dark
 // or if the OS prefference is to dark
 export function isDark(): boolean {
+  // Check if SSR
+  if (typeof window === "undefined") {
+    return true;
+  }
+
   if ("theme" in localStorage) {
     return localStorage.theme === "dark";
   }

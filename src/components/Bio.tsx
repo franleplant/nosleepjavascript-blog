@@ -1,6 +1,4 @@
 import React from "react";
-import { css } from "@emotion/core";
-import styled from "@emotion/styled";
 import Image from "gatsby-image";
 import { IGatsbyImageSharpFluidFragment } from "../../graphql-types";
 import { IAuthor as IAuthorBase } from "../types";
