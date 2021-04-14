@@ -12,7 +12,11 @@
     @apply dark:bg-white;
   }
 
-  p,span,small,li,summary {
+  p,
+  span,
+  small,
+  li,
+  summary {
     @apply dark:text-white;
   }
 
@@ -95,14 +99,14 @@
     @apply py-1;
   }
 
-  .gatsby-highlight, .gatsby-code-title {
+  .gatsby-highlight,
+  .gatsby-code-title {
     @apply -m-3;
   }
 
   .gatsby-code-title + .gatsby-highlight {
     margin-top: -0.5rem !important;
   }
-
 
   .gatsby-code-title {
     @apply rounded-t-md;
@@ -113,9 +117,9 @@
   }
 
   /* Markdown title permalinks */
- .header-anchor {
-   @apply invisible;
- }
+  .header-anchor {
+    @apply invisible;
+  }
 
   h1:hover > a.header-anchor,
   h2:hover > a.header-anchor,
@@ -131,4 +135,3 @@
     word-break: break-word;
   }
 }
-
