@@ -11,6 +11,7 @@ import SeoFooter from "../components/SeoFooter";
 import BuyMeCoffee from "../components/BuyMeCoffee";
 import Patreon from "../components/Patreon";
 import PostNavigator from "../components/PostNavigator";
+import PaperContainer from "../components/PaperContainer";
 
 interface IProps {
   data: IBlogPostBySlugQuery;
@@ -42,7 +43,7 @@ export default function BlogPostTemplate(props: IProps) {
         author={author}
       />
 
-      <div className="lg:max-w-4xl m-auto lg:my-20 p-3 md:p-10 dark:bg-white dark:bg-opacity-5 rounded-md">
+      <PaperContainer>
         <article className="space-y-5">
           <Tags tags={tags} />
           <header className="pb-3">
@@ -70,7 +71,7 @@ export default function BlogPostTemplate(props: IProps) {
         </div>
 
         <SeoFooter data={Array.isArray(seoFooter) ? seoFooter : [seoFooter]} />
-      </div>
+      </PaperContainer>
     </Layout>
   );
 }

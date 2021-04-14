@@ -52,7 +52,7 @@ export default function NavMenu(props: IProps): JSX.Element {
             About
           </Link>
           <a
-            href="about"
+            href={`mailto:nosleeptechblog@gmail.com?subject=Contact from website`}
             className="leading-10 p-3 dark:text-white text-md hover:text-pink-600 md:text-right"
           >
             Contact

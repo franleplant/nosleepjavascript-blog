@@ -1,15 +1,14 @@
 import React from "react";
 import { graphql } from "gatsby";
-import styled from "@emotion/styled";
 
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
 import Bio from "../components/About/Bio";
-import NewsletterSubscribe from "../components/NewsletterSubscribe";
 
 import { IAboutPageQuery } from "../../graphql-types";
 import BuyMeCoffee from "../components/BuyMeCoffee";
 import Patreon from "../components/Patreon";
+import PaperContainer from "../components/PaperContainer";
 
 export interface IProps {
   location: any;
@@ -25,7 +24,7 @@ export default function AboutPage(props: IProps) {
   return (
     <Layout location={props.location} title={site.siteMetadata.title}>
       <SEO title="About" />
-      <article className="lg:max-w-4xl space-y-5 m-auto lg:my-20 p-3 md:p-10 dark:bg-white dark:bg-opacity-5 rounded-md">
+      <PaperContainer className="space-y-5">
         <header>
           <h1 className="">
             NoSleep Javascript
@@ -128,7 +127,7 @@ export default function AboutPage(props: IProps) {
           <BuyMeCoffee />
           <Patreon />
         </section>
-      </article>
+      </PaperContainer>
     </Layout>
   );
 }

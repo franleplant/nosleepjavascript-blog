@@ -33,7 +33,9 @@ export default function Bio(props: IProps) {
           }}
         />
       </div>
-      <div className="bold text-pink-600 dark:text-yellow-600">{author.id}</div>
+      <div className="font-bold text-pink-600 dark:text-yellow-600">
+        {author.id}
+      </div>
       <div>
         <Github url={author.github} /> | <Twitter handle={author.twitter} />
       </div>
