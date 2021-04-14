@@ -7,11 +7,6 @@
     @apply dark:bg-gray-800;
   }
 
-  .nsj-post-content img {
-    /* This helps with outdated svgs */
-    @apply dark:bg-white;
-  }
-
   p,
   span,
   small,
@@ -98,40 +93,47 @@
   li {
     @apply py-1;
   }
-
-  .gatsby-highlight,
-  .gatsby-code-title {
-    @apply -m-3;
-  }
-
-  .gatsby-code-title + .gatsby-highlight {
-    margin-top: -0.5rem !important;
-  }
-
-  .gatsby-code-title {
-    @apply rounded-t-md;
-    @apply text-white;
-    @apply bg-black;
-    @apply font-mono;
-    @apply p-3;
-  }
-
-  /* Markdown title permalinks */
-  .header-anchor {
-    @apply invisible;
-  }
-
-  h1:hover > a.header-anchor,
-  h2:hover > a.header-anchor,
-  h3:hover > a.header-anchor,
-  h4:hover > a.header-anchor,
-  h5:hover > a.header-anchor,
-  h6:hover > a.header-anchor {
-    @apply visible transition-all delay-75;
-  }
-
-  /* this is to fix overflowing in mobile */
-  :not(pre) > code[class*="language-"] {
-    word-break: break-word;
-  }
 }
+
+.nsj-post-content img {
+  /* This helps with outdated svgs */
+  @apply dark:bg-white;
+}
+
+
+.gatsby-highlight,
+.gatsby-code-title {
+  @apply -m-3;
+}
+
+.gatsby-code-title + .gatsby-highlight {
+  margin-top: -0.5rem !important;
+}
+
+.gatsby-code-title {
+  @apply rounded-t-md;
+  @apply text-white;
+  @apply bg-black;
+  @apply font-mono;
+  @apply p-3;
+}
+
+/* Markdown title permalinks */
+.header-anchor {
+  @apply invisible;
+}
+
+h1:hover > a.header-anchor,
+h2:hover > a.header-anchor,
+h3:hover > a.header-anchor,
+h4:hover > a.header-anchor,
+h5:hover > a.header-anchor,
+h6:hover > a.header-anchor {
+  @apply visible transition-all delay-75;
+}
+
+/* this is to fix overflowing in mobile */
+:not(pre) > code[class*="language-"] {
+  word-break: break-word;
+}
+
