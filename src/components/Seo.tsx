@@ -1,8 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
 import { IAuthor } from "../types";
 import { isDark } from "./DarkModeSelect";
+import { useSiteMetadata } from "../dal/site";
 
 export interface IProps {
   title: string;
@@ -14,22 +14,9 @@ export interface IProps {
 
 export default function SEO(props: IProps) {
   const { description = ``, lang = `en`, meta = [], title, author } = props;
+  const siteMeta = useSiteMetadata();
 
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  );
-
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription = description || siteMeta.description;
 
   return (
     <Helmet
@@ -37,7 +24,7 @@ export default function SEO(props: IProps) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${siteMeta.title}`}
       meta={[
         {
           name: `title`,
@@ -65,7 +52,7 @@ export default function SEO(props: IProps) {
         },
         {
           name: `twitter:creator`,
-          content: author?.twitter || site.siteMetadata.author,
+          content: author?.twitter || siteMeta.author,
         },
         {
           name: `twitter:title`,

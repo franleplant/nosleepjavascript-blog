@@ -1,10 +1,9 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 
 import { IBlogPostBySlugQuery } from "../../graphql-types";
 import Bio from "../components/Bio";
 import Layout from "../components/Layout";
-import SEO from "../components/Seo";
 import Tags from "../components/Tags";
 import NewsletterSubscribe from "../components/NewsletterSubscribe";
 import SeoFooter from "../components/SeoFooter";
@@ -13,19 +12,25 @@ import Patreon from "../components/Patreon";
 import PostNavigator from "../components/PostNavigator";
 import PaperContainer from "../components/PaperContainer";
 
-interface IProps {
-  data: IBlogPostBySlugQuery;
-  location: any;
-  pageContext: {
+export interface IPostLink {
+  fields: {
     slug: string;
-    previous?: any;
-    next?: any;
+  };
+  frontmatter: {
+    title: string;
   };
 }
 
+export interface IPageContext {
+  slug: string;
+  previous?: IPostLink;
+  next?: IPostLink;
+}
+
+interface IProps extends PageProps<IBlogPostBySlugQuery, IPageContext> {}
+
 export default function BlogPostTemplate(props: IProps) {
   const { previous, next } = props.pageContext;
-  const siteTitle = props.data.site.siteMetadata.title;
   const post = props.data.markdownRemark;
   const {
     title,
@@ -36,13 +41,12 @@ export default function BlogPostTemplate(props: IProps) {
   } = post.frontmatter;
 
   return (
-    <Layout location={props.location} title={siteTitle}>
-      <SEO
-        title={title}
-        description={`${description || post.excerpt}\nBy ${author.id}`}
-        author={author}
-      />
-
+    <Layout
+      location={props.location}
+      title={title}
+      description={`${description || post.excerpt}\nBy ${author.id}`}
+      author={author}
+    >
       <PaperContainer>
         <article className="space-y-5">
           <Tags tags={tags} />

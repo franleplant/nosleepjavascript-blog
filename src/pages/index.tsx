@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
@@ -7,10 +7,7 @@ import SEO from "../components/Seo";
 import { IBlogIndexQuery } from "../../graphql-types";
 import PostCard from "../components/PostCard";
 
-export interface IProps {
-  data: IBlogIndexQuery;
-  location: any;
-}
+export interface IProps extends PageProps<IBlogIndexQuery> {}
 
 export default function BlogIndex(props: IProps) {
   const { data } = props;

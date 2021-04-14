@@ -1,8 +1,7 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 
 import Layout from "../components/Layout";
-import SEO from "../components/Seo";
 import Bio from "../components/About/Bio";
 
 import { IAboutPageQuery } from "../../graphql-types";
@@ -10,20 +9,16 @@ import BuyMeCoffee from "../components/BuyMeCoffee";
 import Patreon from "../components/Patreon";
 import PaperContainer from "../components/PaperContainer";
 
-export interface IProps {
-  location: any;
-  data: IAboutPageQuery;
-}
+export interface IProps extends PageProps<IAboutPageQuery> {}
 
 export default function AboutPage(props: IProps) {
-  const { allAuthorYaml, site } = props.data;
+  const { allAuthorYaml } = props.data;
   const franleplant = allAuthorYaml.nodes.find(
     (author) => author.id === "franleplant"
   );
 
   return (
-    <Layout location={props.location} title={site.siteMetadata.title}>
-      <SEO title="About" />
+    <Layout location={props.location} title="About">
       <PaperContainer className="space-y-5">
         <header>
           <h1 className="">

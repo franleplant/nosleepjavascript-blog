@@ -21,11 +21,9 @@ export default function PostCard(props: IProps): JSX.Element {
     navigate(slug);
   }
 
-  //bg-gradient-to-r dark:from-gray-900 dark:to-black
   return (
     <article
       onClick={onClick}
-      //style={{backgroundImage: "radial-gradient(black, transparent)"}}
       className={`
         bg-white shadow-md p-3 rounded-md
         border-black-100 border cursor-pointer

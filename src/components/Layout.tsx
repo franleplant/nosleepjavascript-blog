@@ -1,12 +1,17 @@
 import React from "react";
-import { Global, css } from "@emotion/core";
+import { WindowLocation } from "@reach/router";
 
+import { IAuthorFragmentFragment } from "../../graphql-types";
+
+import SEO from "./Seo";
 import NavMenu from "./NavMenu";
 
 interface IProps {
-  children: any;
-  location: any;
-  title: any;
+  children: Array<JSX.Element> | JSX.Element | string | null;
+  location: WindowLocation;
+  title?: string;
+  description?: string;
+  author?: IAuthorFragmentFragment;
 }
 
 export default function Layout(props: IProps) {
@@ -16,8 +21,11 @@ export default function Layout(props: IProps) {
 
   return (
     <div>
-      <GlobalStyles />
-
+      <SEO
+        title={props.title}
+        description={props.description}
+        author={props.author}
+      />
       <div className="space-y-3">
         <div className="grid grid-cols-6 lg:grid-cols-8 gap-4">
           <section className="col-span-6 lg:col-span-3 xl:col-span-2">
@@ -29,18 +37,5 @@ export default function Layout(props: IProps) {
         </div>
       </div>
     </div>
-  );
-}
-
-export function GlobalStyles() {
-  return (
-    <Global
-      styles={css`
-        :not(pre) > code[class*="language-"] {
-          // this is to fix overflowing in mobile
-          word-break: break-word;
-        }
-      `}
-    />
   );
 }

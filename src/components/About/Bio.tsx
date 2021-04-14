@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import Image from "gatsby-image";
 import { IGatsbyImageSharpFixedFragment } from "../../../graphql-types";
 import { IAuthor as IAuthorBase } from "../../types";
-import { COLOR } from "../../utils/theme";
 
 interface IAuthor extends IAuthorBase {
   profilepicture: {
@@ -39,9 +38,6 @@ export default function Bio(props: IProps) {
       <div>
         <Github url={author.github} /> | <Twitter handle={author.twitter} />
       </div>
-      {/*
-      <About>{author.bio}</About>
-        */}
     </Container>
   );
 }
@@ -71,8 +67,4 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   width: 400px;
-`;
-
-const About = styled.p`
-  text-align: center;
 `;

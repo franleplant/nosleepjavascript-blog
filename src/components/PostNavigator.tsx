@@ -33,7 +33,7 @@ export default function PostNavigator(props: IProps) {
 export interface INavItemProps {
   to?: string;
   rel: string;
-  children: any;
+  children: Array<JSX.Element> | JSX.Element | Array<string> | string;
 }
 
 export function NavItem(props: INavItemProps) {

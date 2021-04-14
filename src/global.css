@@ -121,5 +121,10 @@
   h2:hover > a.header-anchor {
     @apply visible transition-all delay-75;
   }
+
+  /* this is to fix overflowing in mobile */
+  :not(pre) > code[class*="language-"] {
+    word-break: break-word;
+  }
 }
 
