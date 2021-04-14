@@ -26,7 +26,7 @@ export default function Bio(props: IProps) {
   );
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 max-w-lg">
       <Image
         fluid={author.profilepicture.childImageSharp.fluid}
         alt={author.id}

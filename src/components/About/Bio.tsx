@@ -33,11 +33,13 @@ export default function Bio(props: IProps) {
           }}
         />
       </div>
-      <Name>{author.id}</Name>
+      <div className="bold text-pink-600 dark:text-yellow-600">{author.id}</div>
       <div>
         <Github url={author.github} /> | <Twitter handle={author.twitter} />
       </div>
+      {/*
       <About>{author.bio}</About>
+        */}
     </Container>
   );
 }
@@ -67,12 +69,6 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   width: 400px;
-  padding: 50px;
-`;
-
-const Name = styled.div`
-  color: ${COLOR.SECONDARY};
-  font-weight: bold;
 `;
 
 const About = styled.p`

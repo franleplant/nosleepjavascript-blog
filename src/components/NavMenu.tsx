@@ -46,7 +46,7 @@ export default function NavMenu(props: IProps): JSX.Element {
           `}
         >
           <Link
-            to="about"
+            to="/about"
             className="leading-10 p-3 dark:text-white text-md hover:text-pink-600 md:text-right"
           >
             About

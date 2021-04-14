@@ -42,7 +42,7 @@ export default function BlogPostTemplate(props: IProps) {
         author={author}
       />
 
-      <div className="lg:max-w-4xl m-auto lg:my-20 p-3 md:p-6 dark:bg-white dark:bg-opacity-5 rounded-md">
+      <div className="lg:max-w-4xl m-auto lg:my-20 p-3 md:p-10 dark:bg-white dark:bg-opacity-5 rounded-md">
         <article className="space-y-5">
           <Tags tags={tags} />
           <header className="pb-3">
