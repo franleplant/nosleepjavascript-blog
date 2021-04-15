@@ -100,7 +100,6 @@
   @apply dark:bg-white;
 }
 
-
 .gatsby-highlight,
 .gatsby-code-title {
   @apply -m-3;
@@ -136,4 +135,3 @@ h6:hover > a.header-anchor {
 :not(pre) > code[class*="language-"] {
   word-break: break-word;
 }
-
