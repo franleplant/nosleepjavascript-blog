@@ -1,9 +1,11 @@
 import React from "react";
 import Image from "gatsby-image";
-import { IGatsbyImageSharpFluidFragment } from "../../graphql-types";
-import { IAuthor as IAuthorBase } from "../types";
+import {
+  IGatsbyImageSharpFluidFragment,
+  IAuthorFragmentFragment,
+} from "../../graphql-types";
 
-interface IAuthor extends IAuthorBase {
+interface IAuthor extends IAuthorFragmentFragment {
   profilepicture: {
     childImageSharp: {
       fluid: IGatsbyImageSharpFluidFragment;

@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { IAuthor } from "../types";
+import { IAuthorFragmentFragment } from "../../graphql-types";
 import { isDark } from "./DarkModeSelect";
 import { useSiteMetadata } from "../dal/site";
 
@@ -9,7 +9,7 @@ export interface IProps {
   description?: string;
   lang?: string;
   meta?: Array<any>;
-  author?: IAuthor;
+  author?: IAuthorFragmentFragment;
 }
 
 export default function SEO(props: IProps) {

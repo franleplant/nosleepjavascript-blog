@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Image from "gatsby-image";
-import { IGatsbyImageSharpFixedFragment } from "../../../graphql-types";
-import { IAuthor as IAuthorBase } from "../../types";
+import {
+  IGatsbyImageSharpFixedFragment,
+  IAuthorFragmentFragment,
+} from "../../../graphql-types";
 
-interface IAuthor extends IAuthorBase {
+interface IAuthor extends IAuthorFragmentFragment {
   profilepicture: {
     childImageSharp: {
       fixed: IGatsbyImageSharpFixedFragment;
