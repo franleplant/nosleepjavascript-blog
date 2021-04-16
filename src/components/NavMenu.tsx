@@ -36,14 +36,13 @@ export default function NavMenu(props: IProps): JSX.Element {
         />
         <div
           className={oneline`
-          ${props.isHome ? "flex" : "hidden"}
-          md:flex
-          flex-row items-center justify-center
-
-          divide-x
-          divide-gray-50
-          divide-opacity-25
-
+            ${props.isHome ? "flex" : "hidden"}
+            md:flex
+            flex-row items-center justify-center
+            divide-x
+            divide-pink-700
+            dark:divide-gray-50
+            dark:divide-opacity-25
           `}
         >
           <Link

@@ -50,7 +50,7 @@ export function Button(props: IButtonProps): JSX.Element {
   return (
     <button
       className={oneline`
-        mx-3
+        mx-1
         p-3 text-xl w-10 h-10 flex items-center justify-items-center justify-center rounded-full
         outline-none
         focus:outline-none
