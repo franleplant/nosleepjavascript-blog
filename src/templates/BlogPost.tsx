@@ -1,32 +1,36 @@
 import React from "react";
-import { graphql } from "gatsby";
-import { css } from "@emotion/core";
+import { graphql, PageProps } from "gatsby";
 
 import { IBlogPostBySlugQuery } from "../../graphql-types";
 import Bio from "../components/Bio";
 import Layout from "../components/Layout";
-import SEO from "../components/Seo";
 import Tags from "../components/Tags";
-import { rhythm, scale } from "../utils/typography";
 import NewsletterSubscribe from "../components/NewsletterSubscribe";
 import SeoFooter from "../components/SeoFooter";
 import BuyMeCoffee from "../components/BuyMeCoffee";
 import Patreon from "../components/Patreon";
 import PostNavigator from "../components/PostNavigator";
+import PaperContainer from "../components/PaperContainer";
 
-interface IProps {
-  data: IBlogPostBySlugQuery;
-  location: any;
-  pageContext: {
+export interface IPostLink {
+  fields: {
     slug: string;
-    previous?: any;
-    next?: any;
+  };
+  frontmatter: {
+    title: string;
   };
 }
 
+export interface IPageContext {
+  slug: string;
+  previous?: IPostLink;
+  next?: IPostLink;
+}
+
+interface IProps extends PageProps<IBlogPostBySlugQuery, IPageContext> {}
+
 export default function BlogPostTemplate(props: IProps) {
   const { previous, next } = props.pageContext;
-  const siteTitle = props.data.site.siteMetadata.title;
   const post = props.data.markdownRemark;
   const {
     title,
@@ -37,67 +41,43 @@ export default function BlogPostTemplate(props: IProps) {
   } = post.frontmatter;
 
   return (
-    <Layout location={props.location} title={siteTitle}>
-      <SEO
-        title={title}
-        description={`${description || post.excerpt}\nBy ${author.id}`}
-        author={author}
-      />
-      <article>
-        <header>
-          <h1
-            css={css`
-              margin-top: ${rhythm(1)};
-              margin-bottom: 0;
-            `}
-          >
-            {post.frontmatter?.title}
-          </h1>
-          <div
-            style={{
-              ...scale(-1 / 5),
-            }}
-            css={css`
-              display: block;
-              margin-bottom: ${rhythm(1)};
-            `}
-          >
-            {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
-            <Tags tags={tags} />
-          </div>
-        </header>
-
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <NewsletterSubscribe />
-
-        <hr
-          css={css`
-            margin-bottom: ${rhythm(1)};
-          `}
-        />
-
-        <footer>
-          <Bio author={author} />
-
-          <div
-            css={css`
-              margin-top: -20px;
-              margin-bottom: 20px;
-            `}
-          >
-            <div>
-              <BuyMeCoffee />
+    <Layout
+      location={props.location}
+      title={title}
+      description={`${description || post.excerpt}\nBy ${author.id}`}
+      author={author}
+    >
+      <PaperContainer>
+        <article className="space-y-5">
+          <Tags tags={tags} />
+          <header className="pb-3">
+            <h1> {post.frontmatter?.title} </h1>
+            <div className="py-3 text-sm text-gray-700 dark:text-gray-50">
+              {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
             </div>
-            <div>
+            <Bio author={author} />
+          </header>
+
+          <section
+            className="space-y-5 nsj-post-content"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+
+          <section className="flex items-center -m-1">
+            <BuyMeCoffee className="m-1" />
+            <div className="m-1">
               <Patreon />
             </div>
-          </div>
-        </footer>
-      </article>
+          </section>
+          <NewsletterSubscribe bounce={true} />
+        </article>
 
-      <PostNavigator previous={previous} next={next} />
+        <div className="py-4">
+          <PostNavigator previous={previous} next={next} />
+        </div>
 
-      <SeoFooter data={Array.isArray(seoFooter) ? seoFooter : [seoFooter]} />
+        <SeoFooter data={Array.isArray(seoFooter) ? seoFooter : [seoFooter]} />
+      </PaperContainer>
     </Layout>
   );
 }

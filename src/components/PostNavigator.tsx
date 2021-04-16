@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
 import styled from "@emotion/styled";
-import * as theme from "../utils/theme";
 
 export interface IPostLink {
   fields: {
@@ -20,7 +19,7 @@ export interface IProps {
 export default function PostNavigator(props: IProps) {
   const { previous, next } = props;
   return (
-    <Container>
+    <Container className="-m-1">
       <NavItem to={previous?.fields.slug} rel="prev">
         ← {previous?.frontmatter.title}
       </NavItem>
@@ -34,7 +33,7 @@ export default function PostNavigator(props: IProps) {
 export interface INavItemProps {
   to?: string;
   rel: string;
-  children: any;
+  children: Array<JSX.Element> | JSX.Element | Array<string> | string;
 }
 
 export function NavItem(props: INavItemProps) {
@@ -42,7 +41,7 @@ export function NavItem(props: INavItemProps) {
     return null;
   }
   return (
-    <LinkContainer>
+    <LinkContainer className="rounded-md border-pink-600 border p-5 m-1">
       <Link to={props.to} rel={props.rel}>
         {props.children}
       </Link>
@@ -64,11 +63,6 @@ const Container = styled.nav(`
 `);
 
 const LinkContainer = styled.div`
-  border: 1px solid ${theme.COLOR.SECONDARY};
-  border-radius: 2px;
-  padding: 8px 16px;
-  margin: 2px;
-
   @media (min-width: 800px) {
     width: 49%;
   }

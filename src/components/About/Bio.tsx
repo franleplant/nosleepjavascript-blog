@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Image from "gatsby-image";
-import { rhythm } from "../../utils/typography";
-import { IGatsbyImageSharpFixedFragment } from "../../../graphql-types";
-import { IAuthor as IAuthorBase } from "../../types";
-import { COLOR } from "../../utils/theme";
+import {
+  IGatsbyImageSharpFixedFragment,
+  IAuthorFragmentFragment,
+} from "../../../graphql-types";
 
-interface IAuthor extends IAuthorBase {
+interface IAuthor extends IAuthorFragmentFragment {
   profilepicture: {
     childImageSharp: {
       fixed: IGatsbyImageSharpFixedFragment;
@@ -28,18 +28,18 @@ export default function Bio(props: IProps) {
           fixed={author.profilepicture.childImageSharp.fixed}
           alt={author.id}
           style={{
-            marginRight: rhythm(1 / 2),
             marginBottom: 0,
             borderRadius: "50%",
             width: "200px",
           }}
         />
       </div>
-      <Name>{author.id}</Name>
+      <div className="font-bold text-pink-600 dark:text-yellow-600">
+        {author.id}
+      </div>
       <div>
         <Github url={author.github} /> | <Twitter handle={author.twitter} />
       </div>
-      <About>{author.bio}</About>
     </Container>
   );
 }
@@ -68,16 +68,5 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: ${rhythm(2.5)};
   width: 400px;
-  padding: 50px;
-`;
-
-const Name = styled.div`
-  color: ${COLOR.SECONDARY};
-  font-weight: bold;
-`;
-
-const About = styled.p`
-  text-align: center;
 `;

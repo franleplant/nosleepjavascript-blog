@@ -1,41 +1,22 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react";
 import Helmet from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
-import { IAuthor } from "../types";
+import { IAuthorFragmentFragment } from "../../graphql-types";
+import { isDark } from "./DarkModeSelect";
+import { useSiteMetadata } from "../dal/site";
 
 export interface IProps {
   title: string;
   description?: string;
   lang?: string;
   meta?: Array<any>;
-  author?: IAuthor;
+  author?: IAuthorFragmentFragment;
 }
 
 export default function SEO(props: IProps) {
   const { description = ``, lang = `en`, meta = [], title, author } = props;
+  const siteMeta = useSiteMetadata();
 
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  );
-
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription = description || siteMeta.description;
 
   return (
     <Helmet
@@ -43,7 +24,7 @@ export default function SEO(props: IProps) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${siteMeta.title}`}
       meta={[
         {
           name: `title`,
@@ -71,7 +52,7 @@ export default function SEO(props: IProps) {
         },
         {
           name: `twitter:creator`,
-          content: author?.twitter || site.siteMetadata.author,
+          content: author?.twitter || siteMeta.author,
         },
         {
           name: `twitter:title`,
@@ -82,6 +63,33 @@ export default function SEO(props: IProps) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <MailchimpScript />
+      <DarkModeScript />
+    </Helmet>
+  );
+}
+
+export function MailchimpScript() {
+  return (
+    <script id="mcjs">
+      {`!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/c388336980630bd93629517cb/79c014026202565af1500f561.js");
+          `}
+    </script>
+  );
+}
+
+export function DarkModeScript() {
+  return (
+    <script id="dark-mode-script">
+      {`
+        // best to add inline in head to avoid FOUC
+        if (${isDark.toString()}()) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      `}
+    </script>
   );
 }

@@ -1,20 +1,13 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
-import { css } from "@emotion/core";
+import { graphql, PageProps } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
-import { rhythm } from "../utils/typography";
-import SharedBio from "../components/SharedBio";
-import * as theme from "../utils/theme";
 
 import { IBlogIndexQuery } from "../../graphql-types";
-import NewsletterSubscribe from "../components/NewsletterSubscribe";
+import PostCard from "../components/PostCard";
 
-export interface IProps {
-  data: IBlogIndexQuery;
-  location: any;
-}
+export interface IProps extends PageProps<IBlogIndexQuery> {}
 
 export default function BlogIndex(props: IProps) {
   const { data } = props;
@@ -23,57 +16,32 @@ export default function BlogIndex(props: IProps) {
 
   return (
     <Layout location={props.location} title={siteTitle}>
-      <SEO title="NoSleep Javascript a blog by franleplant" />
+      <div className="space-y-3 p-3 lg:p-20">
+        <SEO title="NoSleep Javascript a blog by franleplant" />
 
-      {/* TODO improve this */}
-      <SharedBio
-        authors={data.allAuthorYaml.nodes.filter(
-          (author) => author.id === "franleplant"
-        )}
-      />
+        <div className="flex flex-wrap justify-center max-w-screen-xl -m-3">
+          {posts.map(({ node }) => {
+            const slug = node.fields.slug;
+            const title = node.frontmatter.title || slug;
+            const content = node.frontmatter.description || node.excerpt;
+            const tags = node.frontmatter.tags;
 
-      <NewsletterSubscribe />
-
-      {posts.map(({ node }) => {
-        const slug = node.fields.slug;
-        const title = node.frontmatter.title || slug;
-        const content = node.frontmatter.description || node.excerpt;
-
-        return (
-          <article key={slug}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link to={slug}>{title}</Link>
-              </h3>
-              <small>{`${node.frontmatter.date} • ${node.fields.readingTime.text}`}</small>
-              <small>
-                {` • by `}
-                <span
-                  css={css`
-                    color: ${theme.COLOR.SECONDARY};
-                  `}
-                >
-                  {node.frontmatter.author.id}
-                </span>
-              </small>
-            </header>
-            <section>
-              <p
-                css={css`
-                  text-align: justify;
-                `}
-                dangerouslySetInnerHTML={{
-                  __html: content,
-                }}
+            return (
+              <PostCard
+                key={slug}
+                slug={slug}
+                title={title}
+                content={content}
+                date={node.frontmatter.date}
+                readingTime={node.fields.readingTime.text}
+                authorId={node.frontmatter.author.id}
+                tags={tags}
+                className="w-96 m-3"
               />
-            </section>
-          </article>
-        );
-      })}
+            );
+          })}
+        </div>
+      </div>
     </Layout>
   );
 }
@@ -99,6 +67,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            tags
             author {
               id
             }

@@ -267,10 +267,13 @@ and taught some extra techniques in the way.
 [9]: https://www.gatsbyjs.org/packages/gatsby-image/
 
 </br>
+
 Want to become a Javascript expert? This is nice place to start:
+
 </br>
 </br>
 
+<div class="flex flex-row gap-2">
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=franleplant-20&language=en_US&marketplace=amazon&region=US&placement=B084BNMN7T&asins=B084BNMN7T&linkId=8b137e903d39f2ffe9d05b679af42508&show_border=true&link_opens_in_new_window=true"></iframe>
 
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=franleplant-20&language=en_US&marketplace=amazon&region=US&placement=B08634PZ3N&asins=B08634PZ3N&linkId=41b1c21effffe8f07f6a3f9556d010b2&show_border=true&link_opens_in_new_window=true"></iframe>
@@ -284,3 +287,4 @@ Want to become a Javascript expert? This is nice place to start:
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=franleplant-20&language=en_US&marketplace=amazon&region=US&placement=1491904194&asins=1491904194&linkId=879d759323b3c457b665eeb431537dab&show_border=true&link_opens_in_new_window=true"></iframe>
 
  <div id="amzn-assoc-ad-388ed262-d0bf-4cf6-8458-5b5d84d8a3cd"></div><script async src="https://z-na.associates-amazon.com/onetag/v2?MarketPlace=US&instanceId=388ed262-d0bf-4cf6-8458-5b5d84d8a3cd"></script>
+</div>

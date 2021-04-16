@@ -1,14 +1,25 @@
 import React from "react";
-import styled from "@emotion/styled";
-import { COLOR } from "../utils/theme";
+import Input from "./Input";
+import Button from "./Button";
 
-export default function NewsletterSubscribe() {
+export interface IProps {
+  className?: string;
+  bounce?: boolean;
+}
+
+export default function NewsletterSubscribe(props: IProps): JSX.Element {
   return (
-    <Container>
-      <h3>Subscribe to our mailing list!</h3>
-      <h4>Get exclusive content, offers and become a friend!</h4>
+    <div
+      className={`rounded-md p-3 flex flex-col space-y-1 ${props.className}`}
+    >
+      <h3 className="text-center p-0">Subscribe to our mailing list!</h3>
+      {/*
+      <p className="text-center text-black">
+        Get exclusive content, offers and become a friend!
+      </p>
+        */}
 
-      <div id="mc_embed_signup">
+      <div id="mc_embed_signup" className="mt-auto">
         <form
           action="https://nosleepjavascript.us2.list-manage.com/subscribe/post?u=c388336980630bd93629517cb&amp;id=53ee07001f"
           method="post"
@@ -17,15 +28,18 @@ export default function NewsletterSubscribe() {
           target="_blank"
           noValidate
         >
-          <div id="mc_embed_signup_scroll">
-            <div className="mc-field-group" style={{ display: "inline-block" }}>
+          <div
+            id="mc_embed_signup_scroll"
+            className="flex flex-row justify-center -m-1"
+          >
+            <div className="mc-field-group m-1 min-w-0">
               <label htmlFor="mce-EMAIL" style={{ display: "none" }}>
                 email <span style={{ color: "red" }}>*</span>{" "}
               </label>
-              <input
+              <Input
                 type="email"
                 name="EMAIL"
-                className="required email"
+                className="required email w-full"
                 id="mce-EMAIL"
                 placeholder="email address"
               />
@@ -52,36 +66,19 @@ export default function NewsletterSubscribe() {
                 tabIndex={-1}
               />
             </div>
-            <input
-              type="submit"
-              value="Subscribe"
-              name="subscribe"
-              id="mc-embedded-subscribe"
-            />
+
+            <div className="m-1">
+              <Button
+                type="submit"
+                id="mc-embedded-subscribe"
+                className={`${props.bounce ? "animate-bounce" : ""}`}
+              >
+                Subscribe
+              </Button>
+            </div>
           </div>
         </form>
       </div>
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div`
-  text-align: center;
-  border: 2px solid ${COLOR.SECONDARY};
-  border-radius: 5px;
-  margin-bottom: 18px;
-  padding: 5px;
-
-  form {
-    margin: 0;
-  }
-
-  form > div {
-    display: flex;
-    justify-content: center;
-  }
-
-  form > div > * {
-    margin: 0px 4px;
-  }
-`;

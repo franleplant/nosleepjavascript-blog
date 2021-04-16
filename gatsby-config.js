@@ -68,7 +68,14 @@ module.exports = {
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
           `gatsby-remark-reading-time`,
-          `gatsby-remark-autolink-headers`,
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              offsetY: `100`,
+              icon: `#`,
+              className: `header-anchor`,
+            },
+          },
 
           {
             resolve: "gatsby-remark-emojis",
@@ -113,12 +120,6 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-typescript`,
@@ -145,6 +146,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-twitter`,
+    "gatsby-plugin-postcss",
   ],
   mapping: {
     "MarkdownRemark.frontmatter.author": `AuthorYaml`,

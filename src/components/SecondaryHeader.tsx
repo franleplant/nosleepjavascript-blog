@@ -1,23 +1,22 @@
 import React from "react";
 import { Link } from "gatsby";
-import styled from "@emotion/styled";
 
 import logo from "../../content/assets/logo.svg";
+import logoInverted from "../../content/assets/logo_inverted.svg";
 
-export default function SecondaryHeader() {
+export interface IProps {}
+
+export default function PrimaryHeader(_props: IProps) {
   return (
-    <H3>
-      <Link to={`/`}>
-        <img src={logo} alt="NoSleep Javascript" />
-      </Link>
-    </H3>
+    <header>
+      <h1 className="max-w-md mx-auto h-16 md:h-40 w-56 md:w-full">
+        <Link to={`/`} className="dark:hidden">
+          <img src={logo} alt={"NoSleepJavascript Blog"} />
+        </Link>
+        <Link to={`/`} className="hidden dark:block">
+          <img src={logoInverted} alt={"NoSleepJavascript Blog"} />
+        </Link>
+      </h1>
+    </header>
   );
 }
-
-const H3 = styled.h3`
-  margin: 0;
-  & img {
-    max-width: 25%;
-    margin: 0;
-  }
-`;

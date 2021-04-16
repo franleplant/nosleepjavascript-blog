@@ -1,27 +1,45 @@
 import React from "react";
 import { Link } from "gatsby";
-import { css } from "@emotion/core";
-import typography from "../utils/typography";
+import { useFranleplant } from "../dal/authors";
 
 import logo from "../../content/assets/logo.svg";
+import logoInverted from "../../content/assets/logo_inverted.svg";
+import { oneline } from "../utils/strTag";
 
 export interface IProps {
-  title: string;
+  isHome: boolean;
 }
 
 export default function PrimaryHeader(props: IProps) {
-  const { title } = props;
+  const franleplant = useFranleplant();
+
   return (
-    <h1
-      css={css`
-        @media only screen and (min-width: 500px) {
-          padding: 0 ${typography.rhythm(5)};
-        }
+    <header>
+      <h1 className="max-w-md mx-auto h-28 md:h-40 w-56 md:w-full">
+        <Link to={`/`} className="dark:hidden">
+          <img src={logo} alt={"NoSleepJavascript Blog"} />
+        </Link>
+        <Link to={`/`} className="hidden dark:block">
+          <img src={logoInverted} alt={"NoSleepJavascript Blog"} />
+        </Link>
+      </h1>
+
+      <div
+        className={oneline`
+${props.isHome ? "" : "hidden md:block"}
+        text-lg 
       `}
-    >
-      <Link to={`/`}>
-        <img src={logo} alt={title} />
-      </Link>
-    </h1>
+      >
+        <p className="text-center">
+          A blog by{" "}
+          <a className="" href={`https://twitter.com/${franleplant.twitter}`}>
+            {franleplant.id}
+          </a>
+        </p>
+        <p className="text-center">
+          I talk about Programming, Tech Culture and random stuff.
+        </p>
+      </div>
+    </header>
   );
 }

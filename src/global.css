@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply dark:bg-gray-800;
+  }
+
+  p,
+  span,
+  small,
+  li,
+  summary {
+    @apply dark:text-white;
+  }
+
+  h1 {
+    @apply text-4xl;
+    @apply font-sans;
+    @apply font-bold;
+    @apply pb-2;
+    @apply dark:text-white;
+  }
+  h2 {
+    @apply text-2xl;
+    @apply font-sans;
+    @apply font-bold;
+    @apply pb-2;
+    @apply dark:text-white;
+  }
+  h3 {
+    @apply text-xl;
+    @apply font-sans;
+    @apply font-bold;
+    @apply pb-2;
+    @apply dark:text-white;
+  }
+
+  h4 {
+    @apply text-lg;
+    @apply font-sans;
+    @apply font-bold;
+    @apply pb-2;
+    @apply dark:text-white;
+  }
+
+  h5 {
+    @apply text-base;
+    @apply font-sans;
+    @apply font-bold;
+    @apply pb-2;
+    @apply dark:text-white;
+  }
+
+  h6 {
+    @apply text-base;
+    @apply font-sans;
+    @apply font-bold;
+    @apply italic;
+    @apply pb-2;
+    @apply dark:text-white;
+  }
+
+  a {
+    @apply text-pink-600;
+    @apply hover:underline;
+    @apply font-bold;
+    @apply dark:text-yellow-600;
+  }
+
+  blockquote {
+    @apply rounded-md p-6 pl-8 italic;
+    @apply bg-gradient-to-r from-yellow-600 via-yellow-600;
+    @apply dark:border-r-0 dark:border-l-8 dark:border-pink-700 dark:bg-gray-800;
+    @apply dark:from-transparent dark:to-transparent;
+  }
+
+  blockquote * {
+    @apply text-lg;
+  }
+
+  ul {
+    @apply list-disc;
+    @apply pl-8;
+  }
+
+  ol {
+    @apply list-decimal;
+    @apply pl-8;
+  }
+
+  li {
+    @apply py-1;
+  }
+}
+
+.nsj-post-content img {
+  /* This helps with outdated svgs */
+  @apply dark:bg-white;
+}
+
+.gatsby-highlight,
+.gatsby-code-title {
+  @apply -m-3;
+}
+
+.gatsby-code-title + .gatsby-highlight {
+  margin-top: -0.5rem !important;
+}
+
+.gatsby-code-title {
+  @apply rounded-t-md;
+  @apply text-white;
+  @apply bg-black;
+  @apply font-mono;
+  @apply p-3;
+}
+
+/* Markdown title permalinks */
+.header-anchor {
+  @apply invisible;
+}
+
+h1:hover > a.header-anchor,
+h2:hover > a.header-anchor,
+h3:hover > a.header-anchor,
+h4:hover > a.header-anchor,
+h5:hover > a.header-anchor,
+h6:hover > a.header-anchor {
+  @apply visible transition-all delay-75;
+}
+
+/* this is to fix overflowing in mobile */
+:not(pre) > code[class*="language-"] {
+  word-break: break-word;
+}
