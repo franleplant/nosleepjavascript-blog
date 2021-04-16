@@ -20,7 +20,7 @@ export default function Button({ className, ...props }: IProps): JSX.Element {
     focus:ring-pink-600
     focus:border-transparent
     shadow-lg
-    text-black
+    text-white
     font-bold
     ${className}
     `}

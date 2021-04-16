@@ -15,29 +15,55 @@ export default function DarkModeSelect(props: IProps): JSX.Element {
     }
   }, [darkMode]);
 
+  function onDarkModeChange(newDarkMode: boolean): void {
+    setDarkMode((_darkMode) => {
+      localStorage.theme = newDarkMode ? "dark" : "light";
+      return newDarkMode;
+    });
+  }
+
+  return (
+    <div
+      className={oneline`
+      flex items-center justify-items-center justify-center
+      ${props.className}
+    `}
+    >
+      <Button onClick={() => onDarkModeChange(true)} active={darkMode}>
+        🌛
+      </Button>
+      <Button onClick={() => onDarkModeChange(false)} active={!darkMode}>
+        🌞
+      </Button>
+    </div>
+  );
+}
+
+export interface IButtonProps {
+  active?: boolean;
+  onClick: () => void;
+  children: JSX.Element | string;
+  className?: string;
+}
+
+export function Button(props: IButtonProps): JSX.Element {
   return (
     <button
       className={oneline`
+        mx-3
         p-3 text-xl w-10 h-10 flex items-center justify-items-center justify-center rounded-full
         outline-none
         focus:outline-none
         border
         border-pink-700
         dark:border-white
+        ${!props.active ? "opacity-30" : ""}
+        hover:opacity-100
         ${props.className}
       `}
-      onClick={() => {
-        setDarkMode((darkMode) => {
-          const newDarkMode = !darkMode;
-          localStorage.theme = newDarkMode ? "dark" : "light";
-          return newDarkMode;
-        });
-
-        // Whenever the user explicitly chooses to respect the OS preference
-        //localStorage.removeItem('theme')
-      }}
+      onClick={() => props.onClick()}
     >
-      <div>{darkMode ? "🌛" : "🌞"}</div>
+      <div>{props.children}</div>
     </button>
   );
 }

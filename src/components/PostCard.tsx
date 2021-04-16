@@ -38,7 +38,7 @@ export default function PostCard(props: IProps): JSX.Element {
     `}
     >
       <div className="">
-        <h3>
+        <h3 className="p-0 fuck">
           <Link to={slug}>{title}</Link>
         </h3>
         <div className="dark:text-white">

@@ -28,7 +28,7 @@ export default function Bio(props: IProps) {
   );
 
   return (
-    <div className="flex items-center max-w-lg">
+    <div className="flex items-center max-w-lg border-t border-b py-5 border-gray-50 my-5 border-opacity-25">
       <Image
         fluid={author.profilepicture.childImageSharp.fluid}
         alt={author.id}

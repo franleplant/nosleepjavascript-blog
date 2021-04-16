@@ -22,7 +22,6 @@ export default function NavMenu(props: IProps): JSX.Element {
         flex
         flex-col
         items-center
-        lg:items-end
         lg:h-full
       `}
     >
@@ -40,25 +39,36 @@ export default function NavMenu(props: IProps): JSX.Element {
           ${props.isHome ? "flex" : "hidden"}
           md:flex
           flex-row items-center justify-center
-          lg:flex-col lg:items-end
-          gap-1
-          lg:mt-10
+
+          divide-x
+          divide-gray-50
+          divide-opacity-25
+
           `}
         >
           <Link
             to="/about"
-            className="leading-10 p-3 dark:text-white text-md hover:text-pink-600 md:text-right"
+            className="flex-1 text-center leading-10 p-3 dark:text-white text-md hover:text-pink-600"
           >
             About
           </Link>
           <a
             href={`mailto:nosleeptechblog@gmail.com?subject=Contact from website`}
-            className="leading-10 p-3 dark:text-white text-md hover:text-pink-600 md:text-right"
+            className="flex-1 text-center leading-10 p-3 dark:text-white text-md hover:text-pink-600"
           >
             Contact
           </a>
+        </div>
 
-          <DarkModeSelect className="lg:m-3" />
+        <div
+          className={oneline`
+            ${props.isHome ? "flex" : "hidden"}
+            md:flex
+            flex-row items-center justify-center
+            lg:m-6
+          `}
+        >
+          <DarkModeSelect className="" />
         </div>
 
         <footer className="p-3 text-center lg:text-right dark:text-white mt-auto hidden md:block">

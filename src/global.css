@@ -16,7 +16,7 @@
   }
 
   h1 {
-    @apply text-3xl;
+    @apply text-4xl;
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;

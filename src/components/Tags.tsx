@@ -21,7 +21,7 @@ export interface ITagProps {
 
 export function Tag(props: ITagProps): JSX.Element {
   return (
-    <span className="m-0.5 bg-yellow-600 dark:bg-pink-700 rounded px-2 text-xs cursor-pointer text-black dark:text-black">
+    <span className="m-0.5 bg-yellow-600 dark:bg-pink-700 rounded px-2 text-xs cursor-pointer text-black dark:text-white">
       {props.children}
     </span>
   );
