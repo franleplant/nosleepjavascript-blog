@@ -4,6 +4,7 @@ import Button from "./Button";
 
 export interface IProps {
   className?: string;
+  bounce?: boolean;
 }
 
 export default function NewsletterSubscribe(props: IProps): JSX.Element {
@@ -67,7 +68,11 @@ export default function NewsletterSubscribe(props: IProps): JSX.Element {
             </div>
 
             <div className="m-1">
-              <Button type="submit" id="mc-embedded-subscribe" className="">
+              <Button
+                type="submit"
+                id="mc-embedded-subscribe"
+                className={`${props.bounce ? "animate-bounce" : ""}`}
+              >
                 Subscribe
               </Button>
             </div>

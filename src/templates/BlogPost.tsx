@@ -69,7 +69,7 @@ export default function BlogPostTemplate(props: IProps) {
               <Patreon />
             </div>
           </section>
-          <NewsletterSubscribe />
+          <NewsletterSubscribe bounce={true} />
         </article>
 
         <div className="py-4">
