@@ -17,7 +17,7 @@ export default function NavMenu(props: IProps): JSX.Element {
         p-2
         lg:px-2
         lg:py-0
-        border-pink-700
+        border-pink-600
         lg:border-r
         flex
         flex-col
@@ -29,7 +29,7 @@ export default function NavMenu(props: IProps): JSX.Element {
         <PrimaryHeader isHome={props.isHome} />
         <NewsletterSubscribe
           className={oneline`
-          shadow border-pink-700 border-0 md:block
+          border-0 md:block
           ${props.isHome ? "" : "hidden"}
           lg:block
         `}
@@ -47,13 +47,13 @@ export default function NavMenu(props: IProps): JSX.Element {
         >
           <Link
             to="/about"
-            className="flex-1 text-center leading-10 p-3 dark:text-white text-md hover:text-pink-600"
+            className="flex-1 text-center leading-10 p-3 dark:text-light_white text-md hover:text-pink-600"
           >
             About
           </Link>
           <a
             href={`mailto:nosleeptechblog@gmail.com?subject=Contact from website`}
-            className="flex-1 text-center leading-10 p-3 dark:text-white text-md hover:text-pink-600"
+            className="flex-1 text-center leading-10 p-3 dark:text-light_white text-md hover:text-pink-600"
           >
             Contact
           </a>
@@ -70,7 +70,7 @@ export default function NavMenu(props: IProps): JSX.Element {
           <DarkModeSelect className="" />
         </div>
 
-        <footer className="p-3 text-center lg:text-right dark:text-white mt-auto hidden md:block">
+        <footer className="p-3 text-center lg:text-right dark:text-light_white mt-auto hidden md:block">
           © {new Date().getFullYear()}, nosleepjavascript.com
         </footer>
       </div>

@@ -12,6 +12,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        light_white: "#d0cccf",
         gray: { 800: "#060009", 900: "#090909" },
         pink: {
           50: `${PINK}0a`,
