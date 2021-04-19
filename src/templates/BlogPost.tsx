@@ -52,7 +52,7 @@ export default function BlogPostTemplate(props: IProps) {
           <Tags tags={tags} />
           <header className="pb-3">
             <h1> {post.frontmatter?.title} </h1>
-            <div className="py-3 text-sm text-gray-700 dark:text-gray-50">
+            <div className="py-3 text-sm text-gray-700 dark:text-light_white">
               {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
             </div>
             <Bio author={author} />

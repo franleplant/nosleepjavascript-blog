@@ -56,7 +56,7 @@ export function Button(props: IButtonProps): JSX.Element {
         focus:outline-none
         border
         border-pink-700
-        dark:border-white
+        dark:border-light_white
         ${!props.active ? "opacity-30" : ""}
         hover:opacity-100
         ${props.className}

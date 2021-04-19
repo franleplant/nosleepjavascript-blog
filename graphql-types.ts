@@ -3006,15 +3006,15 @@ export type IQuerySitePageArgs = {
   internalComponentName: Maybe<IStringQueryOperatorInput>;
   componentChunkName: Maybe<IStringQueryOperatorInput>;
   matchPath: Maybe<IStringQueryOperatorInput>;
-  id: Maybe<IStringQueryOperatorInput>;
-  parent: Maybe<INodeFilterInput>;
-  children: Maybe<INodeFilterListInput>;
-  internal: Maybe<IInternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<IBooleanQueryOperatorInput>;
   context: Maybe<ISitePageContextFilterInput>;
   pluginCreator: Maybe<ISitePluginFilterInput>;
   pluginCreatorId: Maybe<IStringQueryOperatorInput>;
   componentPath: Maybe<IStringQueryOperatorInput>;
+  id: Maybe<IStringQueryOperatorInput>;
+  parent: Maybe<INodeFilterInput>;
+  children: Maybe<INodeFilterListInput>;
+  internal: Maybe<IInternalFilterInput>;
 };
 
 
@@ -3477,15 +3477,15 @@ export type ISitePage = INode & {
   internalComponentName: Scalars['String'];
   componentChunkName: Scalars['String'];
   matchPath: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  parent: Maybe<INode>;
-  children: Array<INode>;
-  internal: IInternal;
   isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   context: Maybe<ISitePageContext>;
   pluginCreator: Maybe<ISitePlugin>;
   pluginCreatorId: Maybe<Scalars['String']>;
   componentPath: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  parent: Maybe<INode>;
+  children: Array<INode>;
+  internal: IInternal;
 };
 
 export type ISitePageConnection = {
@@ -3585,6 +3585,140 @@ export type ISitePageFieldsEnum =
   'internalComponentName' |
   'componentChunkName' |
   'matchPath' |
+  'isCreatedByStatefulCreatePages' |
+  'context___slug' |
+  'context___previous___fields___slug' |
+  'context___previous___frontmatter___title' |
+  'context___next___fields___slug' |
+  'context___next___frontmatter___title' |
+  'pluginCreator___id' |
+  'pluginCreator___parent___id' |
+  'pluginCreator___parent___parent___id' |
+  'pluginCreator___parent___parent___children' |
+  'pluginCreator___parent___children' |
+  'pluginCreator___parent___children___id' |
+  'pluginCreator___parent___children___children' |
+  'pluginCreator___parent___internal___content' |
+  'pluginCreator___parent___internal___contentDigest' |
+  'pluginCreator___parent___internal___description' |
+  'pluginCreator___parent___internal___fieldOwners' |
+  'pluginCreator___parent___internal___ignoreType' |
+  'pluginCreator___parent___internal___mediaType' |
+  'pluginCreator___parent___internal___owner' |
+  'pluginCreator___parent___internal___type' |
+  'pluginCreator___children' |
+  'pluginCreator___children___id' |
+  'pluginCreator___children___parent___id' |
+  'pluginCreator___children___parent___children' |
+  'pluginCreator___children___children' |
+  'pluginCreator___children___children___id' |
+  'pluginCreator___children___children___children' |
+  'pluginCreator___children___internal___content' |
+  'pluginCreator___children___internal___contentDigest' |
+  'pluginCreator___children___internal___description' |
+  'pluginCreator___children___internal___fieldOwners' |
+  'pluginCreator___children___internal___ignoreType' |
+  'pluginCreator___children___internal___mediaType' |
+  'pluginCreator___children___internal___owner' |
+  'pluginCreator___children___internal___type' |
+  'pluginCreator___internal___content' |
+  'pluginCreator___internal___contentDigest' |
+  'pluginCreator___internal___description' |
+  'pluginCreator___internal___fieldOwners' |
+  'pluginCreator___internal___ignoreType' |
+  'pluginCreator___internal___mediaType' |
+  'pluginCreator___internal___owner' |
+  'pluginCreator___internal___type' |
+  'pluginCreator___resolve' |
+  'pluginCreator___name' |
+  'pluginCreator___version' |
+  'pluginCreator___pluginOptions___plugins' |
+  'pluginCreator___pluginOptions___plugins___resolve' |
+  'pluginCreator___pluginOptions___plugins___id' |
+  'pluginCreator___pluginOptions___plugins___name' |
+  'pluginCreator___pluginOptions___plugins___version' |
+  'pluginCreator___pluginOptions___plugins___nodeAPIs' |
+  'pluginCreator___pluginOptions___plugins___browserAPIs' |
+  'pluginCreator___pluginOptions___plugins___ssrAPIs' |
+  'pluginCreator___pluginOptions___plugins___pluginFilepath' |
+  'pluginCreator___pluginOptions___path' |
+  'pluginCreator___pluginOptions___name' |
+  'pluginCreator___pluginOptions___exclude' |
+  'pluginCreator___pluginOptions___tight' |
+  'pluginCreator___pluginOptions___fromHeading' |
+  'pluginCreator___pluginOptions___toHeading' |
+  'pluginCreator___pluginOptions___maxWidth' |
+  'pluginCreator___pluginOptions___linkImagesToOriginal' |
+  'pluginCreator___pluginOptions___showCaptions' |
+  'pluginCreator___pluginOptions___markdownCaptions' |
+  'pluginCreator___pluginOptions___sizeByPixelDensity' |
+  'pluginCreator___pluginOptions___backgroundColor' |
+  'pluginCreator___pluginOptions___quality' |
+  'pluginCreator___pluginOptions___withWebp' |
+  'pluginCreator___pluginOptions___tracedSVG' |
+  'pluginCreator___pluginOptions___loading' |
+  'pluginCreator___pluginOptions___disableBgImageOnAlpha' |
+  'pluginCreator___pluginOptions___disableBgImage' |
+  'pluginCreator___pluginOptions___className' |
+  'pluginCreator___pluginOptions___offsetY' |
+  'pluginCreator___pluginOptions___icon' |
+  'pluginCreator___pluginOptions___isIconAfterHeader' |
+  'pluginCreator___pluginOptions___active' |
+  'pluginCreator___pluginOptions___size' |
+  'pluginCreator___pluginOptions___styles___display' |
+  'pluginCreator___pluginOptions___styles___margin' |
+  'pluginCreator___pluginOptions___styles___margin_top' |
+  'pluginCreator___pluginOptions___styles___position' |
+  'pluginCreator___pluginOptions___styles___top' |
+  'pluginCreator___pluginOptions___styles___width' |
+  'pluginCreator___pluginOptions___base64Width' |
+  'pluginCreator___pluginOptions___stripMetadata' |
+  'pluginCreator___pluginOptions___defaultQuality' |
+  'pluginCreator___pluginOptions___failOnError' |
+  'pluginCreator___pluginOptions___trackingId' |
+  'pluginCreator___pluginOptions___head' |
+  'pluginCreator___pluginOptions___anonymize' |
+  'pluginCreator___pluginOptions___respectDNT' |
+  'pluginCreator___pluginOptions___pageTransitionDelay' |
+  'pluginCreator___pluginOptions___short_name' |
+  'pluginCreator___pluginOptions___start_url' |
+  'pluginCreator___pluginOptions___background_color' |
+  'pluginCreator___pluginOptions___theme_color' |
+  'pluginCreator___pluginOptions___display' |
+  'pluginCreator___pluginOptions___legacy' |
+  'pluginCreator___pluginOptions___theme_color_in_head' |
+  'pluginCreator___pluginOptions___cache_busting_mode' |
+  'pluginCreator___pluginOptions___crossOrigin' |
+  'pluginCreator___pluginOptions___include_favicon' |
+  'pluginCreator___pluginOptions___cacheDigest' |
+  'pluginCreator___pluginOptions___isTSX' |
+  'pluginCreator___pluginOptions___jsxPragma' |
+  'pluginCreator___pluginOptions___allExtensions' |
+  'pluginCreator___pluginOptions___codegenConfig___typesPrefix' |
+  'pluginCreator___pluginOptions___codegenConfig___avoidOptionals' |
+  'pluginCreator___pluginOptions___publisherId' |
+  'pluginCreator___pluginOptions___pathCheck' |
+  'pluginCreator___nodeAPIs' |
+  'pluginCreator___browserAPIs' |
+  'pluginCreator___ssrAPIs' |
+  'pluginCreator___pluginFilepath' |
+  'pluginCreator___packageJson___name' |
+  'pluginCreator___packageJson___description' |
+  'pluginCreator___packageJson___version' |
+  'pluginCreator___packageJson___main' |
+  'pluginCreator___packageJson___license' |
+  'pluginCreator___packageJson___dependencies' |
+  'pluginCreator___packageJson___dependencies___name' |
+  'pluginCreator___packageJson___dependencies___version' |
+  'pluginCreator___packageJson___devDependencies' |
+  'pluginCreator___packageJson___devDependencies___name' |
+  'pluginCreator___packageJson___devDependencies___version' |
+  'pluginCreator___packageJson___peerDependencies' |
+  'pluginCreator___packageJson___peerDependencies___name' |
+  'pluginCreator___packageJson___peerDependencies___version' |
+  'pluginCreator___packageJson___keywords' |
+  'pluginCreatorId' |
+  'componentPath' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -3670,140 +3804,7 @@ export type ISitePageFieldsEnum =
   'internal___ignoreType' |
   'internal___mediaType' |
   'internal___owner' |
-  'internal___type' |
-  'isCreatedByStatefulCreatePages' |
-  'context___slug' |
-  'context___previous___fields___slug' |
-  'context___previous___frontmatter___title' |
-  'context___next___fields___slug' |
-  'context___next___frontmatter___title' |
-  'pluginCreator___id' |
-  'pluginCreator___parent___id' |
-  'pluginCreator___parent___parent___id' |
-  'pluginCreator___parent___parent___children' |
-  'pluginCreator___parent___children' |
-  'pluginCreator___parent___children___id' |
-  'pluginCreator___parent___children___children' |
-  'pluginCreator___parent___internal___content' |
-  'pluginCreator___parent___internal___contentDigest' |
-  'pluginCreator___parent___internal___description' |
-  'pluginCreator___parent___internal___fieldOwners' |
-  'pluginCreator___parent___internal___ignoreType' |
-  'pluginCreator___parent___internal___mediaType' |
-  'pluginCreator___parent___internal___owner' |
-  'pluginCreator___parent___internal___type' |
-  'pluginCreator___children' |
-  'pluginCreator___children___id' |
-  'pluginCreator___children___parent___id' |
-  'pluginCreator___children___parent___children' |
-  'pluginCreator___children___children' |
-  'pluginCreator___children___children___id' |
-  'pluginCreator___children___children___children' |
-  'pluginCreator___children___internal___content' |
-  'pluginCreator___children___internal___contentDigest' |
-  'pluginCreator___children___internal___description' |
-  'pluginCreator___children___internal___fieldOwners' |
-  'pluginCreator___children___internal___ignoreType' |
-  'pluginCreator___children___internal___mediaType' |
-  'pluginCreator___children___internal___owner' |
-  'pluginCreator___children___internal___type' |
-  'pluginCreator___internal___content' |
-  'pluginCreator___internal___contentDigest' |
-  'pluginCreator___internal___description' |
-  'pluginCreator___internal___fieldOwners' |
-  'pluginCreator___internal___ignoreType' |
-  'pluginCreator___internal___mediaType' |
-  'pluginCreator___internal___owner' |
-  'pluginCreator___internal___type' |
-  'pluginCreator___resolve' |
-  'pluginCreator___name' |
-  'pluginCreator___version' |
-  'pluginCreator___pluginOptions___plugins' |
-  'pluginCreator___pluginOptions___plugins___resolve' |
-  'pluginCreator___pluginOptions___plugins___id' |
-  'pluginCreator___pluginOptions___plugins___name' |
-  'pluginCreator___pluginOptions___plugins___version' |
-  'pluginCreator___pluginOptions___plugins___nodeAPIs' |
-  'pluginCreator___pluginOptions___plugins___browserAPIs' |
-  'pluginCreator___pluginOptions___plugins___ssrAPIs' |
-  'pluginCreator___pluginOptions___plugins___pluginFilepath' |
-  'pluginCreator___pluginOptions___path' |
-  'pluginCreator___pluginOptions___name' |
-  'pluginCreator___pluginOptions___exclude' |
-  'pluginCreator___pluginOptions___tight' |
-  'pluginCreator___pluginOptions___fromHeading' |
-  'pluginCreator___pluginOptions___toHeading' |
-  'pluginCreator___pluginOptions___maxWidth' |
-  'pluginCreator___pluginOptions___linkImagesToOriginal' |
-  'pluginCreator___pluginOptions___showCaptions' |
-  'pluginCreator___pluginOptions___markdownCaptions' |
-  'pluginCreator___pluginOptions___sizeByPixelDensity' |
-  'pluginCreator___pluginOptions___backgroundColor' |
-  'pluginCreator___pluginOptions___quality' |
-  'pluginCreator___pluginOptions___withWebp' |
-  'pluginCreator___pluginOptions___tracedSVG' |
-  'pluginCreator___pluginOptions___loading' |
-  'pluginCreator___pluginOptions___disableBgImageOnAlpha' |
-  'pluginCreator___pluginOptions___disableBgImage' |
-  'pluginCreator___pluginOptions___className' |
-  'pluginCreator___pluginOptions___offsetY' |
-  'pluginCreator___pluginOptions___icon' |
-  'pluginCreator___pluginOptions___active' |
-  'pluginCreator___pluginOptions___size' |
-  'pluginCreator___pluginOptions___styles___display' |
-  'pluginCreator___pluginOptions___styles___margin' |
-  'pluginCreator___pluginOptions___styles___margin_top' |
-  'pluginCreator___pluginOptions___styles___position' |
-  'pluginCreator___pluginOptions___styles___top' |
-  'pluginCreator___pluginOptions___styles___width' |
-  'pluginCreator___pluginOptions___base64Width' |
-  'pluginCreator___pluginOptions___stripMetadata' |
-  'pluginCreator___pluginOptions___defaultQuality' |
-  'pluginCreator___pluginOptions___failOnError' |
-  'pluginCreator___pluginOptions___trackingId' |
-  'pluginCreator___pluginOptions___head' |
-  'pluginCreator___pluginOptions___anonymize' |
-  'pluginCreator___pluginOptions___respectDNT' |
-  'pluginCreator___pluginOptions___pageTransitionDelay' |
-  'pluginCreator___pluginOptions___short_name' |
-  'pluginCreator___pluginOptions___start_url' |
-  'pluginCreator___pluginOptions___background_color' |
-  'pluginCreator___pluginOptions___theme_color' |
-  'pluginCreator___pluginOptions___display' |
-  'pluginCreator___pluginOptions___legacy' |
-  'pluginCreator___pluginOptions___theme_color_in_head' |
-  'pluginCreator___pluginOptions___cache_busting_mode' |
-  'pluginCreator___pluginOptions___crossOrigin' |
-  'pluginCreator___pluginOptions___include_favicon' |
-  'pluginCreator___pluginOptions___cacheDigest' |
-  'pluginCreator___pluginOptions___isTSX' |
-  'pluginCreator___pluginOptions___jsxPragma' |
-  'pluginCreator___pluginOptions___allExtensions' |
-  'pluginCreator___pluginOptions___codegenConfig___typesPrefix' |
-  'pluginCreator___pluginOptions___codegenConfig___avoidOptionals' |
-  'pluginCreator___pluginOptions___publisherId' |
-  'pluginCreator___pluginOptions___pathCheck' |
-  'pluginCreator___nodeAPIs' |
-  'pluginCreator___browserAPIs' |
-  'pluginCreator___ssrAPIs' |
-  'pluginCreator___pluginFilepath' |
-  'pluginCreator___packageJson___name' |
-  'pluginCreator___packageJson___description' |
-  'pluginCreator___packageJson___version' |
-  'pluginCreator___packageJson___main' |
-  'pluginCreator___packageJson___license' |
-  'pluginCreator___packageJson___dependencies' |
-  'pluginCreator___packageJson___dependencies___name' |
-  'pluginCreator___packageJson___dependencies___version' |
-  'pluginCreator___packageJson___devDependencies' |
-  'pluginCreator___packageJson___devDependencies___name' |
-  'pluginCreator___packageJson___devDependencies___version' |
-  'pluginCreator___packageJson___peerDependencies' |
-  'pluginCreator___packageJson___peerDependencies___name' |
-  'pluginCreator___packageJson___peerDependencies___version' |
-  'pluginCreator___packageJson___keywords' |
-  'pluginCreatorId' |
-  'componentPath';
+  'internal___type';
 
 export type ISitePageFilterInput = {
   path: Maybe<IStringQueryOperatorInput>;
@@ -3811,15 +3812,15 @@ export type ISitePageFilterInput = {
   internalComponentName: Maybe<IStringQueryOperatorInput>;
   componentChunkName: Maybe<IStringQueryOperatorInput>;
   matchPath: Maybe<IStringQueryOperatorInput>;
-  id: Maybe<IStringQueryOperatorInput>;
-  parent: Maybe<INodeFilterInput>;
-  children: Maybe<INodeFilterListInput>;
-  internal: Maybe<IInternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<IBooleanQueryOperatorInput>;
   context: Maybe<ISitePageContextFilterInput>;
   pluginCreator: Maybe<ISitePluginFilterInput>;
   pluginCreatorId: Maybe<IStringQueryOperatorInput>;
   componentPath: Maybe<IStringQueryOperatorInput>;
+  id: Maybe<IStringQueryOperatorInput>;
+  parent: Maybe<INodeFilterInput>;
+  children: Maybe<INodeFilterListInput>;
+  internal: Maybe<IInternalFilterInput>;
 };
 
 export type ISitePageGroupConnection = {
@@ -3993,6 +3994,7 @@ export type ISitePluginFieldsEnum =
   'pluginOptions___plugins___pluginOptions___className' |
   'pluginOptions___plugins___pluginOptions___offsetY' |
   'pluginOptions___plugins___pluginOptions___icon' |
+  'pluginOptions___plugins___pluginOptions___isIconAfterHeader' |
   'pluginOptions___plugins___pluginOptions___active' |
   'pluginOptions___plugins___pluginOptions___size' |
   'pluginOptions___plugins___nodeAPIs' |
@@ -4020,6 +4022,7 @@ export type ISitePluginFieldsEnum =
   'pluginOptions___className' |
   'pluginOptions___offsetY' |
   'pluginOptions___icon' |
+  'pluginOptions___isIconAfterHeader' |
   'pluginOptions___active' |
   'pluginOptions___size' |
   'pluginOptions___styles___display' |
@@ -4187,8 +4190,9 @@ export type ISitePluginPluginOptions = {
   disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
-  offsetY: Maybe<Scalars['String']>;
+  offsetY: Maybe<Scalars['Int']>;
   icon: Maybe<Scalars['String']>;
+  isIconAfterHeader: Maybe<Scalars['Boolean']>;
   active: Maybe<Scalars['Boolean']>;
   size: Maybe<Scalars['Int']>;
   styles: Maybe<ISitePluginPluginOptionsStyles>;
@@ -4251,8 +4255,9 @@ export type ISitePluginPluginOptionsFilterInput = {
   disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
   disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
-  offsetY: Maybe<IStringQueryOperatorInput>;
+  offsetY: Maybe<IIntQueryOperatorInput>;
   icon: Maybe<IStringQueryOperatorInput>;
+  isIconAfterHeader: Maybe<IBooleanQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
   size: Maybe<IIntQueryOperatorInput>;
   styles: Maybe<ISitePluginPluginOptionsStylesFilterInput>;
@@ -4330,8 +4335,9 @@ export type ISitePluginPluginOptionsPluginsPluginOptions = {
   disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
-  offsetY: Maybe<Scalars['String']>;
+  offsetY: Maybe<Scalars['Int']>;
   icon: Maybe<Scalars['String']>;
+  isIconAfterHeader: Maybe<Scalars['Boolean']>;
   active: Maybe<Scalars['Boolean']>;
   size: Maybe<Scalars['Int']>;
   styles: Maybe<ISitePluginPluginOptionsPluginsPluginOptionsStyles>;
@@ -4355,8 +4361,9 @@ export type ISitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
   disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
-  offsetY: Maybe<IStringQueryOperatorInput>;
+  offsetY: Maybe<IIntQueryOperatorInput>;
   icon: Maybe<IStringQueryOperatorInput>;
+  isIconAfterHeader: Maybe<IBooleanQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
   size: Maybe<IIntQueryOperatorInput>;
   styles: Maybe<ISitePluginPluginOptionsPluginsPluginOptionsStylesFilterInput>;

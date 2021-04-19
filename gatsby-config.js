@@ -74,6 +74,7 @@ module.exports = {
               offsetY: `100`,
               icon: `#`,
               className: `header-anchor`,
+              isIconAfterHeader: true,
             },
           },
 

@@ -29,7 +29,7 @@ export default function PostCard(props: IProps): JSX.Element {
         bg-white shadow-md p-3 rounded-md
         border-black-100 border cursor-pointer
         dark:border-transparent
-        dark:bg-opacity-5
+        dark:bg-opacity-10
         dark:bg-white
         flex flex-col
         space-y-3
@@ -38,7 +38,7 @@ export default function PostCard(props: IProps): JSX.Element {
     `}
     >
       <div className="">
-        <h3 className="p-0 fuck">
+        <h3 className="p-0">
           <Link to={slug}>{title}</Link>
         </h3>
         <div className="dark:text-white">
@@ -54,7 +54,7 @@ export default function PostCard(props: IProps): JSX.Element {
       <section>
         <p dangerouslySetInnerHTML={{ __html: content }} />
       </section>
-      <Tags tags={tags} className="!mt-auto pt-3" />
+      <Tags tags={tags} className="!mt-auto pt-5" />
     </article>
   );
 }

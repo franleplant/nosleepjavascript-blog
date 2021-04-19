@@ -11,8 +11,14 @@
   span,
   small,
   li,
-  summary {
-    @apply dark:text-white;
+  summary,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply dark:text-light_white;
   }
 
   h1 {
@@ -20,21 +26,18 @@
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
-    @apply dark:text-white;
   }
   h2 {
     @apply text-2xl;
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
-    @apply dark:text-white;
   }
   h3 {
     @apply text-xl;
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
-    @apply dark:text-white;
   }
 
   h4 {
@@ -42,7 +45,6 @@
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
-    @apply dark:text-white;
   }
 
   h5 {
@@ -50,7 +52,6 @@
     @apply font-sans;
     @apply font-bold;
     @apply pb-2;
-    @apply dark:text-white;
   }
 
   h6 {
@@ -59,7 +60,6 @@
     @apply font-bold;
     @apply italic;
     @apply pb-2;
-    @apply dark:text-white;
   }
 
   a {
