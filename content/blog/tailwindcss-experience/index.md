@@ -3,7 +3,7 @@ title: Rewriting the NSJS blog in Tailwind Css
 date: "2021-04-18"
 author: franleplant
 description:
-  "My blog has been long overdue to some aesthetic love and I decided to give Tailwind
+  "My blog has been long overdue for some aesthetic love and I decided to give Tailwind
   a run for its money. This is my experience."
 tags:
   - tailwindcss
@@ -13,8 +13,9 @@ tags:
   - dark mode
 ---
 
-My blog has been long overdue to some aesthetic love and I gave Tailwind
-a run for its money.
+My blog has been long overdue for some aesthetic love.
+I went with [Tailwind Css][10]
+because I have been hearing really good things about it. This is my experience.
 
 I had a lot of fun with Tailwind, it’s refreshing not to write css
 and only care about classes, the utility approach sounds weird at first
@@ -35,8 +36,8 @@ Here's a break down of the things I liked and the things I didn't.
 - **use anywhere**: you can use the classes inside your markdown, in your raw html, etc; this in practice makes it really easy to share your visual language.
 - **intellisense** IDE intellisense support is top notch, I've used one of the VIM plugins out there with great success and I've seen that [VS Code][21] support is even better.
 - **js framework agnostic**: in certain environments it is desired to be able to share styles across JS frameworks and technologies, imagine a big company with independent teams that don't want to all use the same JS framework to develop their apps but do want to share the same visual language. If you use a React UI library like [Ant design][23] you are basically locked in with React, and it is an uphill battle to try to share only the css parts of Antd into other JS frameworks like [angular][24].
-- **visual language** easy to create a consistent visual language by using customizable primitives.
-- **theming** built time theming is a first class citizen (run time theming is not, although it is not entirely impossible to do).
+- **visual language**: easy to create a consistent visual language by using customizable primitives.
+- **theming**: built time theming is a first class citizen (run time theming is not, although it is not entirely impossible to do).
 - **suitable for component libraries**: assuming your reusable components (i.e. React) library only uses Tailwind classes and not custom css you can use all of the benefits of a js only, inline-all distribution strategy as the one covered in my [previous post][20] with all the benefits of built time theming we just covered.
 - **css only** framework: css has become pretty powerful with flex and grid layouts and css variables, being a css only framework makes it easy to integrate anywhere, you could even grab the generated stylesheet and drop it in a manually generated html and it would work.
 
@@ -44,10 +45,10 @@ Here's a break down of the things I liked and the things I didn't.
 
 - **no high level primitives**: you do need to build higher level stuff from scratch like inputs, buttons, modals, etc, and certain UI components are surprisingly complex with variants, different flags for different states, etc.
 - **css only**: certain common things are going to require manual implementations (think anything that requires js): form input validation states, modals, etc.
-- **missing variants** it is awkward to find out which variants (i.e. `lg:dark:hover:shadow`) are not already generated, you basically need to wait for compilation and see if that class has any styles attached to it. **Important** this has been recently solved with the `JIT` patch which is still marked as experimental as we speak, but `JIT` also removes the possibility of live editing your html to add Tailwind Css classes for a quick feedback loop (because that particular class might not have been generated and injected on the compilation process).
+- **missing variants**: it is awkward to find out which variants (i.e. `lg:dark:hover:shadow`) are not already generated, you basically need to wait for compilation and see if that class has any styles attached to it. **Important** this has been recently solved with the `JIT` patch which is still marked as experimental as we speak, but `JIT` also removes the possibility of live editing your html to add Tailwind Css classes for a quick feedback loop (because that particular class might not have been generated and injected on the compilation process).
 - **requires compilation**: it uses [postcss][25] to compile your css plus it inspects all your source files to only emit the css classes that your site is actually using, this means that you are going to need `Node.js` available which means that if you are using other technologies this might mean extra complexity for your apps, but it is a pretty common practice to have compilation pipelines for Front End applications so it shouldn't be that bad.
 
-- **Bonus Con**: Gatsby has become super slow, it is not directly related to Tailwind but it looks like it adds to the slowness, if you have any clues how to improve on this let me know.
+**Bonus Con**: Gatsby has become super slow, it is not directly related to Tailwind but it looks like it adds to the slowness, if you have any clues how to improve on this let me know.
 
 ## Conclusion
 
@@ -112,7 +113,13 @@ This strategy works well and doesn’t break IDE intellisense.
 ### With `classNames` lib
 
 ```typescript
-className={classNames(`class1 class2`, props.className, { “opacity-50”: props.disabled})}
+className={classNames(
+  `class1 class2`,
+  props.className,
+  {
+    “opacity-50”: props.disabled
+  }
+)}
 ```
 
 This lib is awesome but the object notation breaks IDE intellisense.
