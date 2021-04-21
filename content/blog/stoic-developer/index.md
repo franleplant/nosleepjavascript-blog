@@ -35,7 +35,7 @@ to tackle any situation in our life.
 Let this serve as a high-level introduction to Stoicism
 and a good start towards a better life.
 
-> Developers are **professional thinkers** and
+> Developers are **professional thinkers**,
 > **weight lifters of the mind**.
 
 ## What is Stoicism?
@@ -109,27 +109,119 @@ I strongly recommend [The Practicing Stoic by Farnsworth][70] if you
 want a no nonsense practical introduction to Stoicism ready to be
 applied to your day to day life. The audio book is specially good.
 
-> **Disclaimer:** strictly speaking these is **my** interpretation of Stoicism.
+> **Disclaimer:** strictly speaking this is **my** interpretation of Stoicism.
+> Hollywood has a somewhat shallow version of a stoic person, typically in the
+> form of an action blockbuster hero that doesn't show emotion, there is so much more.
+>
+> Also, do not confuse Stoicism with emotional repression, Stoicism is about
+> emotional management or emotional intelligence but never about repression, in fact,
+> emotional repression goes against the Stoic teachings.
 
-## Practical examples
+## Quotes
+
+Let's go over 3 quotes from each of the most important figures of Stoicism:
+Seneca, Epictetus and Marcus Aurelius.
+
+I encourage you to come back often to them and reflect on them,
+they are mystical synthesis of knowledge that the Stoic consider
+valuable and I entirely agree.
+
+### Marcus Aurelius
+
+Marcus Aurelius Antoninus 26 April 121 – 17 March 180)
+was Roman emperor from 161 to 180 and a Stoic philosopher.
+The name might ring a bell since it appeared in the movie "Gladiator".
+His thoughts were solidified in books among which the famous [Meditations](https://amzn.to/3sy2G9m),
+is encountered.
 
 > If thou art pained by any external thing, it is not this that disturbs thee,
 > but thy own judgment about it. And it is in thy power to wipe out this judgment now.
 >
+> &nbsp;
+>
 > Marcus Aurelius
 
-TODO
+> Take away your opinion, and there is taken away the complaint,
+> [...] Take away the complaint, [...] and the hurt is gone
+>
+> &nbsp;
+>
+> Marcus Aurelius
 
-- reference other books
+> What if someone despises me? Let me see to it.
+> But I will see to it that I won't be found doing or saying anything contemptible.
+> What if someone hates me? Let me see to that. But I will see to it that I'm kind
+> and good-natured to all, and prepared to show even the hater where they went wrong.
+> Not in a critical way, or to show off my patience, but genuinely and usefully.
+>
+> &nbsp;
+>
+> Marcus Aurelius
+
+### Epictetus
+
+Epictetus (c. 55 – c. 135 AD), born a slave, was a Greek Stoic philosopher.
+The name given by his parents, if one was given, is not known.
+The word epiktetos in Greek simply means "acquired".
+You can read more about his teachings in [Discourses and Selected Writings](https://amzn.to/3xbWPKv).
+
+> In a word, neither death, nor exile, nor pain,
+> nor anything of this kind is the real cause of our doing
+> or not doing any action, but our inward opinions and principles.
+>
+> &nbsp;
+>
+> Epictetus
+
+> It is difficulties that show what men are.
+>
+> &nbsp;
+>
+> Epictetus
+
+> For it is not death or pain that is to be feared, but the fear of pain or death.
+>
+> &nbsp;
+>
+> Epictetus
+
+### Seneca
+
+Lucius Annaeus Seneca the Younger, 4 BC – AD 65, usually known as Seneca,
+was a Roman Stoic philosopher, statesman, dramatist, and in one work, satirist
+from the Silver Age of Latin literature.
+I highly recommend [Letters from a Stoic](https://amzn.to/3enJvd9).
+
+> True happiness is to enjoy the present, without anxious dependence upon
+> the future, not to amuse ourselves with either hopes or fears but to rest satisfied
+> with what we have, which is sufficient, for he that is so, wants nothing.
+>
+> &nbsp;
+>
+> Seneca
+
+> Throw me to the wolves and I will return leading the pack.
+>
+> &nbsp;
+>
+> Seneca
+
+> We suffer more often in imagination than in reality.
+>
+> &nbsp;
+>
+> Seneca
 
 ## Closing
 
 I have tried many different things to improve my self
-and be more resilient and resistant to whatever life throws at me,
-stoicism, meditations and physical exercise are the best tools
-I currently have available, I hope these little post serves as a
-reference point to developers and people going through these same problems.
+and be more resilient and resistant to whatever life throws at me.
+Stoicism, meditations and physical exercise are the best tools
+I currently have available, I hope this little post serves as a
+reference point to developers and people going through these same problems in life.
 
 [70]: https://amzn.to/3dyCkzO
 [71]: https://amzn.to/3eftYfD
 [73]: https://amzn.to/3tCruyf
+
+<br/>

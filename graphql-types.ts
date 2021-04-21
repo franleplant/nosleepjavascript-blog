@@ -4190,7 +4190,7 @@ export type ISitePluginPluginOptions = {
   disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
-  offsetY: Maybe<Scalars['Int']>;
+  offsetY: Maybe<Scalars['String']>;
   icon: Maybe<Scalars['String']>;
   isIconAfterHeader: Maybe<Scalars['Boolean']>;
   active: Maybe<Scalars['Boolean']>;
@@ -4255,7 +4255,7 @@ export type ISitePluginPluginOptionsFilterInput = {
   disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
   disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
-  offsetY: Maybe<IIntQueryOperatorInput>;
+  offsetY: Maybe<IStringQueryOperatorInput>;
   icon: Maybe<IStringQueryOperatorInput>;
   isIconAfterHeader: Maybe<IBooleanQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
@@ -4335,7 +4335,7 @@ export type ISitePluginPluginOptionsPluginsPluginOptions = {
   disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
-  offsetY: Maybe<Scalars['Int']>;
+  offsetY: Maybe<Scalars['String']>;
   icon: Maybe<Scalars['String']>;
   isIconAfterHeader: Maybe<Scalars['Boolean']>;
   active: Maybe<Scalars['Boolean']>;
@@ -4361,7 +4361,7 @@ export type ISitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
   disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
-  offsetY: Maybe<IIntQueryOperatorInput>;
+  offsetY: Maybe<IStringQueryOperatorInput>;
   icon: Maybe<IStringQueryOperatorInput>;
   isIconAfterHeader: Maybe<IBooleanQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
