@@ -17,7 +17,7 @@ export default function BlogIndex(props: IProps) {
   return (
     <Layout location={props.location} title={siteTitle}>
       <div className="space-y-3 p-3 lg:p-20">
-        <SEO title="NoSleep Javascript a blog by franleplant" />
+        <SEO title="NoSleep Javascript blog by franleplant" />
 
         <div className="flex flex-wrap justify-center max-w-screen-xl -m-3">
           {posts.map(({ node }) => {
