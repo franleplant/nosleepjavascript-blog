@@ -83,7 +83,7 @@ a more peaceful life without so much suffering.
 
 These teachings become even more important in the 21st century, where
 we are in constant stress, anxiety and fear even for the smallest
-things, like no getting the new phone, not getting enough likes,
+things, like not getting the new phone, not getting enough likes,
 not having the latest clothes,
 or of not being able to go the pub on weekends.
 
