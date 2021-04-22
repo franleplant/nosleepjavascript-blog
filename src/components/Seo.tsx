@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import { IAuthorFragmentFragment } from "../../graphql-types";
 import { isDark } from "./DarkModeSelect";
 import { useSiteMetadata } from "../dal/site";
+import { useAssets } from "../dal/content";
 
 export interface IProps {
   title: string;
@@ -15,6 +16,9 @@ export interface IProps {
 export default function SEO(props: IProps) {
   const { description = ``, lang = `en`, meta = [], title, author } = props;
   const siteMeta = useSiteMetadata();
+  const assets = useAssets();
+
+  const logo = assets.find((asset) => asset.base.includes("logo.svg"));
 
   const metaDescription = description || siteMeta.description;
 
@@ -41,6 +45,11 @@ export default function SEO(props: IProps) {
         {
           property: `og:description`,
           content: metaDescription,
+        },
+        {
+          property: `og:image`,
+          // Needs to be an absolute url
+          content: `https://nosleepjavascript.com${logo?.publicURL}`,
         },
         {
           property: `og:type`,
