@@ -1,6 +1,6 @@
 ---
 title: The Stoic Developer
-date: "2021-04-23"
+date: "2021-04-22"
 author: franleplant
 description:
   "Developers are high performance professional thinkers and thus we
