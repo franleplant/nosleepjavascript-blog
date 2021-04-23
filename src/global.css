@@ -72,7 +72,7 @@
   blockquote {
     @apply rounded-md p-6 pl-8 italic;
     @apply bg-gradient-to-r from-yellow-600 via-yellow-600;
-    @apply dark:border-r-0 dark:border-l-8 dark:border-pink-700 dark:bg-gray-800;
+    @apply dark:border-r-0 dark:border-l-8 dark:border-pink-600 dark:bg-gray-800;
     @apply dark:from-transparent dark:to-transparent;
   }
 
