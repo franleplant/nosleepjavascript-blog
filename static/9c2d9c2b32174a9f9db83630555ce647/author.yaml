@@ -1,0 +1,10 @@
+- id: nacho
+  bio: Software Engineer with a passion on system and software architecture. Other loves include music and video games (and their development).
+  profilepicture: ../../content/assets/nacho-profile.png
+  twitter: "ignacioamigo"
+  github: https://github.com/IgnacioAmigo
+- id: franleplant
+  profilepicture: ../../content/assets/franleplant-profile.png
+  bio: Tech Lead and Software developer with a degree in Engineering. Woodworker, all things Javascript, Rust and Software Architecture.
+  twitter: "franleplant"
+  github: https://github.com/franleplant

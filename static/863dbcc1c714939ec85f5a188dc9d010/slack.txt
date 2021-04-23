@@ -1,0 +1,47 @@
+
+- very basic introduction to webpack (maybe a separate post?)
+
+Keywords
+
+How to publish react components to npm
+How to distribute react components over npm
+How to package react components
+How to shared react components between different apps
+How to package react components and assets such as css and images
+Bundling and sharing react components with Webpack
+
+## Case studies
+
+Examples
+- https://www.npmjs.com/package/react-select uses emotion
+- https://www.npmjs.com/package/react-ace uses css BEM or similar (data url for images)
+You need to reference the styles in your html.
+- https://github.com/ant-design/ant-design uses less but no css modules, class names are public and do not vary in name they have a single index.less entry point that is used by bundlers to build a single stylesheet. Theming happens at build time by changing less variables (apps need to support less and have bundlers), images: only SVG embeded as react components.
+You need to reference the styles in your html or build them yourself with less.
+
+- https://react.semantic-ui.com/theming usess less, not css modules, class names ar epublic and do not vary, they provide theming at compile time only. They provide theming building via a separate package taht uses gulp but you can integrate their less sources in your webpack config. They use a weird css class names like `ui` and `button`, they look like very easy to mistakenly override. for images in css they basically rely on relative urls 
+
+https://react.semantic-ui.com/usage
+
+The default theme comes from a cdn and that cdn also hosts fonts and images and other assets.
+
+You need to reference the styles in your html.
+
+- https://react-bootstrap.github.io/getting-started/introduction reference styles in your html or build them yourself.
+- same here https://reactstrap.github.io/
+- same https://getbootstrap.com/docs/4.4/getting-started/theming/
+
+Both provide sass sources that you can modify variables and then build into a css stylehsset.
+For images they use svg and you need to copy those files in your public directory and they also suggggest copying the source in your app for some reason.
+
+
+- https://material-ui.com/
+
+They use css in js solution https://material-ui.com/styles/basics/ that appears to be a custom solution i.e. they do not use other high level libraries to support css-in-js
+
+They mostly deal with svg and fonts. They provide icons via svg or fonts (which seems like a smart thing to do) and
+you can basically reference them statically in your html.
+
+https://material-ui.com/components/icons/
+
+This still has the problem of versioning though.
