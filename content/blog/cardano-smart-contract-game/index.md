@@ -28,7 +28,7 @@ how you can model your DApp as a state machine and how can you express said mode
 pretty easily.
 
 Cardano's Smart Contracts are written in a Haskell library called Plutus, so put up your
-functional programming hat and let's our hands dirty.
+functional programming hat and let's get our hands dirty.
 
 Note: at the time of writing there still some wrinkles in Cardano's Smart Contract platform, so
 if you are not part of the Plutus Pioneer Program you might have some difficulties running this,
