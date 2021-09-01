@@ -51,7 +51,7 @@ export default function BlogPostTemplate(props: IProps) {
         <article className="space-y-5">
           <Tags tags={tags} />
           <header className="pb-3">
-            <h1> {post.frontmatter?.title} </h1>
+            <h1> {title} </h1>
             <div className="py-3 text-sm text-gray-700 dark:text-light_white">
               {`${post.frontmatter.date} • ${post.fields.readingTime.text}`}
             </div>
