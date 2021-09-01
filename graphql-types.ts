@@ -2980,6 +2980,8 @@ export type IQueryAllDirectoryArgs = {
 export type IQuerySiteArgs = {
   buildTime: Maybe<IDateQueryOperatorInput>;
   siteMetadata: Maybe<ISiteSiteMetadataFilterInput>;
+  port: Maybe<IIntQueryOperatorInput>;
+  host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
   polyfill: Maybe<IBooleanQueryOperatorInput>;
@@ -3139,6 +3141,8 @@ export type IQueryAllSitePluginArgs = {
 export type ISite = INode & {
   buildTime: Maybe<Scalars['Date']>;
   siteMetadata: Maybe<ISiteSiteMetadata>;
+  port: Maybe<Scalars['Int']>;
+  host: Maybe<Scalars['String']>;
   pathPrefix: Maybe<Scalars['String']>;
   mapping: Maybe<ISiteMapping>;
   polyfill: Maybe<Scalars['Boolean']>;
@@ -3344,6 +3348,8 @@ export type ISiteFieldsEnum =
   'siteMetadata___author' |
   'siteMetadata___siteUrl' |
   'siteMetadata___social___twitter' |
+  'port' |
+  'host' |
   'pathPrefix' |
   'mapping___MarkdownRemark_frontmatter_author' |
   'polyfill' |
@@ -3437,6 +3443,8 @@ export type ISiteFieldsEnum =
 export type ISiteFilterInput = {
   buildTime: Maybe<IDateQueryOperatorInput>;
   siteMetadata: Maybe<ISiteSiteMetadataFilterInput>;
+  port: Maybe<IIntQueryOperatorInput>;
+  host: Maybe<IStringQueryOperatorInput>;
   pathPrefix: Maybe<IStringQueryOperatorInput>;
   mapping: Maybe<ISiteMappingFilterInput>;
   polyfill: Maybe<IBooleanQueryOperatorInput>;
@@ -4182,7 +4190,7 @@ export type ISitePluginPluginOptions = {
   disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
-  offsetY: Maybe<Scalars['String']>;
+  offsetY: Maybe<Scalars['Int']>;
   icon: Maybe<Scalars['String']>;
   isIconAfterHeader: Maybe<Scalars['Boolean']>;
   active: Maybe<Scalars['Boolean']>;
@@ -4247,7 +4255,7 @@ export type ISitePluginPluginOptionsFilterInput = {
   disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
   disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
-  offsetY: Maybe<IStringQueryOperatorInput>;
+  offsetY: Maybe<IIntQueryOperatorInput>;
   icon: Maybe<IStringQueryOperatorInput>;
   isIconAfterHeader: Maybe<IBooleanQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
@@ -4327,7 +4335,7 @@ export type ISitePluginPluginOptionsPluginsPluginOptions = {
   disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   disableBgImage: Maybe<Scalars['Boolean']>;
   className: Maybe<Scalars['String']>;
-  offsetY: Maybe<Scalars['String']>;
+  offsetY: Maybe<Scalars['Int']>;
   icon: Maybe<Scalars['String']>;
   isIconAfterHeader: Maybe<Scalars['Boolean']>;
   active: Maybe<Scalars['Boolean']>;
@@ -4353,7 +4361,7 @@ export type ISitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   disableBgImageOnAlpha: Maybe<IBooleanQueryOperatorInput>;
   disableBgImage: Maybe<IBooleanQueryOperatorInput>;
   className: Maybe<IStringQueryOperatorInput>;
-  offsetY: Maybe<IStringQueryOperatorInput>;
+  offsetY: Maybe<IIntQueryOperatorInput>;
   icon: Maybe<IStringQueryOperatorInput>;
   isIconAfterHeader: Maybe<IBooleanQueryOperatorInput>;
   active: Maybe<IBooleanQueryOperatorInput>;
@@ -4493,13 +4501,16 @@ export type IBlogIndexQueryVariables = {};
 
 
 export type IBlogIndexQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<ISiteSiteMetadata, 'title'>> }>, allMarkdownRemark: { edges: Array<{ node: (
-        Pick<IMarkdownRemark, 'excerpt'>
+        Pick<IMarkdownRemark, 'html' | 'excerpt'>
         & { fields: Maybe<(
           Pick<IMarkdownRemarkFields, 'slug'>
           & { readingTime: Maybe<Pick<IMarkdownRemarkFieldsReadingTime, 'text'>> }
         )>, frontmatter: Maybe<(
-          Pick<IMarkdownRemarkFrontmatter, 'date' | 'title' | 'description' | 'tags'>
-          & { author: Maybe<Pick<IAuthorYaml, 'id'>> }
+          Pick<IMarkdownRemarkFrontmatter, 'title' | 'date' | 'description' | 'tags'>
+          & { author: Maybe<(
+            Pick<IAuthorYaml, 'id' | 'bio' | 'twitter' | 'github'>
+            & { profilepicture: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<IGatsbyImageSharpFluidFragment> }> }> }
+          )> }
         )> }
       ) }> }, allAuthorYaml: { nodes: Array<Pick<IAuthorYaml, 'bio' | 'id' | 'twitter' | 'github'>> } };
 
