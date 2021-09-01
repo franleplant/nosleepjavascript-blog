@@ -38,8 +38,6 @@ and produce new unspent outputs, starting from the genesis transaction.
 
 ![utxo diagram](./utxo.jpg)
 
-TODO INSERT DRAWING
-
 - Alice and Bob are just convenient aliases for their cryptographic Public Keys.
 - **C** means some coin.
 - There are no fees in this simple example.
