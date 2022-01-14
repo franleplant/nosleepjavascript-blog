@@ -56,7 +56,7 @@
     "gatsby-transformer-sharp": "^2.3.6",
     "gatsby-transformer-yaml": "2.2.20",
     "graphql": "^14.0.0",
-    "postcss": "^8.2.9",
+    "postcss": "^8.2.13",
     "prismjs": "^1.25.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
