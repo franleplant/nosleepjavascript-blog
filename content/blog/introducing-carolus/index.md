@@ -15,7 +15,7 @@ tags:
 For the past couple of weeks I have been playing around with the idea of news
 that are stored completely on-chain to make them uneditable and uncensorable.
 
-Carolus is the result of that experimentation and I expect it to be just one of many examples
+[Carolus][10] is the result of that experimentation and I expect it to be just one of many examples
 of [web3][15] [dapps][16] that are non-financial applications.
 
 At its core, Carolus is really simple: it is a place where journalists, archivers and amateurs
@@ -73,6 +73,9 @@ if it becomes large enough I plan to release a more comprehensive strategy to us
 
 All the code is open source: [contract][12], [api][13] and [client][14].
 
+[Go to Carolus][10]
+
+[10]: https://carolus-web.vercel.app
 [11]: https://opensea.io/assets/matic/0xcc20821468742eaa73e0283bde8f20d9b7c81ab8
 [12]: https://github.com/franleplant/carolus_contracts
 [13]: https://github.com/franleplant/carolus_api
